@@ -120,16 +120,68 @@ Majority of studies assume that the fitness of the wildtype and mutant are time 
 \label{figureCIN}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{>}}}
+    ] 
+\edef\x{6.5} 
+\edef\y{-0.5} 
+\edef\r{1.25} 
+
+\draw [postaction={decorate}, thick](-0.25,-4) -- (-0.25+5,0) node [midway, above] {$u$};
+%\draw [postaction={decorate}, thick](-0.25,-2) -- (-0.25+5,-4) node [midway, above] {$2p$};
+\draw [postaction={decorate}, thick](-0.25+5,-0) -- (-0.25+10,-4) node [midway, above] {$v$};
+%\draw [postaction={decorate}, thick](-0.25+5+\r,-4) -- (-0.25+10-\r,-4) node [midway, above] {$u$};
+%\draw [postaction={decorate}, thick](-0.25+5,-0) -- (-0.25+10,-4) node [midway, above] {$p$};
+\draw [postaction={decorate}, thick]  (-0.25+10,-4) -- (-0.25+5,-8) node [midway, above] {$u$};
+\draw [postaction={decorate}, thick](-0.25,-4)  -- (-0.25+5,-8)  node [midway, above] {$v$};
+
+\filldraw[color=red!60, fill=red!5, very thick](-0.25,-4) circle (\r);
+\filldraw[color=red!60, fill=red!5, very thick](-0.25+5,0) circle (\r);
+%\filldraw[color=red!60, fill=red!5, very thick](-0.25+5,-4) circle (\r);
+\filldraw[color=red!60, fill=red!5, very thick](-0.25+10,-4) circle (\r);
+%\filldraw[color=red!60, fill=red!5, very thick](-0.25+10,-4) circle (\r);
+\filldraw[color=red!60, fill=red!5, very thick](-0.25+5,-8) circle (\r);
+
+\draw [thick](0.05,-1.25+2-4) -- (0.05,-2.75+2-4);
+\draw [thick](-0.55,-1.25+2-4) -- (-0.55,-2.75+2-4);
+
+\draw [thick](0.15+5,-1.25+2) -- (0.15+5,-2.75+2);
+\draw [thick](-0.65+5,-1.25+2) -- (-0.65+5,-2.75+2);
+\draw [thick](-0.25+5,-1.25+2) -- (-0.25+5,-2.75+2);
+
+\draw [thick](0.15+10,-1.25+2-4) -- (0.15+10,-2.75+2-4);
+\draw [thick](-0.25+10,-1.25+2-4) -- (-0.25+10,-2.75+2-4);
+\draw [,color=blue,thick](-0.7+10,-1.25+2-4) -- (-0.7+10,-2.75+2-4);
+
+\draw [thick](0.05+5,-1.25+2-8) -- (0.05+5,-2.75+2-8);
+\draw [,color=blue,thick](-0.55+5,-1.25+2-8) -- (-0.55+5,-2.75+2-8);
+%\draw [thick](-0.55+5,-1.25-2) -- (-0.55+5,-2.75-2);
+
+%\draw [thick](-0.55+10,-1.25-2) -- (-0.55+10,-2.75-2);
+\end{tikzpicture}
+\caption{
+}
+\label{figuretrisomy}
+\end{figure}
+
 \section{Model}
 We model evolutionary rescue of cancer cells through aneuploidy with the help of multitype branching processes: we have three populations of cancer cells, wildtype euploid $w_t$, wildtype aneuploid $a_t$ and mutant euploid cells $m_t$ which proliferate and die with rates $\lambda_w,  \lambda_a,  \lambda_m$ and $\mu_w, \mu_a, \mu_m$, respectively. Wildtype cells can acquire aneuploidy at rate $u$ while aneuploidy and wildtype cells can mutate with rate $v$ (se Figure \ref{figureAneuploidy}). Changes in the number of wildtype euploid, wildtype aneuploid and mutant euploid cells occur at rates:
-\begin{align*}
+\begin{subequations}
+\begin{flalign}
 w_t&\rightarrow w_t+1:\quad \lambda_ww_t,\\
-w_t&\rightarrow w_t-1:\quad \left(\mu_w+u\right)w_t,\\
+w_t&\rightarrow w_t-1:\quad \left(\mu_w+u+v\right)w_t,\\
 a_t&\rightarrow a_t+1:\quad \lambda_aa_t+uw_t,\\
-a_t&\rightarrow a_t-1:\quad \left(\mu_a-w\right)a_t,\\
-m_t&\rightarrow m_t+1:\quad \lambda_am_t+wa_t,\\
+a_t&\rightarrow a_t-1:\quad \left(\mu_a+v\right)a_t,\\
+m_t&\rightarrow m_t+1:\quad \lambda_am_t+va_t+vm_t,\\
 m_t&\rightarrow m_t-1:\quad \mu_am_t.
-\end{align*}
+\end{flalign}
+\end{subequations}
+Given that we have used branching processes, the lineages produced by cells from the initial population will be independent of each other. This is not a biologically realistic model as cells compete for resources in tumors. We will study a more biologically realistic model in Section.
 The survival probability of a population consisting initially of one wildtype cell satisfies the quadratic equation:
 \begin{align}\nonumber
 1-p_w&=\frac{\mu_w}{\lambda_w+\mu_w+u+v}+\frac{u}{\lambda_w+\mu_w+u+v}\left(1-p_a\right)+\frac{\lambda_w}{\lambda_w+\mu_w+u+v}\left(1-p_w\right)^2\\ \label{quadraticeqev1}
@@ -149,7 +201,7 @@ whose smallest solution is the survival probability:
 \begin{align}\label{survproba}
 p_a=\frac{\lambda_a-\mu_a-v+\sqrt{\left(\lambda_a-\mu_a-v\right)^2+4\lambda_avp_m}}{2\lambda_a}.
 \end{align}
-The probability that a single mutant cell will survive is given by \cite{allen2010introduction}:
+The probability that a single mutant cell will survive is given by (see Appendix \ref{AppendixSurvLin}):
 \begin{equation}
 p_m=\left\{
   \begin{array}{@{}ll@{}}
@@ -340,7 +392,7 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{SurvPlotNData.pdf}
-\caption{Plot of the probability of survival of a population as a function of the initial population size of wildtype cells. The blue line represents the exact solution \eqref{survprobw}, the orange line line represents the approximation \eqref{survprobwapprox}, the green line represents the first order correction \eqref{survprobwapproxcorrected} and the red dots represents stochastic simulations. For the simulations we have chosen the following parameters: $\lambda_w=1-10^{-2}, \lambda_a=1+10^{-2},\lambda_m=1+10^{-3},\mu_w=1,\mu_a=1,\mu_m=1.$}
+\caption{Plot of the probability of survival of a population as a function of the initial population size of wildtype cells. The blue line represents the exact solution \eqref{survprobw}, the orange line line represents the approximation \eqref{survprobwapprox}, the green line represents the first order correction \eqref{survprobwapproxcorrected} and the red dots represents stochastic simulations. For the simulations we have chosen the following parameters: $\lambda_w=1-10^{-2}, \lambda_a=1+10^{-2},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1.$}
 \label{SurvPlotNData}
 \end{figure}
 
@@ -353,4 +405,65 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 
 \bibliographystyle{unsrt}
 \bibliography{green2021}
+
+\appendix
+
+\section{Gillespie algorithm}
+\begin{subequations}
+\begin{flalign}
+(+1,0,0)&:\quad \lambda_ww_t,\\
+(-1,0,0)&:\quad \mu_ww_t,\\
+(-1,+1,0)&:\quad uw_t,\\
+(-1,0,+1)&:\quad vw_t,\\
+(0,+1,0)&:\quad \lambda_aa_t,\\
+(0,-1,0)&:\quad \mu_aa_t,\\
+(0,-1,+1)&:\quad va_t,\\
+(0,0,+1)&:\quad \lambda_am_t,\\
+(0,0,-1)&:\quad \mu_am_t.
+\end{flalign}
+\end{subequations}
+
+\section{Survival probability of a mutant lineage}\label{AppendixSurvLin}
+\begin{align*}
+p_{i+j,i}\left(\Delta t\right)=\left\{
+  \begin{array}{@{}ll@{}}
+  \mu i\Delta t+o\left(\Delta t\right),\quad j=-1 \\
+  \lambda i\Delta t+o\left(\Delta t\right),\quad j=1 \\
+    1-\left(\lambda+\mu\right) i\Delta t+o\left(\Delta t\right),\quad j=0 \\
+   o\left(\Delta t\right),\quad j\neq-1,0,1.
+  \end{array}\right.
+\end{align*}
+
+\begin{align*}
+\frac{dp_i\left(t\right)}{dt}&=\lambda\left(i-1\right)p_{i-1}\left(t\right)+\mu\left(i+1\right)p_{i+1}\left(t\right)-\left(\lambda+\mu\right)ip_i\left(t\right)\\
+\frac{dp_0\left(t\right)}{dt}&=\mu p_1\left(t\right)
+\end{align*}
+
+\begin{align*}
+\mathcal{P}\left(z,t\right)=\left\{
+  \begin{array}{@{}ll@{}}
+  \left(\frac{\e^{t\left(\mu-\lambda\right)}\left(\lambda z-\mu\right)-\mu\left(z-1\right)}{\e^{t\left(\mu-\lambda\right)}\left(\lambda z-\mu\right)-\lambda\left(z-1\right)}\right)^N,\quad \text{if }\lambda\neq\mu \\
+  \left(\frac{1-\left(\lambda t-1\right)\left(z-1\right)}{1-\lambda t\left(z-1\right)}\right)^N,\quad \text{if }\lambda=\mu
+  \end{array}\right.
+\end{align*}
+
+\begin{equation*}
+\mathcal{P}\left(z,t\right)=\sum_{i=0}^\infty p_i\left(t\right)z^i \quad\text{and}\quad p_i\left(t\right)=\left.\frac{1}{i!}\frac{\partial^i\mathcal{P}}{\partial z^i}\right|_{z=0}
+\end{equation*}
+
+\begin{align*}
+p_0\left(t\right)=\left\{
+  \begin{array}{@{}ll@{}}
+  \left(\frac{\mu-\mu\e^{\left(\mu-\lambda\right)t}}{\lambda-\mu\e^{\left(\mu-\lambda\right)t}}\right)^N,\quad \text{if }\lambda\neq\mu \\
+  \left(\frac{\lambda t}{1+\lambda t}\right)^N,\quad \text{if }\lambda=\mu
+  \end{array}\right.
+\end{align*}
+
+\begin{align*}
+p_0\left(\infty\right)=\lim_{t\rightarrow\infty}p_0\left(t\right)=\left\{
+  \begin{array}{@{}ll@{}}
+  1,\quad \text{if }\lambda\leq\mu \\
+  \left(\frac{\mu}{\lambda}\right)^N,\quad \text{if }\lambda>\mu
+  \end{array}\right.
+\end{align*}
 \end{document}
