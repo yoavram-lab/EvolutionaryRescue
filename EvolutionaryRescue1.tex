@@ -62,7 +62,7 @@
 
 
 \begin{document}
-\title{Evolutionary rescue}
+\title{Modeling the effect of aneuploidy on cancer evolution}
 \author[1]{Remus Stana}
 \author[2]{‪Daniel Weissman}
 \author[1]{Yoav Ram}
@@ -272,7 +272,8 @@ Mutant  euploid
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{First case: $4\lambda_avp_m<\left(\lambda_a-\mu_a-v\right)^2$}
-We assume that $\mu_w>\lambda_w$ and $\mu_a<\lambda_a$ and, as a result, we rewrite \eqref{survproba} and \eqref{survprobw} as:
+\subsection{$\lambda_a>\mu_a$ and $\lambda_w<\mu_w$}
+We assume that $\lambda_a>\mu_a$ and $\lambda_w<\mu_w$ and, as a result, we rewrite \eqref{survprobw} and \eqref{survproba} as:
 \begin{align*}
 p_a&=\frac{\lambda_a-\mu_a-v}{2\lambda_a}\left(1+\sqrt{1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}}\right),\\
 p_w&=\frac{\lambda_w-\mu_w-u-v}{2\lambda_w}\left(1-\sqrt{1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}}\right).
@@ -280,14 +281,14 @@ p_w&=\frac{\lambda_w-\mu_w-u-v}{2\lambda_w}\left(1-\sqrt{1+\frac{4\lambda_w\left
 Making use of the Taylor series expansions:
 \begin{align*}
 \left(1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}\right)^{\frac{1}{2}}&=1+\frac{2\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}+\cdots\\
-\left(1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}\right)^{\frac{1}{2}}&=1+\frac{2\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_a-\mu_a-u-v\right)^2}+\cdots
+\left(1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}\right)^{\frac{1}{2}}&=1+\frac{2\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}+\cdots
 \end{align*}
 we obtain the following approximation for the survival probability of a population consisting of a single individual wildtype cell:
 \begin{align}\label{survprobwinitial}
-p_w&\approx\frac{vp_m+up_a}{\lambda_a-\mu_a-u-v}\\
+p_w&\approx\frac{vp_m+up_a}{\lambda_w-\mu_w-u-v}\\
 \nonumber
-&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a-u\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-u\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\ \label{survprobw}
-&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right],
+&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a-u\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-u\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\ \label{survprobw2}
+&\approx-\frac{1}{\lambda_w-\mu_w}\left[\frac{v\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right],
 \end{align}
 where in the last line we have used the fact that $u,v\ll1$. Using the notational convention
 \begin{equation}\label{notationalconv}
@@ -313,8 +314,8 @@ p_a=\frac{\lambda_a-\mu_a-v}{\lambda_a}+\frac{vp_m}{\lambda_a-\mu_a-v}-\frac{\la
 \end{align}
 From which we deduce that:
 \begin{align}\nonumber
-p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a-u\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-u\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a-v\right)^3}\right]\\ \label{survprobw}
-&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a\right)^3}\right].
+p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a-u\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-u\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a-v\right)^3}\right]\\ \label{survprobw3}
+&\approx-\frac{1}{\lambda_w-\mu_w}\left[\frac{v\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a\right)^3}\right].
 \end{align}
 Using the notations described in \eqref{notationalconv} we write the above equation as:
 \begin{equation}\label{survprobwapproxcorrected}
@@ -324,6 +325,31 @@ Given an initial population consisting of $N$ wildtype cancer cells, the probabi
 \begin{align}
 p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w}\left(\frac{v\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right].
 \end{align}
+\subsection{$\lambda_a<\mu_a$ and $\lambda_w<\mu_w$}
+We assume that $\lambda_a<\mu_a$ and $\lambda_w<\mu_w$ and, as a result, we rewrite \eqref{survprobw} and \eqref{survproba} as:
+\begin{align*}
+p_a&=\frac{\lambda_a-\mu_a-v}{2\lambda_a}\left(1-\sqrt{1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}}\right),\\
+p_w&=\frac{\lambda_w-\mu_w-u-v}{2\lambda_w}\left(1-\sqrt{1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}}\right).
+\end{align*}
+\begin{align}\label{survprobwinitial}
+p_w&\approx\frac{vp_m+up_a}{\lambda_w-\mu_w-u-v}\\
+\nonumber
+&\approx\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-v\right)}-\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\ \label{survprobw2}
+&\approx\frac{v}{\lambda_m\left(\lambda_w-\mu_w\right)}\left[\frac{u\left(\lambda_m-\mu_m\right)}{\left(\lambda_a-\mu_a\right)}-\left(\lambda_m-\mu_m\right)\right],
+\end{align}
+where in the last line we have used the fact that $u,v\ll1$. Using the notational convention
+\begin{equation}\label{notationalconv}
+\Delta_i=\lambda_i-\mu_i,
+\end{equation}
+we write \eqref{survprobw} as
+\begin{equation}\label{survprobwapprox}
+p_w=\frac{v}{\lambda_m\Delta_w}\left(\frac{u\Delta_m}{\Delta_a}-\Delta_m\right).
+\end{equation}
+Given an initial population consisting of $N$ wildtype cancer cells, the probability that the population will survive is given by: 
+\begin{align}
+p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{vN}{\lambda_m\Delta_w}\left(\Delta_m-\frac{u\Delta_m}{\Delta_a}\right)\right],
+\end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Second case: $4\lambda_avp_m>\left(\lambda_a-\mu_a-v\right)^2$}
 If we assume that  $4\lambda_avp_m>\left(\lambda_a-\mu_a-v\right)^2$ then we write:
 \begin{equation}
@@ -404,7 +430,7 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 \end{figure}
 
 \bibliographystyle{unsrt}
-\bibliography{green2021}
+\bibliography{evo2022}
 
 \appendix
 
@@ -424,6 +450,7 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 \end{subequations}
 
 \section{Survival probability of a mutant lineage}\label{AppendixSurvLin}
+The infinitesimal transition probabilities for the simple birth and death process:
 \begin{align*}
 p_{i+j,i}\left(\Delta t\right)=\left\{
   \begin{array}{@{}ll@{}}
@@ -433,37 +460,46 @@ p_{i+j,i}\left(\Delta t\right)=\left\{
    o\left(\Delta t\right),\quad j\neq-1,0,1.
   \end{array}\right.
 \end{align*}
+The forward Kolmogorov differential equations are:
+\begin{subequations}
+\label{KolmeqSurv}
+\begin{flalign}
+\frac{dp_i\left(t\right)}{dt}&=\lambda\left(i-1\right)p_{i-1}\left(t\right)+\mu\left(i+1\right)p_{i+1}\left(t\right)-\left(\lambda+\mu\right)ip_i\left(t\right),\\
+\frac{dp_0\left(t\right)}{dt}&=\mu p_1\left(t\right),
+\end{flalign}
+\end{subequations}
+for $i=1,2,\dots$ with initial conditions $p_i\left(0\right)=\delta_{iN}$.
 
-\begin{align*}
-\frac{dp_i\left(t\right)}{dt}&=\lambda\left(i-1\right)p_{i-1}\left(t\right)+\mu\left(i+1\right)p_{i+1}\left(t\right)-\left(\lambda+\mu\right)ip_i\left(t\right)\\
-\frac{dp_0\left(t\right)}{dt}&=\mu p_1\left(t\right)
-\end{align*}
-
+The probability generating function is defined as:
+\begin{equation*}
+\mathcal{P}\left(z,t\right)=\sum_{i=0}^\infty p_i\left(t\right)z^i
+\end{equation*}
+which we obtain by multiplying \eqref{KolmeqSurv} by $z^i$ and summing over $i$:
 \begin{align*}
 \mathcal{P}\left(z,t\right)=\left\{
   \begin{array}{@{}ll@{}}
-  \left(\frac{\e^{t\left(\mu-\lambda\right)}\left(\lambda z-\mu\right)-\mu\left(z-1\right)}{\e^{t\left(\mu-\lambda\right)}\left(\lambda z-\mu\right)-\lambda\left(z-1\right)}\right)^N,\quad \text{if }\lambda\neq\mu \\
-  \left(\frac{1-\left(\lambda t-1\right)\left(z-1\right)}{1-\lambda t\left(z-1\right)}\right)^N,\quad \text{if }\lambda=\mu
+  \left(\frac{\e^{t\left(\mu-\lambda\right)}\left(\lambda z-\mu\right)-\mu\left(z-1\right)}{\e^{t\left(\mu-\lambda\right)}\left(\lambda z-\mu\right)-\lambda\left(z-1\right)}\right)^N,\quad \text{if }\lambda\neq\mu, \\
+  \left(\frac{1-\left(\lambda t-1\right)\left(z-1\right)}{1-\lambda t\left(z-1\right)}\right)^N,\quad \text{if }\lambda=\mu.
   \end{array}\right.
 \end{align*}
-
+The probability $p_i$ can be obtained from the probability generating function as:
 \begin{equation*}
-\mathcal{P}\left(z,t\right)=\sum_{i=0}^\infty p_i\left(t\right)z^i \quad\text{and}\quad p_i\left(t\right)=\left.\frac{1}{i!}\frac{\partial^i\mathcal{P}}{\partial z^i}\right|_{z=0}
+p_i\left(t\right)=\left.\frac{1}{i!}\frac{\partial^i\mathcal{P}}{\partial z^i}\right|_{z=0},
 \end{equation*}
-
+and the probability of extinction is given by:
 \begin{align*}
 p_0\left(t\right)=\left\{
   \begin{array}{@{}ll@{}}
-  \left(\frac{\mu-\mu\e^{\left(\mu-\lambda\right)t}}{\lambda-\mu\e^{\left(\mu-\lambda\right)t}}\right)^N,\quad \text{if }\lambda\neq\mu \\
-  \left(\frac{\lambda t}{1+\lambda t}\right)^N,\quad \text{if }\lambda=\mu
+  \left(\frac{\mu-\mu\e^{\left(\mu-\lambda\right)t}}{\lambda-\mu\e^{\left(\mu-\lambda\right)t}}\right)^N,\quad \text{if }\lambda\neq\mu, \\
+  \left(\frac{\lambda t}{1+\lambda t}\right)^N,\quad \text{if }\lambda=\mu.
   \end{array}\right.
 \end{align*}
-
+When $t\rightarrow\infty$ the extinction probability has the following expression:
 \begin{align*}
 p_0\left(\infty\right)=\lim_{t\rightarrow\infty}p_0\left(t\right)=\left\{
   \begin{array}{@{}ll@{}}
-  1,\quad \text{if }\lambda\leq\mu \\
-  \left(\frac{\mu}{\lambda}\right)^N,\quad \text{if }\lambda>\mu
+  1,\quad \text{if }\lambda\leq\mu, \\
+  \left(\frac{\mu}{\lambda}\right)^N,\quad \text{if }\lambda>\mu.
   \end{array}\right.
 \end{align*}
 \end{document}
