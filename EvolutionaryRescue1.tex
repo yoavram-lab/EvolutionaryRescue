@@ -87,6 +87,8 @@ Populations adapted to a certain environment are vulnerable to environmental cha
 We are interested in how likely is a population to adapt to the changing environment through evolutionary adaptation.
 There are three potential ways for a population to survive environmental degradation: migration to a new habitat similar to the one before the onset of environmental change \cite{cobbold2020should}; adaptation by phenotypic plasticity without genetic change \cite{carja2019evolutionary,carja2017evolutionary,levien2021non}; and adaptation through genetic mutations \cite{uecker2014evolutionary,uecker2016role,uecker2011fixation}.
 
+Chromosomal instability (CIN) is the process during mitosis in which cells suffer from chromosome segration defects, which leads to a state called aneuploidy where cells are characterized by structural changes of the chromosomes and copy number alterations \cite{schukken2018cin}.
+
 Aberrations in chromosome copy number are exploited by cancer cells in order to survive under conditions of selective pressure such as chemotherapy. % REF
 Cancer cells are likely to be aneuploid, which also correlates with poor patient outcomes \cite{ben2020context}. One mechanism by which aneuploidy has been hypothesized to rescue cancer is by providing phenotypic variation and increasing heterogeneity in a tumor. 
 
@@ -362,23 +364,31 @@ we write \eqref{survprobw} as
 p_w=\frac{v\Delta_m}{\lambda_m\Delta_w}\left(\frac{u}{\Delta_a}-1\right).
 \end{equation}
 Given an initial population consisting of $N$ wildtype cancer cells, the probability that the population will survive is given by: 
-\begin{align}
+\begin{align}\label{AneuploidyDeleteriousApprox}
 p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right],
 \end{align}
 
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{P_est.pdf}
-\caption{}
+\caption{Plot of the survival probability of an initial population consisting of $10^{4}$ wildtype cells as a function of $\Delta_a=\lambda_a-\mu_a$ for various values of $\Delta_w=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximations \eqref{AneuploidyDeleteriousApprox}.}
 \label{P_est}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
-\includegraphics[width=1\textwidth]{DeleteriousPlot.pdf}
+\includegraphics[width=1\textwidth]{P_est_divergence.pdf}
+\caption{Plot of the survival probability of an initial population consisting of $10^{4}$ wildtype cells as a function of $\Delta_w=\lambda_w-\mu_w$ for various values of $\Delta_a=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximations \eqref{AneuploidyDeleteriousApprox}.}
+\label{P_est}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!t]
+ \vspace*{1\baselineskip}
+\includegraphics[width=1\textwidth]{DeleteriousTauLeapPlot.pdf}
 \caption{}
 \label{DeleteriousPlot}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Second case: $4\lambda_avp_m>\left(\lambda_a-\mu_a-v\right)^2$}
 If we assume that  $4\lambda_avp_m>\left(\lambda_a-\mu_a-v\right)^2$ then we write:
 \begin{equation}
@@ -392,29 +402,31 @@ we obtain:
 \begin{align*}
 p_a&\approx\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}\left[1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{8\lambda_avp_m}\right]}{2\lambda_a}\\
 &=\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}+\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\sqrt{\lambda_avp_m}}}{2\lambda_a}\\
-&\approx\sqrt{\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_a\lambda_m}}
+&=\frac{\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right)^2+4\lambda_avp_m}{8\lambda_a\sqrt{\lambda_avp_m}}\\
+&=\frac{4\lambda_avp_m+4\lambda_avp_m\left(1+\frac{\lambda_a-\mu_a-v}{2\sqrt{\lambda_avp_m}}\right)^2}{8\lambda_a\sqrt{\lambda_avp_m}}\\
+&=\frac{1}{2\lambda_a}\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right)
 \end{align*}
-In the last line of the above we have used the following inequalities:
-\begin{align*}
-\lambda_a-\mu_a,\,v,\,\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\sqrt{\lambda_avp_m}}\ll1.
-\end{align*}
+%In the last line of the above we have used the following inequalities:
+%\begin{align*}
+%\lambda_a-\mu_a,\,v,\,\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\sqrt{\lambda_avp_m}}\ll1.
+%\end{align*}
 As a result, we have from \eqref{survprobwinitial} the probability of rescue of a population starting from one wildtype individual:
 \begin{align*}
-p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m}+u\sqrt{\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_a\lambda_m}}\right]\\
-&=-\sqrt{\frac{\lambda_m-\mu_m}{\lambda_m}}\frac{\sqrt{v}}{\lambda_w-\mu_w-u-v}\left[\frac{u}{\sqrt{\lambda_a}}+\sqrt{\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}}\right]\\
-&=-\sqrt{\frac{\Delta_m}{\lambda_m}}\frac{\sqrt{v}}{\Delta_w-u-v}\left[\frac{u}{\sqrt{\lambda_a}}+\sqrt{\frac{v\Delta_m}{\lambda_m}}\right],
+p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m}+\frac{u}{2\lambda_a}\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right)\right]\\
+&=-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m}+\frac{u}{2\lambda_a}\left(\lambda_a-\mu_a-v\right)+u\sqrt{\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_a\lambda_m}}\right]\\
+&=-\frac{1}{\Delta_w-u-v}\left[v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right],
 \end{align*}
 where in the last line we have used the notations defined in \eqref{notationalconv}.
 
 Given an initial population consisting of $N$ wildtype cancer cells, the probability that the population will survive is given by: 
 \begin{align*}
-p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[N\sqrt{\frac{\Delta_m}{\lambda_m}}\frac{\sqrt{v}}{\Delta_w-u-v}\left(\frac{u}{\sqrt{\lambda_a}}+\sqrt{\frac{v\Delta_m}{\lambda_m}}\right)\right].
+p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right].
 \end{align*}
 
 \begin{equation}
 p_{est}\sim\left\{
   \begin{array}{@{}ll@{}}
-  1-\exp\left[N\sqrt{\frac{\Delta_m}{\lambda_m}}\frac{\sqrt{v}}{\Delta_w-u-v}\left(\frac{u}{\sqrt{\lambda_a}}+\sqrt{\frac{v\Delta_m}{\lambda_m}}\right)\right],\quad\text{if }4\lambda_avp_m>\left(\Delta_a-v\right)^2,\\
+  1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right],\quad\text{if }4\lambda_avp_m>\left(\Delta_a-v\right)^2,\\
    1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right],\quad\text{if }\Delta_a<0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2,\\
    1-\exp\left[\frac{N}{\Delta_w}\left(\frac{v\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right],\quad\text{if }\Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2.
   \end{array}\right.
