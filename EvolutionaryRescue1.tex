@@ -371,7 +371,7 @@ p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{v\Delta_mN}
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{P_est.pdf}
-\caption{Plot of the survival probability of an initial population consisting of $10^{4}$ wildtype cells as a function of $\Delta_a=\lambda_a-\mu_a$ for various values of $\Delta_w=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximations \eqref{AneuploidyDeleteriousApprox}.}
+\caption{Plot of the survival probability of an initial population consisting of $10^{4}$ wildtype cells as a function of $\Delta_a=\lambda_a-\mu_a$ for various values of $\Delta_w=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximation \eqref{AneuploidyDeleteriousApprox}.}
 \label{P_est}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -385,7 +385,7 @@ p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{v\Delta_mN}
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{DeleteriousTauLeapPlot.pdf}
-\caption{}
+\caption{Plot of the probability of survival of a population as a function of the initial population size of wildtype cells. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximation \eqref{pestthirdcase}.}
 \label{DeleteriousPlot}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,10 +419,12 @@ p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m
 where in the last line we have used the notations defined in \eqref{notationalconv}.
 
 Given an initial population consisting of $N$ wildtype cancer cells, the probability that the population will survive is given by: 
-\begin{align*}
-p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right].
-\end{align*}
+\begin{align}\label{pestthirdcase}
+p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right],
+\end{align}
+which we plot in Figure \ref{DeleteriousPlot} where we compare with numerical simulations and the exact result \eqref{survprobw}.
 
+The probability of evolutionary rescue is given by:
 \begin{equation}
 p_{est}\sim\left\{
   \begin{array}{@{}ll@{}}
