@@ -64,11 +64,13 @@
 \begin{document}
 \title{Modeling the effect of aneuploidy on cancer evolution}
 \author[1]{Remus Stana}
-\author[2]{‪Daniel Weissman}
+\author[2]{Daniel Weissman}
 \author[1]{Yoav Ram}
 \affil[1]{School of Zoology, Tel Aviv University, Tel Aviv-Yafo, Israel}
 \affil[2]{Department of Physics, Emory University, Atlanta, United States of America}
+
 \maketitle
+
 \begin{abstract}
 Evolutionary rescue is the process by which a population is able to survive a sudden environmental change which initially causes the population to decline towards extinction. A prime example of evolutionary rescue is the ability of cancer to survive being exposed to various treatments. We are interested in the mechanisms through which a population of cancer cells are able to adapt to chemotherapy, and in particular, the role played by chromosomal instability (aneuploidy). Cancer cells which have aneuploidy are hypothesized to have a higher fitness in an environment altered by anti-cancer drugs as they have incomplete pathways which drugs activate in order to kill the cells. Aneuploidy is highly prevalent in tumors and certain drugs which attempt to combat cancers through increasing chromosomal instability. As a result, the question we wish to answer is how aneuploidy impacts the fate of the population of cancer cells. We propose to model evolutionary rescue with the help of multi-type branching processes to obtain the probability that cancer will survive. Additionally, we will utilize large genomic datasets to asses the effects of aneuploidy on the probability of evolutionary rescue.
 \end{abstract}
@@ -124,16 +126,16 @@ Majority of studies assume that the fitness of the wildtype and mutant are indep
 \draw [thick](-0.55,-1.25) -- (-0.55,-2.75);
 
 \draw [thick](0.05+5,-1.25+2) -- (0.05+5,-2.75+2);
-\draw [thick](-0.55+5,-1.25+2) -- (-0.55+5,-2.75+2);
+\draw [very thick, blue](-0.55+5,-1.25+2) -- (-0.55+5,-2.75+2);
 
-\draw [thick](0.05+10,-1.25+2) -- (0.05+10,-2.75+2);
-\draw [thick](-0.55+10,-1.25+2) -- (-0.55+10,-2.75+2);
+\draw [very thick, blue](0.05+10,-1.25+2) -- (0.05+10,-2.75+2);
+\draw [very thick, blue](-0.55+10,-1.25+2) -- (-0.55+10,-2.75+2);
 
 \draw [thick](-0.55+5,-1.25-2) -- (-0.55+5,-2.75-2);
 
-\draw [thick](-0.55+10,-1.25-2) -- (-0.55+10,-2.75-2);
+\draw [very thick, blue](-0.55+10,-1.25-2) -- (-0.55+10,-2.75-2);
 \end{tikzpicture}
-\caption{
+\caption{Diagram of tumorgenesis by which a cell loses both of its tumor suppressing cells. The first tumor suppressing gene can be eliminated by a mutation at rate $2u$ or through chromosomal instability with rate $2p$. The last TSG can either be eliminated through mutation at rate $u$ or through chromosomal instability with rate $p$. Grey vertical lines represent active TSGs while the blue vertical lines represent inactivated TSGs.
 }
 \label{figureCIN}
 \end{figure}
@@ -433,14 +435,16 @@ p_{est}\sim\left\{
    1-\exp\left[\frac{N}{\Delta_w}\left(\frac{v\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right],\quad\text{if }\Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2.
   \end{array}\right.
 \end{equation}
-\section{Logistic}
-We want to have birth and death rates which depends on the population size of wildtype $w$, aneuploidy $a$ and mutant $m$ cells:
-\begin{align*}
-&\lambda_w'=\lambda_w,\quad\mu_w'=\mu_w\\
-&\lambda_a'=C_1+\lambda_a\left(1-\frac{w+a+m}{K}\right),\quad \mu_a'=C_1\\
-&\lambda_m'=C_2+\lambda_m\left(1-\frac{w+a+m}{K}\right),\quad \mu_m'=C_2
-\end{align*}
-where $C_1, C_2>0$ are constants.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Logistic}
+%We want to have birth and death rates which depends on the population size of wildtype $w$, aneuploidy $a$ and mutant $m$ cells:
+%\begin{align*}
+%&\lambda_w'=\lambda_w,\quad\mu_w'=\mu_w\\
+%&\lambda_a'=C_1+\lambda_a\left(1-\frac{w+a+m}{K}\right),\quad \mu_a'=C_1\\
+%&\lambda_m'=C_2+\lambda_m\left(1-\frac{w+a+m}{K}\right),\quad \mu_m'=C_2
+%\end{align*}
+%where $C_1, C_2>0$ are constants.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Standing genetic variation}
 Until now we have assumed that the initial population of cells consisted entirely of wildtype cells. We modify this assumtion such that the initial population includes a fraction $f$ of cells with aneuploidy. The probability of evolutionary rescue by the cells with aneuploidy from the initial population is:
 \begin{equation*}
@@ -453,12 +457,12 @@ p_{total}&=p_{new}+\left(1-p_{new}\right)p_{old}\\
 \end{align}
 The fraction of the cases in which the population is rescued by the standing genetic variation is given by:
 \begin{align*}
-F\left(f\right)=\frac{ 1-\e^{-fNp_a}}{1-\e^{-\left[\left(1-f\right)p_w+fp_a\right]N}}.
+F\left(f\right)=\frac{p_{old}}{p_{total}}=\frac{ 1-\e^{-fNp_a}}{1-\e^{-\left[\left(1-f\right)p_w+fp_a\right]N}}.
 \end{align*}
 We let $F=\frac{1}{2}$ and we obtain:
-\begin{equation*}
+\begin{equation}\label{halfeqstandvar}
 f^*\approx\frac{p_w}{p_w+p_a},
-\end{equation*}
+\end{equation}
 wher we have used the expansion $\e^x\approx 1+x$.
 We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 
@@ -478,7 +482,8 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{HeatMap_p_est.pdf}
-\caption{}
+\caption{Contours of the survival probability of an initial population consisting of $10^{3}$ wildtype cells as a function of the
+   parameters $\Delta_w=\lambda_w-\mu_w$ and $\Delta_a=\lambda_a-\mu_a$.}
 \label{SurvHeatMapPlot}
 \end{figure}
 
@@ -492,7 +497,7 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{FractionPlot.pdf}
-\caption{}
+\caption{Plot of the fraction of the cases the population is rescue by standing genetic variation as a function of the fraction of initial cells which are aneuploid. The red vertical line highlights the the value of $f$ for which half the times the population is rescues by aneuploid cells while the pink line is our approximation \eqref{halfeqstandvar}. For this plot we have chosen the following parameters: $N=10^2, \lambda_w=1-10^{-2}, \lambda_a=1+10^{-2},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1.$}
 \label{FractionPlot}
 \end{figure}
 
