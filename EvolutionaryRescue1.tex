@@ -176,10 +176,10 @@ Majority of studies assume that the fitness of the wildtype and mutant are indep
 
 \draw [thick](0.15+10,-1.25+2-4) -- (0.15+10,-2.75+2-4);
 \draw [thick](-0.25+10,-1.25+2-4) -- (-0.25+10,-2.75+2-4);
-\draw [,color=blue,very thick](-0.7+10,-1.25+2-4) -- (-0.7+10,-2.75+2-4);
+\draw [color=blue,very thick](-0.7+10,-1.25+2-4) -- (-0.7+10,-2.75+2-4);
 
 \draw [thick](0.05+5,-1.25+2-8) -- (0.05+5,-2.75+2-8);
-\draw [,color=blue,very thick](-0.55+5,-1.25+2-8) -- (-0.55+5,-2.75+2-8);
+\draw [color=blue,very thick](-0.55+5,-1.25+2-8) -- (-0.55+5,-2.75+2-8);
 %\draw [thick](-0.55+5,-1.25-2) -- (-0.55+5,-2.75-2);
 
 %\draw [thick](-0.55+10,-1.25-2) -- (-0.55+10,-2.75-2);
@@ -426,6 +426,10 @@ p_{est}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w
 \end{align}
 which we plot in Figure \ref{DeleteriousPlot} where we compare with numerical simulations and the exact result \eqref{survprobw}.
 
+\begin{align}
+\Delta_a^*=2vp_m+v+2\sqrt{vp_m\left(vp_m+\mu_a+v\right)}
+\end{align}
+
 The probability of evolutionary rescue is given by:
 \begin{equation}
 p_{est}\sim\left\{
@@ -467,7 +471,62 @@ wher we have used the expansion $\e^x\approx 1+x$.
 We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 
 \section{Mean time}
+%%%
+\begin{figure}[!t]
+ \vspace*{1\baselineskip}
+\includegraphics[width=1\textwidth]{MeanTimeGrowthAneuploidyPlot.pdf}
+\caption{}
+\label{MeanTimeGrowthAneuploidyPlot}
+\end{figure}
+%%%
 
+\begin{align}
+\tau=\tau_1+\tau_2
+\end{align}
+inhomogeneus Poisson process
+\begin{align}
+\tau_1\sim \text{Poisson}\left(\frac{1}{up_aW\left(t\right)}\right)
+\end{align}
+where 
+\begin{equation}
+W\left(t\right)=W_0\e^{\Delta_wt}
+\end{equation}
+\begin{align}
+f\left(\tau_1\right)=R\left(\tau_1\right)\e^{-\int_0^{\tau_1} R(t)\d t}
+\end{align}
+\begin{align*}
+P\left(\tau_1<t\right)&=P\left(\tau_1<t|M\left(t\rightarrow\infty\right)\neq0\right)P\left(M\left(t\rightarrow\infty\right)\neq0\right)\\
+&+P\left(\tau_1<t|M\left(t\rightarrow\infty\right)=0\right)P\left(M\left(t\rightarrow\infty\right)=0\right)\\
+P\left(\tau_1<t\right)&=P\left(\tau_1<t|M\left(t\rightarrow\infty\right)\neq0\right)P\left(M\left(t\rightarrow\infty\right)\neq0\right)
+\end{align*}
+\begin{align}
+P\left(\tau_1<t|M\left(t\rightarrow\infty\right)\neq0\right)=\frac{P\left(\tau_1<t\right)}{1-\left(1-p_w\right)^N}
+\end{align}
+where we have used
+\begin{equation}
+P\left(M\left(t\rightarrow\infty\right)\neq0\right)=1-\left(1-p_w\right)^N
+\end{equation}
+\begin{align}
+f\left(\tau_1|M\left(t\rightarrow\infty\right)\neq0\right)=\frac{R\left(\tau_1\right)\e^{-\int_0^{\tau_1} R(t)\d t}}{1-\left(1-p_w\right)^N}
+\end{align}
+\begin{align}
+\mathbb{E}\left[\tau_1\right]&=\frac{\int_0^\infty\e^{-\int_0^\tau R(t)\d t}\d\tau}{1-\left(1-p_w\right)^N}\\
+&=\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}
+\end{align}
+\begin{align}
+P_2\left(\tau_2\right)&=\int_0^\infty \d w P\left(W_l=w\right)\left[1-\e^{-vp_mW_l\left(\tau_2\right)}\right]\\
+&=1-\mathbb{E}\left[\e^{-vp_mW_l\left(\tau_2\right)}\right]
+\end{align}
+\begin{align}
+a_\pm=\frac{2-\delta-y\pm\sqrt{\left(\delta+y\right)^2-4y}}{2\left(1-\delta\right)}
+\end{align}
+\begin{align}
+P_2\left(\tau_2\right)=\frac{\left(a_+-1\right)\left(1-a_-\right)\left(1-\e^{\left[-\left(1-\delta\right)\left(a_+-a_-\right)t\right]}\right)}{a_+-1+\left(1-a_-\right)\e^{\left[-\left(1-\delta\right)\left(a_+-a_-\right)t\right]}}
+\end{align}
+with $y=vp_m$ in $a_\pm$.
+\begin{align}
+\mathbb{E}\left[\tau_2\right]=\int_0^\infty\left(1-\frac{P_2\left(t\right)}{p_m}\right)\d t
+\end{align}
 \section{Discussion}
 
 
@@ -497,7 +556,7 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 \begin{figure}[!t]
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{FractionPlot.pdf}
-\caption{Plot of the fraction of the cases the population is rescue by standing genetic variation as a function of the fraction of initial cells which are aneuploid. The red vertical line highlights the the value of $f$ for which half the times the population is rescues by aneuploid cells while the pink line is our approximation \eqref{halfeqstandvar}. For this plot we have chosen the following parameters: $N=10^2, \lambda_w=1-10^{-2}, \lambda_a=1+10^{-2},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1.$}
+\caption{Plot of the fraction of the cases the population is rescue by standing genetic variation as a function of the fraction of initial cells which are aneuploid. The red vertical line highlights the the value of $f$ for which half the times the population is rescues by aneuploid cells while the pink line is our approximation \eqref{halfeqstandvar}. For this plot we have chosen the following parameters: $N=10^3, \lambda_w=1-10^{-2}, \lambda_a=1-10^{-4},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1.$}
 \label{FractionPlot}
 \end{figure}
 
