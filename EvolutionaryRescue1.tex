@@ -100,6 +100,10 @@ However, when taking into account that the appearance of aneuploidy requires a m
 
 Majority of studies assume that the fitness of the wildtype and mutant are independent of time. An exception is \cite{marrec2020adapt}, where the fitness of the wildtype and mutant are time dependent. Additionally, \cite{uecker2011fixation} investigated the probability of fixation of a beneficial mutation in a variable environment with arbitrary time-dependent selection coefficient and population size.
 
+Most studies on evolutionary rescue are interested in the probability that at least one mutation rescues the population but the question of wheter multiple mutations contribute to the survival of the population is less explored. One exception is \cite{wilson2017soft} which show that evolutionary rescue is significantly inhanced by soft selective sweeps when multiple mutations contribute. 
+
+Evolutionary rescue which requires two succesive mutations has been investigated by \cite{martin2013probability} with the help of diffusion approximation.
+
 \begin{figure}
 \centering
 \begin{tikzpicture}[very thick,decoration={
@@ -440,14 +444,14 @@ p_{est}\sim\left\{
   \end{array}\right.
 \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Logistic}
-%We want to have birth and death rates which depends on the population size of wildtype $w$, aneuploidy $a$ and mutant $m$ cells:
-%\begin{align*}
-%&\lambda_w'=\lambda_w,\quad\mu_w'=\mu_w\\
-%&\lambda_a'=C_1+\lambda_a\left(1-\frac{w+a+m}{K}\right),\quad \mu_a'=C_1\\
-%&\lambda_m'=C_2+\lambda_m\left(1-\frac{w+a+m}{K}\right),\quad \mu_m'=C_2
-%\end{align*}
-%where $C_1, C_2>0$ are constants.
+\section{Logistic}
+We want to have birth and death rates which depends on the population size of wildtype $w$, aneuploidy $a$ and mutant $m$ cells:
+\begin{align*}
+&\lambda_w'=\lambda_w,\quad\mu_w'=\mu_w\\
+&\lambda_a'=C_1+\lambda_a\left(1-\frac{w+a+m}{K}\right),\quad \mu_a'=C_1\\
+&\lambda_m'=C_2+\lambda_m\left(1-\frac{w+a+m}{K}\right),\quad \mu_m'=C_2
+\end{align*}
+where $C_1, C_2>0$ are constants.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Standing genetic variation}
 Until now we have assumed that the initial population of cells consisted entirely of wildtype cells. We modify this assumtion such that the initial population includes a fraction $f$ of cells with aneuploidy. The probability of evolutionary rescue by the cells with aneuploidy from the initial population is:
@@ -498,6 +502,10 @@ f\left(\tau_1\right)=R\left(\tau_1\right)\e^{-\int_0^{\tau_1} R(t)\d t}
 P\left(\tau_1<t\right)&=P\left(\tau_1<t|M\left(t\rightarrow\infty\right)\neq0\right)P\left(M\left(t\rightarrow\infty\right)\neq0\right)\\
 &+P\left(\tau_1<t|M\left(t\rightarrow\infty\right)=0\right)P\left(M\left(t\rightarrow\infty\right)=0\right)\\
 P\left(\tau_1<t\right)&=P\left(\tau_1<t|M\left(t\rightarrow\infty\right)\neq0\right)P\left(M\left(t\rightarrow\infty\right)\neq0\right)
+\end{align*}
+where we used
+\begin{align*}
+P\left(\tau_1<t|M\left(t\rightarrow\infty\right)=0\right)=0
 \end{align*}
 \begin{align}
 P\left(\tau_1<t|M\left(t\rightarrow\infty\right)\neq0\right)=\frac{P\left(\tau_1<t\right)}{1-\left(1-p_w\right)^N}
