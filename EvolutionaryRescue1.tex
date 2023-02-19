@@ -139,7 +139,7 @@ Evolutionary rescue is the process by which a population is able to survive a su
 % history of evolutionary rescue literature (that is not specific to cancer) should move to literature, and we should have a clear statement on what we add to that literature. 
 
 \paragraph{Aneuploidy in cancer.} Chromosomal instability (CIN) is the mitotic process in which cells suffer from chromosome mis-segregation that leads to aneuploidy, where cells are characterized by structural changes of the chromosomes and copy number alterations \cite{schukken2018cin}.
-Interestingly, aberrations in chromosome copy number have been shown to allow cancer cells to survive under stressful conditions such as drug therapy. % REF
+Interestingly, aberrations in chromosome copy number have been shown to allow cancer cells to survive under stressful conditions such as drug therapy.
 Indeed, cancer cells are often likely to be aneuploid, and aneuploidy is associated with poor patient outcomes \cite{ben2020context}.
 
 % this belong in the next paragraph, or remove it altogether
@@ -160,9 +160,10 @@ Evolutionary rescue that requires two successive mutations has been investigated
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Model}
+\section*{Methods}
+\subsection*{Evolutionary model}
 
-We follow the number of three types of cancer cells at time $t$: wildtype euploid, $w_t$; wildtype aneuploid, $a_t$; and mutant euploid, $m_t$. 
+We follow the number of cancer cells that belong to three different types at time $t$: wildtype euploid, $w_t$; wildtype aneuploid, $a_t$; and mutant euploid, $m_t$. 
 These cells grow and die with rates $\lambda_k$ and $\mu_k$ for $k=w, a, m$.
 Wildtype cells become aneuploid at rate $u$. Aneuploid and wildtype cells mutate with rate $v$ (Figure \ref{figureAneuploidy}). 
 Thus, the changes in the number of each cell type is described by
@@ -217,26 +218,26 @@ The probability that a single mutant cell survives is given by (Appendix \ref{Ap
 \begin{equation}
 p_m = \left\{
   \begin{array}{@{}ll@{}}
-  \frac{\lambda_m-\mu_m}{\lambda_m},\quad\text{if }\lambda_m>\mu_m \\
-   0,\quad\text{else}.
+  \frac{\lambda_m-\mu_m}{\lambda_m},\quad \text{if }\lambda_m>\mu_m \\
+   0,\quad \text{else} .
   \end{array}\right.
 \end{equation}
 
 % TODO add subsection on the Gillespie simulations 
-\subsection*{Gillespie simulations.} 
-Simulations were performed using a Gillespie algorithm\cite{gillespie1976general,gillespie1977exact} programmed in Python. The wildtype population consisting of $N$ cells is assumed to be declining exponentially at the beginning of the simulations. The algorithm we utilized proceeds at time $t$ as follows:
-\begin{enumerate}
-\item First we draw the time step $\Delta t$ from an exponential distribution whose rate parameter is equal to the sum of the rates of all possible events.
-\item Secondly we select a specific event $i$ according to its relative probability:
-\begin{equation*}
-p_i=\frac{\nu_i}{\sum \nu_j},
-\end{equation*}
-where $\nu_i$ is the rate of event $i$.
-\item Finally, we update the population size and all the event rates for time $t+\Delta t$.
-\end{enumerate}
-We repeat steps 1 to 3 until either the population of cancer cells dies out or the mutant population reaches a level at which there is a $99\%$ probability that 
-it will survive in perpetuity.
-\paragraph{Data availability.} All code used to generate the figures in this article is available online at: {\color{blue}https://github.com/yoavram-lab/EvolutionaryRescue}. 
+\subsection*{Gillespie simulations} 
+Simulations were performed using a Gillespie algorithm \cite{gillespie1976general,gillespie1977exact} implemented in Python \cite{pyhon}.
+The simulation monitors the number of cells of each type: wildtype, aneuploid, and mutant. 
+The wildtype population initially consists of $N$ cells, whereas the other cell types are initially absent.
+
+At each iteration of the simulation loop we compute the rate of each even, $\nu_i$, for event $i$. % TODO explains what events can occur and how you compute their rates.
+We then draw the time until the next even, $\Delta t$, from an exponential distribution $\textit{Exp}(\sum_j \nu_j)$ whose rate parameter is the sum of the rates of all events.
+Then, we randomly determine which event occurred, where the probability for even $i$ is $p_i=\frac{\nu_i}{\sum \nu_j}$.
+Finally, we update the population size according to the event that occurred and update the time from $t$ to $t+\Delta t$.
+We repeat these iterations until either the population dies out (the number of cells of all types is zero) or the number of mutant cells is high enough so that it's extinction probability is $<1\%$. % TODO how do you determine the extinction prob? ref to equaiton
+
+% TODO do you use tau leap? if so, update the text accordingly. 
+
+\paragraph{Data availability.} All code used to generate the figures in this article is available online at \href{https://github.com/yoavram-lab/EvolutionaryRescue}{https://github.com/yoavram-lab/EvolutionaryRescue}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO combine all diagram figures to a single figure with multiple panels. and make it fit in a single page. OK
@@ -445,6 +446,7 @@ p_{est}\sim\left\{
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO : should this move to methods? we only use this for simulations, right? should be in the Gillespie section?
 \subsection*{Logistic growth}
 We want to have birth and death rates which depends on the population size of wildtype $w$, aneuploidy $a$ and mutant $m$ cells:
 \begin{align*}
@@ -456,25 +458,25 @@ where $C_1, C_2>0$ are constants.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Standing genetic variation}
-Until now we have assumed that the initial population of cells consisted entirely of wildtype cells. We modify this assumtion such that the initial population includes a fraction $f$ of cells with aneuploidy. The probability of evolutionary rescue by the cells with aneuploidy from the initial population is:
+So far we have assumed that the initial population of cells consisted entirely of wildtype cells.
+We now modify this assumption so that the initial population includes a fraction $f$ of cells with aneuploidy.
+The probability of evolutionary rescue by cells with aneuploidy from the initial population is
 \begin{equation*}
-p_{old}=1-\left(1-p_a\right)^{fN}\approx 1-\e^{-fNp_a}.
+p_{old} = 1-\left(1-p_a\right)^{fN}\approx 1-\e^{-fNp_a}.
 \end{equation*}
-The total probability of evolutionary rescue is given by:
+The total probability of evolutionary rescue is given by
 \begin{align}\nonumber
-p_{total}&=p_{new}+\left(1-p_{new}\right)p_{old}\\
-&=1-\e^{-\left[\left(1-f\right)p_w+fp_a\right]N}.
+p_{total} 	&= p_{new}+\left(1-p_{new}\right)p_{old}\\
+			&= 1-\exp\left(-\left[\left(1-f\right)p_w + fp_a\right]N\right) .
 \end{align}
-The fraction of the cases in which the population is rescued by the standing genetic variation is given by:
-\begin{align*}
-F\left(f\right)=\frac{p_{old}}{p_{total}}=\frac{ 1-\e^{-fNp_a}}{1-\e^{-\left[\left(1-f\right)p_w+fp_a\right]N}}.
-\end{align*}
-We let $F=\frac{1}{2}$ and we obtain:
+
+The fraction of cases in which the population is rescued by the standing genetic variation is given by $F\left(f\right)=\frac{p_{old}}{p_{total}}$.
+%=\frac{ 1-\e^{-fNp_a}}{1-\e^{-\left[\left(1-f\right)p_w+fp_a\right]N}}.
+Setting $F=\frac{1}{2}$, we use the expansion $\e^x \approx 1+x$ to obtain
 \begin{equation}\label{halfeqstandvar}
 f^*\approx\frac{p_w}{p_w+p_a},
 \end{equation}
-wher we have used the expansion $\e^x\approx 1+x$.
-We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
+See \Cref{FractionPlot} for a demonstration of $F$ and $f*$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Rescue time}
@@ -486,11 +488,10 @@ We plot $F$ and $f^*$ in Figure \ref{FractionPlot}.
 \label{MeanTimeGrowthAneuploidyPlot}
 \end{figure}
 %%%
-We wish to calculate the mean time for the appearence of the first mutant which rescues the cancer cell population. Let $\tau$ be the time the first mutant cell appears which rescues the population:
-\begin{align}
-\tau=\tau_1+\tau_2,
-\end{align}
-where $\tau_1$ is the time at which the first aneuploid cell appears whose lineage will rescue the population and $\tau_2$ the time which this aneuploidy lineage drifts until it produces the first mutant which rescues the population. 
+We calculate the mean time for the appearance of the first mutant that rescues the cancer cell population.
+Let $\tau=\tau_1+\tau_2$ be the time the first mutant cell that appears and rescues the population, where $\tau_1$ is the time at which the first aneuploid cell appears whose lineage will rescue the population and $\tau_2$ the time for this aneuploidy lineage to produce the first mutant that rescues the population. 
+% something is missing in the next line...?
+% the entire section is missing text...
 inhomogeneus Poisson process
 \begin{align}
 \tau_1\sim \text{Poisson}\left(\frac{1}{up_aW\left(t\right)}\right),
