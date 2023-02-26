@@ -107,10 +107,12 @@ headheight=12pt
 \renewcommand\Affilfont{\small}
 
 \author[1]{Remus Stana}
-\author[2]{Daniel B. Weissman}
+\author[2]{Uri Ben-David}
+\author[3]{Daniel B. Weissman}
 \author[1,*]{Yoav Ram}
-\affil[1]{School of Zoology, Tel Aviv University}
-\affil[2]{Department of Physics, Emory University}
+\affil[1]{School of Zoology, Faculty of Life Sciences, Tel Aviv University}
+\affil[2]{Department of Human Molecular Genetics and Biochemistry, Faculty of Medicine, Tel Aviv University}
+\affil[3]{Department of Physics, Emory University}
 \affil[*]{Corresponding author: yoav@yoavram.com}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -180,16 +182,16 @@ m_t&\rightarrow m_t-1:\quad \mu_am_t.
 
 The difference between growth and death is $\Delta_k = \lambda_k-\mu_k$.
 We assume that $\Delta_w<0$ due to drug therapy (or some other stress), and that $\Delta_m$ due to resistance conferred by the mutant.
-We analyze two cases: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, % REF: https://www.nature.com/articles/nrmicro.2016.34 OK
-$0>\Delta_a>\Delta_w$  \cite{brauner2016distinguishing}.
+We analyze two cases: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, $0>\Delta_a>\Delta_w$  \cite{brauner2016distinguishing}.
 
-% TODO explain briefly what evolutionary rescue means in this model. OK
-In our model rescues means that the aneuploid cells are able to either reverse ($\Delta a>0$ case) or delay ($0>\Delta_a>\Delta_w$ case) the extinction of the cancer cell population until mutant cells are generated and rescue the population.
-To analyze evolutionary rescue in this model, we use the framework of multitype branching processes \cite{rybnikov2021fitness,harris1963theory}. % REF Harris? https://doi.org/10.1016/j.jtbi.2021.110849 OK
+Here, \emph{evolutionary rescue} occurs when the aneuploid cells are able to either prevent (when $\Delta a>0$) or delay (when $0>\Delta_a>\Delta_w$) the extinction of the cancer-cell population before the adaptive mutant cells appear and fixate in the populaiton.
+To analyze evolutionary rescue in this model, we use the framework of \emph{multitype branching processes} \cite{rybnikov2021fitness,harris1963theory}. 
 This allows us to find explicit expressions for the survival probability of the population--the probability that it does not become extinct due to stressful conditions, e.g., drug therapy.
-Note that branching processes imply that lineages produced by cells from the initial population grow and die independently of each other. This is a necessary simplification that is not biologically realistic, as cells usually compete for resources. A more biologically realistic model would include limited resources with competition between the lineages and spatial structure which plays an important role in the development of cancer \cite{martens2011spatial}. % add the description of the more realistic model here OK
+Note that branching processes imply that lineages produced by cells from the initial population grow and die independently of each other.
+This is a necessary simplification, but it is unrealistic, as cells usually compete for resources.
+A more realistic model may include competition on limited resources between lineages, as well as spatial structure, which may play an important role in the development of cancer \cite{martens2011spatial}.
 
-The survival probability of a population consisting initially of one wildtype cell satisfies the quadratic equation:
+The survival probability of a population consisting initially of one wildtype cell satisfies the quadratic equation,
 \begin{equation} \label{quadraticeqev1}
 \begin{aligned}
 1-p_w = & \frac{\mu_w}{\lambda_w+\mu_w+u+v} + 
@@ -205,7 +207,7 @@ The smallest solution of the quadratic equation \cref{quadraticeqev1} gives the 
 p_w=\frac{\lambda_w-\mu_w-u-v+\sqrt{\left(\lambda_w-\mu_w-u-v\right)^2+4\lambda_w\left(up_a+vp_m\right)}}{2\lambda_w} .
 \end{align}
 
-If the population originally consists of a single aneuploidy cell, then the probability that the population will survive is given by the quadratic equation
+If the population originally consists of a single aneuploid cell, then the probability that the population will survive is given by the quadratic equation
 \begin{align}
 1-p_a=\frac{\mu_a}{\lambda_a+\mu_a+v}+\frac{v}{\lambda_a+\mu_a+v}\left(1-p_m\right)+\frac{\lambda_a}{\lambda_a+\mu_a+v}\left(1-p_a\right)^2,
 \end{align}
@@ -220,24 +222,24 @@ p_m = \left\{
   \begin{array}{@{}ll@{}}
   \frac{\lambda_m-\mu_m}{\lambda_m},\quad \text{if }\lambda_m>\mu_m \\
    0,\quad \text{else} .
-  \end{array}\right.
+  \end{array}\right .
 \end{equation}
 
 % TODO add subsection on the Gillespie simulations 
-\subsection*{Gillespie simulations} 
-Simulations were performed using a Gillespie algorithm \cite{gillespie1976general,gillespie1977exact} implemented in Python \cite{pyhon}.
+\subsection*{Evolutionary simulation} 
+Simulations are performed using a \emph{Gillespie algorithm} \cite{gillespie1976general,gillespie1977exact} implemented in Python \cite{python}.
 The simulation monitors the number of cells of each type: wildtype, aneuploid, and mutant. 
 The wildtype population initially consists of $N$ cells, whereas the other cell types are initially absent.
 
-At each iteration of the simulation loop we compute the rate of each even, $\nu_i$, for event $i$. % TODO explains what events can occur and how you compute their rates.
-We then draw the time until the next even, $\Delta t$, from an exponential distribution $\textit{Exp}(\sum_j \nu_j)$ whose rate parameter is the sum of the rates of all events.
-Then, we randomly determine which event occurred, where the probability for even $i$ is $p_i=\frac{\nu_i}{\sum \nu_j}$.
-Finally, we update the population size according to the event that occurred and update the time from $t$ to $t+\Delta t$.
-We repeat these iterations until either the population dies out (the number of cells of all types is zero) or the number of mutant cells is high enough so that it's extinction probability is $<1\%$. % TODO how do you determine the extinction prob? ref to equaiton
+At each iteration of the simulation loop we compute the rate $\nu_j$ of each event $j$. % TODO explains what events can occur and how you compute their rates, refer to illustration figure
+We then draw the time until the next event, $\Delta t$, from an exponential distribution whose rate parameter is the sum of the rates of all events, such that $\Delta t \sim \textit{Exp}(\sum_j \nu_j)$.
+Then, we randomly determine which event occurred, where the probability for event $j$ is $p_j=\nu_j/\sum_i \nu_i$.
+Finally, we update the number of cells of each type according to the event that occurred and update the time from $t$ to $t+\Delta t$. % TODO more details - you need to specify the events and how they change the number of cells.
+We repeat these iterations until either the population becomes extinct (the number of cells of all types is zero) or the number of mutant cells is high enough so that its extinction probability is $<1\%$. % TODO how do you determine the extinction prob? ref to equation
 
 % TODO do you use tau leap? if so, update the text accordingly. 
 
-\paragraph{Data availability.} All code used to generate the figures in this article is available online at \href{https://github.com/yoavram-lab/EvolutionaryRescue}{https://github.com/yoavram-lab/EvolutionaryRescue}. 
+\paragraph{Data availability.} All source code is available online at \href{https://github.com/yoavram-lab/EvolutionaryRescue}{https://github.com/yoavram-lab/EvolutionaryRescue}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO combine all diagram figures to a single figure with multiple panels. and make it fit in a single page. OK
@@ -245,30 +247,37 @@ We repeat these iterations until either the population dies out (the number of c
 %%%%%%
 
 \begin{figure}
-\begin{subfigure}{\textwidth}
-\centering
-\includegraphics[width=0.55\textwidth]{Figures/figureAneuploidy1.pdf}
-\caption{}
-\end{subfigure}
+%\begin{subfigure}{\textwidth}
+%\centering
+%\includegraphics[width=0.55\textwidth]{Figures/figureAneuploidy1.pdf}
+%\caption{}
+%\end{subfigure}
+%
+%\bigskip
+%
+%\begin{subfigure}{\textwidth}
+%\centering
+%\includegraphics[width=0.55\textwidth]{Figures/figureAneuploidy2.pdf}
+%\caption{}
+%\end{subfigure}
+%
+%\bigskip
 
-\bigskip
-
-\begin{subfigure}{\textwidth}
-\centering
-\includegraphics[width=0.55\textwidth]{Figures/figureAneuploidy2.pdf}
-\caption{}
-\end{subfigure}
-
-\bigskip
-
-\begin{subfigure}{\textwidth}
+%\begin{subfigure}{\textwidth}
 \centering
 \includegraphics[width=0.55\textwidth]{Figures/figureAneuploidy3.pdf}
-\caption{}
+%\caption{}
 \label{figureAneuploidy}
-\end{subfigure}
+%\end{subfigure}
 
-\caption{$\left(\text{a}\right)$ Diagram of tumorigenesis by which a cell loses both of its tumor suppressing cells. The first tumor suppressing gene can be eliminated by a mutation at rate $2u$ or through chromosomal instability with rate $2p$. The last TSG can either be eliminated through mutation at rate $u$ or through chromosomal instability with rate $p$. Grey vertical lines represent active TSGs while the blue vertical lines represent inactivated TSGs. $\left(\text{b}\right)$ Diagram of the evolutionary rescue process which involves aneuploidy. The wildtype cell can either acquire trisomy at rate $u$ or acquire a fitness increasing mutation at rate $v$. Aneuploidy cells can  acquire a fitness increasing mutation at rate $v$. Finally, the aneuploidy cells can lose trisomy at rate $u$. $\left(\text{c}\right)$ Diagram of the evolutionary rescue model where the population of cancer cells is subdivided to wildtype euploid, wildtype aneuploid and mutant euploid cells that divide and die with rates $\lambda_w,  \lambda_a,  \lambda_m$ and $\mu_w, \mu_a, \mu_m$, respectively. Wildtype cells can acquire aneuploidy at rate $u$. Aneuploid and wildtype cells can mutate with rate $v$.}
+\caption{\textbf{Model illustration.}
+% TODO why do we need (a) and (b)? does it relate to our model?
+%\textbf{(a)} Diagram of tumorigenesis by which a cell loses both of its tumor suppressing cells. The first tumor suppressing gene can be eliminated by a mutation at rate $2u$ or through chromosomal instability with rate $2p$. The last TSG can either be eliminated through mutation at rate $u$ or through chromosomal instability with rate $p$. Grey vertical lines represent active TSGs while the blue vertical lines represent inactivated TSGs.
+%\textbf{(b)} Evolutionary model with aneuploidy and mutation. Wildtype and aneuploid cells acquire a beneficial mutation at rate $v$. Diploid cells can become trisomic at rate $u$, and vice versa.
+%\textbf{(c)} 
+%Diagram of the evolutionary model. 
+A population of cancer cells is subdivided to wildtype euploid, wildtype aneuploid and mutant euploid cells, which divide with rates $\lambda_w$, $\lambda_a$, and $\lambda_m$, respectively, and die at rates $\mu_w$, $\mu_a$, and $\mu_m$, respectively. 
+Wildtype cells can become aneuploid at rate $u$. Both aneuploid and wildtype cells can acquire a beneficial mutation with rate $v$.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -606,7 +615,7 @@ with $y=vp_m$ in $a_\pm$.
 \end{subequations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Survival probability of a mutant lineage}\label{AppendixSurvLin}
+\section{Survival probability of a mutant lineage}\label{AppendixSurvLin}
 The infinitesimal transition probabilities for the simple birth and death process:
 \begin{align*}
 p_{i+j,i}\left(\Delta t\right)=\left\{
