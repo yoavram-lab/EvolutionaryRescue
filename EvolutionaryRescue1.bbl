@@ -149,6 +149,11 @@ Erik~A Martens, Rumen Kostadinov, Carlo~C Maley, and Oskar Hallatschek.
 \newblock Spatial structure increases the waiting time for cancer.
 \newblock {\em New journal of physics}, 13(11):115014, 2011.
 
+\bibitem{uecker2015adaptive}
+Hildegard Uecker, Derek Setter, and Joachim Hermisson.
+\newblock Adaptive gene introgression after secondary contact.
+\newblock {\em Journal of mathematical biology}, 70:1523--1580, 2015.
+
 \bibitem{gillespie1976general}
 Daniel~T Gillespie.
 \newblock A general method for numerically simulating the stochastic time
@@ -169,6 +174,14 @@ Guido {Van Rossum} and Others.
 Ugo Del~Monte.
 \newblock Does the cell number 109 still really fit one gram of tumor tissue?
 \newblock {\em Cell cycle}, 8(3):505--506, 2009.
+
+\bibitem{bozic2013evolutionary}
+Ivana Bozic, Johannes~G Reiter, Benjamin Allen, Tibor Antal, Krishnendu
+  Chatterjee, Preya Shah, Yo~Sup Moon, Amin Yaqubie, Nicole Kelly, Dung~T Le,
+  et~al.
+\newblock Evolutionary dynamics of cancer in response to targeted combination
+  therapy.
+\newblock {\em elife}, 2:e00747, 2013.
 
 \bibitem{nowak2004evolutionary}
 Martin~A Nowak, Franziska Michor, Natalia~L Komarova, and Yoh Iwasa.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.5)  11 MAY 2023 15:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.5)  29 MAY 2023 13:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1232,7 +1232,7 @@ Package lineno Warning: Option [displaymath] is obsolete -- default now!.
 LaTeX Info: Redefining \\ on input line 3114.
 )
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 121.
+h' as default language. on input line 122.
 
 (C:\Users\Remus\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
@@ -1249,24 +1249,24 @@ LaTeX Warning: Label `survprobwinitial@cref' multiply defined.
 )
 \openout1 = `EvolutionaryRescue1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1322,16 +1322,16 @@ ii
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 121.
+ on input line 122.
 
-LaTeX Info: Redefining \celsius on input line 121.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 121
+LaTeX Info: Redefining \celsius on input line 122.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 122
 .
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 121.
-Package gensymb Info: Using \Omega for \ohm on input line 121.
+LaTeX Info: Redefining \ohm on input line 122.
+Package gensymb Info: Using \Omega for \ohm on input line 122.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -1346,10 +1346,10 @@ Package caption Info: End \AtBeginDocument code.
 Package todonotes Warning: The length marginparwidth is less than 2cm and will 
 most likely cause issues with the appearance of inserted todonotes. The issue c
 an be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to 
-loading the todonotes package. on input line 121.
+loading the todonotes package. on input line 122.
 
 \c@lstlisting=\count387
-Package hyperref Info: Link coloring OFF on input line 121.
+Package hyperref Info: Link coloring OFF on input line 122.
 (EvolutionaryRescue1.out) (EvolutionaryRescue1.out)
 \@outlinefile=\write4
 \openout4 = `EvolutionaryRescue1.out'.
@@ -1361,14 +1361,14 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 121.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 122
+or `english'. on input line 122.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 123
 .
 
 (C:\Users\Remus\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 122
+LaTeX Font Info:    Trying to load font information for U+msb on input line 123
 .
 
 (C:\Users\Remus\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1377,129 +1377,129 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/Remus/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-Overfull \hbox (25.41032pt too wide) in paragraph at lines 237--250
+[3]
+Overfull \hbox (25.41032pt too wide) in paragraph at lines 242--255
  [] 
  []
 
-[3]
-<Figures/figureAneuploidy.pdf, id=118, 365.87993pt x 391.862pt>
+[4]
+<Figures/figureAneuploidy.pdf, id=140, 365.87993pt x 391.862pt>
 File: Figures/figureAneuploidy.pdf Graphic file (type pdf)
 <use Figures/figureAneuploidy.pdf>
-Package pdftex.def Info: Figures/figureAneuploidy.pdf  used on input line 290.
+Package pdftex.def Info: Figures/figureAneuploidy.pdf  used on input line 295.
 (pdftex.def)             Requested size: 362.77263pt x 388.53651pt.
- [4] [5 <./Figures/figureAneuploidy.pdf>]
-<Figures/CombinedSubplot.pdf, id=160, 427.999pt x 418.81157pt>
+ [5 <./Figures/figureAneuploidy.pdf>]
+<Figures/CombinedSubplot.pdf, id=168, 427.999pt x 418.81157pt>
 File: Figures/CombinedSubplot.pdf Graphic file (type pdf)
 <use Figures/CombinedSubplot.pdf>
-Package pdftex.def Info: Figures/CombinedSubplot.pdf  used on input line 346.
+Package pdftex.def Info: Figures/CombinedSubplot.pdf  used on input line 348.
 (pdftex.def)             Requested size: 483.69684pt x 473.34103pt.
-<Figures/CombinedSubplotLargePop.pdf, id=167, 427.999pt x 418.56062pt>
+<Figures/CombinedSubplotLargePop.pdf, id=175, 416.75702pt x 394.10925pt>
 File: Figures/CombinedSubplotLargePop.pdf Graphic file (type pdf)
 <use Figures/CombinedSubplotLargePop.pdf>
 Package pdftex.def Info: Figures/CombinedSubplotLargePop.pdf  used on input lin
-e 353.
-(pdftex.def)             Requested size: 483.69684pt x 473.05739pt.
+e 355.
+(pdftex.def)             Requested size: 483.69684pt x 457.4136pt.
 
-Overfull \hbox (31.4309pt too wide) detected at line 381
+Overfull \hbox (30.8545pt too wide) detected at line 383
 []
  []
 
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 381--381
+Overfull \hbox (30.0pt too wide) in paragraph at lines 383--383
 [] 
  []
 
-[6] [7 <./Figures/CombinedSubplot.pdf>] [8 <./Figures/CombinedSubplotLargePop.p
-df>]
-<Figures/P_est_divergence.pdf, id=307, 433.62pt x 289.08pt>
+[6] [7 <./Figures/CombinedSubplot.pdf>]
+<Figures/SurvPlotNData.pdf, id=255, 433.62pt x 289.08pt>
+File: Figures/SurvPlotNData.pdf Graphic file (type pdf)
+<use Figures/SurvPlotNData.pdf>
+Package pdftex.def Info: Figures/SurvPlotNData.pdf  used on input line 397.
+(pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
+ [8 <./Figures/CombinedSubplotLargePop.pdf>] [9 <./Figures/SurvPlotNData.pdf>]
+<Figures/P_est_divergence.pdf, id=373, 433.62pt x 289.08pt>
 File: Figures/P_est_divergence.pdf Graphic file (type pdf)
 <use Figures/P_est_divergence.pdf>
-Package pdftex.def Info: Figures/P_est_divergence.pdf  used on input line 428.
+Package pdftex.def Info: Figures/P_est_divergence.pdf  used on input line 439.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
-<Figures/P_est_divergenceLargePopulation.pdf, id=320, 433.62pt x 289.08pt>
+<Figures/P_est_divergenceLargePopulation.pdf, id=386, 433.62pt x 289.08pt>
 File: Figures/P_est_divergenceLargePopulation.pdf Graphic file (type pdf)
 <use Figures/P_est_divergenceLargePopulation.pdf>
 Package pdftex.def Info: Figures/P_est_divergenceLargePopulation.pdf  used on i
-nput line 436.
+nput line 447.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
-<Figures/DeleteriousTauLeapPlot.pdf, id=325, 433.62pt x 289.08pt>
+<Figures/DeleteriousTauLeapPlot.pdf, id=391, 433.62pt x 289.08pt>
 File: Figures/DeleteriousTauLeapPlot.pdf Graphic file (type pdf)
 <use Figures/DeleteriousTauLeapPlot.pdf>
 Package pdftex.def Info: Figures/DeleteriousTauLeapPlot.pdf  used on input line
- 444.
+ 455.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
- [9]
-Overfull \hbox (8.54333pt too wide) detected at line 479
+ [10 <./Figures/P_est_divergence.pdf>]
+[11 <./Figures/P_est_divergenceLargePopulation.pdf>] [12 <./Figures/Deleterious
+TauLeapPlot.pdf>]
+Overfull \hbox (8.54333pt too wide) detected at line 490
 []
  []
 
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 479--479
+Overfull \hbox (30.0pt too wide) in paragraph at lines 490--490
 [] 
  []
 
-[10 <./Figures/P_est_divergence.pdf>]
-<Figures/SurvPlotNDataLogisticKComplete.pdf, id=400, 433.62pt x 289.08pt>
-File: Figures/SurvPlotNDataLogisticKComplete.pdf Graphic file (type pdf)
-<use Figures/SurvPlotNDataLogisticKComplete.pdf>
-Package pdftex.def Info: Figures/SurvPlotNDataLogisticKComplete.pdf  used on in
-put line 508.
+<Figures/SurvPlotNDataLogisticK.pdf, id=549, 433.62pt x 289.08pt>
+File: Figures/SurvPlotNDataLogisticK.pdf Graphic file (type pdf)
+<use Figures/SurvPlotNDataLogisticK.pdf>
+Package pdftex.def Info: Figures/SurvPlotNDataLogisticK.pdf  used on input line
+ 519.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
- [11 <./Figures/P_est_divergenceLargePopulation.pdf>]
-<Figures/FractionPlot.pdf, id=449, 433.62pt x 289.08pt>
+<Figures/FractionPlot.pdf, id=552, 433.62pt x 289.08pt>
 File: Figures/FractionPlot.pdf Graphic file (type pdf)
 <use Figures/FractionPlot.pdf>
-Package pdftex.def Info: Figures/FractionPlot.pdf  used on input line 519.
+Package pdftex.def Info: Figures/FractionPlot.pdf  used on input line 530.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
- [12 <./Figures/DeleteriousTauLeapPlot.pdf>]
-<Figures/RatioEvolRescue.pdf, id=501, 416.75702pt x 394.3602pt>
+[13] [14 <./Figures/SurvPlotNDataLogisticK.pdf>]
+<Figures/RatioEvolRescue.pdf, id=619, 416.75702pt x 394.3602pt>
 File: Figures/RatioEvolRescue.pdf Graphic file (type pdf)
 <use Figures/RatioEvolRescue.pdf>
-Package pdftex.def Info: Figures/RatioEvolRescue.pdf  used on input line 563.
+Package pdftex.def Info: Figures/RatioEvolRescue.pdf  used on input line 583.
 (pdftex.def)             Requested size: 483.69684pt x 457.70485pt.
-<Figures/RatioEvolRescuePopulationSize.pdf, id=506, 416.75702pt x 389.37094pt>
+<Figures/RatioEvolRescuePopulationSize.pdf, id=624, 427.999pt x 414.41826pt>
 File: Figures/RatioEvolRescuePopulationSize.pdf Graphic file (type pdf)
 <use Figures/RatioEvolRescuePopulationSize.pdf>
 Package pdftex.def Info: Figures/RatioEvolRescuePopulationSize.pdf  used on inp
-ut line 570.
-(pdftex.def)             Requested size: 483.69684pt x 451.9142pt.
-<Figures/MeanTimeGrowthMutantDirectPlot.pdf, id=511, 433.62pt x 289.08pt>
+ut line 590.
+(pdftex.def)             Requested size: 483.69684pt x 468.3757pt.
+<Figures/MeanTimeGrowthMutantDirectPlot.pdf, id=629, 433.62pt x 289.08pt>
 File: Figures/MeanTimeGrowthMutantDirectPlot.pdf Graphic file (type pdf)
 <use Figures/MeanTimeGrowthMutantDirectPlot.pdf>
 Package pdftex.def Info: Figures/MeanTimeGrowthMutantDirectPlot.pdf  used on in
-put line 579.
+put line 599.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
- [13 <./Figures/SurvPlotNDataLogisticKComplete.pdf>] [14 <./Figures/FractionPlo
-t.pdf>] [15 <./Figures/RatioEvolRescue.pdf>] [16 <./Figures/RatioEvolRescuePopu
-lationSize.pdf>]
-[17 <./Figures/MeanTimeGrowthMutantDirectPlot.pdf>]
-<Figures/MeanTimeDeleteriousPlot.pdf, id=763, 433.62pt x 289.08pt>
+ [15 <./Figures/FractionPlot.pdf>] [16 <./Figures/RatioEvolRescue.pdf>] [17 <./
+Figures/RatioEvolRescuePopulationSize.pdf>] [18 <./Figures/MeanTimeGrowthMutant
+DirectPlot.pdf>] [19]
+<Figures/MeanTimeDeleteriousPlot.pdf, id=856, 433.62pt x 289.08pt>
 File: Figures/MeanTimeDeleteriousPlot.pdf Graphic file (type pdf)
 <use Figures/MeanTimeDeleteriousPlot.pdf>
 Package pdftex.def Info: Figures/MeanTimeDeleteriousPlot.pdf  used on input lin
-e 697.
+e 760.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
-<Figures/MeanTimeRatioInitialPopulationSize.pdf, id=765, 433.62pt x 289.08pt>
+<Figures/MeanTimeRatioInitialPopulationSize.pdf, id=866, 433.62pt x 289.08pt>
 File: Figures/MeanTimeRatioInitialPopulationSize.pdf Graphic file (type pdf)
 <use Figures/MeanTimeRatioInitialPopulationSize.pdf>
 Package pdftex.def Info: Figures/MeanTimeRatioInitialPopulationSize.pdf  used o
-n input line 712.
+n input line 775.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
- [18 <./Figures/MeanTimeDeleteriousPlot.pdf>]
-<Figures/SurvPlotNData.pdf, id=822, 433.62pt x 289.08pt>
-File: Figures/SurvPlotNData.pdf Graphic file (type pdf)
-<use Figures/SurvPlotNData.pdf>
-Package pdftex.def Info: Figures/SurvPlotNData.pdf  used on input line 720.
-(pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
- [19 <./Figures/MeanTimeRatioInitialPopulationSize.pdf>]
-[20 <./Figures/SurvPlotNData.pdf>] (EvolutionaryRescue1.bbl [21] [22]) [23]
-[24] [25]
-<Figures/P_est_diffusion.pdf, id=961, 433.62pt x 289.08pt>
+ [20]
+[21 <./Figures/MeanTimeDeleteriousPlot.pdf>] [22 <./Figures/MeanTimeRatioInitia
+lPopulationSize.pdf>] (EvolutionaryRescue1.bbl [23] [24]) [25] [26] [27]
+<Figures/P_est_diffusion.pdf, id=1023, 433.62pt x 289.08pt>
 File: Figures/P_est_diffusion.pdf Graphic file (type pdf)
 <use Figures/P_est_diffusion.pdf>
-Package pdftex.def Info: Figures/P_est_diffusion.pdf  used on input line 910.
+Package pdftex.def Info: Figures/P_est_diffusion.pdf  used on input line 976.
 (pdftex.def)             Requested size: 483.69684pt x 322.47937pt.
- [26 <./Figures/P_est_diffusion.pdf>] (EvolutionaryRescue1.aux)
+
+[28 <./Figures/P_est_diffusion.pdf>] (EvolutionaryRescue1.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1507,13 +1507,13 @@ Package rerunfilecheck Info: File `EvolutionaryRescue1.out' has not changed.
 (rerunfilecheck)             Checksum: 95025EA134BA23712163CE3997D372A8;261.
  ) 
 Here is how much of TeX's memory you used:
- 44752 strings out of 476406
- 1067525 string characters out of 2789568
- 1882787 words of memory out of 3000000
- 64238 multiletter control sequences out of 15000+600000
+ 44777 strings out of 476406
+ 1067909 string characters out of 2789568
+ 1879787 words of memory out of 3000000
+ 64255 multiletter control sequences out of 15000+600000
  530258 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,17n,106p,1249b,1025s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 108i,17n,106p,1334b,1025s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Users/Remus/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/Remus/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/Remus/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -1535,9 +1535,9 @@ l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Remus/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/
 Remus/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.
 pfb>
-Output written on EvolutionaryRescue1.pdf (26 pages, 596527 bytes).
+Output written on EvolutionaryRescue1.pdf (28 pages, 617419 bytes).
 PDF statistics:
- 1112 PDF objects out of 1200 (max. 8388607)
- 128 named destinations out of 1000 (max. 500000)
+ 1175 PDF objects out of 1200 (max. 8388607)
+ 136 named destinations out of 1000 (max. 500000)
  96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
