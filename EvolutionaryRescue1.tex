@@ -646,7 +646,7 @@ The expectation of $T_1$ is:
 \begin{align}\label{meantime1}
 \tau_1=\mathbb{E}\left[T_1\right]&=\frac{\int_0^\infty\e^{-\int_0^\tau R(t)\d t}\d\tau}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}.
 \end{align}
-The fration in exponential of the integrand in \eqref{meantime1} can approximated as:
+The fration in the exponential of the integrand in \eqref{meantime1} can approximated as:
 \begin{equation*}
 \frac{\e^{\Delta_w\tau}-1}{\Delta_w}=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2).
 \end{equation*}
@@ -727,7 +727,7 @@ which we plot in Figure \ref{MeanTimeDeleteriousAneuploidyPlot} as a function of
 
 We wish to obtain a simpler formula for $\tau_2$ in an analogous way to \eqref{limitapprox}. For this, we make use of the following expansions:
 \begin{align*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+\frac{\Delta_w^2\tau^2}{2}+O(\tau^3)-1}{\Delta_w}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3).\\
+\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+\frac{\Delta_w^2\tau^2}{2}+O(\tau^3)-1}{\Delta_w}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3),\\
 \frac{\e^{\Delta_a\tau}-1}{\Delta_a}&=\frac{1+\Delta_a\tau+\frac{\Delta_a^2\tau^2}{2}+O(\tau^3)-1}{\Delta_a}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3),
 \end{align*}
 which allow us to write:
@@ -747,7 +747,7 @@ where $\erfc$ is the complementary error function. We plot the expansion \eqref{
 
 If we select only linear terms in the following expansions:
 \begin{align*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2).\\
+\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2),\\
 \frac{\e^{\Delta_a\tau}-1}{\Delta_a}&=\frac{1+\Delta_a\tau+O(\tau^2)-1}{\Delta_a}=\tau+O(\tau^2),
 \end{align*}
 we obtain the first order approximation for $\tau_2$:
