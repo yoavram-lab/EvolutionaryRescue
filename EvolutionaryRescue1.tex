@@ -519,60 +519,40 @@ H = \begin{cases}
 \end{equation}
 
 We find that the rescue ratio increase with the aneuploidy growth rate $\Delta_a$, because the better aneuploid cells are in growth, the better they are at rescuing the population (when they provide partial resistance) or delaying the extinction of the population (when they provide tolerance). 
-However, the rescue decreases with the wildtype growth rate $\Delta_w$, because the better the wildtype is at growth, the less is depends on aneuploidy for rescue or delay, and the more likely it is to directly produce mutant cells, rather than relying on aneuploid cells for producing mutant cells (\Cref{RatioEvolRescue}).
+However, the rescue decreases with the wildtype growth rate $\Delta_w$, because the better the wildtype is at growth, the less is depends on aneuploidy for rescue or delay, and the more likely it is to directly produce mutant cells, rather than relying on aneuploid cells for producing mutant cells (\Cref{rescue_ratio}).
 The effect of the initial tumor size $N$ is mostly the same as the wildtype growth rate, except when aneuploidy provides tolerance and the population size is very large, in which case the ratio ... % TODO does H go to 1 in this case? is it lower than 1 for delta_a=-0.001? why?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Rescue time}
-We calculate the mean time for the appearance of the first mutant that rescues the cancer cell population. This can occur either through the pathway $wildtype\rightarrow aneuploid \rightarrow mutant$ or through the pathway $wildtype \rightarrow mutant$. We start with the second pathway: let $T_1$ be the time at which the first mutant cell appears which rescues the population when evolutionary rescue is only possible through mutation. We are interested in the mean time $\tau_1=\mathbb{E}\left[T_1\right]$.
+\subsection*{Evolutionary rescue time}
 
-% something is missing in the next line...?
-% the entire section is missing text...
+Even evolutionary rescue occurs, it may take a long time; therefore, it is crucial to estimate the mean waiting time for rescue and the effect aneuploidy may have on it. 
+We therefore calculate the mean time for the appearance of the first mutant that rescues the cell population.
+This can occur either through the evolutionary trajectory $wildtype \rightarrow mutant$ or through the trajectory $wildtype \rightarrow aneuploid \rightarrow mutant$.
+We start with the former. 
 
-The number of successful mutants generated until time $t$ can be approximated by a inhomogeneous Poisson process with rate $R\left(t\right)=up_aw_t$
-%\begin{align}
-%\tau_1\sim \text{Poisson}\left(\frac{1}{up_aw_t}\right),
-%\end{align}
-where $w_t$ is the size of the wildtype population at time $t$: 
-\begin{equation}
-w_t=N\e^{\Delta_wt}.
-\end{equation}
-We are interested in the time to appearance of the first successful mutant cell conditional on population surviving:
-\begin{align*}
-P\left(T_1<t\right)&=P\left(T_1<t|m_{t\rightarrow\infty}\neq0\right)P\left(m_{t\rightarrow\infty}\neq0\right)\\
-&+P\left(T_1<t|m_{t\rightarrow\infty}=0\right)P\left(m_{t\rightarrow\infty}=0\right).
-\end{align*}
-As a result, the cumulative distribution function can be written as:
-\begin{align*}
-P\left(T_1<t\right)&=P\left(T_1<t|m_{t\rightarrow\infty}\neq0\right)P\left(m_{t\rightarrow\infty}\neq0\right),
-\end{align*}
-where we used the fact that evolutionary rescue is impossible when the mutant population is destined to be zero:
-\begin{align*}
-P\left(T_1<t|m_{t\rightarrow\infty}=0\right)=0.
-\end{align*}
-As a result, we obtain 
-\begin{align}
-P\left(T_1<t|m_{t\rightarrow\infty}\neq0\right)=\frac{P\left(\tau_1<t\right)}{1-\left(1-p_w\right)^N},
-\end{align}
-where we have used
-\begin{equation}
-P\left(m_{t\rightarrow\infty}\neq0\right)=1-\left(1-p_w\right)^N.
-\end{equation}
-The probability density function of $T_1$ is given by:
-\begin{align}
-f_{T_1}\left(t_1\right)=R\left(t_1\right)\e^{-\int_0^{t_1} R(t)\d t}.
-\end{align}
-As a result, the time $T_1$ conditional on evolutionary rescue is given by:
-\begin{align}
-f_{T_1}\left(t_1|m_{t\rightarrow\infty}\neq0\right)=\frac{R\left(t_1\right)\e^{-\int_0^{t_1} R(t)\d t}}{1-\left(1-p_w\right)^N}.
-\end{align}
-The expectation of $T_1$ is:
+Assuming no aneuploidy ($u=0$), we define $T_1$ to be the time at which the first mutant cell appears that will avoid extinction and will therefore rescue the population. Note that if extinction occurs, that is $m_{t\rightarrow\infty}=0$, then it is implied that $T_1=\infty$, and vice versa if $T_1<\infty$ then $m_{t\rightarrow\infty}\neq0$.
+
+The number of successful mutants generated until time $t$ can be approximated by an inhomogeneous Poisson process with rate $R\left(t\right) = u p_a w_t$
+where $w_t$ is the number of wildtype cells at time $t$, $w_t=N\e^{\Delta_w t}$.
+The probability density function of $T_1$ is thus
+$R\left(t\right)\e^{-\int_0^{t}{R(z)\d z}}$.
+Therefore, the probability density function of $(T_1 \mid T_1 < \infty)$ is
+$f_1(t) = \frac{R\left(t\right)\e^{-\int_0^{t} R(z)\d z}}{p_{rescue}}$. % Todo is this correct? I made changes
+
+We are interested in the mean conditional time, $\tau_1=\mathbb{E}\left[T_1 \mid T_1<\infty\right]$, which is given by
 \begin{align}\label{meantime1}
-\tau_1=\mathbb{E}\left[T_1\right]&=\frac{\int_0^\infty\e^{-\int_0^\tau R(t)\d t}\d\tau}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}.
+\tau_1 =
+\int_{0}^{\infty}{t f_1(t) \d t} = 
+\frac{\int_{0}^{\infty}{t u p_a N\e^{\Delta_w t} \e^{-\int_0^{t} u p_a N\e^{\Delta_w z} \d z} \d t}}{p_{rescue}} .
 \end{align}
-The fration in exponential of the integrand in \eqref{meantime1} can approximated as:
+\begin{equation}
+\frac{\int_0^\infty\e^{-\int_0^t R(z)\d z}\d t}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w t}-1}{\Delta_w}}\,\d t}{1-\left(1-p_w\right)^N}
+\end{equation}
+% YOAV HERE - dont understand how the previous two lines are the same...
+
+The fraction in exponential of the integrand in \eqref{meantime1} can approximated as:
 \begin{equation*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2).
+\frac{\e^{\Delta_w t}-1}{\Delta_w}=\frac{1+\Delta_w t+O(t^2)-1}{\Delta_w}=t+O(t^2).
 \end{equation*}
 As a result, the mean time $\tau_1$ can be simplified:
 \begin{align}\label{limitapprox}
