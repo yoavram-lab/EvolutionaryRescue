@@ -193,12 +193,12 @@ Wildtype cells may missegregate to become aneuploids at rate $u$. Both aneuploid
 %%%%%%%%%%%
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.5\textwidth]{Figures/figureAneuploidy.pdf}
+\includegraphics[width=0.75\textwidth]{Figures/figureAneuploidy.pdf}
 \caption{
 \textbf{Model illustration.}
 % TODO in the figure change labels to Wildtype, Aneuploid, Mutant (instead of Euploid etc)
-A population of cancer cells is composed of wildtype, aneuploid, and mutant cells, which divide with rates $\lambda_w$, $\lambda_a$, and $\lambda_m$ and die at rates $\mu_w$, $\mu_a$, and $\mu_m$, respectively. 
-Wildtype cells can become aneuploid at rate $u$. Both aneuploid and wildtype cells can acquire a beneficial mutation with rate $v$. Color denotes the relative growth rates of the three genotypes such that $\lambda_w - \mu_w < \lambda_a - \mu_a < \lambda_m - \mu_m$.
+\textbf{(A)} A population of cancer cells is composed of wildtype, aneuploid, and mutant cells, which divide with rates $\lambda_w$, $\lambda_a$, and $\lambda_m$ and die at rates $\mu_w$, $\mu_a$, and $\mu_m$, respectively. 
+Wildtype cells can become aneuploid at rate $u$. Both aneuploid and wildtype cells can acquire a beneficial mutation with rate $v$. Color denotes the relative growth rates of the three genotypes such that $\lambda_w - \mu_w < \lambda_a - \mu_a < \lambda_m - \mu_m$. \textbf{(B)} The wildtype and the mutant are susceptible and resistant, respectively, to the drug. The aneuploid may be tolerant, non-growing, or or partially resistant.
 }
 \label{figureAneuploidy}
 \end{figure}
@@ -452,7 +452,7 @@ Applying the approximations for the survival probability $p_w$ from \cref{survpr
 %\end{align}
 %However, both approximations seem to work very well (\Cref{compare_1st_2nd_order_approx}).
 
-We validate these approximations by comparing them to results of stochastic evolutionary simulations. We find that the approximations work very well (\Cref{rescue_prob_wt_growth_small_large_N,rescue_prob_an_growth_small_N,rescue_prob_an_growth_large_N,rescue_prob_N_nongrow,rescue_prob_N_logistic}).
+We validate these approximations by comparing them to results of stochastic evolutionary simulations. We find that the approximations work very well (\Cref{rescue_prob_wt_growth,rescue_prob_an_growth,rescue_prob_N_nongrow,rescue_prob_N_logistic}).
 
 In \Cref{SurvPlot,SurvPlotLargeN} we explore the effects of the wildtype and aneuploid growth rates on the rescue probability for small and large population sizes ($N=10^4$ and $N=10^8$, respectively).
 
@@ -467,60 +467,60 @@ In \Cref{DeleteriousPlot}, we compare the exact result (\cref{survival_prob}) wi
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph*{Density-dependent growth}
+\paragraph*{Density-dependent growth.}
 
-We perform stochastic simulations for different values of the carrying capacity $K$ and we plot the results in Figure \ref{SurvPlotNDataLogisticKComplete}.  We observe that as $K$ increases the simulations converge to the analytic result which is because the carrying capacity is much larger then the population size of aneuploid cells for which the probability that the population is rescued is certain.
-
+In our analysis we used branching processes, which assume that growth (division and death) are density-independent. However, in some cases growth may be limited by resources (oxygen, nutrients, etc.) and therefore depend on cell density. 
+We therefore performed stochastic simulations of a logistic growth model with carrying capacity $K$ (Methods). 
+We find that ... (\Cref{rescue_prob_N_logistic}). % TODO check what we find; the figure just shows agreement of exact and stochastic
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Standing genetic variation}
+\paragraph*{Standing genetic variation}
 
-So far we have assumed that the initial population of cells consisted entirely of wildtype cells.
-We now modify this assumption so that the initial population includes a fraction $f$ of cells with aneuploidy.
-The probability of evolutionary rescue by cells with aneuploidy from the initial population is
+In the above we assumed that upon beginning of drug therapy, the initial tumor consisted entirely of wildtype cells.
+However, aneuploid cells are likely generated even before onset of treatment at some rate $\tilde{u} \le u$ (because the treatment itself may promote generation of aneuploid cells REF), which are likely to have a deleterious effect (REF). But if the number of cells in the tumor $N$ is large, as expected if drug treatment is applied, there may already be a fraction $f=\tilde{u}/s$ of aneuploid cells in the population, where $s$ is the cost of aneuploidy (REF).
+
+In this scenario, The probability of evolutionary rescue by cells with aneuploidy from the initial population is
 \begin{equation*}
-p_{old} = 1-\left(1-p_a\right)^{fN}\approx 1-\e^{-fNp_a}.
+% redefine: p_total, p_denovo=p_resuce from eq above; p_stdvar is the new thing
+p_{old} = 1-\left(1-p_a\right)^{fN}\approx 1-\e^{-fNp_a}. % TODO should be p_new?
 \end{equation*}
 The total probability of evolutionary rescue is given by
 \begin{align}\nonumber
-p_{total} 	&= p_{new}+\left(1-p_{new}\right)p_{old}\\
+p_{total} 	&= p_{new}+\left(1-p_{new}\right)p_{old}\\ % TODO what is p_new?
 			&= 1-\exp\left(-\left[\left(1-f\right)p_w + fp_a\right]N\right) .
 \end{align}
 
 The fraction of cases in which the population is rescued by the standing genetic variation is given by $F\left(f\right)=\frac{p_{old}}{p_{total}}$.
 %=\frac{ 1-\e^{-fNp_a}}{1-\e^{-\left[\left(1-f\right)p_w+fp_a\right]N}}.
 Setting $F=\frac{1}{2}$, we use the expansion $\e^x \approx 1+x$ to obtain
-\begin{equation}\label{halfeqstandvar}
+\begin{equation}\label{halfeqstandvar} % TODO not sure this is interesting
 f^*\approx\frac{p_w}{p_w+p_a}.
 \end{equation}
-See \Cref{FractionPlot} for a demonstration of $F$ and $f*$.
+% TODO maybe better to show p_total / p_denovo as function of u or N.
+See \Cref{FractionPlot} for a demonstration of $F$ and $f*$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Contribution of aneuploidy to the evolutionary rescue of cancer}
-We wish to understand the contribution of aneuploidy to evolutionary rescue of the cancer cell population. For this purpose we define the ratio of the probability of evolutionary rescue when aneuploidy can play a role in rescue ($u>0$) to the probability where acquisition of aneuploidy is not possible ($u=0$):
+\subsection*{Effect of aneuploidy on evolutionary rescue}
+To determine the extent to which aneuploidy may affect evolutionary rescue, we define $H$ to be the ratio of the rescue probability with aneuploidy ($u>0$) and the rescue probability without aneuploidy ($u=0$),
 \begin{equation}\label{ratiorescueexact}
-H=\frac{\left.p_{rescue}\right|_{u>0}}{\left.p_{rescue}\right|_{u=0}}.
+H = \frac{p_{rescue}(u>0)}{p_{rescue}(u=0)}.
 \end{equation}
-As a result, we obtain from \eqref{rescue_prob} the approximation for the ratio:
+
+Plugging in our approximations from \cref{rescue_prob}, we have
 \begin{equation}\label{ratiorescue}
-H\sim\left\{
-  \begin{array}{@{}ll@{}}
-  \frac{1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right]}{1-\exp\left[\frac{vN\Delta_m}{\left(\Delta_w-v\right)\lambda_m}\right]},\quad\text{if }4\lambda_avp_m>\left(\Delta_a-v\right)^2,\\
-   \frac{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right]}{1-\exp\left(\frac{v\Delta_mN}{\lambda_m\Delta_w}\right)},\quad\text{if }\Delta_a<0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2,\\
-   \frac{1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right]}{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\right]},\quad\text{if }\Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2. % TODO this term can be simplified/approximated
-  \end{array}\right.
+H = \begin{cases}
+\frac{1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right]}{1-\exp\left[\frac{vN\Delta_m}{\left(\Delta_w-v\right)\lambda_m}\right]} ,&
+4\lambda_avp_m>\left(\Delta_a-v\right)^2 ,\\
+\frac{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right]}{1-\exp\left(\frac{v\Delta_mN}{\lambda_m\Delta_w}\right)}, ,&
+\Delta_a<0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2 ,\\
+\frac{1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right]}{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\right]} ,&
+\Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2. % TODO this term can be simplified?
+  \end{cases}
 \end{equation}
 
-%\begin{equation}
-%H\sim\left\{
-%  \begin{array}{@{}ll@{}}
-%  \frac{1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right]}{1-\exp\left[\frac{vN\Delta_m}{\left(\Delta_w-v\right)\lambda_m}\right]},\quad\text{if }4\lambda_avp_m>\left(\Delta_a-v\right)^2,\\
-%   \frac{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right]}{1-\exp\left(\frac{v\Delta_mN}{\lambda_m\Delta_w}\right)},\quad\text{if }\Delta_a<0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2,\\
-%   \frac{1-\exp\left(\frac{u\Delta_aN}{\lambda_a\Delta_w}\right)}{1-\exp\left(\frac{v\Delta_mN}{\lambda_m\Delta_w}\right)},\quad\text{if }\Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2.
-%  \end{array}\right.
-%\end{equation}
-We plot \eqref{ratiorescue} in Figure \ref{RatioEvolRescue} for both resistent and susceptible aneuploidy as a function of the proliferation rate of the wildtype cells and in Figure \ref{RatioEvolRescuePopulationSize} as a function of the initial population size of wildtype cells.
-
+We find that the rescue ratio increase with the aneuploidy growth rate $\Delta_a$, because the better aneuploid cells are in growth, the better they are at rescuing the population (when they provide partial resistance) or delaying the extinction of the population (when they provide tolerance). 
+However, the rescue decreases with the wildtype growth rate $\Delta_w$, because the better the wildtype is at growth, the less is depends on aneuploidy for rescue or delay, and the more likely it is to directly produce mutant cells, rather than relying on aneuploid cells for producing mutant cells (\Cref{RatioEvolRescue}).
+The effect of the initial tumor size $N$ is mostly the same as the wildtype growth rate, except when aneuploidy provides tolerance and the population size is very large, in which case the ratio ... % TODO does H go to 1 in this case? is it lower than 1 for delta_a=-0.001? why?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Rescue time}
@@ -714,22 +714,6 @@ The probability of evolutionary rescue is enhanced by aneuploidy for small and i
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO merge figures 2 and 3 to a single figure here
-%\begin{figure}[h!]
-%\begin{subfigure}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\textwidth]{Figures/CombinedSubplot.pdf}      
-%      \label{SurvPlot}
-%\end{subfigure}
-%\begin{subfigure}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\textwidth]{Figures/CombinedSubplotLargePop.pdf}      
-%      \label{SurvPlotLargeN}
-%\end{subfigure}
-%\caption{Survival probability for large-effect aneuploidy.}
-%\label{}
-%\end{figure}  
-%%%%%%%%%%%
 \begin{figure}[p]
 % small population size
 % A: partial resistance
@@ -741,43 +725,37 @@ The probability of evolutionary rescue is enhanced by aneuploidy for small and i
 \includegraphics[width=1\textwidth]{Figures/CombinedSubplotLargePop.pdf}
 \end{subfigure}
 \caption{
-\textbf{Evolutionary rescue probability increases with wildtype and aneuploid growth rates.}
-Reduce probability is very high when aneuploidy provides partial resistance, in an initially small tumor (\textbf{Aleft}, $N=10^4$) and even more so in an initially large tumor (\textbf{Aright}, $N=10^8$). % TODO change panel labels to ABCD
-When aneuploidy provides tolerance (\textbf{Bleft}, $N=10^4$; (\textbf{Bright}, $N=10^8$), the rescue probability is much lower. However, in all cases rescue probability increase with both the wildtype growth rate (x-axis) and the aneuploidy growth rate (colors).
+\textbf{Evolutionary rescue probability with partially resistant or tolerant aneuploid cells.}
+Rescue probability is very high when aneuploidy provides partial resistance, in an initially small tumor (\textbf{Aleft}, $N=10^4$) and even more so in an initially large tumor (\textbf{Aright}, $N=10^8$). % TODO change panel labels to ABCD
+When aneuploidy provides tolerance (\textbf{Bleft}, $N=10^4$; (\textbf{Bright}, $N=10^8$), the rescue probability is much lower. 
+In both scenarios, rescue probability increase with both the wildtype growth rate (x-axis) and the aneuploidy growth rate (colors).
 Markers represent simulation results with 95\% CI; solid and dashed lines for the exact formula (\cref{survival_prob} in \cref{rescue_prob}); % TODO do you use 1-(1-pw)^N or 1-e(-Np_w)?
 dashed lines for the approximate formula (\cref{rescue_prob_approx}), demonstrating that they all agree.
-% TODO add parameter valuesEvolutionaryRescue1.tex
+% TODO add parameter values
 }
-%\caption{Plot of the probability of evolutionary rescue of a population, consisting initially of $N$ wildtype cells, as a function of the proliferation rate of the wildtype cells for various values of the proliferation rate of the aneuploid cells. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximation \eqref{aneuploidyresistentfirstapprox} for the upper plot and \eqref{AneuploidyDeleteriousApprox} for the lower plot. The dots represent numerical simulations where the error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n$ is the number of simulations. Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $N=10^4, \lambda_a=1+10^{-2},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1$. }
-\label{rescue_prob_wt_growth_small_large_N}
+\label{rescue_prob_wt_growth}
 \end{figure}
-%%%%%%%%%%%
-%\begin{figure}[p]
-%% large population size
-%% A: partial resistance
-%% B: tolerance
-% \vspace*{1\baselineskip}
-%\includegraphics[width=1\textwidth]{Figures/CombinedSubplotLargePop.pdf}
-%\caption{Plot of the probability of evolutionary rescue of a population, consisting initially of $N$ wildtype cells, as a function of the proliferation rate of the wildtype cells for various values of the proliferation rate of the aneuploid cells. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximation \eqref{aneuploidyresistentfirstapprox} for the upper plot and \eqref{AneuploidyDeleteriousApprox} for the lower plot. The dots represent numerical simulations where the error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n$ is the number of simulations.  Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $N=10^8, \lambda_w=0.14, \lambda_a=0.14,\lambda_m=0.14,\mu_m=0.13, u=10^{-2}, v=10^{-7}$. }
-%\label{rescue_prob_wt_growth_large_N}
-%\end{figure}
 %%%%%%%%%%%
 \begin{figure}[p]
 % small population size
 % switch from tolerance to non-growing
- \vspace*{1\baselineskip}
+\begin{subfigure}{0.5\textwidth}
 \includegraphics[width=1\textwidth]{Figures/P_est_divergence.pdf}
-\caption{Plot of the probability of evolutionary rescue, of an initial population, consisting of $N$ wildtype cells, as a function of proliferation rate of the wildtype cells $\Delta_w=\lambda_w-\mu_w$ for various values of the proliferation rate of the aneuploid cells $\Delta_a=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximations \eqref{AneuploidyDeleteriousApprox} and \eqref{pestthirdcase}. The dots represent numerical simulations where the error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n$ is the number of simulations. The value highlighted in grey is the threshold $\Delta_a^*$ from \eqref{thresholdvalueaneuploid} which marks the transition between the regime dictated by \eqref{AneuploidyDeleteriousApprox} to the one dictated by \eqref{pestthirdcase}.  Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $N=10^4,\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1$. }
-\label{rescue_prob_an_growth_small_N}
-\end{figure}
-%%%%%%%%%%%
-\begin{figure}[p]
-% large population size
-% switch from tolerance to non-growing
- \vspace*{1\baselineskip}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
 \includegraphics[width=1\textwidth]{Figures/P_est_divergenceLargePopulation.pdf}
-\caption{Plot of the probability of evolutionary rescue, of an initial population, consisting of $N$ wildtype cells, as a function of proliferation rate of the wildtype cells $\Delta_w=\lambda_w-\mu_w$ for various values of the proliferation rate of the aneuploid cells $\Delta_a=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the approximations \eqref{AneuploidyDeleteriousApprox}. The dots represent numerical simulations where the error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n$ is the number of simulations.  Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $N=10^8,\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1$. }
-\label{rescue_prob_an_growth_large_N}
+\end{subfigure}
+\caption{\textbf{Evolutionary rescue probability with tolerant or non-growing aneuploid cells.}
+Rescue probability grows with the aneuploid growth rate $\Delta_a$ (x-axis), and is much higher in an initially large tumor than in a small one (\textbf(A) $N=10^4$; \textbf{(B)} $N=10^8$). 
+Markers represent simulation results with 95\% CI; solid and dashed lines for the exact formula (\cref{survival_prob} in \cref{rescue_prob}); % TODO do you use 1-(1-pw)^N or 1-e(-Np_w)?
+dashed lines for the approximate formula (\cref{rescue_prob_approx}).
+The approximation agrees with the simulation and exact solution when the initial tumor size is large (panel B).
+When the tumor size is small (panel A), we switch between the approximation for tolerant and for non-growing aneuploid cells; the switch occurs at $\Delta_a^*=2vp_m+v+2\sqrt{vp_m\left(vp_m+\mu_a+v\right)}$.
+% TODO why no switch in panel B?
+% TODO add parameter values
+% TODO more simulations for 0 > Delta_a > Delta^*_a
+}
+\label{rescue_prob_an_growth}
 \end{figure}
 %%%%%%%%%%%
 \begin{figure}[p]
@@ -797,24 +775,46 @@ dashed lines for the approximate formula (\cref{rescue_prob_approx}), demonstrat
 \end{figure}
 %%%%%%%%%%%
 \begin{figure}[p]
-% A partial resistance
-% B tolerance
-% function of wildtype growth rate
+% slightly decreasing (need to check)
  \vspace*{1\baselineskip}
-\includegraphics[width=1\textwidth]{Figures/RatioEvolRescue.pdf}
-\caption{Plot of the ratio of the probability of evolutionary rescue when aneuploidy can play a role in rescue ($u>0$) to the probability where acquisition of aneuploidy is not possible ($u=0$) as a function of the proliferation rate of the wildtype cells. The continuous lines represent the exact result \eqref{ratiorescueexact} while the dashed lines represent the approximation \eqref{ratiorescue}.  The upper plot show the case when aneuploidy is resistant while the lower plot shows the case when it is susceptible. Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $\lambda_w=1-10^{-1},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1$. }
-\label{RatioEvolRescue}
+\includegraphics[width=1\textwidth]{Figures/FractionPlot.pdf}
+\caption{\textbf{Effect of standing variation on evolutionary rescue.}
+In aneuploid cells already exist in the population at the onset of drug therapy as standing genetic variation, then evolutionary rescue is more likely... % TODO think about this figure...
+%Plot of the fraction of the cases the population is rescue by standing genetic variation as a function of the fraction of initial cells which are aneuploid. The red vertical line highlights the the value of $f$ for which half the times the population is rescues by aneuploid cells while the pink line is our approximation \eqref{halfeqstandvar}. For this plot we have chosen the following parameters: $N=10^3, \lambda_w=1-10^{-2}, \lambda_a=1-10^{-4},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1$. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n$ is the number of simulations. The value of $0.332$ highlighted in red is the value of the initial fraction of the population which in aneuploid for which half of the cases of evolutionary rescue are due to the initial aneuploid cell population.
+}
+\label{FractionPlot}
 \end{figure}
 %%%%%%%%%%%
 \begin{figure}[p]
 % A partial resistance
 % B tolerance
-% function of population size
- \vspace*{1\baselineskip}
+% left function of wildtype growth rate 
+% right function of population size
+% TODO fix panel labels
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=1\textwidth]{Figures/RatioEvolRescue.pdf}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
 \includegraphics[width=1\textwidth]{Figures/RatioEvolRescuePopulationSize.pdf}
-\caption{Plot of the ratio of the probability of evolutionary rescue when aneuploidy can play a role in rescue ($u>0$) to the probability where acquisition of aneuploidy is not possible ($u=0$) as a function of the initial population size of wildtype cells. The continuous lines represent the exact result \eqref{ratiorescueexact} while the dashed lines represent the approximation \eqref{ratiorescue}. The upper plot show the case when aneuploidy is resistant while the lower plot shows the case when it is susceptible.  Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $\lambda_w=0.14, \lambda_a=0.14,\lambda_m=0.14,\mu_w=0.17,\mu_m=0.13, u=10^{-2}, v=10^{-7}$. }
-\label{RatioEvolRescuePopulationSize}
+\end{subfigure}
+\caption{\textbf{Effect of aneuploidy on evolutionary rescue.}
+The ratio of rescue probability with and without aneuploid ($H$, \cref{ratiorescue}) increases with the aneuploid growth rate (colors) and decreases with the wildtype growth rates and initial tumor size (x-axis), except for large tumors where aneuploid cells are tolerant (see right side of panel B-right). 
+\textbf{(A-left,A-right)} Aneuploidy provides partial resistance. \textbf{(B-left, B-right)} Aneuploidy provides tolerance.  
+Solid and dashed lines apply $p_{rescue}$ from the exact formula of  (\cref{survival_prob} in \cref{rescue_prob}); % TODO do you use 1-(1-pw)^N or 1-e(-Np_w)?
+dashed lines apply $p_{rescue}$ from the approximate formula (\cref{rescue_prob_approx}), with good agreement.
+% TODO parameter values
+}
+\label{rescue_ratio}
 \end{figure}
+%%%%%%%%%%%
+%\begin{figure}[p]
+%% A partial resistance
+%% B tolerance
+%% function of population size
+% \vspace*{1\baselineskip}
+%\caption{Plot of the ratio of the probability of evolutionary rescue when aneuploidy can play a role in rescue ($u>0$) to the probability where acquisition of aneuploidy is not possible ($u=0$) as a function of the initial population size of wildtype cells. The continuous lines represent the exact result \eqref{ratiorescueexact} while the dashed lines represent the approximation \eqref{ratiorescue}. The upper plot show the case when aneuploidy is resistant while the lower plot shows the case when it is susceptible.  Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $\lambda_w=0.14, \lambda_a=0.14,\lambda_m=0.14,\mu_w=0.17,\mu_m=0.13, u=10^{-2}, v=10^{-7}$. }
+%\label{RatioEvolRescuePopulationSize}
+%\end{figure}
 %%%%%%%%%%%
 \begin{figure}[p]
 % partial resistance - aneuploidy rescues the pop
@@ -822,14 +822,6 @@ dashed lines for the approximate formula (\cref{rescue_prob_approx}), demonstrat
 \includegraphics[width=1\textwidth]{Figures/MeanTimeGrowthMutantDirectPlot.pdf}
 \caption{Plot of the mean time until the appearance of a resistance mutation which rescues the population in the case when evolutionary rescue is possible only through mutation but not aneuploidy and mutation.  The blue line represents the approximation \eqref{meantime1} and the dashed red line represents the first order approximation \eqref{limitapprox}. The orange dots represent the numerical simulations while the error bars represent the interval centered at the mean which containing $95\%$ of the simulated values. Here the population initially consists of $N$ wildtype cells and for the simulations we have chosen the following parameters: $\lambda_w=1-10^{-1},\lambda_m=1+10^{-1},\mu_w=1,\mu_m=1,u=10^{-2},v=10^{-7}$.}
 \label{MeanTimeGrowthAneuploidyPlot}
-\end{figure}
-%%%%%%%%%%%
-\begin{figure}[p]
-% slightly decreasing (need to check)
- \vspace*{1\baselineskip}
-\includegraphics[width=1\textwidth]{Figures/FractionPlot.pdf}
-\caption{Plot of the fraction of the cases the population is rescue by standing genetic variation as a function of the fraction of initial cells which are aneuploid. The red vertical line highlights the the value of $f$ for which half the times the population is rescues by aneuploid cells while the pink line is our approximation \eqref{halfeqstandvar}. For this plot we have chosen the following parameters: $N=10^3, \lambda_w=1-10^{-2}, \lambda_a=1-10^{-4},\lambda_m=1+10^{-1},\mu_w=1,\mu_a=1,\mu_m=1$. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n$ is the number of simulations. The value of $0.332$ highlighted in red is the value of the initial fraction of the population which in aneuploid for which half of the cases of evolutionary rescue are due to the initial aneuploid cell population.}
-\label{FractionPlot}
 \end{figure}
 %%%%%%%%%%%
 \begin{figure}[p]
