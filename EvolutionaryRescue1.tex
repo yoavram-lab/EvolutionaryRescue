@@ -781,7 +781,6 @@ In aneuploid cells already exist in the population at the onset of drug therapy 
 % B tolerance
 % left function of wildtype growth rate 
 % right function of population size
-% TODO fix panel labels
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width=1\textwidth]{Figures/RatioEvolRescue.pdf}
 \end{subfigure}
@@ -789,10 +788,13 @@ In aneuploid cells already exist in the population at the onset of drug therapy 
 \includegraphics[width=1\textwidth]{Figures/RatioEvolRescuePopulationSize.pdf}
 \end{subfigure}
 \caption{\textbf{Effect of aneuploidy on evolutionary rescue.}
-The ratio of rescue probability with and without aneuploid ($H$, \cref{ratiorescue}) increases with the aneuploid growth rate (colors) and decreases with the wildtype growth rates and initial tumor size (x-axis), except for large tumors where aneuploid cells are tolerant (see right side of panel B-right). 
-\textbf{(A-left,A-right)} Aneuploidy provides partial resistance. \textbf{(B-left, B-right)} Aneuploidy provides tolerance.  
+The ratio of rescue probability with and without aneuploid ($H$, \cref{ratiorescue}) increases with the aneuploid growth rate (colors) and decreases with the wildtype growth rates and initial tumor size (x-axes), except for large tumors where where the ratio converges to unity.
+\textbf{(A-left,A-right)} Aneuploidy provides partial resistance.
+\textbf{(B-left, B-right)} Aneuploidy provides tolerance.  
 Solid and dashed lines apply $p_{rescue}$ from the exact formula of  (\cref{survival_prob} in \cref{rescue_prob}); dashed lines apply $p_{rescue}$ from the approximate formula (\cref{rescue_prob_approx}), with good agreement.
 % TODO parameter values
+% TODO start y at 1
+% TODO fix panel labels
 }
 \label{rescue_ratio}
 \end{figure}
