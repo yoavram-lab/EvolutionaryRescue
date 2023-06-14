@@ -536,7 +536,23 @@ We are interested in the mean conditional time, $\tau_1=\mathbb{E}\left[T_1 \mid
 \end{aligned}
 \end{equation}
 after applying integration by parts.
-Therefore, plugging \cref{integralR,rescue_prob2} in \cref{meantime1}, 
+Therefore, plugging \cref{integralR,rescue_prob2} in \cref{meantime1}, the probability density function of $T_1$ is given by:
+\begin{align}
+f_{T_1}\left(t_1\right)=R\left(t_1\right)\e^{-\int_0^{t_1} R(t)\d t}.
+\end{align}
+As a result, the time $T_1$ conditional on evolutionary rescue is given by:
+\begin{align}
+f_{T_1}\left(t_1|m_{t\rightarrow\infty}\neq0\right)=\frac{R\left(t_1\right)\e^{-\int_0^{t_1} R(t)\d t}}{1-\left(1-p_w\right)^N}.
+\end{align}
+The expectation of $T_1$ is:
+\begin{align}\label{meantime1}
+\tau_1=\mathbb{E}\left[T_1\right]&=\frac{\int_0^\infty\e^{-\int_0^\tau R(t)\d t}\d\tau}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}.
+\end{align}
+The fration in the exponential of the integrand in \eqref{meantime1} can approximated as:
+\begin{equation*}
+\frac{\e^{\Delta_w\tau}-1}{\Delta_w}=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2).
+\end{equation*}
+As a result, the mean time $\tau_1$ can be simplified:
 \begin{align}\label{limitapprox}
 \tau_1 =
 \frac{\int_{0}^{\infty}{\exp\left(-u p_a N t\right) \d t}}{1-\e^{-Np_w}} \approx
@@ -612,7 +628,7 @@ which we plot in Figure \ref{MeanTimeGrowthAneuploidyPlot} as a function of the 
 
 We wish to obtain a simpler formula for $\tau_2$ in an analogous way to \eqref{limitapprox}. For this, we make use of the following expansions:
 \begin{align*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+\frac{\Delta_w^2\tau^2}{2}+O(\tau^3)-1}{\Delta_w}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3).\\
+\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+\frac{\Delta_w^2\tau^2}{2}+O(\tau^3)-1}{\Delta_w}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3),\\
 \frac{\e^{\Delta_a\tau}-1}{\Delta_a}&=\frac{1+\Delta_a\tau+\frac{\Delta_a^2\tau^2}{2}+O(\tau^3)-1}{\Delta_a}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3),
 \end{align*}
 which allow us to write:
@@ -632,7 +648,7 @@ where $\erfc$ is the complementary error function. We plot the expansion \eqref{
 
 If we select only linear terms in the following expansions:
 \begin{align*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2).\\
+\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2),\\
 \frac{\e^{\Delta_a\tau}-1}{\Delta_a}&=\frac{1+\Delta_a\tau+O(\tau^2)-1}{\Delta_a}=\tau+O(\tau^2),
 \end{align*}
 we obtain the first order approximation for $\tau_2$:
