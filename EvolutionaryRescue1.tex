@@ -8,70 +8,79 @@ top=20mm,
 headheight=12pt
 }
 
-\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{tikz,pgfplots}
-\usepackage{gensymb}
-\usepackage{graphicx}
-\usepackage{subcaption}
-%\usepackage{xurl}
-
-\usepackage{epstopdf}
-%\usepackage{listings}
-\usepackage{tikz,fp,fp-random,todonotes}
-\usepackage[procnames]{listings}
-\usepackage{afterpage}
+%\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx} % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+% TeX will automatically convert eps --> pdf in pdflatex
+\usepackage[labelfont=bf]{caption}
 \usepackage{float}
-\usepackage{amsthm}
-\usepackage{wrapfig}
-\usepackage{booktabs,caption}
-\usepackage[flushleft]{threeparttable}
-\usepackage{scrextend}
-\usepackage[all]{nowidow}
-\usepackage{stfloats}
-\usepackage{mathtools}
-\usepackage{bm}
-\usepackage{stackengine}
-\usepackage[hidelinks]{hyperref}
-\usepackage{siunitx}
-%\usepackage{subfig}
+
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{commath}
+\usepackage[hyphens]{url}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[unicode=true,colorlinks=true,urlcolor=CadetBlue,citecolor=black,linkcolor=black]{hyperref}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
 \usepackage{authblk}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{lipsum}  
+\usepackage[title,page]{appendix}
+\usepackage{chngcntr}
+%\usepackage{end float}
 \usepackage{cleveref}
+ \usepackage{subcaption}
+
+%SetFonts
+% newtxtext+newtxmath
+\usepackage{newtxtext} %loads helv for ss, txtt for tt
+\usepackage{amsmath}
+\usepackage[bigdelims]{newtxmath}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+%SetFonts
 
 % less space before sections 
-% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\usepackage{titlesec}
-\titlespacing*{\section}
-{0pt}{2ex plus 1ex minus .2ex}{2ex plus .2ex}
-\titlespacing*{\subsection}
-{0pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
-\titlespacing*{\paragraph}
-{0pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
- 
-\addtokomafont{labelinglabel}{\sffamily}
+% https://tex.stackexchange.com/a/101126
+%\usepackage{titlesec}
+%\titlespacing*{\section}{0pt}{0.5\baselineskip}{0\baselineskip}
+%\titlespacing*{\subsection}{0pt}{0.5\baselineskip}{0\baselineskip}
+    
+% Species names
+%% Meta-Command for defining new species macros
+\usepackage{xspace}
 
+\newcommand{\species}[3]{%
+  \newcommand{#1}{\gdef#1{\textit{#3}\xspace}\textit{#2}\xspace}}
+  \species{\yeast}{Saccharomyces cerevisiae}{S.~cerevisiae}
 
-\usetikzlibrary{calc}
-\usetikzlibrary{backgrounds}
-\usetikzlibrary{calc}
-\usetikzlibrary{decorations.markings}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{decorations.text}
+% line numbers
+\usepackage[displaymath, mathlines]{lineno}
+\renewcommand\linenumberfont{\normalfont\small\sffamily}
+\linenumbers
+\modulolinenumbers[2]
 
-\usetikzlibrary{shadings}
-\usetikzlibrary{backgrounds}
-\usetikzlibrary{calc}
-\usetikzlibrary{decorations.markings}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{decorations.text}
-\usetikzlibrary{shapes.multipart}
-        
-\allowdisplaybreaks
-\renewcommand{\floatpagefraction}{.85}
+% Yoav & Lee commands
+\newcommand*{\tr}{^\intercal}
+\let\vec\mathbf
+\newcommand{\matrx}[1]{{\Big[ \stackrel{}{#1}\Big]}}
+\newcommand{\diag}[1]{\mbox{diag}\matrx{#1}}
+\newcommand{\goesto}{\rightarrow}
+\newcommand{\dspfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2} }
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newtheorem{result}{Result}
+\renewcommand\qedsymbol{} % no square at end of proof
+\newcommand{\cl}{\mathbf{L}}
+\newcommand{\cj}{\mathbf{J}}
+\newcommand{\ci}{\mathbf{I}}
+\newcommand{\E}{\mathbf{E}}
+\DeclareMathOperator{\sign}{sign}
+\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
 
+% Remus commands
 \newcommand{\x}{{\bf x}}
 \renewcommand{\d}{{\rm d}}
 \newcommand{\e}{{\rm e}}
@@ -81,10 +90,6 @@ headheight=12pt
 \newcommand{\tmi}{\tau_0\wedge\tau}
 \newcommand{\tma}{\tau_0\vee\tau}
 \newcommand{\taua}{\tau_{\rm A}}
-
-% appendix
-\usepackage[title,page]{appendix}
-\usepackage{chngcntr}
 
 % Supplementary
 % https://support.authorea.com/en-us/article/how-to-create-an-appendix-section-or-supplementary-information-1g25i5a/
@@ -97,16 +102,13 @@ headheight=12pt
         \renewcommand{\theequation}{A\arabic{equation}}%
 }
 
-% line numbers
-\usepackage[displaymath, mathlines]{lineno}
-\renewcommand\linenumberfont{\normalfont\small\sffamily}
-\linenumbers
-\modulolinenumbers[2]
+% autoref
+\def\equationautorefname{Eq.}
 
 % NatBib
-%\usepackage[super,comma]{natbib}
-%\usepackage[numbers,super,compress]{natbib}
-\usepackage[round,colon,authoryear]{natbib}
+\usepackage[comma,sort]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Title page
 \title{The role of aneuploidy in the evolution of cancer drug resistance}
@@ -153,9 +155,6 @@ headheight=12pt
 Interestingly, aberrations in chromosome copy number have been shown to allow cancer cells to survive under stressful conditions such as drug therapy.
 Indeed, cancer cells are often likely to be aneuploid, and aneuploidy is associated with poor patient outcomes \citep{ben2020context}.
 
-% this belong in the next paragraph, or remove it altogether
-% One mechanism by which aneuploidy has been hypothesized to affect cancer is by providing phenotypic variation and increasing heterogeneity in a tumor. 
-
 The role of chromosomal instability (CIN) in the emergence of cancer has been studied extensively in the past decades \citep{michor2005can,christine2018understanding,nowak2002role,pavelka2010dr,komarova2003mutation,zhu2018cellular}.
 One hypothesis is that CIN facilitates tumor genesis by accelerating the removal of tumor suppression genes (TSG) and subsequent appearance of cancer. The deletion of tumor suppression genes can happen in two ways: two point mutations deleting both alleles of the TSG (assuming a diploid genotype), or one point mutation and one chromosomal loss event.
 Initial theoretical studies have shown that aneuploidy can have a significant role in the deletion of the the tumor suppressing genes when compared to two consecutive point mutations \citep{nowak2002role,komarova2003mutation,michor2005can,komarova2008selective}.
@@ -169,7 +168,6 @@ Models of evolutionary rescue usually assume that the fitness of the wildtype an
 Most models focus on the probability that at least one mutation rescues the population. How multiple mutations contribute to the survival of the population is less explored, but \citet{wilson2017soft} have shown that evolutionary rescue is significantly enhanced by soft selective sweeps when multiple mutations contribute. 
 Evolutionary rescue that requires two successive mutations has been investigated using diffusion approximation by \citet{martin2013probability}.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Methods}
 \subsection*{Evolutionary model}
@@ -180,6 +178,7 @@ The difference between the division and death rate is $\Delta_k = \lambda_k-\mu_
 We assume the population of cells is under a strong stress, such as drug therapy, to which the wildtype genotype is susceptible and therefore $\Delta_w<0$, whereas the mutant is resistant to the stress, $\Delta_m>0$
 We analyze three scenarios: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, $0>\Delta_a>\Delta_w$ \citep[see][for the distinction between susceptible, resistant, and tolerant]{brauner2016distinguishing}; in the third, aneuploid cells are non-growing or "barely growing", that is, either slightly tolerant or slightly resistant, such that $\Delta_a \approx 0$.
 Wildtype cells may missegregate to become aneuploids at rate $u$. Both aneuploid and wildtype cells may mutate to become mutants at rate $v$ (\Cref{figureAneuploidy}). 
+
 %Thus, the changes in the number of each cell type is described by 
 %\begin{equation}
 %\begin{aligned}
@@ -192,47 +191,11 @@ Wildtype cells may missegregate to become aneuploids at rate $u$. Both aneuploid
 %\end{aligned}
 %\end{equation}
 
-%%%%%%%%%%%
-\begin{figure}[!t]
-\centering
-\includegraphics[width=0.75\textwidth]{Figures/figureAneuploidy.pdf}
-\caption{
-\textbf{Model illustration.}
-\textbf{(A)} A population of cancer cells is composed of wildtype, aneuploid, and mutant cells, which divide with rates $\lambda_w$, $\lambda_a$, and $\lambda_m$ and die at rates $\mu_w$, $\mu_a$, and $\mu_m$, respectively. 
-Wildtype cells can become aneuploid at rate $u$. Both aneuploid and wildtype cells can acquire a beneficial mutation with rate $v$. Color denotes the relative growth rates of the three genotypes such that $\lambda_w - \mu_w < \lambda_a - \mu_a < \lambda_m - \mu_m$. \textbf{(B)} The wildtype and the mutant are susceptible and resistant, respectively, to the drug. The aneuploid may be tolerant, non-growing, or or partially resistant.
-}
-\label{figureAneuploidy}
-\end{figure}
-%%%%%%%%%%%
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Stochastic simulations} 
 Simulations are performed using a \emph{Gillespie algorithm} \citep{gillespie1976general,gillespie1977exact} implemented in Python \citep{python}.
 The simulation monitors the number of cells of each type: wildtype, aneuploid, and mutant. 
 The wildtype population initially consists of $w_0$ cells, whereas the other cell types are initially absent.
-
-\begin{table}
-\begin{center}
-  \begin{tabular}{| l |p{5cm}| c | c | p{3cm} |}
-    \hline
-     & Name & Value & Units & References \\ \hline
-    $N$ & Initial tumor size & $10^7-10^9$ & cells  & \citet{del2009does} \\ \hline
-    $\lambda_w$ & Wildtype division rate& 0.14 & 1/days  & \citep{bozic2013evolutionary} \\ \hline
-    $\mu_w$ & Wildtype death rate& 0.17 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
-    $\lambda_a$  & Aneuploid division rate$^\ast$ & 0.14 & 1/days  & - \\ \hline
-    $\mu_a$ & Aneuploid death rate$^\ast$ & $0.13-0.17$ & 1/days  & - \\ \hline
-    $\lambda_m$ & Mutant division rate& 0.14 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
-    $\mu_m$ & Mutant death rate& 0.13 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
-    $u$ & Missegregation rate& $10^{-3}-10^{-2}$ & 1$\slash$cell division  & \citet{nowak2004evolutionary,bakker2023predicting} \\ \hline
-    $v$ & Mutation rate& $10^{-7}-10^{-9}$ &  1$\slash$gene$\slash$cell division  & \citet{nowak2004evolutionary} \\ \hline
-  \end{tabular}
-\caption{\textbf{Model parameters.} 
-Aneuploid birth rate $\lambda_a$ is set to the same value as the wildtype and mutant birth rates, $\lambda_w$ and $\lambda_m$.
-Aneuploid death rate $\mu_a$ is set to an intermediate value between the wildtype and mutant death rates, $\mu_w$ and $\mu_m$.}
-  \label{table1}
-\end{center}
-\end{table}
 
 The state of the stochastic system at time $t$ is represented by the triplet $\left(w_t,a_t,m_t\right)$. The following describes the events that may occur (right column), the rates at which they occur (middle column), and the effect these events have on the state (\Cref{figureAneuploidy}):
 \begin{subequations}
@@ -257,9 +220,13 @@ We repeat these iterations until either the population becomes extinct (the numb
 m_t>\left\lfloor-\frac{3\log10}{\log\left(\frac{\mu_m}{\lambda_m}\right)}\right\rfloor+1,
 \end{equation*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \paragraph{$\tau$-leaping.}
 When simulations are slow (e.g. due to large population size), we utilize $\tau$-leaping \citep{gillespie2001approximate}, where change in number of cells of genotype $i$ in a fixed time interval $\Delta t$ is Poisson distributed with mean $\nu_i\Delta t$.
 If the change in number of cells is negative and larger then the subpopulation size then the subpopulation size is updated to be zero.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Density-dependent growth.}
 
@@ -277,9 +244,11 @@ To simulate birth and death rates that depend on the number of cells in the popu
 where $C_1, C_2>0$ are constants. % TODO what constants? see Remus version.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection*{Code and data availability.} All source code is available online at \url{https://github.com/yoavram-lab/EvolutionaryRescue}.
 
-%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section*{Results}
 
 % TODO: OVERVIEW OF RESULTS 
@@ -478,6 +447,7 @@ p_{rescue} 	&= p_{sgv}+\left(1-p_{sgv}\right)p_{de-novo} \\
 The fraction of cases in which the population is rescued by pre-existing aneuploid cells (i.e., standing genetic variation) is given by $F\left(f\right)=\frac{p_{sgv}}{p_{total}}$ (\Cref{FractionPlot}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection*{Effect of aneuploidy on evolutionary rescue}
 To determine the extent to which aneuploidy may affect evolutionary rescue, we define $H$ to be the ratio of the rescue probability with aneuploidy ($u>0$) and the rescue probability without aneuploidy ($u=0$),
 \begin{equation}\label{ratiorescueexact}
@@ -502,6 +472,7 @@ The effect of the initial tumor size $N$ is the similar to that of the wildtype 
 Importantly, in large tumors, the ratio converges to unity, that is, aneuploidy does not affect the probability for evolutionary rescue. % TODO can we find this analytical?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection*{Evolutionary rescue time}
 
 Even evolutionary rescue occurs, it may take a long time; therefore, it is crucial to estimate the mean waiting time for rescue and the effect aneuploidy may have on it. 
@@ -616,15 +587,15 @@ As a result, when $N\gg1$ the number of successful mutants created by direct mut
 %\tau_3=\frac{\int_0^\infty\e^{-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}.
 %\end{align}
 
-\begin{align*}
+\begin{align}
 r_1\left(t\right)&=vp_m\int_0^ta_{\tau}\,\d\tau=\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_wt}-1}{\Delta_w}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right),\\
 r_2\left(t\right)&=vp_m\int_0^tw_{\tau}\,\d\tau=vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}.
-\end{align*}
+\end{align}
 For large initial population sizes we can assume that both rescue mutations produced through direct mutation and aneuploidy are independent and, as a result, they can be merged into a single Poisson process with rate $\left(r_1+r_2\right)\left(t\right)$. Consequently, the mean time to the appearance of the first rescue mutant is: 
 \begin{align}\label{meantimet2}
 \tau_2=\frac{\int_0^\infty\e^{-\left(r_1+r_2\right)}\,\d\tau}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\exp\left[-\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_w\tau}-1}{\Delta_w}-\frac{\e^{\Delta_a\tau}-1}{\Delta_a}\right)-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}\right]\,\d\tau}{1-\left(1-p_w\right)^N},
 \end{align}
-which we plot in Figure \ref{MeanTimeGrowthAneuploidyPlot} as a function of the initial population size.
+which we plot in \Cref{MeanTimeGrowthAneuploidyPlot} as a function of the initial population size.
 
 We wish to obtain a simpler formula for $\tau_2$ in an analogous way to \eqref{limitapprox}. For this, we make use of the following expansions:
 \begin{align*}
@@ -644,7 +615,7 @@ Consequently, the mean time $\tau_2$ is obtained to be:
 \begin{align}\label{limitapprox2}
 \tau_2\approx\left[1+\exp\left(-Np_w\right)\right]\exp\left(\frac{vNp_m}{2u}\right)\frac{\erfc\left(\sqrt{\frac{vNp_m}{2u}}\right)}{\sqrt{\frac{2uvNp_m}{\pi}}},
 \end{align}
-where $\erfc$ is the complementary error function. We plot the expansion \eqref{limitapprox2} in Figure \ref{MeanTimeGrowthAneuploidyPlot} and observe that it is a very good fit for large values of the initial wildtype population size.
+where $\erfc$ is the complementary error function. We plot the expansion \eqref{limitapprox2} in \Cref{MeanTimeGrowthAneuploidyPlot} and observe that it is a very good fit for large values of the initial wildtype population size.
 
 If we select only linear terms in the following expansions:
 \begin{align*}
@@ -653,17 +624,17 @@ If we select only linear terms in the following expansions:
 \end{align*}
 we obtain the first order approximation for $\tau_2$:
 \begin{align}\label{limitapprox3}
-\tau_2\approx\left(1+\e^{-Np_w}\right)\int_0^\infty\e^{-uNp_m\tau}\,\d\tau=\frac{\left(1+\e^{-Np_w}\right)}{uNp_m},
+\tau_2\approx\left(1+\e^{-Np_w}\right)\int_0^\infty\e^{-uNp_m\tau}\,\d\tau=\frac{\left(1+\e^{-Np_w}\right)}{uNp_m} ,
 \end{align}
-which we plot in Figure \ref{MeanTimeGrowthAneuploidyPlot} and observe that it offer as a good a fit to \eqref{meantimet2} as \eqref{limitapprox2}. Additionally, we observe that for large initial wildtype populations sizes direct mutation drives evolutionary rescue while aneuploidy plays a role for intermediate sized tumors. This is consistent with the information obtained from \Cref{rescue_ratio} where aneuploidy improves the probability of evolutionary rescue only  for small and intermediate values of $N$.
+which we plot in \Cref{MeanTimeGrowthAneuploidyPlot} and observe that it offer as a good a fit to \cref{meantimet2} as \cref{limitapprox2}. Additionally, we observe that for large initial wildtype populations sizes direct mutation drives evolutionary rescue while aneuploidy plays a role for intermediate sized tumors. This is consistent with the information obtained from \cref{rescue_ratio} where aneuploidy improves the probability of evolutionary rescue only  for small and intermediate values of $N$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Contribution of aneuploidy to mean evolutionary rescue time}
-\begin{align}\nonumber
+\begin{align}
 I&=\frac{\tau_2}{\tau_1}=\frac{\int_0^\infty\exp\left[-\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_wt}-1}{\Delta_w}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right)-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}\right]\,\d\tau}{\int_0^\infty\e^{-uNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}\times\frac{1-\left(1-\left.p_w\right|_{u=0}\right)^N}{1-\left(1-\left.p_w\right|_{u>0}\right)^N}\\\label{eqMeanTimeRatioInitialPopulationSize}
 &=\frac{\int_0^\infty\exp\left[-\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_wt}-1}{\Delta_w}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right)-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}\right]\,\d\tau}{\int_0^\infty\e^{-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}\frac{1}{H},
 \end{align}
-where $H$, is the ratio of the probability of evolutionary rescue with and without aneuploidy, defined in \eqref{ratiorescueexact}. We plot \eqref{eqMeanTimeRatioInitialPopulationSize} in Figure \ref{MeanTimeRatioInitialPopulationSize} as a function of the initial wildtype population for varying values of the Malthusian fitness of aneuploid cells $\Delta_a$.
+where $H$, is the ratio of the probability of evolutionary rescue with and without aneuploidy, defined in \cref{ratiorescueexact}. We plot \cref{eqMeanTimeRatioInitialPopulationSize} in \Cref{MeanTimeRatioInitialPopulationSize} as a function of the initial wildtype population for varying values of the Malthusian fitness of aneuploid cells $\Delta_a$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
@@ -713,18 +684,53 @@ and the Ela Kodesz Institute for Research on Cancer Development and Prevention (
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section*{References}
-%\newpage
+
 \nolinenumbers
 %\bibliographystyle{unsrtnat}
 \bibliographystyle{agsm}
 \bibliography{evo2022}
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[p]
-% small population size
-% A: partial resistance
-% B: tolerance
+\begin{table}
+\begin{center}
+  \begin{tabular}{| l |p{5cm}| c | c | p{3cm} |}
+    \hline
+     & Name & Value & Units & References \\ \hline
+    $N$ & Initial tumor size & $10^7-10^9$ & cells  & \citet{del2009does} \\ \hline
+    $\lambda_w$ & Wildtype division rate& 0.14 & 1/days  & \citep{bozic2013evolutionary} \\ \hline
+    $\mu_w$ & Wildtype death rate& 0.17 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
+    $\lambda_a$  & Aneuploid division rate$^\ast$ & 0.14 & 1/days  & - \\ \hline
+    $\mu_a$ & Aneuploid death rate$^\ast$ & $0.13-0.17$ & 1/days  & - \\ \hline
+    $\lambda_m$ & Mutant division rate& 0.14 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
+    $\mu_m$ & Mutant death rate& 0.13 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
+    $u$ & Missegregation rate& $10^{-3}-10^{-2}$ & 1$\slash$cell division  & \citet{nowak2004evolutionary,bakker2023predicting} \\ \hline
+    $v$ & Mutation rate& $10^{-7}-10^{-9}$ &  1$\slash$gene$\slash$cell division  & \citet{nowak2004evolutionary} \\ \hline
+  \end{tabular}
+\caption{\textbf{Model parameters.} 
+Aneuploid birth rate $\lambda_a$ is set to the same value as the wildtype and mutant birth rates, $\lambda_w$ and $\lambda_m$.
+Aneuploid death rate $\mu_a$ is set to an intermediate value between the wildtype and mutant death rates, $\mu_w$ and $\mu_m$.}
+  \label{table1}
+\end{center}
+\end{table}
+
+%%%%%%%%%%
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{Figures/figureAneuploidy.pdf}
+\caption{
+\textbf{Model illustration.}
+\textbf{(A)} A population of cancer cells is composed of wildtype, aneuploid, and mutant cells, which divide with rates $\lambda_w$, $\lambda_a$, and $\lambda_m$ and die at rates $\mu_w$, $\mu_a$, and $\mu_m$, respectively. 
+Wildtype cells can become aneuploid at rate $u$. Both aneuploid and wildtype cells can acquire a beneficial mutation with rate $v$. Color denotes the relative growth rates of the three genotypes such that $\lambda_w - \mu_w < \lambda_a - \mu_a < \lambda_m - \mu_m$. \textbf{(B)} The wildtype and the mutant are susceptible and resistant, respectively, to the drug. The aneuploid may be tolerant, non-growing, or or partially resistant.
+}
+\label{figureAneuploidy}
+\end{figure}
+
+%%%%%%%%%%%
+
+\begin{figure}
+% TODO change panel labels to ABCD
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width=1\textwidth]{Figures/CombinedSubplot.pdf}
 \end{subfigure}
@@ -733,17 +739,17 @@ and the Ela Kodesz Institute for Research on Cancer Development and Prevention (
 \end{subfigure}
 \caption{
 \textbf{Evolutionary rescue probability with partially resistant or tolerant aneuploid cells.}
-Rescue probability is very high when aneuploidy provides partial resistance ($\lambda_a=0.01$), in an initially small tumor (\textbf{Aleft}, $N=10^4$) and even more so in an initially large tumor (\textbf{Aright}, $N=10^8$). % TODO change panel labels to ABCD
-When aneuploidy provides tolerance (\textbf{Bleft}, $N=10^4$; (\textbf{Bright}, $N=10^8$), the rescue probability is much lower. 
+Rescue probability is very high when aneuploidy provides partial resistance ($\lambda_a=0.01$), in an initially small tumor (\textbf{Aleft}, $N=10^4$) and even more so in an initially large tumor (\textbf{Aright}, $N=10^8$). 
+When aneuploidy provides tolerance (\textbf{Bleft}, $N=10^4$; \textbf{Bright}, $N=10^8$), the rescue probability is much lower. 
 In both scenarios, rescue probability increase with both the wildtype growth rate (x-axis) and the aneuploidy growth rate (colors).
 Markers represent simulation results with 95\% CI; solid and dashed lines for the exact formula (\cref{survival_prob} in \cref{rescue_prob}); dashed lines for the approximate formula (\cref{rescue_prob_approx}), demonstrating that they all agree.
-Here, aneuploidy rate is $u=10^{-2}$ and mutation rate is $v=10^{-7}$.
-% TODO add missing parameters
+Here, division rate $\lambda_w=\lambda_a=\lambda_m=0.14$, (so that growth rate changes due to variable death rate), mutant death rate $\mu_m=0.13$ (so that mutant growth rate $\Delta_m=0.01$), aneuploidy rate $u=10^{-2}$, mutation rate $v=10^{-7}$.
 }
 \label{rescue_prob_wt_growth}
 \end{figure}
 %%%%%%%%%%%
-\begin{figure}[p]
+
+\begin{figure}
 % small population size
 % switch from tolerance to non-growing
 \begin{subfigure}{0.5\textwidth}
@@ -765,8 +771,10 @@ When the tumor size is small (panel A), we switch between the approximation for 
 }
 \label{rescue_prob_an_growth}
 \end{figure}
+
 %%%%%%%%%%%
-\begin{figure}[p]
+
+\begin{figure}
 \begin{subfigure}{0.5\textwidth}
 % non-growing slightly declining, compare 1st order approximation to exact and simulation
 \includegraphics[width=1\textwidth]{Figures/DeleteriousTauLeapPlot.pdf}
@@ -782,8 +790,10 @@ When the tumor size is small (panel A), we switch between the approximation for 
 }
 \label{rescue_prob_N}
 \end{figure}
+
 %%%%%%%%%%%
-\begin{figure}[p]
+
+\begin{figure}
 % slightly decreasing (need to check)
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/FractionPlot.pdf}
@@ -795,8 +805,10 @@ In aneuploid cells already exist in the population at the onset of drug therapy 
 }
 \label{FractionPlot}
 \end{figure}
+
 %%%%%%%%%%%
-\begin{figure}[p]
+
+\begin{figure}
 % A partial resistance
 % B tolerance
 % left function of wildtype growth rate 
@@ -818,8 +830,10 @@ Solid and dashed lines apply $p_{rescue}$ from the exact formula of  (\cref{surv
 }
 \label{rescue_ratio}
 \end{figure}
+
 %%%%%%%%%%%
-\begin{figure}[p]
+
+\begin{figure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width=1\textwidth]{Figures/MeanTimeDeleteriousPlot.pdf}
 \end{subfigure}
@@ -834,8 +848,10 @@ Our 1st-order (dashed red lines, right: \cref{limitapprox}, left: \cref{limitapp
 }
 \label{MeanTimeGrowthAneuploidyPlot} 
 \end{figure}
+
 %%%%%%%%%%%
-\begin{figure}[p]
+
+\begin{figure}
 % tolerance... maybe third is slightly decreasing
  \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/MeanTimeRatioInitialPopulationSize.pdf}
@@ -846,24 +862,30 @@ The ratio of the mean time to appearance of a resistance mutation that leads to 
 }
 \label{MeanTimeRatioInitialPopulationSize}
 \end{figure}
-%%%%%%%%%%%
-%\begin{figure}[p]
-%% diffusion approx instead of branching process
-%% tolerance
-% \vspace*{1\baselineskip}
-%\includegraphics[width=1\textwidth]{Figures/P_est_diffusion.pdf}
-%\caption{Plot of the survival probability of an initial population consisting of $w_0=10^{4}$ wildtype cells as a function of $\Delta_a=\lambda_a-\mu_a$ for various values of $\Delta_w=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the Feller diffusion approximation \eqref{FellerApprox}. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/w_0}$ where $p$ is the mean probability of evolutionary rescue.}
-%\label{P_est_diffusion}
-%\end{figure}
-%%%%%%%%%%%
-%\begin{figure}[p]
+
+%%%%%%%%%%
+
+\begin{figure}
+% diffusion approx instead of branching process
+% tolerance
+ \vspace*{1\baselineskip}
+\includegraphics[width=1\textwidth]{Figures/P_est_diffusion.pdf}
+\caption{Plot of the survival probability of an initial population consisting of $w_0=10^{4}$ wildtype cells as a function of $\Delta_a=\lambda_a-\mu_a$ for various values of $\Delta_w=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the Feller diffusion approximation \eqref{FellerApprox}. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/w_0}$ where $p$ is the mean probability of evolutionary rescue.}
+\label{P_est_diffusion}
+\end{figure}
+
+%%%%%%%%%%
+
+\begin{figure}
 % partial resistance, compare 1st and 2nd order approximation and exact
-%\vspace*{1\baselineskip}
-%\includegraphics[width=1\textwidth]{Figures/SurvPlotNData.pdf}
-%\caption{Plot of the probability of survival of a population as a function of the initial population size of wildtype cells. The blue line represents the exact solution \eqref{survprobw}, the orange line line represents the approximation \eqref{aneuploidyresistentfirstapprox}, the green line represents the first order correction \eqref{survprobwapproxcorrected} and the red dots represents stochastic simulations. For the simulations we have chosen the following parameters: $\lambda_w=0.14, \lambda_a=0.14,\lambda_m=0.14,\mu_w=0.17,\mu_a=0.135,\mu_m=0.13$. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n=100$ is the number of simulations.}
-%\label{compare_1st_2nd_order_approx}
-%\end{figure}
+\vspace*{1\baselineskip}
+\includegraphics[width=1\textwidth]{Figures/SurvPlotNData.pdf}
+\caption{Plot of the probability of survival of a population as a function of the initial population size of wildtype cells. The blue line represents the exact solution \eqref{survprobw}, the orange line line represents the approximation \eqref{aneuploidyresistentfirstapprox}, the green line represents the first order correction \eqref{survprobwapproxcorrected} and the red dots represents stochastic simulations. For the simulations we have chosen the following parameters: $\lambda_w=0.14, \lambda_a=0.14,\lambda_m=0.14,\mu_w=0.17,\mu_a=0.135,\mu_m=0.13$. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n=100$ is the number of simulations.}
+\label{compare_1st_2nd_order_approx}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\appendix
 %\begin{appendices}
 %\renewcommand{\theequation}{\thesection\arabic{equation}}
