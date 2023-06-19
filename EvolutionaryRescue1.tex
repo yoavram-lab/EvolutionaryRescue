@@ -241,7 +241,7 @@ To simulate birth and death rates that depend on the number of cells in the popu
 \lambda_m' &= C_2+\left(\lambda_m-\mu_m\right)\left(1-\frac{w+a+m}{K}\right),\\ 
 \mu_m' &= C_2,
 \end{align*}
-where $C_1, C_2>0$ are constants. % TODO what constants? see Remus version.
+where $C_1, C_2>0$ are constants and $K$ is the maximum carrying capcity. % TODO what constants? see Remus version.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -705,7 +705,9 @@ and the Ela Kodesz Institute for Research on Cancer Development and Prevention (
     $\lambda_m$ & Mutant division rate& 0.14 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
     $\mu_m$ & Mutant death rate& 0.13 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
     $u$ & Missegregation rate& $10^{-3}-10^{-2}$ & 1$\slash$cell division  & \citet{nowak2004evolutionary,bakker2023predicting} \\ \hline
-    $v$ & Mutation rate& $10^{-7}-10^{-9}$ &  1$\slash$gene$\slash$cell division  & \citet{nowak2004evolutionary} \\ \hline
+    $v$ & Mutation rate& $10^{-7}-10^{-9}$ &  1$\slash$gene$\slash$cell division  & \citet{nowak2004evolutionary} \\ 
+    % TODO citing Nowak 2004 for the rates is strange because it is a theory paper - cite the original empirical papers
+    \hline
   \end{tabular}
 \caption{\textbf{Model parameters.} 
 Aneuploid birth rate $\lambda_a$ is set to the same value as the wildtype and mutant birth rates, $\lambda_w$ and $\lambda_m$.
@@ -743,7 +745,7 @@ Rescue probability is very high when aneuploidy provides partial resistance ($\l
 When aneuploidy provides tolerance (\textbf{Bleft}, $N=10^4$; \textbf{Bright}, $N=10^8$), the rescue probability is much lower. 
 In both scenarios, rescue probability increase with both the wildtype growth rate (x-axis) and the aneuploidy growth rate (colors).
 Markers represent simulation results with 95\% CI; solid and dashed lines for the exact formula (\cref{survival_prob} in \cref{rescue_prob}); dashed lines for the approximate formula (\cref{rescue_prob_approx}), demonstrating that they all agree.
-Here, division rate $\lambda_w=\lambda_a=\lambda_m=0.14$, (so that growth rate changes due to variable death rate), mutant death rate $\mu_m=0.13$ (so that mutant growth rate $\Delta_m=0.01$), aneuploidy rate $u=10^{-2}$, mutation rate $v=10^{-7}$.
+Parameters: division rate $\lambda_w=\lambda_a=\lambda_m=0.14$ (so that growth rate changes due to variable death rate); mutant death rate $\mu_m=0.13$ (so that mutant growth rate $\Delta_m=0.01$); aneuploidy rate $u=10^{-2}$; mutation rate $v=10^{-7}$.
 }
 \label{rescue_prob_wt_growth}
 \end{figure}
@@ -752,6 +754,8 @@ Here, division rate $\lambda_w=\lambda_a=\lambda_m=0.14$, (so that growth rate c
 \begin{figure}
 % small population size
 % switch from tolerance to non-growing
+% TODO why no switch in panel B?
+% TODO more simulations for 0 > Delta_a > Delta^*_a
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width=1\textwidth]{Figures/P_est_divergence.pdf}
 \end{subfigure}
@@ -765,9 +769,7 @@ solid lines for the exact formula (\cref{survival_prob} in \cref{rescue_prob});
 dashed lines for the approximate formula (\cref{rescue_prob_approx}).
 The approximation agrees with the simulation and exact solution when the initial tumor size is large (panel B).
 When the tumor size is small (panel A), we switch between the approximation for tolerant and for non-growing aneuploid cells; the switch occurs at $\Delta_a^*=2vp_m+v+2\sqrt{vp_m\left(vp_m+\mu_a+v\right)}$.
-% TODO why no switch in panel B?
-% TODO add parameter values
-% TODO more simulations for 0 > Delta_a > Delta^*_a
+Parameters: $\lambda_w=\lambda_a=\lambda_m=0.14$; $\mu_m=0.13$; $u=10^{-2}$; $v=10^{-7}$.
 }
 \label{rescue_prob_an_growth}
 \end{figure}
@@ -785,8 +787,8 @@ When the tumor size is small (panel A), we switch between the approximation for 
 \end{subfigure}
 \caption{\textbf{Evolutionary rescue probability for variable initial tumor size.}
 \textbf{(A)} Comparison of simulation results (markers with 95\% CI, too small to appear with $10^5$ simulations per marker), the exact formula (blue line, \cref{survival_prob} in \cref{rescue_prob}) and the approximate formula (orange line, \cref{rescue_prob_approx}).
-\textbf{(B)} Comparison of results of simulations  with density-dependent growth (markers with with 95\% CI) and the exact formula (blue line, \cref{survival_prob} in \cref{rescue_prob}). Here, $K=10^9$.
-% TODO add parameter values
+\textbf{(B)} Comparison of results of simulations  with density-dependent growth (markers with with 95\% CI) and the exact formula (blue line, \cref{survival_prob} in \cref{rescue_prob}) with maximum carrying capacity $K=10^9$.
+Parameters: $\lambda_w=\lambda_a=\lambda_m=0.14$; $\mu_w=0.17$; (A) $\mu_a=0.15$, (B) $\mu_a=0.135$; $\mu_m=0.13$; $u=10^{-2}$; $v=10^{-7}$.
 }
 \label{rescue_prob_N}
 \end{figure}
@@ -799,9 +801,9 @@ When the tumor size is small (panel A), we switch between the approximation for 
 \includegraphics[width=1\textwidth]{Figures/FractionPlot.pdf}
 \caption{\textbf{Effect of standing variation on evolutionary rescue.}
 In aneuploid cells already exist in the population at the onset of drug therapy as standing genetic variation, then evolutionary rescue is more likely... 
+Parameters: $\lambda_w=\lambda_a=\lambda_m=0.14$; $\mu_w=0.17$; $\mu_a=0.145$; $\mu_m=0.13$; $u=10^{-2}$; $v=10^{-7}$.
 % TODO think about this figure...
 % TODO maybe better to show p_total / p_denovo as function of u or N.
-% TODO add parameter values
 }
 \label{FractionPlot}
 \end{figure}
@@ -824,7 +826,7 @@ The ratio of rescue probability with and without aneuploid ($H$, \cref{ratioresc
 \textbf{(A-left,A-right)} Aneuploidy provides partial resistance.
 \textbf{(B-left, B-right)} Aneuploidy provides tolerance.  
 Solid and dashed lines apply $p_{rescue}$ from the exact formula of  (\cref{survival_prob} in \cref{rescue_prob}); dashed lines apply $p_{rescue}$ from the approximate formula (\cref{rescue_prob_approx}), with good agreement.
-% TODO parameter values
+Parameters: $N=10^4$; $\lambda_w=\lambda_a=\lambda_m=0.14$; (B) $\mu_w=0.17$; $\mu_m=0.13$; $u=10^{-2}$; $v=10^{-7}$.
 % TODO start y at 1
 % TODO fix panel labels
 }
@@ -844,7 +846,7 @@ Solid and dashed lines apply $p_{rescue}$ from the exact formula of  (\cref{surv
 Shown is the mean time for appearance of a resistance mutation the leads to evolutionary rescue \textbf{(left)} with ($u>0$) and \textbf{(right)} without ($u=0$ aneuploidy.
 Our inhomogeneous Poisson-process approximations (solid blue lines, right: \cref{meantime1}, left: \cref{meantimet2}) is in agreement with simulation results (orange markers with 95\% CI).
 Our 1st-order (dashed red lines, right: \cref{limitapprox}, left: \cref{limitapprox2}) and 2nd-order (green line, left: \cref{limitapprox3}) approximations work well when the initial tumor size is large (here $>10^8$ cells).
-% TODO parameter values
+Parameters: $\lambda_w=\lambda_a=\lambda_m=0.14$; $\mu_w=0.17$; (A) $\mu_a=0.145$; $\mu_m=0.13$; $u=10^{-2}$; $v=10^{-7}$.
 }
 \label{MeanTimeGrowthAneuploidyPlot} 
 \end{figure}
@@ -864,25 +866,25 @@ The ratio of the mean time to appearance of a resistance mutation that leads to 
 \end{figure}
 
 %%%%%%%%%%
-
-\begin{figure}
-% diffusion approx instead of branching process
-% tolerance
- \vspace*{1\baselineskip}
-\includegraphics[width=1\textwidth]{Figures/P_est_diffusion.pdf}
-\caption{Plot of the survival probability of an initial population consisting of $w_0=10^{4}$ wildtype cells as a function of $\Delta_a=\lambda_a-\mu_a$ for various values of $\Delta_w=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the Feller diffusion approximation \eqref{FellerApprox}. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/w_0}$ where $p$ is the mean probability of evolutionary rescue.}
-\label{P_est_diffusion}
-\end{figure}
-
-%%%%%%%%%%
-
-\begin{figure}
-% partial resistance, compare 1st and 2nd order approximation and exact
-\vspace*{1\baselineskip}
-\includegraphics[width=1\textwidth]{Figures/SurvPlotNData.pdf}
-\caption{Plot of the probability of survival of a population as a function of the initial population size of wildtype cells. The blue line represents the exact solution \eqref{survprobw}, the orange line line represents the approximation \eqref{aneuploidyresistentfirstapprox}, the green line represents the first order correction \eqref{survprobwapproxcorrected} and the red dots represents stochastic simulations. For the simulations we have chosen the following parameters: $\lambda_w=0.14, \lambda_a=0.14,\lambda_m=0.14,\mu_w=0.17,\mu_a=0.135,\mu_m=0.13$. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n=100$ is the number of simulations.}
-\label{compare_1st_2nd_order_approx}
-\end{figure}
+%
+%\begin{figure}
+%% diffusion approx instead of branching process
+%% tolerance
+% \vspace*{1\baselineskip}
+%\includegraphics[width=1\textwidth]{Figures/P_est_diffusion.pdf}
+%\caption{Plot of the survival probability of an initial population consisting of $w_0=10^{4}$ wildtype cells as a function of $\Delta_a=\lambda_a-\mu_a$ for various values of $\Delta_w=\lambda_a-\mu_a$. The continuous lines represent the exact result \eqref{survprobw} while the dashed lines represent the Feller diffusion approximation \eqref{FellerApprox}. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/w_0}$ where $p$ is the mean probability of evolutionary rescue.}
+%\label{P_est_diffusion}
+%\end{figure}
+%
+%%%%%%%%%%%
+%
+%\begin{figure}
+%% partial resistance, compare 1st and 2nd order approximation and exact
+%\vspace*{1\baselineskip}
+%\includegraphics[width=1\textwidth]{Figures/SurvPlotNData.pdf}
+%\caption{Plot of the probability of survival of a population as a function of the initial population size of wildtype cells. The blue line represents the exact solution \eqref{survprobw}, the orange line line represents the approximation \eqref{aneuploidyresistentfirstapprox}, the green line represents the first order correction \eqref{survprobwapproxcorrected} and the red dots represents stochastic simulations. For the simulations we have chosen the following parameters: $\lambda_w=0.14, \lambda_a=0.14,\lambda_m=0.14,\mu_w=0.17,\mu_a=0.135,\mu_m=0.13$. The error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the mean probability of evolutionary rescue and $n=100$ is the number of simulations.}
+%\label{compare_1st_2nd_order_approx}
+%\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
