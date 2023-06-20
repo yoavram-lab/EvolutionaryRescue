@@ -212,12 +212,12 @@ The state of the stochastic system at time $t$ is represented by the triplet $\l
 \end{flalign*}
 \end{subequations}
 Each iteration of the simulation loop starts with computing the rates $\nu_j$ of each event $j$.
-We then draw the time until the next event, $\Delta t$, from an exponential distribution whose rate parameter is the sum of the rates of all events, such that $\Delta t \sim \textit{Exp}(\sum_j \nu_j)$.
+We then draw the time until the next event, $\Delta t$, from an exponential distribution whose rate parameter is the sum of the rates of all events, such that $\Delta t \sim \text{Exp}(\sum_j \nu_j)$.
 Then, we randomly determine which event occurred, where the probability for event $j$ is $p_j=\nu_j/\sum_i \nu_i$.
 Finally, we update the number of cells of each type according to the event that occurred and update the time from $t$ to $t+\Delta t$.
 We repeat these iterations until either the population becomes extinct (the number of cells of all types is zero) or the number of mutant cells is high enough so that its extinction probability is $<0.1\%$, that is until
 \begin{equation*}
-m_t>\left\lfloor-\frac{3\log10}{\log\left(\frac{\mu_m}{\lambda_m}\right)}\right\rfloor+1,
+m_t>\left\lfloor\frac{3\log10}{\log\left(\frac{\lambda_m}{\mu_m}\right)}\right\rfloor+1.
 \end{equation*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -256,7 +256,7 @@ where $C_1, C_2>0$ are constants and $K$ is the maximum carrying capcity. % TODO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Survival probability}
 
-To analyze evolutionary rescue in this model, we use the framework of \emph{multitype branching processes} \citep{rybnikov2021fitness,harris1963theory}. 
+To analyze evolutionary rescue in this model, we use the framework of \emph{multitype branching processes} \citep{harris1963theory}. 
 This allows us to find explicit expressions for the \emph{survival probability}: the probability that a lineage descended from a single cell does not become extinct.
 
 Let $p_w$, $p_a$, and $p_m$ be the survival probabilities of a population consisting initially of single wildtype cell, aneuploid cell, or mutant cell, respectively.
@@ -272,7 +272,7 @@ The complements $1-p_w$, $1-p_a$, and $1-p_m$ are the extinction probabilities, 
 \end{aligned}
 \end{equation}
 
-The survival probabilities are given by the smallest solution for each quadratic equation \citep{uecker2015adaptive}. Therefore we have
+The survival probabilities are given by the smallest solution for each quadratic equation \citep{weissman2009rate,uecker2015adaptive}. Therefore we have
 \begin{equation}\label{survival_prob}
 \begin{aligned}
 p_w &= \frac{\lambda_w-\mu_w-u-v+\sqrt{\left(\lambda_w-\mu_w-u-v\right)^2+4\lambda_w\left(up_a+vp_m\right)}}{2\lambda_w} ,\\
