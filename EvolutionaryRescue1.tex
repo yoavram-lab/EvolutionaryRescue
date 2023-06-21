@@ -267,20 +267,20 @@ where $C_1, C_2>0$ are constants and $K$ is the maximum carrying capcity. % TODO
 In our model, \emph{evolutionary rescue} occurs when resistant cells appear and fixate ($m_t \gg 1$) in the population before the population becomes extinct ($w_t=a_t=m_t=0$).
 Aneuploidy may contribute to evolutionary rescue by either preventing (when $\Delta_a>0$) or delaying (when $0>\Delta_a>\Delta_w$) the extinction of the population before mutant cells appear and fixate.
 
-To estimate the rescue probability $p_{rescue}$, we assume independence between clonal lineages starting from an initial population of $N$ wildtype cells (we check the effect of density-dependent growth on our results below).
+To estimate the rescue probability $\presc$, we assume independence between clonal lineages starting from an initial population of $N$ wildtype cells (we check the effect of density-dependent growth on our results below).
 Thus, the rescue probability is given by 
 \begin{subequations}
 \begin{align}
-p_{rescue} &= 1-\left(1-p_w\right)^N \label{rescue_prob} \\
+\presc &= 1-\left(1-p_w\right)^N \label{rescue_prob} \\
 & \approx 1-\e^{-Np_w} , \label{rescue_prob2}
 \end{align}
 \end{subequations}
-where the approximation $(1-p_w)\approx e^{-p_w}$ assumes that $p_w$ (but not $N p_w$) is small.
+where $p_w$ is the probability that the lineage of a single wild-type cell avoids extinction, and the approximation $(1-p_w)\approx e^{-p_w}$ assumes that $p_w$ (but not $N p_w$) is small.
 
-Applying the approximations for the survival probability $p_w$ from \cref{survprobwapprox1,survprobwinitial,scenario3} in \cref{rescue_prob2} and substituting $\Delta_k=\lambda_k-\mu_k$, we find that the rescue probability can be approximated by
+In the Appendix below, we use the theory of multi-type branching processes to find approximate expressions \cref{survprobwapprox1,survprobwinitial,scenario3} for $p_w$ in different regimes. Substituting these  into \cref{rescue_prob2}, we find that the rescue probability can be approximated by
 \begin{equation}\label{rescue_prob_approx}
 \begin{aligned}
-&p_{rescue} \approx \\
+&\presc \approx \\
   &\begin{cases}
   1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right] ,&
   4\lambda_avp_m>\left(\Delta_a-v\right)^2 ,\\
@@ -292,11 +292,13 @@ Applying the approximations for the survival probability $p_w$ from \cref{survpr
 \end{aligned}
 \end{equation}
 
+\daniel{Need to explain intuitively what all this means.}
+
 
 % TODO do we need this?
 %Note that if instead \cref{survprobwapprox1} we apply \cref{survprobwapproxcorrected}, we have
 %\begin{align}\label{survprobresistantaneuploidy}
-%p_{rescue}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}-\frac{uv^2\lambda_a\Delta_m^2}{8\lambda_m^2\Delta_a^3}\right)\right].
+%\presc=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}-\frac{uv^2\lambda_a\Delta_m^2}{8\lambda_m^2\Delta_a^3}\right)\right].
 %\end{align}
 %However, both approximations seem to work very well (\Cref{compare_1st_2nd_order_approx}).
 
@@ -323,7 +325,7 @@ p_{sgv} = 1-\left(1-p_a\right)^{fN}\approx 1-\e^{-fNp_a}.
 \end{equation*}
 The total probability of evolutionary rescue is given by
 \begin{align}\nonumber
-p_{rescue} 	&= p_{sgv}+\left(1-p_{sgv}\right)p_{de-novo} \\
+\presc 	&= p_{sgv}+\left(1-p_{sgv}\right)p_{de-novo} \\
 			&= 1-\exp\left(-\left[\left(1-f\right)p_w + fp_a\right]N\right) .
 \end{align}
 
@@ -334,7 +336,7 @@ The fraction of cases in which the population is rescued by pre-existing aneuplo
 \subsection*{Effect of aneuploidy on evolutionary rescue}
 To determine the extent to which aneuploidy may affect evolutionary rescue, we define $H$ to be the ratio of the rescue probability with aneuploidy ($u>0$) and the rescue probability without aneuploidy ($u=0$),
 \begin{equation}\label{ratiorescueexact}
-H = \frac{p_{rescue}(u>0)}{p_{rescue}(u=0)}.
+H = \frac{\presc(u>0)}{\presc(u=0)}.
 \end{equation}
 
 Plugging in our approximations from \cref{rescue_prob}, we have
@@ -377,7 +379,7 @@ by integrating the exponential and because $\frac{\exp[\Delta_w t]-1}{\Delta_w}=
 The probability density function of $T_1$ is thus
 $R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)$. % TODO ref
 Therefore, the probability density function of $(T_1 \mid T_1 < \infty)$ is
-$f_1(t) = \frac{R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)}{p_{rescue}}$. 
+$f_1(t) = \frac{R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)}{\presc}$. 
 \\
 
 We are interested in the mean conditional time, $\tau_1=\mathbb{E}\left[T_1 \mid T_1<\infty\right]$, which is given by
@@ -385,8 +387,8 @@ We are interested in the mean conditional time, $\tau_1=\mathbb{E}\left[T_1 \mid
 \begin{aligned}
 \tau_1 =
 \int_{0}^{\infty}{t f_1(t) \d t} = 
-\frac{\int_{0}^{\infty}{tR(t)\exp\left(-\int_0^{t}{R(z)\d z}\right) \d t}}{p_{rescue}} = 
-\frac{\int_{0}^{\infty}{\exp\left(-\int_0^{t}{R(z)\d z}\right) \d t}}{p_{rescue}}
+\frac{\int_{0}^{\infty}{tR(t)\exp\left(-\int_0^{t}{R(z)\d z}\right) \d t}}{\presc} = 
+\frac{\int_{0}^{\infty}{\exp\left(-\int_0^{t}{R(z)\d z}\right) \d t}}{\presc}
 \end{aligned}
 \end{equation}
 after applying integration by parts.
@@ -554,7 +556,7 @@ or to saline solution for control. Cell density can then be measured and compare
 
 % TODO summary
 
-\section{Methods}
+\section{Appendices}
 
 \subsection*{Calculation of survival probabilities of single lineages}
 
@@ -572,6 +574,8 @@ The extinction probabilities $1-p_w$, $1-p_a$, and $1-p_m$ then satisfy the equa
 1-p_m = &\frac{\mu_m}{\lambda_m+\mu_m}+\frac{\lambda_m}{\lambda_m+\mu_m}\left(1-p_m\right)^2 .	 
 \end{aligned}
 \end{equation}
+
+\daniel{Rewrite the below in terms of $\Delta k$.}
 
 The survival probabilities are given by the smallest solution for each quadratic equation \citep{weissman2009rate,uecker2015adaptive}. Therefore we have
 \begin{equation}\label{survival_prob}
@@ -713,6 +717,7 @@ and the Ela Kodesz Institute for Research on Cancer Development and Prevention (
     $\mu_a$ & Aneuploid death rate$^\ast$ & $0.13-0.17$ & 1/days  & - \\ \hline
     $\lambda_m$ & Mutant division rate& 0.14 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
     $\mu_m$ & Mutant death rate& 0.13 & 1/days  & \citet{bozic2013evolutionary} \\ \hline
+    $\Delta_k \equiv \lambda_k - \mu_k$ & 1/days & Growth rate of type $k$ cells, for $k=w,a,m$\\ \hline
     $u$ & Missegregation rate& $10^{-3}-10^{-2}$ & 1$\slash$cell division  & \citet{nowak2004evolutionary,bakker2023predicting} \\ \hline
     $v$ & Mutation rate& $10^{-7}-10^{-9}$ &  1$\slash$gene$\slash$cell division  & \citet{nowak2004evolutionary} \\ 
     % TODO citing Nowak 2004 for the rates is strange because it is a theory paper - cite the original empirical papers
@@ -834,7 +839,7 @@ Parameters: $\lambda_w=\lambda_a=\lambda_m=0.14$; $\mu_w=0.17$; $\mu_a=0.145$; $
 The ratio of rescue probability with and without aneuploid ($H$, \cref{ratiorescue}) increases with the aneuploid growth rate (colors) and decreases with the wildtype growth rates and initial tumor size (x-axes), except for large tumors where where the ratio converges to unity.
 \textbf{(A-left,A-right)} Aneuploidy provides partial resistance.
 \textbf{(B-left, B-right)} Aneuploidy provides tolerance.  
-Solid and dashed lines apply $p_{rescue}$ from the exact formula of  (\cref{survival_prob} in \cref{rescue_prob}); dashed lines apply $p_{rescue}$ from the approximate formula (\cref{rescue_prob_approx}), with good agreement.
+Solid and dashed lines apply $\presc$ from the exact formula of  (\cref{survival_prob} in \cref{rescue_prob}); dashed lines apply $\presc$ from the approximate formula (\cref{rescue_prob_approx}), with good agreement.
 Parameters: $N=10^4$; $\lambda_w=\lambda_a=\lambda_m=0.14$; (B) $\mu_w=0.17$; $\mu_m=0.13$; $u=10^{-2}$; $v=10^{-7}$.
 % TODO start y at 1
 % TODO fix panel labels
@@ -985,7 +990,7 @@ The ratio of the mean time to appearance of a resistance mutation that leads to 
 %\end{equation}
 %The number of rescue mutations has a Poisson distribution with rate $\theta_1+\theta_2$. As a result, the probability of evolutionary rescue is given by:
 %\begin{equation}\label{FellerApprox}
-%p_{rescue}=1-\e^{-\left(\theta_1+\theta_2\right)},
+%\presc=1-\e^{-\left(\theta_1+\theta_2\right)},
 %\end{equation}
 %which we plot in Figure \ref{P_est_diffusion} as a function of $\Delta_w$.
 
