@@ -95,6 +95,7 @@ headheight=12pt
 
 \newcommand{\daniel}[1]{\textcolor{blue}{#1}}
 \newcommand{\presc}{p_\text{rescue}}
+\newcommand{\psgv}{p_\text{SGV}}
 
 % Supplementary
 % https://support.authorea.com/en-us/article/how-to-create-an-appendix-section-or-supplementary-information-1g25i5a/
@@ -302,7 +303,7 @@ In the Appendix below, we use the theory of multi-type branching processes to fi
 %\end{align}
 %However, both approximations seem to work very well (\Cref{compare_1st_2nd_order_approx}).
 
-We validate these approximations by comparing them to results of stochastic evolutionary simulations. We find that the approximations work very well (\Cref{rescue_prob_wt_growth,rescue_prob_an_growth,rescue_prob_N,rescue_prob_N}).
+These approximations accurately match full stochastic simulations (\Cref{rescue_prob_wt_growth,rescue_prob_an_growth,rescue_prob_N,rescue_prob_N}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph*{Density-dependent growth}
@@ -311,6 +312,8 @@ In our analysis we used branching processes, which assume that growth (division 
 We therefore performed stochastic simulations of a logistic growth model with carrying capacity $K$ (Methods). 
 We find that our approximations agree with results of simulations with density-dependent growth for biologically relevant parameter values (\Cref{rescue_prob_N}).
 
+\daniel{Need to explain why.}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph*{Standing vs. de-novo genetic variation}
 
@@ -318,43 +321,46 @@ In the above we assumed that upon beginning of drug therapy, the initial tumor c
 However, aneuploid cells are likely generated even before onset of treatment at some rate $\tilde{u} \le u$ (because the treatment itself may promote generation of aneuploid cells REF), which are likely to have a deleterious effect (REF). % TODO refs
 But if the number of cells in the tumor $N$ is large, as expected if drug treatment is applied, there may already be a fraction $f=\tilde{u}/s$ of aneuploid cells in the population, where $s$ is the cost of aneuploidy (REF).
 
-In this scenario, the probability of evolutionary rescue by cells with aneuploidy from the initial population is
+In this scenario, the probability $\psgv$ of evolutionary rescue via standing genetic variation, that is, by cells with aneuploidy from the initial population is:
 \begin{equation*}
 % redefine: p_total, p_denovo=p_resuce from eq above; p_stdvar is the new thing
-p_{sgv} = 1-\left(1-p_a\right)^{fN}\approx 1-\e^{-fNp_a}. 
+\psgv = 1-\left(1-p_a\right)^{fN}\approx 1-\e^{-fNp_a}. 
 \end{equation*}
+Here $p_a$ is the probability that a lineage started by an aneuploid cell avoids extinction; see (EQUATION) in the Appendix for its value.
 The total probability of evolutionary rescue is given by
 \begin{align}\nonumber
-\presc 	&= p_{sgv}+\left(1-p_{sgv}\right)p_{de-novo} \\
+\presc 	&= \psgv+\left(1-\psgv\right)p_\text{de novo} \\
 			&= 1-\exp\left(-\left[\left(1-f\right)p_w + fp_a\right]N\right) .
 \end{align}
 
-The fraction of cases in which the population is rescued by pre-existing aneuploid cells (i.e., standing genetic variation) is given by $F\left(f\right)=\frac{p_{sgv}}{p_{total}}$ (\Cref{FractionPlot}).
+The fraction of cases in which the population is rescued by pre-existing aneuploid cells (i.e., standing genetic variation) is given by $F\left(f\right)=\frac{\psgv}{p_\text{total}}$ (\Cref{FractionPlot}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection*{Effect of aneuploidy on evolutionary rescue}
-To determine the extent to which aneuploidy may affect evolutionary rescue, we define $H$ to be the ratio of the rescue probability with aneuploidy ($u>0$) and the rescue probability without aneuploidy ($u=0$),
+To determine the extent to which aneuploidy may affect evolutionary rescue, we define $H$ to be the ratio of the rescue probability with aneuploidy ($u>0$) and the rescue probability without aneuploidy ($u=0$):
 \begin{equation}\label{ratiorescueexact}
-H = \frac{\presc(u>0)}{\presc(u=0)}.
+H \equiv \frac{\presc(u>0)}{\presc(u=0)}.
 \end{equation}
 
 Plugging in our approximations from \cref{rescue_prob}, we have
 \begin{equation}\label{ratiorescue}
-H = \begin{cases}
+H \approx \begin{cases}
 \frac{1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right]}{1-\exp\left[\frac{vN\Delta_m}{\left(\Delta_w-v\right)\lambda_m}\right]} ,&
-4\lambda_avp_m>\left(\Delta_a-v\right)^2 ,\\
-\frac{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right]}{1-\exp\left(\frac{v\Delta_mN}{\lambda_m\Delta_w}\right)}, ,&
-\Delta_a<0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2 ,\\
+4\lambda_avp_m \gg \left(\Delta_a-v\right)^2 ,\\
+\frac{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right]}{1-\exp\left(\frac{v\Delta_mN}{\lambda_m\Delta_w}\right)}, &
+\Delta_a < 0 \quad \text{and} \quad 4\lambda_avp_m \ll \left(\Delta_a-v\right)^2 ,\\
 \frac{1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right]}{1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\right]} ,&
-\Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2. % TODO this term can be simplified?
+\Delta_a>0 \quad \text{and} \quad 4\lambda_avp_m \ll \left(\Delta_a-v\right)^2. % TODO this term can be simplified?
   \end{cases}
 \end{equation}
+\daniel{These expressions are impenetrable. Need to be simplified and interpreted.}
 
-We find that the rescue ratio increase with the aneuploidy growth rate $\Delta_a$, because the better aneuploid cells are in growth, the better they are at rescuing the population (when they provide partial resistance) or delaying the extinction of the population (when they provide tolerance). 
+Aneuploidy always increases the probability of rescue ($H > 1$). 
+We find that the rescue ratio increase with the aneuploidy growth rate $\Delta_a$, because the better aneuploid cells are in growth, the better they are at directly rescuing the population (when they provide partial resistance) or avoiding extinction long enough to acquire full resistance (when they provide tolerance). 
 However, the rescue decreases with the wildtype growth rate $\Delta_w$, because the better the wildtype is at growth, the less is depends on aneuploidy for rescue or delay, and the more likely it is to directly produce mutant cells, rather than relying on aneuploid cells for producing mutant cells (\Cref{rescue_ratio}).
 The effect of the initial tumor size $N$ is the similar to that of the wildtype growth rate. 
-Importantly, in large tumors, the ratio converges to unity, that is, aneuploidy does not affect the probability for evolutionary rescue. % TODO can we find this analytical?
+If the tumor is sufficiently large, then even in the absence of aneuploidy rescue is almost certain to occur, and therefore aneuploidy has only a negligible additional effect. % TODO can we find this analytical?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
