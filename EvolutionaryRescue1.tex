@@ -30,11 +30,11 @@ headheight=12pt
 %\usepackage{end float}
 \usepackage{cleveref}
  \usepackage{subcaption}
+\usepackage{xcolor}
 
 %SetFonts
 % newtxtext+newtxmath
 \usepackage{newtxtext} %loads helv for ss, txtt for tt
-\usepackage{amsmath}
 \usepackage[bigdelims]{newtxmath}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
@@ -90,6 +90,10 @@ headheight=12pt
 \newcommand{\tmi}{\tau_0\wedge\tau}
 \newcommand{\tma}{\tau_0\vee\tau}
 \newcommand{\taua}{\tau_{\rm A}}
+
+% Daniel commands
+
+\newcommand{\daniel}[1]{\textcolor{blue}{#1}}
 
 % Supplementary
 % https://support.authorea.com/en-us/article/how-to-create-an-appendix-section-or-supplementary-information-1g25i5a/
@@ -253,8 +257,12 @@ where $C_1, C_2>0$ are constants and $K$ is the maximum carrying capcity. % TODO
 
 % TODO: OVERVIEW OF RESULTS 
 
+\daniel{I think this section has too much of the mathematical derivations, which should instead be in something like Methods. It should focus on just the results.}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Survival probability}
+
+
 
 To analyze evolutionary rescue in this model, we use the framework of \emph{multitype branching processes} \citep{harris1963theory}. 
 This allows us to find explicit expressions for the \emph{survival probability}: the probability that a lineage descended from a single cell does not become extinct.
@@ -647,8 +655,8 @@ Using multitype branching processes, we derived the probability of evolutionary 
 We obtained both exact and approximate expressions for the probability of evolutionary rescue.
 As expected, our analytic results in \cref{rescue_prob} show that the probability of evolutionary rescue increases with the initial tumor size $N$, the wildtype growth rate $\Delta_w=\lambda_w-\mu_w$, and the mutation $v$ and aneuploidy $u$ rates.
 
-When aneuploid cells are partially resistant to the drug ($\Delta_w\ll0\ll\Delta_a\ll\Delta_m$), evolutionary rescue can be approximated by a one-step evolutionary rescue process where aneuploidy itself rescues the population (\Cref{rescue_prob_wt_growth}). 
-When aneuploidy only provides tolerance to the drug ($\Delta_w\ll\Delta_a\ll0\ll\Delta_m$), it cannot rescue the population.
+When aneuploid cells are partially resistant to the drug ($\Delta_w\ll$(SOMETHING $\ne0$)$\ll\Delta_a\ll\Delta_m$), evolutionary rescue can be approximated by a one-step evolutionary rescue process where aneuploidy itself rescues the population (\Cref{rescue_prob_wt_growth}). 
+When aneuploidy only provides tolerance to the drug ($\Delta_w\ll\Delta_a\ll$(SOMETHING $\ne0$)$\ll\Delta_m$), it cannot rescue the population.
 Instead, aneuploidy acts as a \emph{stepping stone} through which the resistant mutant can appear in a more expedient fashion, given that the aneuploid cell population declines slower then the wildtype cell population. In this case, aneuploidy provides two benefits. First, it delays the extinction of the population--providing more time for appearance of the resistance mutations. Second, it increases the population size relative to a wildtype population--providing more cells for generating mutations, i.e., it increases the mutation supply.
 
 We find that aneuploidy can have a significant effect on evolutionary rescue (\Cref{rescue_ratio}). For example, when aneuploidy cells are "barely-resistant" (they grow at a very low rate, $\Delta_a=10^{-3}$) the probability of evolutionary rescue is 1000-fold higher with aneuploidy than without it (for parameters previously described in cancer \Cref{table1}).
