@@ -475,12 +475,14 @@ Importantly, in large tumors, the ratio converges to unity, that is, aneuploidy 
 
 \subsection*{Evolutionary rescue time}
 
-Even evolutionary rescue occurs, it may take a long time; therefore, it is crucial to estimate the mean waiting time for rescue and the effect aneuploidy may have on it. 
-We therefore calculate the mean time for the appearance of the first mutant that rescues the cell population.
+Even when evolutionary rescue occurs, it may take a long time.
+We therefore wish to estimate the mean waiting time for rescue and the effect aneuploidy may have on it. 
+We calculate the mean time for the appearance of the first mutant that rescues the cell population.
 This can occur either through the evolutionary trajectory $wildtype \rightarrow mutant$ or through the trajectory $wildtype \rightarrow aneuploid \rightarrow mutant$.
 We start with the former. 
 
-Assuming no aneuploidy ($u=0$), we define $T_1$ to be the time at which the first mutant cell appears that will avoid extinction and will therefore rescue the population. Note that if extinction occurs, that is $m_{\infty}=0$, then it is implied that $T_1=\infty$, and vice versa if $T_1<\infty$ then $m_{\infty}>0$.
+Assuming no aneuploidy ($u=0$), we define $T_1$ to be the time at which the first mutant cell appears that will avoid extinction and will therefore rescue the population.
+Note that if extinction occurs, that is the frequency of mutants after a very long time is zero, $m_{\infty}=0$, then it is implied that $T_1=\infty$, and vice versa if $T_1<\infty$ then $m_{\infty}>0$.
 
 The number of successful mutants generated until time $t$ can be approximated by an inhomogeneous Poisson process with rate $R\left(t\right) = u p_a w_t$,
 where $w_t=N\e^{\Delta_w t}$ is the number of wildtype cells at time $t$.
@@ -493,7 +495,7 @@ u p_a N t,
 by integrating the exponential and because $\frac{\exp[\Delta_w t]-1}{\Delta_w}=\frac{1+\Delta_w t+O(t^2)-1}{\Delta_w}=t+O(t^2)$.
 The probability density function of $T_1$ is thus
 $R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)$. % TODO ref
-Therefore, the probability density function of $(T_1 \mid T_1 < \infty)$ is
+Therefore, the probability density function of the conditional random variable $(T_1 \mid T_1 < \infty)$ is
 $f_1(t) = \frac{R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)}{p_{rescue}}$. 
 \\
 
@@ -507,126 +509,78 @@ We are interested in the mean conditional time, $\tau_1=\mathbb{E}\left[T_1 \mid
 \end{aligned}
 \end{equation}
 after applying integration by parts.
-Therefore, plugging \cref{integralR,rescue_prob2} in \cref{meantime1}, the probability density function of $T_1$ is given by:
-\begin{align}
-f_{T_1}\left(t_1\right)=R\left(t_1\right)\e^{-\int_0^{t_1} R(t)\d t}.
-\end{align}
-As a result, the time $T_1$ conditional on evolutionary rescue is given by:
-\begin{align}
-f_{T_1}\left(t_1|m_{t\rightarrow\infty}\neq0\right)=\frac{R\left(t_1\right)\e^{-\int_0^{t_1} R(t)\d t}}{1-\left(1-p_w\right)^N}.
-\end{align}
-The expectation of $T_1$ is:
-\begin{align}\label{meantime1}
-\tau_1=\mathbb{E}\left[T_1\right]&=\frac{\int_0^\infty\e^{-\int_0^\tau R(t)\d t}\d\tau}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}.
-\end{align}
-The fration in the exponential of the integrand in \eqref{meantime1} can approximated as:
-\begin{equation*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2).
-\end{equation*}
-As a result, the mean time $\tau_1$ can be simplified:
+Therefore, plugging \cref{integralR,rescue_prob2} in \cref{meantime1}, 
 \begin{align}\label{limitapprox}
-\tau_1 =
-\frac{\int_{0}^{\infty}{\exp\left(-u p_a N t\right) \d t}}{1-\e^{-Np_w}} \approx
+\tau_1 = 
+%\frac{\int_0^\infty\exp\left(-\int_0^\tau R(z)\d z\right)\d t}{1-\left(1-p_w\right)^N} = 
+\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N} \approx
+\frac{\int_{0}^{\infty}{\exp\left(-u p_a N t\right) \d t}}{1-\e^{-Np_w}} \approx \\
 \left(1+\e^{-Np_w}\right)\int_0^\infty\e^{-u p_a N t} \d t =
 \frac{1+\e^{-Np_w}}{u p_a N} ,
 \end{align}
-where we use the approximation $\left(1-\e^{-Np_w}\right)^{-1}\approx1+\e^{-Np_w}$ and integrate the exponent.
-\Cref{MeanTimeGrowthAneuploidyPlot} show the agreement between this approximating and simulation results for intermediate and large tumor sizes.
+where we use the approximations 
+$\frac{\e^{\Delta_w\tau}-1}{\Delta_w}=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2)$ and $(1-\e^{-Np_w})^{-1} \approx 1+\e^{-Np_w}$ and integrate the exponent.
+\Cref{MeanTimeGrowthAneuploidyPlot}B show the agreement between this approximating and simulation results for intermediate and large tumor sizes.
+\\
 
-\textbf{THE REST OF THIS SECTION REQUIRES EDITING BY YOAV}
-
-%Let $T=T_1+T_2$ be the time the first mutant cell that appears and rescues the population, where $T_1$ is the time at which the first aneuploid cell appears whose lineage will rescue the population and $T_2$ the time for this aneuploidy lineage to produce the first mutant that rescues the population. The expected mean time $\tau_1=\mathbb{E}\left[T_1\right]$ is identical to \eqref{meantime1} with adequate parameters.
-%
-%For an aneuploid cell, let $a_\tau$ be the number of its aneuploid descendents at time $\tau$. Each of these descentends have a probability $v\d \tau$ of producing a mutant which has a probability $p_m$ to survive. Consequently, the probability that the lineage descendent from a single aneuploid cell produces succesful mutant in the time interval $\left[\tau,\tau+\d \tau\right]$ is $vp_ma_t\d \tau$. Since the number of succesful mutants is a Poisson process, the probability of evolutionary rescue occurring until time $t$, given $a_\tau$, is given by:
-%\begin{align}
-%1-\exp\left(-\int_0^t vp_ma_\tau\d \tau\right)=1-\exp\left(-vp_mA_t\right),
-%\end{align}
-%where $A_t$ is the weight of the lineage until time $t$, defined as:
-%\begin{equation}
-%A_t=\int_0^t a_\tau\d \tau.
-%\end{equation}
-%As a result, to obtain $p_a\left(t\right)$ we average over all possible values of $A_t$:
-%\begin{align}
-%p_a\left(t\right)&=\int_0^\infty \d a P\left(A_T=a\right)\left[1-\e^{-vp_mA_t}\right]\\
-%&=1-\mathbb{E}\left[\e^{-vp_mA_t}\right]
-%\end{align}
-%Following the steps outlines in \citep{weissman2009rate} we obtain:
-%\begin{align}
-%p_a\left(t\right)=\frac{\left(a_+-1\right)\left(1-a_-\right)\left(1-\e^{-\left(1-\delta\right)\left(a_+-a_-\right)t}\right)}{a_+-1+\left(1-a_-\right)\e^{-\left(1-\delta\right)\left(a_+-a_-\right)t}},
-%\end{align}
-%where
-%\begin{align}
-%a_\pm=\frac{2-\delta-vp_m\pm\sqrt{\left(\delta+vp_m\right)^2-4vp_m}}{2\left(1-\delta\right)}.
-%\end{align}
-%and
-%\begin{align}
-%\delta=\frac{\Delta_a}{\Delta_w}
-%\end{align}
-%
-%The cumulative distribution of $T_2$ is given by $\frac{p_a\left(t\right)}{p_m}$ from which we obtain the mean time:
-%\begin{align}
-%\tau_2=\mathbb{E}\left[T_2\right]=\int_0^\infty\left(1-\frac{p_a\left(t\right)}{p_a}\right)\d t.
-%\end{align}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-When $Nu\gg1$ the aneuploid population can be assumed to be deterministic and approximated by the solution to the system of ODEs:
+When $Nu\gg1$ the aneuploid frequency dynamics is roughly deterministic and therefore can be approximated by 
 \begin{equation}
-a_t=\frac{Nu\e^{\Delta_wt}}{\Delta_w-\Delta_a}\left[1-\e^{\left(\Delta_w-\Delta_a\right)t}\right].
+a_t \approx \frac{Nu\e^{\Delta_wt}}{\Delta_w-\Delta_a}\left[1-\e^{\left(\Delta_w-\Delta_a\right)t}\right].
 \end{equation}
-As a result, when $N\gg1$ the number of successful mutants created by direct mutation or though aneuploidy are an inhomogeneous Poisson processes with the rates:
-
-%\begin{align}
-%f_{T_2}\left(t_2|m_{\infty}\neq0\right)=\frac{R_2\left(t_2\right)\e^{-\int_0^{t_2} R_2(t)\d t}}{1-\left(1-p_w\right)^N}
-%\end{align}
-
-%\begin{align}\label{meantime2}
-%\tau_2=\mathbb{E}\left[T_2\right]&=\frac{\int_0^\infty\e^{-\int_0^\tau R_2(t)\d t}\d\tau}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}.
-%\end{align}
-%
-%\begin{align}\label{meantime3}
-%\tau_3=\frac{\int_0^\infty\e^{-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}}\,\d\tau}{1-\left(1-p_w\right)^N}.
-%\end{align}
-
+As a result, when $N\gg1$ % TODO N>>1 ? or Nu >> 1?
+the number of successful mutants created by direct mutation and via aneuploidy can be approximated by inhomogeneous Poisson processes with the rates
 \begin{align}
 r_1\left(t\right)&=vp_m\int_0^ta_{\tau}\,\d\tau=\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_wt}-1}{\Delta_w}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right),\\
 r_2\left(t\right)&=vp_m\int_0^tw_{\tau}\,\d\tau=vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}.
 \end{align}
-For large initial population sizes we can assume that both rescue mutations produced through direct mutation and aneuploidy are independent and, as a result, they can be merged into a single Poisson process with rate $\left(r_1+r_2\right)\left(t\right)$. Consequently, the mean time to the appearance of the first rescue mutant is: 
+For large initial population sizes we assume that the two processes are independent and as a result, they can be merged into a single Poisson process with rate $\left(r_1+r_2\right)\left(t\right)$.
+Consequently, the mean time to the appearance of the first rescue mutant is
 \begin{align}\label{meantimet2}
-\tau_2=\frac{\int_0^\infty\e^{-\left(r_1+r_2\right)}\,\d\tau}{1-\left(1-p_w\right)^N}=\frac{\int_0^\infty\exp\left[-\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_w\tau}-1}{\Delta_w}-\frac{\e^{\Delta_a\tau}-1}{\Delta_a}\right)-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}\right]\,\d\tau}{1-\left(1-p_w\right)^N},
+\tau_2 = 
+\frac{\int_0^\infty\e^{-\left(r_1+r_2\right)} \d t}{1-\left(1-p_w\right)^N} = 
+\frac{\int_0^\infty\exp\left[-\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_w\tau}-1}{\Delta_w}-\frac{\e^{\Delta_a\tau}-1}{\Delta_a}\right)-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}\right] \d t}{1-\left(1-p_w\right)^N},
 \end{align}
-which we plot in \Cref{MeanTimeGrowthAneuploidyPlot} as a function of the initial population size.
+which we plot in \Cref{MeanTimeGrowthAneuploidyPlot}A as a function of the initial population size, $N$.
 
-We wish to obtain a simpler formula for $\tau_2$ in an analogous way to \eqref{limitapprox}. For this, we make use of the following expansions:
-\begin{align*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+\frac{\Delta_w^2\tau^2}{2}+O(\tau^3)-1}{\Delta_w}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3),\\
-\frac{\e^{\Delta_a\tau}-1}{\Delta_a}&=\frac{1+\Delta_a\tau+\frac{\Delta_a^2\tau^2}{2}+O(\tau^3)-1}{\Delta_a}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3),
-\end{align*}
-which allow us to write:
-\begin{equation*}
-\frac{\e^{\Delta_w\tau}-1}{\Delta_w}-\frac{\e^{\Delta_a\tau}-1}{\Delta_a}\approx\frac{\left(\Delta_w-\Delta_a\right)\tau^2}{2}.
-\end{equation*}
-As a result, the integrand in \eqref{meantimet2} can be written as:
-\begin{align*}
-&\exp\left[-\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_w\tau}-1}{\Delta_w}-\frac{\e^{\Delta_a\tau}-1}{\Delta_a}\right)-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}\right]\approx\exp\left(-uvNp_m\tau^2-vNp_m\tau\right)\\
-&=\exp\left(\frac{vNp_m}{2}\right)\exp\left[-\frac{uvNp_m}{2}\left(\tau+\frac{1}{u}\right)\right].
-\end{align*}
-Consequently, the mean time $\tau_2$ is obtained to be:
-\begin{align}\label{limitapprox2}
-\tau_2\approx\left[1+\exp\left(-Np_w\right)\right]\exp\left(\frac{vNp_m}{2u}\right)\frac{\erfc\left(\sqrt{\frac{vNp_m}{2u}}\right)}{\sqrt{\frac{2uvNp_m}{\pi}}},
-\end{align}
-where $\erfc$ is the complementary error function. We plot the expansion \eqref{limitapprox2} in \Cref{MeanTimeGrowthAneuploidyPlot} and observe that it is a very good fit for large values of the initial wildtype population size.
-
-If we select only linear terms in the following expansions:
+We wish to obtain a simpler formula for $\tau_2$, similar to \cref{limitapprox}.
+We thus have the following expansions,
+%\begin{align*}
+%\frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+\frac{\Delta_w^2\tau^2}{2}+O(\tau^3)-1}{\Delta_w}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3) ,\\
+%\frac{\e^{\Delta_a\tau}-1}{\Delta_a}&=\frac{1+\Delta_a\tau+\frac{\Delta_a^2\tau^2}{2}+O(\tau^3)-1}{\Delta_a}=\tau+\frac{\Delta_w}{2}\tau^2+O(\tau^3) ,
+%\end{align*}
+%which allow us to write
+%\begin{equation*}
+%\frac{\e^{\Delta_w\tau}-1}{\Delta_w}-\frac{\e^{\Delta_a\tau}-1}{\Delta_a} \approx \frac{\left(\Delta_w-\Delta_a\right)\tau^2}{2}.
+%\end{equation*}
+%As a result, the integrand in \cref{meantimet2} can be written as:
+%\begin{align*}
+%&\exp\left[-\frac{uvNp_m}{\Delta_w-\Delta_a}\left(\frac{\e^{\Delta_w\tau}-1}{\Delta_w}-\frac{\e^{\Delta_a\tau}-1}{\Delta_a}\right)-vNp_m\frac{\e^{\Delta_w\tau}-1}{\Delta_w}\right]\approx \\
+%& \exp\left(-uvNp_m\tau^2-vNp_m\tau\right) =
+%\exp\left(\frac{vNp_m}{2}\right)\exp\left[-\frac{uvNp_m}{2}\left(\tau+\frac{1}{u}\right)\right].
+%\end{align*}
+%Consequently, the mean conditional time $\tau_2$ is approximated by
+%\begin{align}\label{limitapprox2}
+%\tau_2 \approx
+%\frac{\left(1+\exp\left(-Np_w\right)\right) \exp\left(\frac{vNp_m}{2u}\right) \erfc\left(\sqrt{\frac{vNp_m}{2u}}\right)}{\sqrt{\frac{2uvNp_m}{\pi}}},
+%\end{align}
+%where $\erfc(z)$ is the complementary error function. 
+%
+%If we apply linear approximations,
 \begin{align*}
 \frac{\e^{\Delta_w\tau}-1}{\Delta_w}&=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2),\\
 \frac{\e^{\Delta_a\tau}-1}{\Delta_a}&=\frac{1+\Delta_a\tau+O(\tau^2)-1}{\Delta_a}=\tau+O(\tau^2),
 \end{align*}
-we obtain the first order approximation for $\tau_2$:
+which we use to derive a first-order approximation for $\tau_2$,
 \begin{align}\label{limitapprox3}
-\tau_2\approx\left(1+\e^{-Np_w}\right)\int_0^\infty\e^{-uNp_m\tau}\,\d\tau=\frac{\left(1+\e^{-Np_w}\right)}{uNp_m} ,
+\tau_2 \approx
+\left(1+\e^{-Np_w}\right)\int_0^\infty\e^{-uNp_m\tau}\,\d\tau=\frac{\left(1+\e^{-Np_w}\right)}{uNp_m} ,
 \end{align}
-which we plot in \Cref{MeanTimeGrowthAneuploidyPlot} and observe that it offer as a good a fit to \cref{meantimet2} as \cref{limitapprox2}. Additionally, we observe that for large initial wildtype populations sizes direct mutation drives evolutionary rescue while aneuploidy plays a role for intermediate sized tumors. This is consistent with the information obtained from \cref{rescue_ratio} where aneuploidy improves the probability of evolutionary rescue only  for small and intermediate values of $N$.
+
+\Cref{MeanTimeGrowthAneuploidyPlot}A shows that the approximation \cref{limitapprox3} has a good fit with simulation results for large initial wildtype population size ($N > 2\cdot10^7$). An approximation that uses second-order terms $\frac{\Delta_w^2\tau^2}{2}$ and $\frac{\Delta_a^2\tau^2}{2}$ does not perform better (\Cref{MeanTimeGrowthAneuploidyPlot}A).
+
+% TODO YOAV HERE
+
+Additionally, we observe that for large initial wildtype populations sizes direct mutation drives evolutionary rescue while aneuploidy plays a role for intermediate sized tumors. This is consistent with the information obtained from \cref{rescue_ratio} where aneuploidy improves the probability of evolutionary rescue only  for small and intermediate values of $N$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Contribution of aneuploidy to mean evolutionary rescue time}
@@ -763,7 +717,7 @@ Parameters: division rate $\lambda_w=\lambda_a=\lambda_m=0.14$ (so that growth r
 \includegraphics[width=1\textwidth]{Figures/P_est_divergenceLargePopulation.pdf}
 \end{subfigure}
 \caption{\textbf{Evolutionary rescue probability with tolerant or non-growing aneuploid cells.}
-Rescue probability grows with the aneuploid growth rate $\Delta_a$ (x-axis), and is much higher in an initially large tumor than in a small one (\textbf(A) $N=10^4$; \textbf{(B)} $N=10^8$). 
+Rescue probability grows with the aneuploid growth rate $\Delta_a$ (x-axis), and is much higher in an initially large tumor than in a small one (\textbf{A}: $N=10^4$; \textbf{B}: $N=10^8$). 
 Markers for simulation results with 95\% CI; 
 solid lines for the exact formula (\cref{survival_prob} in \cref{rescue_prob});
 dashed lines for the approximate formula (\cref{rescue_prob_approx}).
