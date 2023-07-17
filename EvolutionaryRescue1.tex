@@ -91,6 +91,12 @@ headheight=12pt
 \newcommand{\tma}{\tau_0\vee\tau}
 \newcommand{\taua}{\tau_{\rm A}}
 
+% Daniel commands
+
+\newcommand{\daniel}[1]{\textcolor{blue}{#1}}
+\newcommand{\presc}{p_\text{rescue}}
+\newcommand{\psgv}{p_\text{SGV}}
+
 % Supplementary
 % https://support.authorea.com/en-us/article/how-to-create-an-appendix-section-or-supplementary-information-1g25i5a/
 \newcommand{\beginsupplement}{%
@@ -254,170 +260,73 @@ where $C_1, C_2>0$ are constants and $K$ is the maximum carrying capcity. % TODO
 % TODO: OVERVIEW OF RESULTS 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Survival probability}
-
-To analyze evolutionary rescue in this model, we use the framework of \emph{multitype branching processes} \citep{rybnikov2021fitness,harris1963theory}. 
-This allows us to find explicit expressions for the \emph{survival probability}: the probability that a lineage descended from a single cell does not become extinct.
-
-Let $p_w$, $p_a$, and $p_m$ be the survival probabilities of a population consisting initially of single wildtype cell, aneuploid cell, or mutant cell, respectively.
-The complements $1-p_w$, $1-p_a$, and $1-p_m$ are the extinction probabilities, which satisfy each its respective equation,
-\begin{equation} \label{extinction_prob}
-\begin{aligned}
-1-p_w = &\frac{\mu_w}{\lambda_w+\mu_w+u+v} + 
-		  \frac{u}{\lambda_w+\mu_w+u+v}\left(1-p_a\right) + \\
-		  & \frac{\lambda_w}{\lambda_w+\mu_w+u+v}\left(1-p_w\right)^2 +
-		  \frac{v}{\lambda_w+\mu_w+u+v}\left(1-p_m\right) ,\\
-1-p_a = &\frac{\mu_a}{\lambda_a+\mu_a+v}+\frac{v}{\lambda_a+\mu_a+v}\left(1-p_m\right)+\frac{\lambda_a}{\lambda_a+\mu_a+v}\left(1-p_a\right)^2 ,\\
-1-p_m = &\frac{\mu_m}{\lambda_m+\mu_m}+\frac{\lambda_m}{\lambda_m+\mu_m}\left(1-p_m\right)^2 .	 
-\end{aligned}
-\end{equation}
-
-The survival probabilities are given by the smallest solution for each quadratic equation \citep{uecker2015adaptive}. Therefore we have
-\begin{equation}\label{survival_prob}
-\begin{aligned}
-p_w &= \frac{\lambda_w-\mu_w-u-v+\sqrt{\left(\lambda_w-\mu_w-u-v\right)^2+4\lambda_w\left(up_a+vp_m\right)}}{2\lambda_w} ,\\
-p_a &= \frac{\lambda_a-\mu_a-v+\sqrt{\left(\lambda_a-\mu_a-v\right)^2+4\lambda_avp_m}}{2\lambda_a}, \\
-p_m &= \frac{\lambda_m-\mu_m}{\lambda_m} .
-\end{aligned} 
-\end{equation}
-Note that the equation for $p_w$ depends on both $p_a$ and $p_m$, and the equation for $p_a$ depends on $p_m$.
-To proceed, we can plug the solution for $p_m$ and $p_a$ into the solution for $p_w$. We perform this for three different scenarios.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Scenario 1: Aneuploid cells are partially resistant} 
-
-We first assume that aneuploidy provides partial resistance to drug therapy, $\lambda_a>\mu_a$, and that this resistance is significant, $\left(\lambda_a-\mu_a-v\right)^2 > 4\lambda_a v p_m$.
-We thus rewrite \cref{survival_prob} as
-\begin{align*}
-p_w&=\frac{\lambda_w-\mu_w-u-v}{2\lambda_w}\left(1-\sqrt{1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}}\right) ,
-\text{and} \\
-p_a&=\frac{\lambda_a-\mu_a-v}{2\lambda_a}\left(1+\sqrt{1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}}\right) . 
-\end{align*}
-Using the quadratic Taylor expansion $\sqrt{1+x}=1+x/2+O(x^2)$ and assuming $u,v \ll 1$,
-we obtain the following approximation for the survival probability of a population initially consisting of a single wildtype cell,
-\begin{align}\label{survprobwapprox1}
-p_w 
-&\approx -\frac{vp_m+up_a}{\lambda_w-\mu_w-u-v}\\
-\nonumber
-%&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a-u\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-u\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\ \label{survprobw2}
-&\approx-\frac{1}{\lambda_w-\mu_w}\left[\frac{u\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\
-\end{align}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Second-order approximation.} % TODO consider moving to Appendix
-To improve our approximation, we can consider the second term of the Taylor series expansion,
-\begin{align*}
-\left(1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}\right)^{\frac{1}{2}}=1+\frac{2\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}-\frac{\left(\lambda_avp_m\right)^2}{4\left(\lambda_a-\mu_a-v\right)^4}+\cdots,
-\end{align*}
-which gives us the following approximation,
-\begin{align}
-p_a \approx \frac{\lambda_a-\mu_a-v}{\lambda_a}+\frac{vp_m}{\lambda_a-\mu_a-v}-\frac{\lambda_a\left(vp_m\right)^2}{8\left(\lambda_a-\mu_a-v\right)^3} .
-\end{align}
-We therefore have
-\begin{align}\nonumber
-p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{u\left(\lambda_a-\mu_a-v\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-v\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a-v\right)^3}\right]\\ \label{survprobw3}
-&\approx-\frac{1}{\lambda_w-\mu_w}\left[\frac{u\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a\right)^3}\right], 
-\end{align}
-and using $\Delta_k=\lambda_k-\mu_k$, we can write the above equation as
-\begin{equation}\label{survprobwapproxcorrected}
-p_w \approx -\frac{1}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}-\frac{uv^2\lambda_a\Delta_m^2}{8\lambda_m^2\Delta_a^3}\right).
-\end{equation}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Scenario 2: Aneuploid cells are tolerant.} 
-
-We now assume that aneuploidy provides tolerance to drug therapy, that is, the number of aneuploid cells significantly declines over time, but at a lower rate than the number of wildtype cells, $\lambda_w - \mu_w < \lambda_a - \mu_a < 0$. We also assume that the decline are significant, $\left(\lambda_a-\mu_a-v\right)^2 > 4\lambda_a v p_m$.
-We rewrite \cref{survival_prob} as
-\begin{equation}
-\begin{aligned}
-p_w&=\frac{\lambda_w-\mu_w-u-v}{2\lambda_w}\left(1-\sqrt{1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}}\right) ,
-\text{and} \\
-p_a&=\frac{\lambda_a-\mu_a-v}{2\lambda_a}\left(1-\sqrt{1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}}\right) .
-\end{aligned}
-\end{equation}
-Since $u,v\ll1$, the term in the root can be approximated using a 1st-order Taylor expansion. So, substituting the expressions for $p_a$ and $p_m$, we have
-\begin{equation}\label{survprobwinitial}
-\begin{aligned}
-p_w&\approx-\frac{vp_m+up_a}{\lambda_w-\mu_w-u-v}\\
-&\approx\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-v\right)}-\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\ %\label{survprobw2}
-&\approx\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_w-\mu_w\right)}\left[\frac{u}{\left(\lambda_a-\mu_a\right)}-1\right]\\
-%&=\frac{v\Delta_m}{\lambda_m\Delta_w}\left(\frac{u}{\Delta_a}-1\right) .
-\end{aligned}
-\end{equation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Scenario 3: Aneuploid cells are non-growing} % TODO consider this name
-
-We now assume that the growth rate of aneuploid cells is close to zero (either positive or negative), such that  $\left(\lambda_a-\mu_a-v\right)^2 < 4\lambda_avp_m$.
-We rewrite \cref{survival_prob} as
-\begin{equation}
-p_a=\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}\left(1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\lambda_avp_m}\right)^{\frac12}}{2\lambda_a} .
-\end{equation}
-Using a following Taylor series expansion
-\begin{equation*}
-\left(1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\lambda_avp_m}\right)^{\frac{1}{2}}=1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{8\lambda_avp_m}+\cdots,
-\end{equation*}
-we obtain the approximation
-\begin{equation}
-\begin{aligned}
-p_a&\approx\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}\left[1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{8\lambda_avp_m}\right]}{2\lambda_a}\\
-&=\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}+\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\sqrt{\lambda_avp_m}}}{2\lambda_a}\\
-&=\frac{\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right)^2+4\lambda_avp_m}{8\lambda_a\sqrt{\lambda_avp_m}}\\
-&=\frac{4\lambda_avp_m+4\lambda_avp_m\left(1+\frac{\lambda_a-\mu_a-v}{2\sqrt{\lambda_avp_m}}\right)^2}{8\lambda_a\sqrt{\lambda_avp_m}}\\
-&=\frac{1}{2\lambda_a}\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right).
-\end{aligned}
-\end{equation}
-Plugging this in \cref{survprobwinitial}, the survival probability of a population starting from one wildtype individual is
-\begin{equation}\label{scenario3}
-\begin{aligned}
-p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m}+\frac{u}{2\lambda_a}\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right)\right]\\
-&=-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m}+\frac{u}{2\lambda_a}\left(\lambda_a-\mu_a-v\right)+u\sqrt{\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_a\lambda_m}}\right].
-%&=-\frac{1}{\Delta_w-u-v}\left[v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right],
-\end{aligned}
-\end{equation}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Evolutionary rescue probability}
 
 In our model, \emph{evolutionary rescue} occurs when resistant cells appear and fixate ($m_t \gg 1$) in the population before the population becomes extinct ($w_t=a_t=m_t=0$).
 Aneuploidy may contribute to evolutionary rescue by either preventing (when $\Delta_a>0$) or delaying (when $0>\Delta_a>\Delta_w$) the extinction of the population before mutant cells appear and fixate.
 
-To estimate the rescue probability $p_{rescue}$, we assume independence between clonal lineages starting from an initial population of $N$ wildtype cells (we check the effect of density-dependent growth on our results below).
+To estimate the rescue probability $\presc$, we assume independence between clonal lineages starting from an initial population of $N$ wildtype cells (we check the effect of density-dependent growth on our results below).
 Thus, the rescue probability is given by 
 \begin{subequations}
 \begin{align}
-p_{rescue} &= 1-\left(1-p_w\right)^N \label{rescue_prob} \\
+\presc &= 1-\left(1-p_w\right)^N \label{rescue_prob} \\
 & \approx 1-\e^{-Np_w} , \label{rescue_prob2}
 \end{align}
 \end{subequations}
-where the approximation $(1-p_w)\approx e^{-p_w}$ assumes that $p_w$ (but not $N p_w$) is small.
+where $p_w$ is the probability that the lineage of a single wild-type cell avoids extinction, and the approximation $(1-p_w)\approx e^{-p_w}$ assumes that $p_w$ (but not necessarily $N p_w$) is small.
 
-Applying the approximations for the survival probability $p_w$ from \cref{survprobwapprox1,survprobwinitial,scenario3} in \cref{rescue_prob2} and substituting $\Delta_k=\lambda_k-\mu_k$, we find that the rescue probability can be approximated by
+The probability for evolutionary rescue $\presc$  (\cref{rescue_prob2}) is $\presc \approx N p_w$ when $N<1/p_w$ and $\presc \approx 1$ when $N > 1/p_w$. Therefore, $N^*=1/p_w$ is the threshold tumor size for rescue above which rescue is very likely (\Cref{rescue_prob_N}). % TODO add 1/p_w to figure as vertical line
+Therefore, we can write
+\begin{equation}
+\presc = 1-e^{-N/N^*} .
+\end{equation}
+In the Appendix below, we use the theory of multi-type branching processes to find approximate expressions \cref{survprobwapprox1,survprobwinitial,scenario3} for $p_w$ in different regimes. 
+Substituting these  into $N^*=1/p_w$, we find approximations for the threshold tumor size, $N^*$. 
+\\
+
+In the following, an important quantity is $T^* = (4 v \lambda_a \Delta_m/\lambda_m)^{-1/2}$, which is the critical time an aneuploid lineage needs to survive to produce a resistant mutant that avoids random extinction.
+First, if aneuploidy is very rare ($u T^*< 1$), or if aneuploidy is rare ($u < -\Delta_a$) and very sensitive to the drug ($\Delta_a T^* < -1$), then rescue will likely occur by a direct resistance mutation in a sensitive cell, such that 
+\begin{equation}
+N_m^* \approx \frac{\abs{\Delta_w}}{v} \cdot \frac{\lambda_m}{\Delta_m} .
+\end{equation}
+Otherwise, aneuploidy is frequent enough ($u > \max{(-\Delta_a, 1/T^*)}$) to affect the evolution of the tumor. 
+The threshold tumor size, $N^*$, can then be approximated by one of the following cases, depending on $\Delta_a T^*$, the change in the log of the aneuploid population size during the critical time,
 \begin{equation}\label{rescue_prob_approx}
 \begin{aligned}
-&p_{rescue} \approx \\
-  &\begin{cases}
-  1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right] ,&
-  4\lambda_avp_m>\left(\Delta_a-v\right)^2 ,\\
-   1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right] ,&
-   \Delta_a<0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2 ,\\
-   1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right] ,&
-   \Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2 .
+N_a^* \approx 
+% TODO replace XXX with approximations
+  \frac{\abs{\Delta_w}}{u} \cdot \begin{cases}
+    \frac{\abs{\Delta_a}}{v} \cdot \frac{\lambda_m}{\Delta_m} ,&
+  \Delta_a T^* \ll -1 ,\\ 
+  %\left(\frac{\lambda_a}{v} \cdot \frac{\lambda_m}{\Delta_m}\right)^{1/2} ,&
+  2\lambda_a T^* ,&
+  -1 \ll \Delta_a T^* \ll 1  ,\\ 
+  \frac{\lambda_a}{\Delta_a} ,&
+   \Delta_a T^* \gg 1 .
   \end{cases}
 \end{aligned}
 \end{equation}
+%The second case has a finer approximation by $N^*_a \approx \frac{\abs{\Delta_w}}{u} \cdot \frac{2\lambda_a}{\Delta_a + 1/T^*}$.
+Comparing these approximations to results of stochastic evolutionary simulations, we find that the approximations perform very well (\Cref{rescue_prob_wt_growth,rescue_prob_an_growth,rescue_prob_N,rescue_prob_N}).
 
 
-% TODO do we need this?
-%Note that if instead \cref{survprobwapprox1} we apply \cref{survprobwapproxcorrected}, we have
-%\begin{align}\label{survprobresistantaneuploidy}
-%p_{rescue}=1-\left(1-p_w\right)^N\approx 1-\e^{-Np_w}=1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}-\frac{uv^2\lambda_a\Delta_m^2}{8\lambda_m^2\Delta_a^3}\right)\right].
-%\end{align}
-%However, both approximations seem to work very well (\Cref{compare_1st_2nd_order_approx}).
 
-We validate these approximations by comparing them to results of stochastic evolutionary simulations. We find that the approximations work very well (\Cref{rescue_prob_wt_growth,rescue_prob_an_growth,rescue_prob_N,rescue_prob_N}).
+% TODO move this to appendix
+%Substituting these  into \cref{rescue_prob2}, we find that the rescue probability can be approximated by
+%\begin{equation}\label{rescue_prob_approx}
+%\begin{aligned}
+%&\presc \approx \\
+%  &\begin{cases}
+%  1-\exp\left[\frac{N}{\Delta_w-u-v}\left(v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right)\right] ,&
+%  4\lambda_avp_m>\left(\Delta_a-v\right)^2 ,\\
+%   1-\exp\left[\frac{v\Delta_mN}{\lambda_m\Delta_w}\left(1-\frac{u}{\Delta_a}\right)\right] ,&
+%   \Delta_a<0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2 ,\\
+%   1-\exp\left[\frac{N}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}\right)\right] ,&
+%   \Delta_a>0\quad\text{and}\quad4\lambda_avp_m<\left(\Delta_a-v\right)^2 .
+%  \end{cases}
+%\end{aligned}
+%\end{equation}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph*{Density-dependent growth.}
@@ -728,7 +637,7 @@ Markers for simulation results with 95\% CI;
 solid lines for the exact formula (\cref{survival_prob} in \cref{rescue_prob});
 dashed lines for the approximate formula (\cref{rescue_prob_approx}).
 The approximation agrees with the simulation and exact solution when the initial tumor size is large (panel B).
-When the tumor size is small (panel A), we switch between the approximation for tolerant and for non-growing aneuploid cells; the switch occurs at $\Delta_a^*=2vp_m+v+2\sqrt{vp_m\left(vp_m+\mu_a+v\right)}$.
+When the tumor size is small (panel A), we switch between the approximation for tolerant and for non-growing aneuploid cells; the switch occurs at $1/T^*$. % TODO ref to eq
 Parameters: $\lambda_w=\lambda_a=\lambda_m=0.14$; $\mu_m=0.13$; $u=10^{-2}$; $v=10^{-7}$.
 }
 \label{rescue_prob_an_growth}
@@ -852,100 +761,142 @@ TODO
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\appendix
-%\begin{appendices}
-%\renewcommand{\theequation}{\thesection\arabic{equation}}
-%\counterwithin*{equation}{section}
+\appendix
+\begin{appendices}
+\renewcommand{\theequation}{\thesection\arabic{equation}}
+\counterwithin*{equation}{section}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section*{Gillespie algorithm}
-%\begin{subequations}
-%\begin{flalign}
-%(+1,0,0)&:\quad \lambda_ww_t,\\
-%(-1,0,0)&:\quad \mu_ww_t,\\
-%(-1,+1,0)&:\quad uw_t,\\
-%(-1,0,+1)&:\quad vw_t,\\
-%(0,+1,0)&:\quad \lambda_aa_t,\\
-%(0,-1,0)&:\quad \mu_aa_t,\\
-%(0,-1,+1)&:\quad va_t,\\
-%(0,0,+1)&:\quad \lambda_am_t,\\
-%(0,0,-1)&:\quad \mu_am_t.
-%\end{flalign}
-%\end{subequations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Survival probability of a single lineage}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section*{Mean time}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%We define the following events
-%\begin{align*}
-%\text{EvR}&=\text{``evolutionary rescue occurs''},\\
-%\text{EvRA}&=\text{``evolutionary rescue occurs through aneuploidy''},\\
-%\text{EvRM}&=\text{``evolutionary rescue occurs through mutation''}.
-%\end{align*}
-%As a result, the mean time to appearence of the first mutant cell which rescues the population given evolutionary rescue can be expanded as:
-%\begin{align*}
-%\mathbb{E}\left[\tau|\text{EvR}\right]&=\mathbb{E}\left[\tau|\text{EvR},\text{EvRA}\cap\text{EvRM}^{C}\right]p\left(\text{EvRA}\cap\text{EvRM}^{C}|\text{EvR}\right)\\
-%&+\mathbb{E}\left[\tau|\text{EvR},\text{EvRM}\cap\text{EvRA}^{C}\right]p\left(\text{EvRM}\cap\text{EvRA}^{C}|\text{EvR}\right)\\
-%&+\mathbb{E}\left[\tau|\text{EvR},\text{EvRM}\cap\text{EvRA}\right]p\left(\text{EvRM}\cap\text{EvRA}|\text{EvR}\right).
-%\end{align*}
-%The joint probabilities in the previous lines can be written as:
-%\begin{align*}
-%p\left(\text{EvRA}\cap\text{EvRM}^{C}|\text{EvR}\right)&=\frac{p\left(\text{EvRA}\cap\text{EvRM}^{C}\right)}{p\left(\text{EvR}\right)}
-%\approx\frac{p\left(\text{EvRA}\right)\left[1-p\left(\text{EvRM}\right)\right]}{p\left(\text{EvR}\right)},\\
-%p\left(\text{EvRM}\cap\text{EvRA}^{C}|\text{EvR}\right)&=\frac{p\left(\text{EvRM}\cap\text{EvRA}^{C}\right)}{p\left(\text{EvR}\right)}
-%\approx\frac{p\left(\text{EvRM}\right)\left[1-p\left(\text{EvRA}\right)\right]}{p\left(\text{EvR}\right)},\\
-%p\left(\text{EvRM}\cap\text{EvRA}|\text{EvR}\right)&=\frac{p\left(\text{EvRM}\cap\text{EvRA}\right)}{p\left(\text{EvR}\right)}\approx\frac{p\left(\text{EvRM}\right)p\left(\text{EvRA}\right)}{p\left(\text{EvR}\right)}\ll1.
-%\end{align*}
-%As a result, we have:
-%\begin{align*}
-%\mathbb{E}\left[\tau|\text{EvR}\right]&\approx\mathbb{E}\left[\tau|\text{EvR},\text{EvRA}\cap\text{EvRM}^{C}\right]p\left(\text{EvRA}\cap\text{EvRM}^{C}|\text{EvR}\right)\\
-%&+\mathbb{E}\left[\tau|\text{EvR},\text{EvRM}\cap\text{EvRA}^{C}\right]p\left(\text{EvRM}\cap\text{EvRA}^{C}|\text{EvR}\right).
-%\end{align*}
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section*{Diffusion approximation}\label{AppendixDiffApprox}
-%
-%An alternative method to obtain the probability of evolutionary rescue is to utilize a Feller diffusion approximation which is governed by two parameters: the growth rate $r$ and the reproductive variance $\sigma$. The two parameters are obtained from the underlying demographic process as the infinitesimal relative change in mean and variance of $n_t$ over and an infinitesimally small time interval $\Delta t$:
-%\begin{align*}
-%r&=\lim_{\Delta t\rightarrow0}\frac{\mathbb{E}\left(\Delta n_t|n_t\right)}{\Delta_t n_t},\\
-%\sigma&=\lim_{\Delta t\rightarrow0}\frac{\mathbb{V}ar\left(\Delta n_t|n_t\right)}{\Delta_t n_t}.
-%\end{align*}
-%The rate at which mutants are generated directly from the wildtype is: 
-%\begin{align}
-%\theta_1=v\bar{\pi}_f\frac{N}{|r_w|},
-%\end{align}
-%where
-%\begin{align}
-%\bar{\pi}_f=\int_{0}^\infty\int_{0}^\infty \left(1-\e^{-\frac{2r}{\sigma}}\right) f_r\left(r,\sigma\right)\d r\d\sigma.
-%\end{align}
-%Letting $f_r\left(r,\sigma\right)=\delta\left(r-r_m\right)\delta\left(\sigma-\sigma_m\right)$ then:
-%\begin{align}
-%\bar{\pi}_f=1-\e^{-\frac{2r_m}{\sigma_m}},
-%\end{align}
-%and, as a result, we have:
-%\begin{align}
-%\theta_1=v\left(1-\e^{-\frac{2r_m}{\sigma_m}}\right)\frac{N}{|\Delta_w|}.
-%\end{align}
-%The rate at which mutants are generated indirectly from the wildtype through aneuploidy is: 
-%\begin{align*}
-%\theta_2&=\frac{uN}{|r_w|}\int_{0}^\infty\int_{0}^\infty \left(1-\pi_f\left(r,q\right)\right) f_r\left(r,\sigma\right) p_1^*\left(r,\sigma\right)\d r\d\sigma\\
-%&=\frac{uN}{|\Delta_w|}p_1^*\left(r_a,\sigma_a\right)\\
-%&=\frac{uN}{|\Delta_w|}\left[1-\exp\left(-\frac{|r_a|}{\sigma_a^2}\left(\sqrt{1+\frac{2\sigma_a^2}{r_a^2}u^*}-1\right)\right)\right]\\
-%&=\frac{uN}{|\Delta_w|}\left[1-\exp\left(-\frac{|\Delta_a|}{(\lambda_a+\mu_a)^2}\left(\sqrt{1+\frac{2(\lambda_a+\mu_a)^2}{\Delta_a^2}u^*}-1\right)\right)\right],
-%\end{align*}
-%where
-%\begin{equation}
-%u^*=v\left(1-\e^{-\frac{2r_m}{\sigma_m}}\right).
-%\end{equation}
-%The number of rescue mutations has a Poisson distribution with rate $\theta_1+\theta_2$. As a result, the probability of evolutionary rescue is given by:
-%\begin{equation}\label{FellerApprox}
-%p_{rescue}=1-\e^{-\left(\theta_1+\theta_2\right)},
-%\end{equation}
-%which we plot in Figure \ref{P_est_diffusion} as a function of $\Delta_w$.
+To analyze evolutionary rescue in this model, we use the framework of \emph{multitype branching processes} \citep{rybnikov2021fitness,harris1963theory}. 
+This allows us to find explicit expressions for the \emph{survival probability}: the probability that a lineage descended from a single cell does not become extinct.
+
+Let $p_w$, $p_a$, and $p_m$ be the survival probabilities of a population consisting initially of single wildtype cell, aneuploid cell, or mutant cell, respectively.
+The complements $1-p_w$, $1-p_a$, and $1-p_m$ are the extinction probabilities, which satisfy each its respective equation,
+\begin{equation} \label{extinction_prob}
+\begin{aligned}
+1-p_w = &\frac{\mu_w}{\lambda_w+\mu_w+u+v} + 
+		  \frac{u}{\lambda_w+\mu_w+u+v}\left(1-p_a\right) + \\
+		  & \frac{\lambda_w}{\lambda_w+\mu_w+u+v}\left(1-p_w\right)^2 +
+		  \frac{v}{\lambda_w+\mu_w+u+v}\left(1-p_m\right) ,\\
+1-p_a = &\frac{\mu_a}{\lambda_a+\mu_a+v}+\frac{v}{\lambda_a+\mu_a+v}\left(1-p_m\right)+\frac{\lambda_a}{\lambda_a+\mu_a+v}\left(1-p_a\right)^2 ,\\
+1-p_m = &\frac{\mu_m}{\lambda_m+\mu_m}+\frac{\lambda_m}{\lambda_m+\mu_m}\left(1-p_m\right)^2 .	 
+\end{aligned}
+\end{equation}
+
+The survival probabilities are given by the smallest solution for each quadratic equation \citep{uecker2015adaptive}. Therefore we have
+\begin{equation}\label{survival_prob}
+\begin{aligned}
+p_w &= \frac{\lambda_w-\mu_w-u-v+\sqrt{\left(\lambda_w-\mu_w-u-v\right)^2+4\lambda_w\left(up_a+vp_m\right)}}{2\lambda_w} ,\\
+p_a &= \frac{\lambda_a-\mu_a-v+\sqrt{\left(\lambda_a-\mu_a-v\right)^2+4\lambda_avp_m}}{2\lambda_a}, \\
+p_m &= \frac{\lambda_m-\mu_m}{\lambda_m} .
+\end{aligned} 
+\end{equation}
+Note that the equation for $p_w$ depends on both $p_a$ and $p_m$, and the equation for $p_a$ depends on $p_m$.
+To proceed, we can plug the solution for $p_m$ and $p_a$ into the solution for $p_w$. We perform this for three different scenarios.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Scenario 1: Aneuploid cells are partially resistant} 
+
+We first assume that aneuploidy provides partial resistance to drug therapy, $\lambda_a>\mu_a$, and that this resistance is significant, $\left(\lambda_a-\mu_a-v\right)^2 > 4\lambda_a v p_m$.
+We thus rewrite \cref{survival_prob} as
+\begin{align*}
+p_w&=\frac{\lambda_w-\mu_w-u-v}{2\lambda_w}\left(1-\sqrt{1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}}\right) ,
+\text{and} \\
+p_a&=\frac{\lambda_a-\mu_a-v}{2\lambda_a}\left(1+\sqrt{1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}}\right) . 
+\end{align*}
+Using the quadratic Taylor expansion $\sqrt{1+x}=1+x/2+O(x^2)$ and assuming $u,v \ll 1$,
+we obtain the following approximation for the survival probability of a population initially consisting of a single wildtype cell,
+\begin{align}\label{survprobwapprox1}
+p_w 
+&\approx -\frac{vp_m+up_a}{\lambda_w-\mu_w-u-v}\\
+\nonumber
+%&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{v\left(\lambda_a-\mu_a-u\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-u\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\ \label{survprobw2}
+&\approx-\frac{1}{\lambda_w-\mu_w}\left[\frac{u\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\
+\end{align}
+Now $u v$ is very small, and if we assume $v \ll u$, we have
+\begin{equation}
+p_w \approx \frac{u}{\abs{\Delta_w}} \cdot \frac{\Delta_a}{\lambda_a} .
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Second-order approximation.} % TODO consider moving to Appendix
+To improve our approximation, we can consider the second term of the Taylor series expansion,
+\begin{align*}
+\left(1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}\right)^{\frac{1}{2}}=1+\frac{2\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}-\frac{\left(\lambda_avp_m\right)^2}{4\left(\lambda_a-\mu_a-v\right)^4}+\cdots,
+\end{align*}
+which gives us the following approximation,
+\begin{align}
+p_a \approx \frac{\lambda_a-\mu_a-v}{\lambda_a}+\frac{vp_m}{\lambda_a-\mu_a-v}-\frac{\lambda_a\left(vp_m\right)^2}{8\left(\lambda_a-\mu_a-v\right)^3} .
+\end{align}
+We therefore have
+\begin{align}\nonumber
+p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{u\left(\lambda_a-\mu_a-v\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-v\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a-v\right)^3}\right]\\ \label{survprobw3}
+&\approx-\frac{1}{\lambda_w-\mu_w}\left[\frac{u\left(\lambda_a-\mu_a\right)}{\lambda_a}+\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a\right)}+\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}-\frac{uv^2\lambda_a\left(\lambda_m-\mu_m\right)^2}{8\lambda_m^2\left(\lambda_a-\mu_a\right)^3}\right], 
+\end{align}
+and using $\Delta_k=\lambda_k-\mu_k$, we can write the above equation as
+\begin{equation}\label{survprobwapproxcorrected}
+p_w \approx -\frac{1}{\Delta_w}\left(\frac{u\Delta_a}{\lambda_a}+\frac{uv\Delta_m}{\lambda_m\Delta_a}+\frac{v\Delta_m}{\lambda_m}-\frac{uv^2\lambda_a\Delta_m^2}{8\lambda_m^2\Delta_a^3}\right).
+\end{equation}
 
 
-%\end{appendices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Scenario 2: Aneuploid cells are tolerant.} 
+
+We now assume that aneuploidy provides tolerance to drug therapy, that is, the number of aneuploid cells significantly declines over time, but at a lower rate than the number of wildtype cells, $\lambda_w - \mu_w < \lambda_a - \mu_a < 0$. We also assume that the decline are significant, $\left(\lambda_a-\mu_a-v\right)^2 > 4\lambda_a v p_m$.
+We rewrite \cref{survival_prob} as
+\begin{equation}
+\begin{aligned}
+p_w&=\frac{\lambda_w-\mu_w-u-v}{2\lambda_w}\left(1-\sqrt{1+\frac{4\lambda_w\left(vp_m+up_a\right)}{\left(\lambda_w-\mu_w-u-v\right)^2}}\right) ,
+\text{and} \\
+p_a&=\frac{\lambda_a-\mu_a-v}{2\lambda_a}\left(1-\sqrt{1+\frac{4\lambda_avp_m}{\left(\lambda_a-\mu_a-v\right)^2}}\right) .
+\end{aligned}
+\end{equation}
+Since $u,v\ll1$, the term in the root can be approximated using a 1st-order Taylor expansion. So, substituting the expressions for $p_a$ and $p_m$, we have
+\begin{equation}\label{survprobwinitial}
+\begin{aligned}
+p_w&\approx-\frac{vp_m+up_a}{\lambda_w-\mu_w-u-v}\\
+&\approx\frac{1}{\lambda_w-\mu_w-u-v}\left[\frac{uv\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_a-\mu_a-v\right)}-\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m}\right]\\ %\label{survprobw2}
+&\approx\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_m\left(\lambda_w-\mu_w\right)}\left[\frac{u}{\left(\lambda_a-\mu_a\right)}-1\right] \\
+&=\frac{v\Delta_m}{\lambda_m \abs{\Delta_w}}\left(\frac{u}{\abs{\Delta_a}}+1\right) .
+\end{aligned}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Scenario 3: Aneuploid cells are non-growing} % TODO consider this name
+
+We now assume that the growth rate of aneuploid cells is close to zero (either positive or negative), such that  $\left(\lambda_a-\mu_a-v\right)^2 < 4\lambda_avp_m$.
+We rewrite \cref{survival_prob} as
+\begin{equation}
+p_a=\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}\left(1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\lambda_avp_m}\right)^{\frac12}}{2\lambda_a} .
+\end{equation}
+Using a following Taylor series expansion for small $\left(\lambda_a-\mu_a-v\right)^2 / 4\lambda_avp_m$,
+\begin{equation*}
+\left(1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\lambda_avp_m}\right)^{\frac{1}{2}}=1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{8\lambda_avp_m}+\cdots,
+\end{equation*}
+we obtain the approximation
+\begin{equation}
+\begin{aligned}
+p_a&\approx\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}\left[1+\frac{\left(\lambda_a-\mu_a-v\right)^2}{8\lambda_avp_m}\right]}{2\lambda_a}\\
+&=\frac{\lambda_a-\mu_a-v+2\sqrt{\lambda_a vp_m}+\frac{\left(\lambda_a-\mu_a-v\right)^2}{4\sqrt{\lambda_avp_m}}}{2\lambda_a}\\
+&=\frac{\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right)^2+4\lambda_avp_m}{8\lambda_a\sqrt{\lambda_avp_m}}\\
+&=\frac{4\lambda_avp_m+4\lambda_avp_m\left(1+\frac{\lambda_a-\mu_a-v}{2\sqrt{\lambda_avp_m}}\right)^2}{8\lambda_a\sqrt{\lambda_avp_m}}\\
+&=\frac{1}{2\lambda_a}\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right).
+\end{aligned}
+\end{equation}
+Plugging this in \cref{survprobwinitial}, the survival probability of a population starting from one wildtype individual is
+\begin{equation}\label{scenario3}
+\begin{aligned}
+p_w&\approx-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m}+\frac{u}{2\lambda_a}\left(\lambda_a-\mu_a-v+2\sqrt{\lambda_avp_m}\right)\right]\\
+&=-\frac{1}{\lambda_w-\mu_w-u-v}\left[v\frac{\lambda_m-\mu_m}{\lambda_m}+\frac{u}{2\lambda_a}\left(\lambda_a-\mu_a-v\right)+u\sqrt{\frac{v\left(\lambda_m-\mu_m\right)}{\lambda_a\lambda_m}}\right].
+%&=-\frac{1}{\Delta_w-u-v}\left[v\frac{\Delta_m}{\lambda_m}+\frac{u\left(\Delta_a-v\right)}{2\lambda_a}+u\sqrt{\frac{v\Delta_m}{\lambda_a\lambda_m}}\right],
+\end{aligned}
+\end{equation}
+
+
+
+\end{appendices}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
