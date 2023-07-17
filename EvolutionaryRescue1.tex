@@ -183,7 +183,8 @@ These cells divide and die with rates $\lambda_k$ and $\mu_k$ (for $k=w, a, m$).
 The difference between the division and death rate is $\Delta_k = \lambda_k-\mu_k$.
 We assume the population of cells is under a strong stress, such as drug therapy, to which the wildtype genotype is susceptible and therefore $\Delta_w<0$, whereas the mutant is resistant to the stress, $\Delta_m>0$
 We analyze three scenarios: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, $0>\Delta_a>\Delta_w$ \citep[see][for the distinction between susceptible, resistant, and tolerant]{brauner2016distinguishing}; in the third, aneuploid cells are non-growing or "barely growing", that is, either slightly tolerant or slightly resistant, such that $\Delta_a \approx 0$.
-Wildtype cells may missegregate to become aneuploids at rate $u$. Both aneuploid and wildtype cells may mutate to become mutants at rate $v$ (\Cref{figureAneuploidy}). 
+Wildtype cells may missegregate to become aneuploids at rate $u$. Both aneuploid and wildtype cells may mutate to become mutants at rate $v$, which we assume is lower than the division rates, $v<\min{(\lambda_w, \lambda_a, \lambda_m)}$.
+See \Cref{figureAneuploidy} for an illustration of the model.
 
 %Thus, the changes in the number of each cell type is described by 
 %\begin{equation}
@@ -332,7 +333,7 @@ Comparing these approximations to results of stochastic evolutionary simulations
 \paragraph*{Density-dependent growth.}
 
 In our analysis we used branching processes, which assume that growth (division and death) are density-independent. However, growth may be limited by resources (oxygen, nutrients, etc.) and therefore depend on cell density. 
-We therefore performed stochastic simulations of a logistic growth model with carrying capacity $K$ (Methods). 
+We therefore performed stochastic simulations of a logistic growth model with carrying capacity $K$ (see Methods). 
 We find that our approximations agree with results of simulations with density-dependent growth for biologically relevant parameter values (\Cref{rescue_prob_N}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
