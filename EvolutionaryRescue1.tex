@@ -294,17 +294,23 @@ The threshold tumor size, $N^*$, can then be approximated by one of the followin
 N_a^* \approx 
   \frac{\abs{\Delta_w}}{u} \cdot \begin{cases}
     \frac{\abs{\Delta_a}}{v} \cdot \frac{\lambda_m}{\Delta_m} ,&
-  \Delta_a T^* \ll -1 ,\\ 
+  \Delta_a T^* \ll -1 \text{ (partially sensitive aneuploids)},\\ 
   %\left(\frac{\lambda_a}{v} \cdot \frac{\lambda_m}{\Delta_m}\right)^{1/2} ,&
   2\lambda_a T^* ,&
-  -1 \ll \Delta_a T^* \ll 1  ,\\ 
+  -1 \ll \Delta_a T^* \ll 1  \text{ (stationary aneuploids)},\\ 
   \frac{\lambda_a}{\Delta_a} ,&
-   \Delta_a T^* \gg 1 .
+   \Delta_a T^* \gg 1 \text{ (resistant aneuploids)}.
   \end{cases}
 \end{aligned}
 \end{equation}
 %The second case has a finer approximation by $N^*_a \approx \frac{\abs{\Delta_w}}{u} \cdot \frac{2\lambda_a}{\Delta_a + 1/T^*}$.
+The first line describes the case in which aneuploids are still effectively killed by the treatment, but not as quickly as the wild type. 
+In the second case, the aneuploids are sufficiently resistant that the size of each aneuploid lineage is expected to remain roughly constant. 
+In both of these first two cases, aneuploidy increases the probability of rescue by slowing or halting the decrease of the cancer population, allowing more opportunities for producing resistant mutants. 
+In the third case, aneuploidy provides sufficient resistance for the aneuploid population to re-grow the tumor even without additional resistance mutations.
+Note that in this case there is no dependence on the parameters characterizing mutants or their production ($v$, $\lambda_m$, and $\Delta_m$).
 Comparing these approximations to results of stochastic evolutionary simulations, we find that the approximations perform very well (\Cref{rescue_prob_wt_growth,rescue_prob_an_growth,rescue_prob_N,rescue_prob_N}).
+
 
 Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for rescue via aneuploidy ($u$ is high) or via direct mutation ($u$ is low),
 \begin{equation} \label{eq:N_ratio}
@@ -318,7 +324,7 @@ Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for re
    \Delta_a T^* \gg 1 .
   \end{cases}
 \end{equation}
-In all cases, the effect of aneuploidy increases (i.e., the threshold size ratio decreases) when the aneuploidy rate $u$ increases. Increasing the aneuploid growth rate $\Delta_a$ also leads to an increased role of aneuploidy, but only in the first and third case.
+In all cases, the effect of aneuploidy increases (i.e., the threshold size ratio decreases) when the aneuploidy rate $u$ increases. Increasing the aneuploid growth rate $\Delta_a$ also leads to an increased role of aneuploidy, although the effect is minor when $|\Delta_a|$ is small compared to $T^*$.
 
 In the first case, $\abs{\Delta_a}/u$ is  the ratio of the expected time for an aneuploid lineage to appear, $1/u$, and the expected time until that lineage disappears, $1/\Delta_a$.
 In the third case, $\left(v \frac{\Delta_m}{\lambda_m}\right) / \left(u \frac{\Delta_a}{\lambda_a}\right)$ is the ratio of the rates of formation of resistant mutants that avoid extinction and partially resistant aneuploids that avoid extinction.
