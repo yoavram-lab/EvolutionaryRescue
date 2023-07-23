@@ -224,7 +224,7 @@ Then, we randomly determine which event occurred, where the probability for even
 Finally, we update the number of cells of each type according to the event that occurred and update the time from $t$ to $t+\Delta t$.
 We repeat these iterations until either the population becomes extinct (the number of cells of all types is zero) or the number of mutant cells is high enough so that its extinction probability is $<0.1\%$, that is until
 \begin{equation*}
-m_t>\left\lfloor-\frac{3\log10}{\log\left(\frac{\mu_m}{\lambda_m}\right)}\right\rfloor+1,
+m_t > \left\lfloor\frac{3\log10}{\log\left(\lambda_m / \mu_m\right)}\right\rfloor + 1.
 \end{equation*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -285,7 +285,7 @@ First, if aneuploidy is very rare ($u T^*< 1$), or if aneuploidy is rare ($u < -
 \begin{equation} \label{eq:N_m}
 N_m^* \approx \frac{\abs{\Delta_w}}{v} \cdot \frac{\lambda_m}{\Delta_m} .
 \end{equation}
-Here, $\abs{\Delta_w}/v$ is the ratio of XXX.
+Here, $\abs{\Delta_w}/v$ is the ratio of the rate at which wild-type cells are decreasing in number and the rate at which they are mutating.
 
 Otherwise, aneuploidy is frequent enough ($u > \max{(-\Delta_a, 1/T^*)}$) to affect the evolution of drug resistance. 
 The threshold tumor size, $N^*$, can then be approximated by one of the following cases, depending on $\Delta_a T^*$, the change in the log of the aneuploid population size during the critical time,
