@@ -134,6 +134,24 @@ headheight=12pt
 \begin{document}
 \maketitle
 
+% MESSAGES
+% 1. aneuploidy increases the prob of rescue -- reduces the tumor threshold size for rescue
+% 2. aneuploidy changes the survival curve in a distinct way
+
+% FIGURES
+% Fig 1A: model graph chart
+% Fig 1B: Delta_w, Delta_a, Delta_m illustration
+
+% Fig 2: example simulations - w_t, a_t, m_t over time 
+% 	A u=0; B Delta_a << 0; C Delta_a ~ 0; D Delta_a >>0  
+
+% Fig 3A: prob rescue vs N for various Delta_a; markup N*
+% Fig 3B: N* vs Delta_a
+% Fig 3C: N* vs u/v
+
+% Fig 4: survival curves
+% 	A u=0; B Delta_a << 0; C Delta_a ~ 0; D Delta_a >>0
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 %Evolutionary rescue is the process by which a population is able to survive a sudden environmental change which initially causes the population to decline towards extinction. A prime example of evolutionary rescue is the ability of cancer to survive being exposed to various treatments. We are interested in the mechanisms through which a population of cancer cells are able to adapt to chemotherapy, and in particular, the role played by chromosomal instability (aneuploidy). Cancer cells which have aneuploidy are hypothesized to have a higher fitness in an environment altered by anti-cancer drugs as they have incomplete pathways which drugs activate in order to kill the cells. Aneuploidy is highly prevalent in tumors and certain drugs which attempt to combat cancers through increasing chromosomal instability. As a result, the question we wish to answer is how aneuploidy impacts the fate of the population of cancer cells. We propose to model evolutionary rescue with the help of multi-type branching processes to obtain the probability that cancer will survive. Additionally, we will utilize large genomic datasets to asses the effects of aneuploidy on the probability of evolutionary rescue.
@@ -404,29 +422,15 @@ Even when evolutionary rescue occurs and leads to recurrence of the tumor, it ma
 The overall expected recurrence time can be estimated by adding two terms: the mean waiting time for evolutionary rescue--the appearance of a resistant lineage that avoid extinction--and the expected time for proliferation of that lineage back to the original tumor size, $N$.
 
 \paragraph{Evolutionary rescue time.}
-In Appendix C we derive an approximation for $\tau_1$, the expected rescue time without aneuploidy ($u=0$), and $\tau_2$, the expected rescue time with aneuploidy ($u>0$),
-\begin{align}
-\tau_1 &\approx \frac{1+\e^{-Np_w}}{u N p_a} , \label{eq:limitapprox} ,\\
-\tau_2 &\approx \frac{1+\e^{-Np_w}}{u N p_m} , \label{eq:limitapprox3} .
-\end{align}
-\Cref{MeanTimeGrowthAneuploidyPlot} shows the agreement between this approximations and simulation results for intermediate and large tumor sizes.
-
-Thus, the ratio of the expected rescue time with and without aneuploidy ($u>0$ and $u=0$, respectively),
-\begin{align}\label{eq:eqMeanTimeRatioInitialPopulationSize}
-\frac{\tau_1}{\tau_2}  \approx \frac{p_a}{p_m} = 
-%&\frac{\lambda_m}{\lambda_a} \; \frac{\Delta_a-v+\sqrt{(\Delta_a - v)^2 + (1/T^*)^2}}{2 \Delta_m} \approx \\
-%&\frac{1}{2} \; \frac{\lambda_m}{\Delta_m} \left[ \left(\frac{\lambda_a}{\Delta_a}\right)^{-1} + \sqrt{\frac{\left(\Delta_a\right)^2 + (1/T^*)^2}{\lambda_a^2}}\right] = \\
-\frac{1}{2} \; \frac{\lambda_m}{\Delta_m} \left[ \left(\frac{\lambda_a}{\Delta_a}\right)^{-1} + \sqrt{\left(\frac{\lambda_a}{\Delta_a}\right)^{-2} + 4v \left(\lambda_a\frac{\lambda_m}{\Delta_m}\right)^{-1}}\right] .
-\end{align}
-
-\Cref{MeanTimeRatioInitialPopulationSize} shows how this ratio, $\tau_1/\tau_2$, changes as a function of the initial tumor size, $N$, for different aneuploid growth rates, $\Delta_a$.
-
-Importantly, in \Cref{MeanTimeGrowthAneuploidyPlot} we observe that in initially large tumors, direct mutation drives evolutionary rescue while aneuploidy plays a role for intermediate sized tumors. % TODO where do you see this..?
-This is consistent with \Cref{rescue_ratio}B,D, where aneuploidy only increases the probability of evolutionary rescue in small and intermediate tumors ($N<10^7$).
+In Appendix C we derive an approximation for $\tau_1$, the expected rescue time without aneuploidy ($u=0$), and $\tau_2$, the expected rescue time with aneuploidy ($u>0$). \Cref{MeanTimeGrowthAneuploidyPlot} shows the agreement between these approximations and simulation results for intermediate and large tumor sizes.
 
 \paragraph{Proliferation time.}
 
 TODO
+
+% ? Distribution of recurrence time -- with and without aneuploidy
+
+% Kaplan-Meier curves -- x: time; y: P(# cells >= N) -- once for u=0; u>0 with the three scenarios
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
@@ -842,6 +846,7 @@ Substituting \cref{eq:survprobwapprox1,eq:survprobwinitial,eq:scenario3} into \c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Appendix C: Evolutionary rescue time}
+% TODO remove the linear approximation, it is not good.
 
 We first calculate the expected time for the appearance of the first mutant that rescues the cell population.
 This can occur either through the evolutionary trajectory $wildtype \rightarrow mutant$ or through the trajectory $wildtype \rightarrow aneuploid \rightarrow mutant$.
@@ -850,19 +855,19 @@ We start with the former.
 Assuming no aneuploidy ($u=0$), we define $T_1$ to be the time at which the first mutant cell appears that will avoid extinction and will therefore rescue the population.
 Note that if extinction occurs, that is the frequency of mutants after a very long time is zero, $m_{\infty}=0$, then it is implied that $T_1=\infty$, and vice versa if $T_1<\infty$ then $m_{\infty}>0$.
 
-The number of successful mutants generated until time $t$ can be approximated by an inhomogeneous Poisson process with rate $R\left(t\right) = u p_a w_t$,
+The number of successful mutants generated until time $t$ can be approximated by an inhomogeneous Poisson process with rate $R\left(t\right) = v p_m w_t$,
 where $w_t=N\e^{\Delta_w t}$ is the number of wildtype cells at time $t$.
 Note that 
 \begin{equation}\label{eq:integralR}
 \int_0^{t}{R(z)\d z} = 
-u p_a N \frac{\exp[{\Delta_w t}]-1}{\Delta_w} \approx 
-u p_a N t,
+v p_m N \frac{\exp[{\Delta_w t}]-1}{\Delta_w} \approx 
+v p_m N t,
 \end{equation}
 by integrating the exponential and because $\frac{\exp[\Delta_w t]-1}{\Delta_w}=\frac{1+\Delta_w t+O(t^2)-1}{\Delta_w}=t+O(t^2)$.
 The probability density function of $T_1$ is thus
 $R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)$. % TODO ref
 Therefore, the probability density function of the conditional random variable $(T_1 \mid T_1 < \infty)$ is
-$f_1(t) = \frac{R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)}{p_{rescue}}$. 
+$f_1(t) = \frac{R\left(t\right)\exp\left(-\int_0^{t}{R(z)\d z}\right)}{\presc}$. 
 \\
 
 We are interested in the mean conditional time, $\tau_1=\mathbb{E}\left[T_1 \mid T_1<\infty\right]$, which is given by
@@ -879,13 +884,13 @@ Therefore, plugging \cref{eq:integralR,eq:rescue_prob} in \cref{eq:meantime1},
 \begin{align}\label{eq:limitapprox_appendix}
 \tau_1 = 
 %\frac{\int_0^\infty\exp\left(-\int_0^\tau R(z)\d z\right)\d t}{1-\left(1-p_w\right)^N} = 
-\frac{\int_0^\infty\e^{-uNp_a\frac{\e^{\Delta_w t}-1}{\Delta_w}} \d t}{1-\left(1-p_w\right)^N} \approx
-\frac{\int_{0}^{\infty}{\exp\left(-u p_a N t\right) \d t}}{1-\e^{-Np_w}} \approx \\
-\left(1+\e^{-Np_w}\right)\int_0^\infty\e^{-u p_a N t} \d t =
-\frac{1+\e^{-Np_w}}{u p_a N} ,
+\frac{\int_0^\infty\e^{-v N p_m\frac{\e^{\Delta_w t}-1}{\Delta_w}} \d t}{1-\left(1-p_w\right)^N} \approx
+\frac{\int_{0}^{\infty}{\exp\left(-v p_m N t\right) \d t}}{1-\e^{-N p_w}} \approx \\
+\left(1+\e^{-N p_w}\right)\int_0^\infty\e^{-v p_m N t} \d t =
+\frac{1+\e^{-N p_w}}{v p_m N} ,
 \end{align}
 where we use the approximations 
-$\frac{\e^{\Delta_w\tau}-1}{\Delta_w}=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2)$ and $(1-\e^{-Np_w})^{-1} \approx 1+\e^{-Np_w}$ and integrate the exponent.
+$\frac{\e^{\Delta_w\tau}-1}{\Delta_w}=\frac{1+\Delta_w\tau+O(\tau^2)-1}{\Delta_w}=\tau+O(\tau^2)$ and $(1-\e^{-N p_w})^{-1} \approx 1+\e^{-N p_w}$ and integrate the exponent.
 \Cref{MeanTimeGrowthAneuploidyPlot}B show the agreement between this approximating and simulation results for intermediate and large tumor sizes.
 \\
 
