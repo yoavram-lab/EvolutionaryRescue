@@ -156,8 +156,17 @@ headheight=12pt
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-Evolutionary rescue is the process by which a population is able to survive a sudden environmental change which initially causes the population to decline towards extinction. A prime example of evolutionary rescue is the ability of cancer to survive being exposed to various treatments. We are interested in the mechanisms through which a population of cancer cells are able to adapt to chemotherapy, and in particular, the role played by chromosomal instability (aneuploidy). Cancer cells which have aneuploidy are hypothesized to have a higher fitness in an environment altered by anti-cancer drugs as they have incomplete pathways which drugs activate in order to kill the cells. Aneuploidy is highly prevalent in tumors and certain drugs which attempt to combat cancers through increasing chromosomal instability. As a result, the question we wish to answer is how aneuploidy impacts the fate of the population of cancer cells. We propose to model evolutionary rescue with the help of multi-type branching processes to obtain the probability that cancer will survive. We obtain analytic expressions for the probability of evolutionary rescue as a function of the initial tumor size, the growth rates of the different cancer genotypes. Additionally we obtain the mean recurrence time for the tumor to reach its initial size. We observe that aneuploidy plays an important role in the relapse of secondary tumors who have not yet been detected and thus are smaller in size.
+Evolutionary rescue is the process by which a population survives a sudden environmental change that initially causes the population to decline towards extinction.
+A prime example of evolutionary rescue is the ability of cancer to survive exposure to various treatments. 
+One evolutionary mechanism by which a population of cancer cells can to adapt to chemotherapy is aneuploidy. 
+Aneuploid cancer cells can have higher fitness in an environment altered by anti-cancer drugs, e.g., because of incomplete pathways targeted by the drugs. 
+Indeed, aneuploidy is highly prevalent in tumors, and moreover, some anti-cancer drugs fight cancer by increasing chromosomal instability.
+Here, we examine how aneuploidy impacts the fate of a population of cancer cells. We use multi-type branching processes to approximate the probability that a tumor survives drug treatment as a function of the initial tumor size, and rates at which aneuploidy and other beneficial mutations occur, and the growth rates of the sensitive and resistant cells. We also approximate the mean recurrence time for the tumor to revert back to its initial size.
+We find that aneuploidy can play an important role in the relapse of secondary tumors who have not yet been detected and thus are smaller in size.
+% TODO missing something here...
 \end{abstract}
+
+Keywords: whole-chromosome duplication, evolutionary model, adaptive evolution, cancer, drug resistance, chromosome instability
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,23 +174,13 @@ Evolutionary rescue is the process by which a population is able to survive a su
 
 %%%%%%
 
-% OVERVIEW OF INTRODUCTION:
-% - background on CIN in cancer
-% - what hasn't been done? (aneuploidy + drug resistance)
-% - why is that important?
-% - how we tackle this background
-% - summary of our analysis
-% history of evolutionary rescue literature (that is not specific to cancer) should move to literature, and we should have a clear statement on what we add to that literature. 
+\paragraph{Aneuploidy in cancer.}  Each year approximately 10 million people die from cancer \citep{kocarnik2022cancer}, so understanding that factors that contribute to failure of interventions is of great importance. One hypothesized factor is aneuploidy, where cells are characterized by an imbalanced karyotype and chromosome copy number alterations \citep{schukken2018cin}, caused by chromosomal instability (CIN), the mitotic process in which cells suffer from chromosome mis-segregation that leads to aneuploidy. Importantly, aberrations in chromosome copy number have been shown to allow cancer cells to survive under stressful conditions such as drug therapy \citep{lukow2021chromosomal,rutledge2016selective}. Indeed, cancer cells are often likely to be aneuploid, and aneuploidy is associated with poor patient outcomes \citep{ben2020context,smith2018systematic}. 
 
-% TODO two papers that show aneuploidy provides resistance Ok
-% Lukow, Devon A., Erin L. Sausville, Pavit Suri, Narendra Kumar Chunduri, Angela Wieland, Justin Leu, Joan C. Smith, et al. 2021. “Chromosomal Instability Accelerates the Evolution of Resistance to Anti-Cancer Therapies.” Developmental Cell 56 (17): 2427-2439.e4. https://doi.org/10.1016/j.devcel.2021.07.009.
-% Rutledge, Samuel D., Temple A. Douglas, Joshua M. Nicholson, Maria Vila-Casadesús, Courtney L. Kantzler, Darawalee Wangsa, Monika Barroso-Vilares, Shiv D. Kale, Elsa Logarinho, and Daniela Cimini. 2016. “Selective Advantage of Trisomic Human Cells Cultured in Non-Standard Conditions.” Scientific Reports 6 (June 2015): 1–12. https://doi.org/10.1038/srep22828.
-
-\paragraph{Aneuploidy in cancer.}  Each year approximately 10 million people die from cancer \citep{kocarnik2022cancer}, so understanding what factors contribute to failure of interventions is of great importance. One hypothesized factor is aneuploidy, where cells are characterized by structural changes of the chromosomes and copy number alterations \citep{schukken2018cin}, which is caused by chromosomal instability (CIN), the mitotic process in which cells suffer from chromosome mis-segregation that leads to aneuploidy. Interestingly, aberrations in chromosome copy number have been shown to allow cancer cells to survive under stressful conditions such as drug therapy \citep{lukow2021chromosomal,rutledge2016selective}. Indeed, cancer cells are often likely to be aneuploid, and aneuploidy is associated with poor patient outcomes \citep{ben2020context,smith2018systematic}. 
-
- \citet{ippolito2021gene} induced aneuploidy in cancer cell lines by exposing them to reversine, a small-molecule inhibitor of the mitotic kinase Mpsi1, and then to chemotherapeutic agents such as vemurafenib. When compared to wildtype cancer cell the reversine treated cells had higher proliferation in the environment altered by anti-cancer drugs. Similarly, \citet{lukow2021chromosomal} observed that cancer cells which have been induced to be aneuploid have an advantage when compare to wildtype even while they had lower fitness before the onset of chemotherapy. A proposed mechanism through which aneuploidy is able to confer resistance to chemotherapeutics is by antagonizing cell division  which prevents the drugs from damaging DNA and microtubules \citep{replogle2020aneuploidy} 
+ \citet{ippolito2021gene} induced aneuploidy in cancer cell lines by exposing them to reversine, a small-molecule inhibitor of the mitotic kinase Mpsi1, and then to chemotherapeutic agents such as vemurafenib. Reversine-treated cells had higher proliferation rate in the environment altered by anti-cancer drugs compared to wildtype cancer cells.
+ Similarly, \citet{lukow2021chromosomal} induced aneuploidy in cancer cells and observed that such cells have an advantage compared to wildtype cells during chemotherapy, despite having lower fitness before the onset of chemotherapy.
+One proposed mechanism through which aneuploidy is able to confer resistance to chemotherapeutics is by antagonizing cell division, which prevents the drugs from damaging DNA and microtubules \citep{replogle2020aneuploidy}.
  
- An important aspect of aneuploidy is the rate with which cells acquire it, which is several orders of magnitude higher when compare to the mutation rate \citep{bakker2023predicting}. Consequently, a cell exposed to a stress such as chemotherapeutic drugs can acquire aneuploidy faster when compared to acquiring a mutation, especially when several proposed anti-cancer drugs elevate the rate of missegration in order to combat cancer \citep{lee2016effects}.
+An important aspect of aneuploidy is the rate with which cells become aneuploid, which is several orders of magnitude higher than the beneficial mutation rate \citep{bakker2023predicting}. Consequently, a cell exposed to a stress such as chemotherapeutic drugs can acquire aneuploidy faster when compared to acquiring a mutation, especially when several proposed anti-cancer drugs elevate the rate of mis-segregation in order to fight cancer \citep{lee2016effects}.
 
 \paragraph{Evolutionary rescue.} Populations adapted to a certain environment are vulnerable to environmental changes, which might cause extinction of the population. Examples of such environmental changes include climate change, invasive species or the onset of drug therapies. Adaptation is a race against time as the population size decreases in the new environment~\citep{tanaka2022surviving}. 
 \emph{Evolutionary rescue} is the process where the population acquires a trait that increases fitness in the new environment such that extinction is averted. It is mathematically equivalent to the problem of crossing of fitness valley \citep{weissman2009rate,weissman2010rate}.
