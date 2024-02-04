@@ -293,8 +293,8 @@ The effective carrying capacity of this model is $K_e=K\Delta_a/\lambda_a\approx
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Evolutionary rescue probability}
 
-In our model, \emph{evolutionary rescue} occurs when resistant cells appear and fixate ($m_t \gg 1$) in the population before the population becomes extinct ($w_t=a_t=m_t=0$).
-Aneuploidy may contribute to evolutionary rescue by either preventing (when $\Delta_a>0$) or delaying (when $0>\Delta_a>\Delta_w$) the extinction of the population before mutant cells appear and fixate.
+In our model, \emph{evolutionary rescue} occurs when resistant cells appear and establish (avoid random extinction) in the population  ($m_t \gg 1$) before the population becomes extinct ($w_t=a_t=m_t=0$).
+Aneuploidy may contribute to evolutionary rescue by either preventing (when $\Delta_a>0$) or delaying (when $0>\Delta_a>\Delta_w$) the extinction of the population before mutant cells appear and establish.
 We assume independence between clonal lineages starting from an initial population of $N$ wildtype cells (we check the effect of density-dependent growth on our results below).
 We therefore define $p_w$ as the probability that a lineage starting from a single wildtype cell avoids extinction by acquiring drug resistance.
 Thus, $N^*=1/p_w$ is the threshold tumor size above which evolutionary rescue is very likely, and the rescue probability is given by 
@@ -302,11 +302,11 @@ Thus, $N^*=1/p_w$ is the threshold tumor size above which evolutionary rescue is
 \presc = 
 1-\left(1-p_w\right)^N \approx
 1-\e^{-Np_w} = 
-1-e^{-N/N^*} .
+1-e^{-N/N^*} ,
 \end{equation}
 where the approximation $(1-p_w)\approx e^{-p_w}$ assumes that $p_w$ (but not necessarily $N p_w$) is small.
-Indeed, when $N<1/p_w$, then the probability for evolutionary rescue is $\presc \approx N p_w$  and when $N > 1/p_w$, it is $\presc \approx 1$, justifying the definition of $N^*$ as the threshold tumor size. 
-\\
+Indeed, when $N<1/p_w$, then the probability for evolutionary rescue is $\presc \approx N p_w$  and when $N > 1/p_w$, it is $\presc \approx 1$, justifying the definition of $N^*$ as the threshold tumor size for evolutionary rescue. 
+
 In Appendix A, we use the theory of multi-type branching processes to find approximate expressions \cref{eq:pw_parttolerant,eq:pw_partrest,eq:pw_tolerant} for $p_w$ in different regimes. 
 Substituting these  into $N^*=1/p_w$, we find approximations for the threshold tumor size, $N^*$. 
 For these approximations, an important quantity is $T^* = (4 v \lambda_a^2 \Delta_m/\lambda_m)^{-1/2}$, which is the critical time an aneuploid lineage needs to survive to produce a resistant mutant that avoids random extinction.
@@ -498,18 +498,8 @@ Ela Kodesz Institute for Research on Cancer Development and Prevention (RS),
 the Simons Foundation (Investigator in Mathematical Modeling of Living Systems $\#508600$, DBW),
 the Sloan Foundation Research Fellowship (FG-2021-16667, DBW),
 the NSF grant ($\#2146260$, DBW),
-{\color{red} Uri Ben-David acknowledgements}
-
-
-% TODO add funding for Uri and Daniel ok
+% TODO add funding for Uri
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section*{References}
-
-\nolinenumbers
-%\bibliographystyle{unsrtnat}
-\bibliographystyle{agsm}
-\bibliography{evo2022}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -659,12 +649,16 @@ Parameters: $\lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{References}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nolinenumbers
+%\bibliographystyle{unsrtnat}
+\bibliographystyle{agsm}
+\bibliography{evo2022}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage 
-\clearpage
 
 \begin{appendices}
 \renewcommand{\theequation}{\thesection\arabic{equation}}
@@ -672,7 +666,7 @@ Parameters: $\lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix A: Survival probability of a single lineage}\label{sec:appendix-surv-prob}
+\section{Survival probability of a single lineage}\label{sec:appendix-surv-prob}
 
 To analyze evolutionary rescue in this model, we use the framework of \emph{multitype branching processes} \citep{harris1963theory, weissman2009rate}. 
 This allows us to find explicit expressions for the \emph{survival probability}: the probability that a lineage descended from a single cell does not become extinct.
@@ -795,7 +789,7 @@ p_w\approx\frac{u\lambda_w}{\abs{\Delta_w}}\cdot\sqrt{\frac{v\lambda_a\Delta_m}{
 \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Appendix B: Evolutionary rescue probability}\label{sec:appendix-rescue-prob}
+\section{Evolutionary rescue probability}\label{sec:appendix-rescue-prob}
 Using the fact that $\Delta_a-v\lambda_ap_m\approx\Delta_a$ we write the condition $\left(\Delta_a-v\lambda_ap_m\right)^2 \ll 4\lambda_a^2vp_m$ as:
 \begin{equation*}
 \Delta_a^2 \ll 4\lambda_a^2vp_m\Rightarrow -1\ll\Delta_aT^*\ll1,
@@ -817,7 +811,7 @@ Substituting \cref{eq:pw_parttolerant,eq:pw_partrest,eq:pw_tolerant} into \cref{
 \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Appendix C: Evolutionary rescue time}
+\section{Evolutionary rescue time}
 
 We first calculate the expected time for the appearance of the first mutant that rescues the cell population.
 This can occur either through the evolutionary trajectory $wildtype \rightarrow mutant$ or through the trajectory $wildtype \rightarrow aneuploid \rightarrow mutant$.
@@ -911,7 +905,8 @@ and the mean evolutionary rescue time is given by:
 \end{align}
 where $R_a^f(t)=r_1^f\left(t\right)+r_2^f\left(t\right)$ and $p_{rescue}=1-\exp\left[-\left(1-f\right)p_wN-fp_aN\right]$. We plot our approximation in  \Cref{SGVEvolutionaryRescueTimeComplete} together with simulated data.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix D: Recurrence time}
+
+\section{Recurrence time}
 We define the proliferation time $\tau_a^r$  to be the time it takes the population of mutant cancer cells to reach the initial tumor size $N$. The number of rescue lineages generated by the wildtype population is given by  \cref{eq:twosteplineage} (see \Cref{ExpectedNumberRescueLineages}):
 \begin{equation*}
 r_1\left(\infty\right)=\frac{uv\lambda_w\lambda_aNp_m}{\abs{\Delta_w}\abs{\Delta_a}}=\frac{N}{N_a^*},
@@ -969,7 +964,7 @@ and \Cref{eq:t2det} becomes:
 which we plot in \Cref{RecurrencePlot} and observe that our approximations are in agreement with simulations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Appendix E: Distribution of evolutionary rescue time}
+\section{Distribution of evolutionary rescue time}
 The probability that a successful mutant has been generated by time $t$ is given by:
 \begin{align*}
 P\left(rescue,t\right)&=P\left(T_a<t\right)\\
@@ -1027,9 +1022,10 @@ For the threshold tumor sizes the $95\%$ confidence interval is obtained through
 
 For the ratio of the threshold tumor sizes the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $p_{rescue}$ 100 times for both the case when $f=\tilde{u}\lambda_w/s$ and $f=0$; (2) we sample with replacement which we store in $S_0$ and  $S_f$; (4) for each element of $S_0$ we obtain $N_a^*=1/p_w$ using $p_w=-1/N_s\log\left(1-\bar{S}\right)$ where $\bar{S}$ is the mean of $S_0$ and $N_s$ is an arbitrary value of the initial population size we selected in order to calculate $p_{rescue}$; (5) for each element of $S_f$ we obtain $\tilde{N}_a^*=1/p_a$ using $p_a=-f/N_s\log\left(1-\bar{S}\right)$ where $\bar{S}_f$ is the mean of $S_f$ and $N_s$ is an arbitrary value of the initial population size we selected in order to calculate $p_{rescue}$; (6) we repeat steps (2)-(5) 100 times to obtain $\tilde{N}_a^*/N_a^*$ and we select the upper and lower limits such that $95\%$ of the values of $\tilde{N}_a^*/N_a^*$ lie in the interval given by the bounds.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
 
-\section*{Appendix F: Figures}
+\newpage
+\section*{Supplementary Figures}
+\beginsupplement % https://support.authorea.com/en-us/article/how-to-create-an-appendix-section-or-supplementary-information-1g25i5a/
 
 \begin{figure}[h]
 \vspace*{1\baselineskip}
@@ -1078,6 +1074,8 @@ Parameters: $N=10^6, \lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu
 \label{rescue_prob_sgv}
 \end{figure}
 \end{appendices}
+
+
 %%%
 \begin{figure}
 \vspace*{1\baselineskip}
