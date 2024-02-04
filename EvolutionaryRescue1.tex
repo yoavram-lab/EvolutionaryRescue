@@ -307,17 +307,17 @@ Thus, $N^*=1/p_w$ is the threshold tumor size above which evolutionary rescue is
 where the approximation $(1-p_w)\approx e^{-p_w}$ assumes that $p_w$ (but not necessarily $N p_w$) is small.
 Indeed, when $N<1/p_w$, then the probability for evolutionary rescue is $\presc \approx N p_w$  and when $N > 1/p_w$, it is $\presc \approx 1$, justifying the definition of $N^*$ as the threshold tumor size for evolutionary rescue. 
 
-In Appendix A, we use the theory of multi-type branching processes to find approximate expressions \cref{eq:pw_parttolerant,eq:pw_partrest,eq:pw_tolerant} for $p_w$ in different regimes. 
-Substituting these  into $N^*=1/p_w$, we find approximations for the threshold tumor size, $N^*$. 
+We use the theory of multi-type branching processes to find approximate expressions \cref{eq:pw_parttolerant,eq:pw_partrest,eq:pw_tolerant} for $p_w$ in different regimes (see appendix~\ref{sec:appendix-surv-prob}). 
+Substituting these into $N^*=1/p_w$, we find approximations for the threshold tumor size, $N^*$. 
 For these approximations, an important quantity is $T^* = (4 v \lambda_a^2 \Delta_m/\lambda_m)^{-1/2}$, which is the critical time an aneuploid lineage needs to survive to produce a resistant mutant that avoids random extinction.
-First, if aneuploidy is very rare ($u\lambda_a T^*< 1$), or if aneuploidy is rare ($u\lambda_a < -\Delta_a$) and very sensitive to the drug ($\Delta_a T^* < -1$), then rescue will likely occur by a direct resistance mutation in a sensitive cell, such that 
+First, if aneuploidy is very rare ($u\lambda_a T^*< 1$), or if aneuploidy is rare ($u\lambda_a < -\Delta_a$) and very sensitive to the drug ($\Delta_a T^* < -1$), then evolutionary rescue will likely occur by a direct resistance mutation in a sensitive wildtype cell without the involvement of aneuploidy, such that 
 \begin{equation} \label{eq:N_m}
 N_m^* \approx \frac{\abs{\Delta_w}}{v\lambda_w} \cdot \frac{\lambda_m}{\Delta_m} .
 \end{equation}
-Here, $\abs{\Delta_w}/\left(v\lambda_w\right)$ is the ratio of the rate at which wild-type cells are decreasing in number and the rate at which they are mutating.
+Here, $\abs{\Delta_w}/\left(v\lambda_w\right)$ is the ratio of the rate at which wildtype cells are decreasing in number and the rate at which they are mutating. Notably, the aneuploidy parameters ($u$, $\lambda_a$, $\mu_a$) do not affect $N_m^*$.
 
-Otherwise, aneuploidy is frequent enough ($u\lambda_a > \max{(-\Delta_a, 1/T^*)}$) to affect the evolution of drug resistance. 
-The threshold tumor size, $N^*$, can then be approximated by one of the following cases, depending on $\Delta_a T^*$, the change in the log of the aneuploid population size during the critical time,
+Otherwise, aneuploidy is frequent enough ($u\lambda_a > \max{\left(-\Delta_a, 1/T^*\right)}$) to affect the evolution of drug resistance. 
+The threshold tumor size can then be approximated by one of the following cases, depending on $\Delta_a T^*$, the change in the aneuploid log-population size during the critical time,
 \begin{equation}  \label{eq:N_a}
 \begin{aligned}
 N_a^* \approx 
@@ -332,12 +332,15 @@ N_a^* \approx
   \end{cases}
 \end{aligned}
 \end{equation}
-The first line describes the case in which aneuploids are still effectively killed by the treatment, but not as quickly as the wild type. 
-In the second case, the aneuploids are sufficiently resistant that the size of each aneuploid lineage is expected to remain roughly constant. 
-In both of these first two cases, aneuploidy increases the probability of rescue by slowing or halting the decrease of the cancer population, allowing more opportunities for producing resistant mutants. 
-In the third case, aneuploidy provides sufficient resistance for the aneuploid population to re-grow the tumor even without additional resistance mutations.
-Note that in this case there is no dependence on the parameters characterizing mutants or their production ($v$, $\lambda_m$, and $\Delta_m$).
-Comparing these approximations to results of stochastic evolutionary simulations, we find that the approximations perform very well (\Cref{rescue_prob,rescue_threshold}). Increasing the the missegregation rate $u$ and aneuploid growth rate $\Delta_a$ reduces the threshold tumor size and facilitates the evolution of drug resistance (\Cref{rescue_threshold}).
+These approximations perform very well when compared to results of stochastic evolutionary simulations (\Cref{rescue_prob,rescue_threshold}).
+The first line describes the case in which aneuploid cells are still effectively killed by the treatment, but not as quickly as the wild type. 
+In the second case, aneuploid cells are sufficiently resistant that the size of each aneuploid lineage is expected to remain roughly constant.  % TODO that's a weird sentence; a lineage starts with a single cell, if the lineage size stays constant that it stays one. so what are we talking about? try to rephrase.
+In both of these cases, aneuploidy increases the probability of rescue by slowing or halting the decrease of the cancer population, allowing more opportunities for producing resistant mutants. 
+In the third case, aneuploid cells are sufficiently resistance for the cancer population to re-grow the tumor even without additional resistance mutations.
+Notably, in this case there the mutant parameters ($v$, $\lambda_m$, and $\Delta_m$) do not affect $N_a^*$ beyond their effect on $T^*$.
+In all cases, $N_a^*$ is proportional to $1/u$ such that increasing the missegregation rate $u$ will decrease the threshold tumor size (\Cref{rescue_threshold}B).
+Furthermore, increasing the aneuploid growth rate $\Delta_a$ (which appears both in the terms and in the conditions), also reduces the threshold tumor size, with a sharp decrease around $\Delta_a=0$, but the effect is minor when $|\Delta_a|$ is small compared to $T^*$ (\Cref{rescue_threshold}A).  % TODO not sure what the last sentence "but ..." means and how do you see it
+% TODO these are pretty straightforward - can you glean something more interesting from eq 4?
 
 Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for rescue via aneuploidy ($u$ is high) or via direct mutation ($u$ is low),
 \begin{equation} \label{eq:N_ratio}
@@ -350,44 +353,45 @@ Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for re
    \Delta_a T^* \gg 1 .
   \end{cases}
 \end{equation}
-In all cases, the effect of aneuploidy increases (i.e., the threshold size ratio decreases) when the aneuploidy rate $u$ increases (\Cref{rescue_threshold}B). Increasing the aneuploid growth rate $\Delta_a$ also leads to an increased role of aneuploidy, although the effect is minor when $|\Delta_a|$ is small compared to $T^*$ (\Cref{rescue_threshold}A). Increasing the mutation rate $v$ decreases the effect of aneuploidy and increases the probability of evolutionary rescue.
-
+As expected, this ratio increases with the mutation rate $v$ and decreases with the aneuploidy rate $u$.
 In the first case, $\abs{\Delta_a}/\left(u\lambda_a\right)$ is  the ratio of the expected time for an aneuploid lineage to appear, $1/\left(u\lambda_a\right)$, and the expected time until that lineage disappears, $1/\abs{\Delta_a}$.
 In the third case, $\left(v \frac{\Delta_m}{\lambda_m}\right) / \left(u \frac{\Delta_a}{\lambda_a}\right)$ is the ratio of the rates of formation of resistant mutants that avoid extinction and partially resistant aneuploids that avoid extinction.
 In the second case, $\frac{1}{u}\left(v \cdot \frac{\Delta_m}{\lambda_m}\right)^{1/2}=\sqrt{\frac{\Delta_a}{u\lambda_a} \cdot v \frac{\Delta_m}{\lambda_m} \cdot \left(u\frac{\Delta_a}{\lambda_a}\right)^{-1}}$, which is the geometric mean of the first and third cases.
 
-Interestingly, increasing both the aneuploid division rate, $\lambda_a$, and the aneuploid death rate, $\mu_a$, such that the growth rate $\Delta_a$ remains constant, leads to decreases in $T^*$, and therefore to the second case. In this case, increasing the division rate $\lambda_a$ should also increase the mutation rate $v\lambda_a$ in aneuploid cells, as mutations mostly occur during division, so overall the threshold tumor size $N_a^*$ is unaffected by the division rate $\lambda_a$ (i.e., $d \lambda_a T^*/d\lambda_a = 0$). Thus, if aneuploids rapidly die due to the drug but compensate by rapidly dividing, further increasing  the division rate will \emph{not} facilitate adaptation. This is consistent with experimental findings where aneuploidy confers resistance by decreasing the division rate~\citep{replogle2020aneuploidy}.
-For the parameter values of  $\lambda_w=0.1, \lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$ we are in the partially resistant aneuploid case and obtain the ratio $N^*_a/N^*_m\approx\abs{\Delta_a}/u\lambda_a=0.11$ which means that the presence of aneuploidy reduces the threshold population by approximately $90\%$. We note that for this parameter regime we have $N_a^*\approx4.4\times10^6$ and $N_m^*\approx4\times10^7$ and this allows us to define the following categories: small tumors have size $N<N_a^*$, intermediate sized tumors have $N_a^*<N<N_m^*$ and large tumors have size $N>N_m^*$ . For the remaining of this paper we use these definitions when referring to small, intermediate or large tumors. Interestingly, the threshold between small and intermediate tumors is similar to the detection threshold of $4.19\times10^6$ for a wide variety of tumors as reported by \citet{avanzini2019cancer}.
+Interestingly, increasing both the aneuploid division rate, $\lambda_a$, and the aneuploid death rate, $\mu_a$, such that the growth rate $\Delta_a$ remains constant, leads to decreases in $T^*$, and therefore to the second case. In this case, increasing the division rate $\lambda_a$ should also increase the mutation rate $v\lambda_a$ in aneuploid cells, as mutations mostly occur during division, so overall the threshold tumor size $N_a^*$ is unaffected by the division rate $\lambda_a$ (i.e., $d \lambda_a T^*/d\lambda_a = 0$). Thus, if aneuploid cells rapidly die due to the drug but compensate by rapidly dividing, further increasing  the division rate will \emph{not} facilitate adaptation. % NOTE this is the kind of conclusions we want to drive home
+This is consistent with experimental findings where aneuploidy confers resistance by decreasing the division rate~\citep{replogle2020aneuploidy}.
+
+We can categorize tumors by their size: small tumors with size $N<N_a^*$, intermediate tumors with size $N_a^*<N<N_m^*$, and large tumors with size $N>N_m^*$ .
+For the parameter values in \Cref{table1} with $\lambda_a=0.0899,\mu_w=0.14, u=10^{-2}, v=10^{-7}$, we are in the partially resistant aneuploid case, and substituting in \cref{eq:N_a,eq:N_m}, we have $N_a^* \approx 4.4 \cdot 10^6$ and $N_m^* \approx 4 \cdot 10^7$.
+Hence, we obtain the ratio $N^*_a/N^*_m \approx 0.11$ (\cref{eq:N_ratio}), that is, aneuploidy reduces the threshold population size by approximately 90\% 
+Interestingly, the threshold between small and intermediate tumors, $N_a^*$, is similar to the tumor detection threshold of $4.19 \cdot 10^6$ cells for a wide variety of tumors as reported by \citet{avanzini2019cancer}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph*{Density-dependent growth.}
 
 In our analysis we used branching processes, which assume that growth (division and death) is density-independent. However, growth may be limited by resources (oxygen, nutrients, etc.) and therefore depend on cell density. 
-We therefore performed stochastic simulations of a logistic growth model with carrying capacity $K$ (see Methods). 
-We find that our approximations agree with results of simulations with density-dependent growth for biologically relevant parameter values (\Cref{LogisticPlot}).
+We therefore performed stochastic simulations of a logistic growth model with a carrying capacity (see Methods). 
+We find that our density-independent approximations agree with results of simulations with density-dependent growth for biologically relevant parameter values (\Cref{LogisticPlot}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph*{Standing vs. de-novo genetic variation.}
 
 In the above we assumed that at the onset of drug treatment, the initial tumor consisted entirely of wildtype cells that are drug sensitive.
-However, aneuploid cells are likely generated even before onset of treatment at some rate $\tilde{u} \le u$ (because the treatment itself may promote generation of aneuploid cells \citep{wang2019molecular,mason2017functional}), which are likely to have a deleterious effect in the absence of the drug, $s$ \citep{replogle2020aneuploidy,giam2015aneuploidy}.
+However, aneuploidy is likely produced even before onset of treatment at some rate $\tilde{u} \le u$ and confer a deleterious fitness effect $s$ in the absence of the drug \citep{replogle2020aneuploidy,giam2015aneuploidy}, and the aneuploidy rate in the presence of drugs, $u$, is likely higher than in their absence, $\tilde{u}$ \citep{wang2019molecular,mason2017functional}.
 But if the number of cells in the tumor $N$ is large (as expected if the tumor is to be treated with a drug), there may already be a fraction $f \approx \tilde{u}\lambda_w/s$ (we assume that the division rate of the wildtype in a drug-free environment is equal to the division rate of the wildtype in the environment affected by the anti-cancer drug) of aneuploid cells in the population.
 
-Therefore, the threshold tumor size with standing generation variation, $\tilde{N}^*_{a}$, is similar to the ratio with de-novo variation, $N^*_a$, except that the sensitive growth rate $\abs{\Delta_w}$ is replaced with the aneuploidy cost, $s$, such that 
+Therefore, the ratio of threshold tumor size with standing generation variation, $\tilde{N}^*_{a}$, is similar to the ratio with de-novo variation, $N^*_a$, except that the sensitive growth rate $\abs{\Delta_w}$ is replaced with the aneuploidy cost, $s$, such that 
 \begin{equation}\label{eq:Nsgv}
 \frac{\tilde{N}^*_{a}}{N^*_{a}} = \frac{u}{\tilde{u}} \; \frac{s}{\abs{\Delta_w}}.
 \end{equation}
-
-Therefore, standing genetic variation will drive adaptation to the drug if $\Delta_w$ is very negative due to a stronger effect of the drug on sensitive cells, or if $s$ is very small due to a low cost of aneuploidy in the pre-drug conditions.
-In contrast, de-novo aneuploids will have a stronger effect on adaptation if the aneuploidy cost $s$ is large, the effect of the drug is weak ($\Delta_w$ is small), or if the drug induces the appearance of aneuploid cells ($u > \tilde u$). Comparing these approximations to results of stochastic evolutionary simulations, we find that the approximations perform very well (\Cref{rescue_denovo}).  
-
-For the parameter values of  $\lambda_w=0.1,\mu_w=0.14, u=10^{-2}, \tilde{u}=10^{-3}, s=7.3\cdot10^{-3}$ the ratio of the threshold population sizes is $\tilde{N}^*_a/N^*_a\approx1.825$ which means that de-novo genetic variation is  the main driver of adaptation.
-
-
+Comparing these approximations to results of stochastic evolutionary simulations, we find that the approximations perform very well (\Cref{rescue_denovo}).  % TODO which approximations? unclear
+Standing genetic variation will drive evolutionary rescue to the drug if wildtype growth rate $\Delta_w$ is very negative due to a stronger effect of the drug on sensitive cells, or if the aneuploidy cost $s$ is very small due to a low cost of aneuploidy in the pre-drug conditions.
+In contrast, de-novo aneuploid cells will have a greater contribution to rescue if the aneuploidy cost, $s$, is large, the effect of the drug is weak ($\Delta_w$ is small), or if the drug induces the appearance of aneuploid cells ($u > \tilde u$).
+For example, with  $\lambda_w=0.1,\mu_w=0.14, u=10^{-2}, \tilde{u}=10^{-3}, s=7.3\cdot10^{-3}$, the ratio of the threshold population sizes for standing vs de-novo variation is $\tilde{N}^*_a/N^*_a \approx 1.825$, which means that de-novo genetic variation is  the main driver of evolutionary rescue.
 
 Using \cref{eq:N_a,eq:N_m,eq:Nsgv}, we can find the ratio of threshold tumor size for rescue via standing genetic variation  to the threshold for direct mutation,
 \begin{equation} \label{eq:N_sgv_ratio}
-\frac{\tilde{N}^*_a}{N^*_m}=\frac{\tilde{N}^*_{a}}{N^*_{a}}\times\frac{N^*_a}{N^*_m} \approx \frac{s}{\abs{\Delta_w}}\begin{cases}
+\frac{\tilde{N}^*_a}{N^*_m}=\frac{\tilde{N}^*_{a}}{N^*_{a}} \cdot \frac{N^*_a}{N^*_m} \approx \frac{s}{\abs{\Delta_w}}\begin{cases}
     \frac{\abs{\Delta_a}}{\tilde{u}\lambda_a} ,&
   \Delta_a T^* \ll -1 ,\\ 
   \frac{1}{\tilde{u}}\left(v \cdot \frac{\Delta_m}{\lambda_m}\right)^{1/2} ,&
