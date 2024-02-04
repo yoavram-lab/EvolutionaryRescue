@@ -194,17 +194,22 @@ Here we build on previous work on evolutionary rescue after a sudden environment
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Methods}
-\subsection*{Evolutionary model}
 
+\paragraph{Evolutionary model.}
 We follow the number of cancer cells that have one of three different genotypes at time $t$: wildtype, $w_t$; aneuploid, $a_t$; and mutant, $m_t$. 
 These cells divide and die with rates $\lambda_k$ and $\mu_k$ (for $k=w, a, m$).
 The difference between the division and death rate is $\Delta_k = \lambda_k-\mu_k$.
 We assume the population of cells is under a strong stress, such as drug therapy, to which the wildtype genotype is susceptible or sensitive and therefore $\Delta_w<0$, whereas the mutant is resistant to the stress, $\Delta_m>0$.
-We analyze three scenarios: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, $0>\Delta_a>\Delta_w$ \citep[see][for the distinction between susceptible, resistant, and tolerant]{brauner2016distinguishing}; in the third, aneuploid cells are non-growing, stationary or "barely growing", that is, either slightly tolerant or slightly resistant, such that $\Delta_a \approx 0$. We assume that both chromosomal missegregation and mutation occur during the process of mitosis. Wildtype cells may divide and then missegregate to become aneuploids at rate $u\lambda_w$. Both aneuploid and wildtype cells may divide and mutate to become mutants at rates $v\lambda_{a}$ and $v\lambda_{w}$, respectively.
-See \Cref{figureAneuploidy} for a schematic representation of the model and \Cref{sampleTrajectories} for sample trajectories of the different genotypes for $u=0 \, (A), \Delta_a\ll0\, (B),\Delta_a\approx0\, (C),\Delta_a\gg0\, (D)$. We assume that wildtype cells acquire aneuploidy before the onset of therapy with rate $\tilde{u}\lambda_w$ and that aneuploid cells have a fitness cost $s$ in the drug-free environment.
+We analyze three scenarios: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, $0>\Delta_a>\Delta_w$ \citep[see][for the distinction between susceptible, resistant, and tolerant]{brauner2016distinguishing}; in the third, aneuploid cells are non-growing, stationary or ``barely growing'', that is, either slightly tolerant or slightly resistant, such that $\Delta_a \approx 0$. 
+We assume that both chromosomal missegregation and mutation occur during the process of mitosis. 
+Wildtype cells may divide and then missegregate to become aneuploids at rate $u\lambda_w$. Both aneuploid and wildtype cells may divide and mutate to become mutants at rates $v\lambda_{a}$ and $v\lambda_{w}$, respectively.
+To model standing genetic variation, we assume that before the onset of therapy, wildtype cells become aneuploid with rate $\tilde{u}\lambda_w$ (which may differ from $u \lambda_w$) and that aneuploidy confers a fitness cost $s$ in the drug-free environment. % TODO unclear how s affects \lambda_w
+See \Cref{figureAneuploidy} for a schematic representation of the model and \Cref{sampleTrajectories} for sample trajectories of the different genotypes. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Stochastic simulations} 
-Simulations are performed using a \emph{Gillespie algorithm} \citep{gillespie1976general,gillespie1977exact} implemented in Python \citep{python}.
+
+\paragraph{Stochastic simulations.} 
+Simulations are performed using the \emph{Gillespie stochastic simulation algorithm} \citep{gillespie1976general,gillespie1977exact} implemented in Python \citep{python}.
 The simulation monitors the number of cells of each type: wildtype, aneuploid, and mutant. 
 The wildtype population initially consists of $w_0=N$ cells, whereas the other cell types are initially absent.
 
@@ -224,58 +229,61 @@ The state of the stochastic system at time $t$ is represented by the triplet $\l
 \end{flalign*}
 \end{subequations}
 For the remaining of this paper we assume that the division rates for wildtype and aneuploid cells can be written as $\lambda_ww_t\left(1-u-v\right)\approx \lambda_ww_t$ and $\lambda_aa_t\left(1-v\right)\approx\lambda_aa_t$ because $u,v\ll1$ (see Table \ref{table1}).
-Each iteration of the simulation loop starts with computing the rates $\nu_j$ of each event $j$.
+Each iteration of the simulation loop starts with computing the rates $\nu_k$ of each event $k$.
 We then draw the time until the next event, $\Delta t$, from an exponential distribution whose rate parameter is the sum of the rates of all events, such that $\Delta t \sim \textit{Exp}(\sum_j \nu_j)$.
-Then, we randomly determine which event occurred, where the probability for event $j$ is $p_j=\nu_j/\sum_i \nu_i$.
+Then, we randomly determine which event occurred, where the probability for event $k$ is $p_k = \nu_k/\sum_j \nu_j$.
 Finally, we update the number of cells of each type according to the event that occurred and update the time from $t$ to $t+\Delta t$.
 We repeat these iterations until either the population becomes extinct (the number of cells of all types is zero) or the number of mutant cells is high enough so that its extinction probability is $<0.1\%$, that is until
 \begin{equation*}
-m_t > \left\lfloor\frac{3\log10}{\log\left(\lambda_m / \mu_m\right)}\right\rfloor + 1.
+m_t > \left\lfloor\frac{3\log{10}}{\log{\left(\lambda_m / \mu_m\right)}}\right\rfloor + 1 ,
 \end{equation*}
-where we obtain the threshold mutant size by solving $1-(1-p_m)^{m_t}=0.999$ for $m_t$, where $p_m=\Delta_m/\lambda_m$ is the probability that a single mutant escapes stochastic extinction  (see Apendix A).
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+which we obtain by solving $1-(1-p_m)^{m_t}=0.999$ for $m_t$ with $p_m=\Delta_m/\lambda_m$ as the probability that a single mutant escapes stochastic extinction  (see Appendix A).
 
-\paragraph{$\tau$-leaping.}
-When simulations are slow (e.g. due to large population size), we utilize $\tau$-leaping \citep{gillespie2001approximate}, where change in number of cells of genotype $i$ in a fixed time interval $\Delta t$ is Poisson distributed with mean $\nu_i\Delta t$.
-If the change in number of cells is negative and larger then the subpopulation size then the subpopulation size is updated to be zero.
+When simulations are slow (e.g., due to large population size), we use $\tau$-leaping \citep{gillespie2001approximate}, where we assume that the change in the number of cells of genotype $k$ in a fixed time interval $\Delta t$ is Poisson distributed with mean $\nu_k \Delta t$. If the change in the number of cells is negative and larger than the subpopulation size then the subpopulation size is updated to be zero. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\paragraph{Bootstrapping}
-We  use bootstrap resampling method in order to compute  confidence intervals for the mean threshold tumor sizes and mean times by resampling 100 times with replacement from the data set obtained from simulations. We then compute the interval which contain $95\%$ of the means of each resampled set.
+% YR:  I commented this out because it is entirely standard
+%\paragraph{Bootstrapping}
+%We  use bootstrap resampling method in order to compute  confidence intervals for the mean threshold tumor sizes and mean times by resampling 100 times with replacement from the data set obtained from simulations. We then compute the interval which contain $95\%$ of the means of each resampled set.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Parameterization.}
-To parametrize the model we assume that the cells under consideration are melanoma cells and and rely on \citep{rew2000cell} and \citep{bozic2013evolutionary} for the division and death rates, respectively. \citet{rew2000cell} report in vivo measurements of the potential doubling times (which is the time which the tumor cells would take to double in number if cell loss was not present) for a large set of cancer types.  The division rate is obtained as $\lambda=\log2/T\approx0.1\text{ days}^{-1}$ We select this to be the division rate for wildtype and mutant cells. %We select the mutant death rate $\mu_m=0.09\text{ days}^{-1}$ such that $\Delta_m>0$.
+To parametrize the simulations, we assume that the cells under consideration are melanoma cells and rely on \citet{rew2000cell} and \citet{bozic2013evolutionary} for the division and death rates, respectively. 
+\citet{rew2000cell} report \emph{in vivo} measurements of the potential doubling times (the waiting time for the number of cells in the tumor to double disregarding cell death) for a large set of cancer types. The division rate is obtained as $\lambda=\log{2} / T \approx 0.1$ per day. We select this to be the division rate for wildtype and mutant cells. %We select the mutant death rate $\mu_m=0.09\text{ days}^{-1}$ such that $\Delta_m>0$.
 
-\citet{bozic2013evolutionary} report the growth rate $\Delta_w$ for the wildtype melanoma cancer cells from which they deduce the death rate $\mu_w$ to in the interval $\left[0.11,0.17\right]$ and we choose $\mu_w=0.14days^{-1}$. Additionally, they observe the growth rate of cancer cells prior to treatment to be 0.01 which we select as the growth rate of mutant cells as we assume that the mutation makes the cancer cells immune to the chemotherapeutic agent. As a result, we choose $\mu_m=0.1-0.01=0.09\text{ days}^{-1}$ as the death rate for mutant cells.
+\citet{bozic2013evolutionary} report the growth rate $\Delta_w$ for wildtype melanoma cancer cells from which they deduce the death rate $0.11 \le \mu_w \le 0.17$. We use  $\mu_w=0.14$ per day. Additionally, they observe the growth rate of cancer cells prior to treatment to be 0.01, which we use as the growth rate of mutant cells, which are resistant to the drug. Thus, we use $\mu_m=0.1-0.01=0.09$ per day as the death rate for mutant cells.
 
- Aneuploid death rate $\mu_a$ is set to the same value as the mutant death rates, $\mu_m=0.09\text{ days}^{-1}$, given that aneuploidy increases resistance to chemotherapeutics, such as cisplatin, by antagonizing cell division \citep{replogle2020aneuploidy}. Aneuploid birth rate is selected such that the aneuploid growth rate $\Delta_w\ll\Delta_a\ll\Delta_m$ which means that $\lambda_a$ belong to the interval $\left[0.06,0.1\right]$. For most of the paper we will use $\lambda_a=0.0899\text{ days}^{-1}$ such that aneuploidy can only act as a \emph{stepping stone} for the generation of the mutant which rescues the cancer cell population.
+ Aneuploid death rate $\mu_a$ is set to the same value as the mutant death rates, $\mu_m=0.09$ per day, given that aneuploidy increases resistance to the drug, such as cisplatin, by antagonizing cell division \citep{replogle2020aneuploidy}. Aneuploid birth rate is selected such that the aneuploid growth rate $\Delta_w\ll\Delta_a\ll\Delta_m$ which means that $0.06 \le \lambda_a \le 0.1$. For most of our simulations we use $\lambda_a=0.0899$ per day, such that aneuploidy can only act as a \emph{stepping stone} for the generation of the mutant that rescues the cancer cell population.
 
-We set the mutation rate $v$ to be equal to $10^{-7}$ per gene per cell division \citep{loeb2001mutator} and since we assume that a single target gene confers immunity to chemotherapy we select $v=10^{-7}$ per cell division. The missegregation rate is chosen from \citet{bakker2023predicting} who determined \textit{in silico} that it must be in the interval $10^{-3}-10^{-2}$ per chromosome per cell division. Given that only about one to two chromosome additions are ``beneficial'' for cancer resistance (see details next paragraph) we choose $u=10^{-2}$ per cell division. For the missegregation rate in the drug free environment $\tilde{u}$ we choose the lower-end value of $u$ (i.e.  $\tilde{u}=10^{-3}$ per cell division) as the chemotherapeutic drugs we want to model increase the rate of aneuploidy~\citep{wang2019molecular,mason2017functional}. 
+We assume the mutation rate is $10^{-7}$ per gene per cell division \citep{loeb2001mutator} and since we assume that a single target gene confers resistance to the drug, we use $v=10^{-7}$ per cell division. 
+\citet{bakker2023predicting} determined that the missegregation rate must be between $10^{-3}-10^{-2}$ per chromosome per cell division. Given that a duplication is is beneficial for cancer resistance only in one or two chromosomes (see details next paragraph) we use $u=10^{-2}$ per cell division.
+For the missegregation rate in the drug-free environment, $\tilde{u}$, we use the lower-end value of $\tilde{u}=10^{-3}$ per cell division, as some drugs increase the rate of aneuploidy~\citep{wang2019molecular,mason2017functional}.
 
-The fitness cost $s$ of aneuploidy before the onset of therapy is difficult to estimate as we are interested in a specific type of aneuploidy which improved the fitness of cancer cells in an environment altered by chemotherapeutic drugs. We derive $s$ by using the formula $s=\tilde{u}\lambda_w/f$ and obtaining the fraction of aneuploid cancer cells $f$ from \citep{lukow2021chromosomal} who mixed together wildtype and aneuploid A375 melanoma cells at $50:50$ ratio, cultured them in drug-free environment and observed the ratio evolve as a function of time with the aneuploid cells declining to $15\%$ after 24 days. \citet{ippolito2021gene} observed that trisomy 2 and 6 are most likely to confer increased resistance against the chemotherapeutic agent vemurafenib for A375 cells. We assume that if a tumor is aneuploid then it most likely has trisomy \citep{gisselsson2010generation} in the pre-treatment environment and that cells with more then one trisomy are very unlikely to survive. Additionally, we assume that all trisomies are equally likely and, as a result, we obtain the percentage of cancer cells with favorable aneuploidy as $2/22\times0.15\approx 0.0136$ (i.e. $1.36\%$ of pre-treatment cancer cells have the ``beneficial'' aneuploidy) which we select as the value for $f$ (this gives us a fitness cost of $s= 7.3\times10^{-3}\text{ days}^{-1}$). We note that when we refer to wildtype cancer cells we include those cells which have any aneuploidy except trisomy 2 and 6 as those are the aneuploid cells which are hypothesized to have higher fitness in the environment altered by therapeutics such as vemurafenib.
+The fitness cost $s$ of aneuploidy before the onset of therapy is difficult to estimate as we are interested in a specific type of aneuploidy which improves the fitness of cancer cells in an environment altered by drugs.
+We derive $s$ by using the formula $s=\tilde{u}\lambda_w / f$, where $f$ is the fraction of aneuploid cancer cells. To estimate $f$, we note that \citet{lukow2021chromosomal} mixed together wildtype and aneuploid A375 melanoma cells at $50:50$ ratio, cultured them in drug-free environment and observed the ratio evolve as a function of time with the aneuploid cells declining to $15\%$ after 24 days. \citet{ippolito2021gene} observed that trisomy in Chr II and VI are most likely to confer increased resistance against the chemotherapeutic agent vemurafenib for A375 cells. We assume that if a tumor is aneuploid then it most likely has trisomy \citep{gisselsson2010generation} in the pre-treatment environment and that cells with more than one trisomy are very unlikely to survive. Additionally, we assume that all trisomies are equally likely and, as a result, we obtain the fraction of cancer cells with favorable aneuploidy as $f=2/22\times0.15\approx 0.0136$ (i.e. $1.36\%$ of pre-treatment cancer cells have the beneficial aneuploidy). This gives us a fitness cost of $s= 7.3\times10^{-3}$ per day.
+We note that when we refer to wildtype cancer cells we include those cells that have any aneuploidy except trisomy in Chr II and VI as those are the aneuploid cells which are hypothesized to have higher fitness in the environment altered by drugs such as vemurafenib.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Density-dependent growth.}
 
-In our analysis we assume that lineages produced by cells from the initial population divide and die independently of each other, which may be unrealistic, as cells usually compete for resources. This is a good approximation as we assume that the drug cause the wildtype population to decline rapidly and, as a result, density effect can be neglected.
+In our analysis we assume that lineages produced by cells from the initial population divide and die independently of each other, which may be unrealistic, as cells usually compete for resources. This is a good approximation as we assume that the drugs cause the wildtype population to decline rapidly and, as a result, density-dependent effects can be neglected.
 A more realistic model includes competition for limited resources and spatial structure, which may play an important role in the development of cancer \citep[e.g.,][]{martens2011spatial}.
-To simulate birth and death rates that depend on the number of cells in the population, we transform the rates of division and death to the following:
+To simulate birth and death rates that depend on the number of cells in the population, we assume the rates of division and death to be
 \begin{align*}
-\lambda_w' &= \lambda_w, \\
-\mu_w' &= \mu_w,\\
-\lambda_a' &= \lambda_a,\\ 
-\mu_a' &= \mu_a + \lambda_a\frac{w+a+m}{K},\\
-\lambda_m' &= \lambda_m,\\ 
-\mu_m' &= \mu_m + \lambda_m\frac{w+a+m}{K}.
+\lambda_w' &= \lambda_w , \\
+\mu_w' &= \mu_w ,\\
+\lambda_a' &= \lambda_a ,\\ 
+\mu_a' &= \mu_a + \lambda_a\frac{w+a+m}{K} ,\\
+\lambda_m' &= \lambda_m ,\\ 
+\mu_m' &= \mu_m + \lambda_m\frac{w+a+m}{K} ,
 \end{align*}
-where $K$ is the maximum carrying capacity. The effective carrying capacity of this model is $K_e=K\Delta_a/\lambda_a\approx10^6$ for $K=10^8, \lambda_a=0.0901,\mu_a=0.09$, where we define the effective carrying capacity to be the population size at which the aneuploid division rate is equal to the aneuploid death rate. 
+where $K$ is the tumor carrying capacity. 
+The effective carrying capacity of this model is $K_e=K\Delta_a/\lambda_a\approx10^6$ for $K=10^8, \lambda_a=0.0901,\mu_a=0.09$, where we define the effective carrying capacity to be the population size at which the aneuploid division rate is equal to the aneuploid death rate. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{Code and data availability.} All source code is available online at \url{https://github.com/yoavram-lab/EvolutionaryRescue}.
+\paragraph{Code and data availability.} All source code is available online at~\url{https://github.com/yoavram-lab/EvolutionaryRescue}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
