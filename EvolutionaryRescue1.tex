@@ -406,30 +406,29 @@ We observe that evolutionary rescue through direct mutation is more likely if th
 
 \subsection*{Recurrence time due to evolutionary rescue}
 
-When evolutionary rescue occurs and leads to recurrence of the tumor, it may still take a long time.
-When the expected number of resistant lineages that avoid extinction is small, the overall expected recurrence time can be estimated by adding two terms: the \emph{mean evolutionary rescue time}, which is the waiting time for appearance of a resistant lineage that avoids extinction (conditioned on such an even occurring in the first place), and the \emph{mean proliferation time}, which is the expected time for that lineage to reach the original tumor size, $N$.
+When evolutionary rescue occurs, the time until recurrence of the tumor may still be very long. We therefore explored the time until recurrence of the tumor, that is, the time until the tumor reaches its original size, $N$.
+When the expected number of resistant lineages that avoid extinction is small, the expected recurrence time can be estimated by adding two terms: the \emph{mean evolutionary rescue time}, which is the waiting time for appearance of a resistant lineage that avoids extinction (conditioned on such an even occurring in the first place), and the \emph{mean proliferation time}, which is the expected time for that lineage to grow to $N$ cells.
 However, when the expected number of resistant lineages is large, the population of mutant cells behaves deterministically and the mean recurrence time cannot be separated into the mean evolutionary rescue time and mean proliferation time. % TODO I dont like the word "behaves", please be specific. - what exactly is deterministic and why does it mean you cannot do the separation.
 Of particular interest is the distribution of the evolutionary rescue time and recurrence time with partially tolerant aneuploid cells ($\Delta_a T^*\ll1$), for which we focus on the parameter values  $\lambda_w=0.1, \lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$ .
 
 \paragraph{Evolutionary rescue time.}
-In appendix \ref{sec:appendix_rescue_time} we derive an approximation for $\tau_m$, the expected evolutionary rescue time without aneuploidy ($u=0$), and $\tau_a$, the expected rescue time with aneuploidy ($u>0$), both conditioned on evolutionay rescue occuring.
-\Cref{EvolutionaryRescueTimeComplete,MeanTimeGrowthAneuploidyPlot} shows the agreement between these approximations and simulation results for small, intermediate and large tumor sizes.
-Notably, the expected rescue time with aneuploidy, $\tau_a$, follows these expressions for very small and very large tumors,
+We have derived approximations for $\tau_m$, the mean evolutionary rescue time without aneuploidy ($u=0$), and $\tau_a$, the mean rescue time with aneuploidy ($u>0$), both conditioned on evolutionary rescue occurring (see appendix \ref{sec:appendix_rescue_time}).
+These approximations are in good agreement with simulation results for small, intermediate, and large tumor sizes (\Cref{EvolutionaryRescueTimeComplete,MeanTimeGrowthAneuploidyPlot}).
+The mean rescue time with aneuploidy for small and large tumors follows these expressions:
 \begin{equation}  \label{eq:AsymptoticTimeRules}
 \tau_a \approx \begin{cases}
     \frac{1}{\abs{\Delta_w}}+\frac{1}{\abs{\Delta_a}} ,&
  N \ll N_a^* ,\\ 
-  \left(v\lambda_wNp_m\right)^{-1}  ,&
+  \frac{1}{v\lambda_w N} \cdot  \frac{\lambda_m}{\Delta_m} ,& % I replaced pm with 𝜆𝑚 − 𝜇𝑚 / 𝜆𝑚
   N \gg N_m^* .
   \end{cases}
 \end{equation}
 
-For small tumors, the mean rescue time is a function of the wildtype and aneuploid growth rates and independent the other model parameters, including tumor size (blue line in \Cref{EvolutionaryRescueTimeComplete}).
+For small tumors ($ N \ll N_a^*$), the mean rescue time is a function of the wildtype and aneuploid growth rates and independent of the other model parameters, including tumor size (blue line in \Cref{EvolutionaryRescueTimeComplete}).
 Increasing the wildtype or aneuploid growth rates leads to an increase in the mean rescue time, because the corresponding cells will survive for longer and will produce additional rescue mutations at latter times.
-In our focus parameter regime, we have $\abs{\Delta_w}^{-1}=0.04$ and $\abs{\Delta_a}^{-1}=10^{-4}$, such that the mean rescue time is mainly determined by the aneuploid growth rate: $\tau_a \approx 10^4$.
+In our focus parameter regime, we have $\Delta_w=-0.04$ and $\Delta_a=-10^{-4}$, such that the mean rescue time is mainly determined by the aneuploid growth rate, $\tau_a \approx 10^4$.
 
-For large tumors, the mean evolutionary rescue time is $v\lambda_wNp_m$ (\cref{eq:AsymptoticTimeRules}), % I removed the mention of exponential distribution as it was not explained and I dont see why you need it here
- which is independent of parameters characterizing aneuploid cells or their production ($u$, $\lambda_a$, and $\Delta_a$). 
+For large tumors ($N \gg N_m^*$), the mean evolutionary rescue time (\cref{eq:AsymptoticTimeRules}) is independent of parameters characterizing aneuploid cells or their production ($u$, $\lambda_a$, and $\Delta_a$). % I removed the mention of exponential distribution as it was not explained and I dont see why you need it here
  Increasing the per division mutation rate, $v\lambda_w$, leads to faster appearance of a rescue mutation and hence reduced mean rescue time. 
 Finally, increasing the tumor size leads to shorter mean rescue time, as there are more wildtype cells that can mutate to become resistant. 
 
