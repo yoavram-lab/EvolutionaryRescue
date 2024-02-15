@@ -174,7 +174,7 @@ Keywords: whole-chromosome duplication, evolutionary model, adaptive evolution, 
 
 %%%%%%
 
-\paragraph{Aneuploidy in cancer.}  Each year approximately 10 million people die from cancer \citep{kocarnik2022cancer}, so understanding the factors that contribute to failure of interventions is of great importance. One hypothesized factor is aneuploidy, where cells are characterized by an imbalanced karyotype and chromosome copy number alterations \citep{schukken2018cin}, caused by chromosomal instability (CIN), the mitotic process in which cells suffer from chromosome mis-segregation that leads to aneuploidy. Importantly, aberrations in chromosome copy number have been shown to allow cancer cells to survive under stressful conditions such as drug therapy \citep{lukow2021chromosomal,rutledge2016selective}. Indeed, cancer cells are often likely to be aneuploid, and aneuploidy is associated with poor patient outcomes \citep{ben2020context,smith2018systematic}. 
+\paragraph{Aneuploidy in cancer.}  Each year approximately 10 million people die from cancer \citep{kocarnik2022cancer}, so understanding the factors that contribute to failure of interventions is of great importance. One hypothesized factor is aneuploidy, where cells are characterized by an imbalanced karyotype and chromosome copy number alterations \citep{schukken2018cin}, caused by chromosomal instability, the mitotic process in which cells suffer from chromosome mis-segregation that leads to aneuploidy. Importantly, aberrations in chromosome copy number have been shown to allow cancer cells to survive under stressful conditions such as drug therapy \citep{lukow2021chromosomal,rutledge2016selective}. Indeed, cancer cells are often likely to be aneuploid, and aneuploidy is associated with poor patient outcomes \citep{ben2020context,smith2018systematic}. 
 
  \citet{ippolito2021gene} induced aneuploidy in cancer cell lines by exposing them to reversine, a small-molecule inhibitor of the mitotic kinase Mpsi1, and then to chemotherapeutic agents such as vemurafenib. Reversine-treated cells had higher proliferation rate in the environment altered by anti-cancer drugs compared to wildtype cancer cells.
  Similarly, \citet{lukow2021chromosomal} induced aneuploidy in cancer cells and observed that such cells have an advantage compared to wildtype cells during chemotherapy, despite having lower fitness before the onset of chemotherapy.
@@ -200,7 +200,7 @@ We follow the number of cancer cells that have one of three different genotypes 
 These cells divide and die with rates $\lambda_k$ and $\mu_k$ (for $k=w, a, m$).
 The difference between the division and death rate is $\Delta_k = \lambda_k-\mu_k$.
 We assume the population of cells is under a strong stress, such as drug therapy, to which the wildtype genotype is susceptible or sensitive and therefore $\Delta_w<0$, whereas the mutant is resistant to the stress, $\Delta_m>0$.
-We analyze three scenarios: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, $0>\Delta_a>\Delta_w$ \citep[see][for the distinction between susceptible, resistant, and tolerant]{brauner2016distinguishing}; in the third, aneuploid cells are non-growing, stationary or ``barely growing'', that is, either slightly tolerant or slightly resistant, such that $\Delta_a \approx 0$. 
+We analyze three scenarios: in the first, aneuploid cells are partially resistant, $\Delta_m>\Delta_a>0$; in the second, aneuploid cells are tolerant, $0>\Delta_a>\Delta_w$ \citep[see][for the distinction between susceptible, resistant, and tolerant]{brauner2016distinguishing}; in the third, aneuploid cells are non-growing, stationary or growing or dying only very slowly, that is, either slightly tolerant or slightly resistant, such that $\Delta_a \approx 0$, in a sense that we will make precise below. 
 We assume that both chromosomal missegregation and mutation occur during the process of mitosis. 
 Wildtype cells may divide and then missegregate to become aneuploids at rate $u\lambda_w$. Both aneuploid and wildtype cells may divide and mutate to become mutants at rates $v\lambda_{a}$ and $v\lambda_{w}$, respectively.
 To model standing genetic variation, we assume that before the onset of therapy, wildtype cells become aneuploid with rate $\tilde{u}\lambda_w$ (which may differ from $u \lambda_w$) and that aneuploidy confers a fitness cost $s$ in the drug-free environment (we assume that aneuploidy significantly increases the death rate of wildtype cancer cells in an environment which is not affected by chemotherapeutic drugs). % TODO unclear how s affects \lambda_w; I do not think that s has any effect on \lambda_w as s is the fitness of the aneuploid in the drug free environment
@@ -230,7 +230,7 @@ The state of the stochastic system at time $t$ is represented by the triplet $\l
 \end{subequations}
 For the remaining of this paper we assume that the division rates for wildtype and aneuploid cells can be written as $\lambda_ww_t\left(1-u-v\right)\approx \lambda_ww_t$ and $\lambda_aa_t\left(1-v\right)\approx\lambda_aa_t$ because $u,v\ll1$ (see Table \ref{table1}).
 Each iteration of the simulation loop starts with computing the rates $\nu_k$ of each event $k$.
-We then draw the time until the next event, $\Delta t$, from an exponential distribution whose rate parameter is the sum of the rates of all events, such that $\Delta t \sim \textit{Exp}(\sum_j \nu_j)$.
+We then draw the time until the next event, $\Delta t$, from an exponential distribution whose rate parameter is the sum of the rates of all events, such that $\Delta t \sim \text{Exp}(\sum_j \nu_j)$.
 Then, we randomly determine which event occurred, where the probability for event $k$ is $p_k = \nu_k/\sum_j \nu_j$.
 Finally, we update the number of cells of each type according to the event that occurred and update the time from $t$ to $t+\Delta t$.
 We repeat these iterations until either the population becomes extinct (the number of cells of all types is zero) or the number of mutant cells is high enough so that its extinction probability is $<0.1\%$, that is until
@@ -262,14 +262,16 @@ For the missegregation rate in the drug-free environment, $\tilde{u}$, we use th
 
 The fitness cost $s$ of aneuploidy before the onset of therapy is difficult to estimate as we are interested in a specific type of aneuploidy which improves the fitness of cancer cells in an environment altered by drugs.
 We derive $s$ by using the formula $s=\tilde{u}\lambda_w / f$, where $f$ is the fraction of aneuploid cancer cells. To estimate $f$, we note that \citet{lukow2021chromosomal} mixed together wildtype and aneuploid A375 melanoma cells at $50:50$ ratio, cultured them in drug-free environment and observed the ratio evolve as a function of time with the aneuploid cells declining to $15\%$ after 24 days. \citet{ippolito2021gene} observed that trisomy in Chr II and VI are most likely to confer increased resistance against the chemotherapeutic agent vemurafenib for A375 cells. We assume that if a tumor is aneuploid then it most likely has trisomy \citep{gisselsson2010generation} in the pre-treatment environment and that cells with more than one trisomy are very unlikely to survive. Additionally, we assume that all trisomies are equally likely and, as a result, we obtain the fraction of cancer cells with favorable aneuploidy as $f=2/22\times0.15\approx 0.0136$ (i.e. $1.36\%$ of pre-treatment cancer cells have the beneficial aneuploidy). This gives us a fitness cost of $s= 7.3\times10^{-3}$ per day.
+\daniel{THIS DERIVATION DOESN'T MAKE SENSE. FROM THE LUKOW EXPERIMENT WE CAN DIRECTLY ESTIMATE THE FITNESS COST AS $s \approx \ln(0.5/0.15)/24 \approx .05$ PER DAY. DOING IT MORE CAREFULLY (LOGISTIC RATHER THAN EXPONENTIAL) GIVES ABOUT THE SAME ANSWER.}
 We note that when we refer to wildtype cancer cells we include those cells that have any aneuploidy except trisomy in Chr II and VI as those are the aneuploid cells which are hypothesized to have higher fitness in the environment altered by drugs such as vemurafenib.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Density-dependent growth.}
 
-In our analysis we assume that lineages produced by cells from the initial population divide and die independently of each other, which may be unrealistic, as cells usually compete for resources. This is a good approximation as we assume that the drugs cause the wildtype population to decline rapidly and, as a result, density-dependent effects can be neglected.
-A more realistic model includes competition for limited resources and spatial structure, which may play an important role in the development of cancer \citep[e.g.,][]{martens2011spatial}.
-To simulate division and death rates that depend on the number of cells in the population, we assume the rates of division and death to be
+In our analytical calculations, we assume that lineages produced by cells from the initial population divide and die independently of each other.
+Of course, the cells will actually compete for resources, but we expect that this can be neglected because the drug will
+cause the cell density to rapidly drop far below the carrying capacity at which these interactions are important.
+To test this, we simulate a logistic growth model, with division and death rates given by:
 \begin{align*}
 \lambda_w' &= \lambda_w , \\
 \mu_w' &= \mu_w ,\\
@@ -312,7 +314,7 @@ Substituting these into $N^*=1/p_w$, we find approximations for the threshold tu
 For these approximations, an important quantity is $T^* = (4 v \lambda_a^2 \Delta_m/\lambda_m)^{-1/2}$, which is the critical time an aneuploid lineage needs to survive to produce a resistant mutant that avoids random extinction.
 First, if aneuploidy is very rare ($u\lambda_a T^*< 1$), or if aneuploidy is rare ($u\lambda_a < -\Delta_a$) and very sensitive to the drug ($\Delta_a T^* < -1$), then evolutionary rescue will likely occur by a direct resistance mutation in a sensitive wildtype cell without the involvement of aneuploidy, such that 
 \begin{equation} \label{eq:N_m}
-N_m^* \approx \frac{\abs{\Delta_w}}{v\lambda_w} \cdot \frac{\lambda_m}{\Delta_m} .
+N_m^* \approx \frac{\abs{\Delta_w}}{v\lambda_w}  \frac{\lambda_m}{\Delta_m} .
 \end{equation}
 Here, $\abs{\Delta_w}/\left(v\lambda_w\right)$ is the ratio of the rate at which wildtype cells are decreasing in number and the rate at which they are mutating. Notably, the aneuploidy parameters ($u$, $\lambda_a$, $\mu_a$) do not affect $N_m^*$.
 
@@ -322,9 +324,9 @@ The threshold tumor size can then be approximated by one of the following cases,
 \begin{aligned}
 N_a^* \approx 
   \frac{\abs{\Delta_w}}{u\lambda_w} \cdot \begin{cases}
-    \frac{\abs{\Delta_a}}{v\lambda_a} \cdot \frac{\lambda_m}{\Delta_m} ,&
+    \frac{\abs{\Delta_a}}{v\lambda_a}  \frac{\lambda_m}{\Delta_m} ,&
   \Delta_a T^* \ll -1 \text{ (tolerant aneuploids)},\\ 
-  %\left(\frac{\lambda_a}{v} \cdot \frac{\lambda_m}{\Delta_m}\right)^{1/2} ,&
+  %\left(\frac{\lambda_a}{v}  \frac{\lambda_m}{\Delta_m}\right)^{1/2} ,&
   2\lambda_a T^* ,&
   -1 \ll \Delta_a T^* \ll 1  \text{ (stationary aneuploids)},\\ 
   \frac{\lambda_a}{\Delta_a} ,&
@@ -347,24 +349,24 @@ Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for re
 \frac{N^*_a}{N^*_m} \approx \begin{cases}
     \frac{\abs{\Delta_a}}{u\lambda_a} ,&
   \Delta_a T^* \ll -1 ,\\ 
-  \frac{1}{u}\left(v \cdot \frac{\Delta_m}{\lambda_m}\right)^{1/2} ,&
+  \frac{1}{u}\left(v  \frac{\Delta_m}{\lambda_m}\right)^{1/2} ,&
   -1 \ll \Delta_a T^* \ll 1  ,\\ 
-  v \frac{\Delta_m}{\lambda_m} \cdot \left(u\frac{\Delta_a}{\lambda_a}\right)^{-1}  ,&
+  v \frac{\Delta_m}{\lambda_m}  \left(u\frac{\Delta_a}{\lambda_a}\right)^{-1}  ,&
    \Delta_a T^* \gg 1 .
   \end{cases}
 \end{equation}
 As expected, this ratio increases with the mutation rate $v$ and decreases with the aneuploidy rate $u$.
 In the first case, $\abs{\Delta_a}/\left(u\lambda_a\right)$ is  the ratio of the expected time for an aneuploid lineage to appear, $1/\left(u\lambda_a\right)$, and the expected time until that lineage disappears, $1/\abs{\Delta_a}$.
 In the third case, $\left(v \frac{\Delta_m}{\lambda_m}\right) / \left(u \frac{\Delta_a}{\lambda_a}\right)$ is the ratio of the rates of formation of resistant mutants that avoid extinction and partially resistant aneuploids that avoid extinction.
-In the second case, $\frac{1}{u}\left(v \cdot \frac{\Delta_m}{\lambda_m}\right)^{1/2}=\sqrt{\frac{\Delta_a}{u\lambda_a} \cdot v \frac{\Delta_m}{\lambda_m} \cdot \left(u\frac{\Delta_a}{\lambda_a}\right)^{-1}}$, which is the geometric mean of the first and third cases.
+In the second case, $\frac{1}{u}\left(v  \frac{\Delta_m}{\lambda_m}\right)^{1/2}=\sqrt{\frac{\Delta_a}{u\lambda_a}  v \frac{\Delta_m}{\lambda_m}  \left(u\frac{\Delta_a}{\lambda_a}\right)^{-1}}$, which is the geometric mean of the first and third cases.
 
-Interestingly, increasing both the aneuploid division rate, $\lambda_a$, and the aneuploid death rate, $\mu_a$, such that the growth rate $\Delta_a$ remains constant, leads to decreases in $T^*$, and therefore to the second case. In this case, increasing the division rate $\lambda_a$ should also increase the mutation rate $v\lambda_a$ in aneuploid cells, as mutations mostly occur during division, so overall the threshold tumor size $N_a^*$ is unaffected by the division rate $\lambda_a$ (i.e., $d \lambda_a T^*/d\lambda_a = 0$). Thus, if aneuploid cells rapidly die due to the drug but compensate by rapidly dividing, further increasing  the division rate will \emph{not} facilitate adaptation. % NOTE this is the kind of conclusions we want to drive home
+Interestingly, increasing both the aneuploid division rate, $\lambda_a$, and the aneuploid death rate, $\mu_a$, such that the growth rate $\Delta_a$ remains constant, leads to decreases in $T^*$, pushing the system to the second case. In this case, increasing the division rate $\lambda_a$ should also increase the mutation rate $v\lambda_a$ in aneuploid cells, as mutations mostly occur during division, so overall the threshold tumor size $N_a^*$ is unaffected by the division rate $\lambda_a$ (i.e., $d \lambda_a T^*/d\lambda_a = 0$). Thus, if aneuploid cells rapidly die due to the drug but compensate by rapidly dividing, further increasing  the division rate will \emph{not} facilitate adaptation. % NOTE this is the kind of conclusions we want to drive home
 This is consistent with experimental findings where aneuploidy confers resistance by decreasing the division rate~\citep{replogle2020aneuploidy}.
 
-We can categorize tumors by their size: small tumors with size $N<N_a^*$, intermediate tumors with size $N_a^*<N<N_m^*$, and large tumors with size $N>N_m^*$ .
-For the parameter values in \Cref{table1} with $\lambda_a=0.0899,\mu_w=0.14, u=10^{-2}, v=10^{-7}$, we are in the tolerant aneuploid case, and substituting in \cref{eq:N_a,eq:N_m}, we have $N_a^* \approx 4.4 \cdot 10^6$ and $N_m^* \approx 4 \cdot 10^7$.
-Hence, we obtain the ratio $N^*_a/N^*_m \approx 0.11$ (\cref{eq:N_ratio}), that is, aneuploidy reduces the threshold tumor size by approximately 90\% 
-Interestingly, the threshold between small and intermediate tumors, $N_a^*$, is similar to the tumor detection threshold of $4.19 \cdot 10^6$ cells for a wide variety of tumors as reported by \citet{avanzini2019cancer}.
+We can categorize tumors by their size: small tumors with size $N<N_a^*$ that are unlikely to survive treatment, intermediate tumors with size $N_a^* < N < N_m^*$ that rely on aneuploidy for evolutionary rescue, and large tumors with size $N > N_m^*$ that could be evolutionarily rescued even without aneuploidy.
+For the parameter values in \Cref{table1} with $\lambda_a=0.0899,\mu_w=0.14, u=10^{-2}, v=10^{-7}$, we are in the tolerant aneuploid case, and substituting in \cref{eq:N_a,eq:N_m}, we have $N_a^* \approx 4 \times 10^6$ and $N_m^* \approx 4 \times 10^7$.
+Hence, we obtain the ratio $N^*_a/N^*_m \approx 0.11$ (\cref{eq:N_ratio}), that is, aneuploidy reduces the threshold tumor size by approximately 90\%.
+Interestingly, the threshold between small and intermediate tumors, $N_a^*$, is similar to the tumor detection threshold of $4 \times 10^6$ cells for a wide variety of tumors as reported by \citet{avanzini2019cancer}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph*{Density-dependent growth.}
@@ -387,16 +389,16 @@ Therefore, the ratio of threshold tumor size with standing generation variation,
 Comparing the above approximation to results of stochastic evolutionary simulations, we find that the approximations perform very well (\Cref{rescue_denovo}).  % TODO which approximations? unclear ok
 Standing genetic variation will drive evolutionary rescue to the drug if wildtype growth rate $\Delta_w$ is very negative due to a stronger effect of the drug on sensitive cells, or if the aneuploidy cost $s$ is very small due to a low cost of aneuploidy in the pre-drug conditions.
 In contrast, de-novo aneuploid cells will have a greater contribution to rescue if the aneuploidy cost, $s$, is large, the effect of the drug is weak ($\Delta_w$ is small), or if the drug induces the appearance of aneuploid cells ($u > \tilde u$).
-For example, with  $\lambda_w=0.1,\mu_w=0.14, u=10^{-2}, \tilde{u}=10^{-3}, s=7.3\cdot10^{-3}$, the ratio of the threshold tumor sizes for standing vs de-novo variation is $\tilde{N}^*_a/N^*_a \approx 1.825$, which means that de-novo genetic variation is  the main driver of evolutionary rescue.
+For example, with  $\lambda_w=0.1,\mu_w=0.14, u=10^{-2}, \tilde{u}=10^{-3}, s=7.3\times10^{-3}$, the ratio of the threshold tumor sizes for standing vs de-novo variation is $\tilde{N}^*_a/N^*_a \approx 1.825$, which means that de-novo genetic variation is  the main driver of evolutionary rescue.
 
 Using \cref{eq:N_a,eq:N_m,eq:Nsgv}, we can find the ratio of threshold tumor size for rescue via standing genetic variation  to the threshold for direct mutation,
 \begin{equation} \label{eq:N_sgv_ratio}
-\frac{\tilde{N}^*_a}{N^*_m}=\frac{\tilde{N}^*_{a}}{N^*_{a}} \cdot \frac{N^*_a}{N^*_m} \approx \frac{s}{\abs{\Delta_w}}\begin{cases}
+\frac{\tilde{N}^*_a}{N^*_m}=\frac{\tilde{N}^*_{a}}{N^*_{a}} \frac{N^*_a}{N^*_m} \approx \frac{s}{\abs{\Delta_w}}\begin{cases}
     \frac{\abs{\Delta_a}}{\tilde{u}\lambda_a} ,&
   \Delta_a T^* \ll -1 ,\\ 
-  \frac{1}{\tilde{u}}\left(v \cdot \frac{\Delta_m}{\lambda_m}\right)^{1/2} ,&
+  \frac{1}{\tilde{u}}\left(v \frac{\Delta_m}{\lambda_m}\right)^{1/2} ,&
   -1 \ll \Delta_a T^* \ll 1  ,\\ 
-  v \frac{\Delta_m}{\lambda_m} \cdot \left(\tilde{u}\frac{\Delta_a}{\lambda_a}\right)^{-1}  ,&
+  v \frac{\Delta_m}{\lambda_m} \left(\tilde{u}\frac{\Delta_a}{\lambda_a}\right)^{-1}  ,&
    \Delta_a T^* \gg 1 .
   \end{cases}
 \end{equation}
@@ -419,7 +421,7 @@ The mean rescue time with aneuploidy for small and large tumors follows these ex
 \tau_a \approx \begin{cases}
     \frac{1}{\abs{\Delta_w}}+\frac{1}{\abs{\Delta_a}} ,&
  N \ll N_a^* ,\\ 
-  \frac{1}{v\lambda_w N} \cdot  \frac{\lambda_m}{\Delta_m} ,& % I replaced pm with 𝜆𝑚 − 𝜇𝑚 / 𝜆𝑚
+  \frac{1}{v\lambda_w N}   \frac{\lambda_m}{\Delta_m} ,& % I replaced pm with 𝜆𝑚 − 𝜇𝑚 / 𝜆𝑚
   N \gg N_m^* .
   \end{cases}
 \end{equation}
@@ -489,13 +491,13 @@ Additionally, we can test our model's predictions with data from patients. Given
 \paragraph{Directions of future research}
 Even though our model has been designed for cancer it can be extended to understand evolutionary rescue in different biological contexts, for example, how yeast subject to stress can overcome extinction with the help of aneuploidy~\citep{pompei2023fitness}. Additionally, the heterogeneity of aneuploidy is a fact the we did not account for, as not all the aneuploidy lineages generated have the same growth rate $\Delta_a$. This can be corrected by  fixing the aneuploidy death rates and sampling the aneuploidy growth rates from a distribution $f\left(\Delta_a|\mu_a\right)$~\citet{martin2013probability}. Furthermore, tumor heterogeneity is also a factor for pre-existing genetic variation where the fitness of the aneuploid cells can be drawn from a distribution upon which selection acts when the tumor is exposed to a strong stress.
 
-We have assumed that cancer cell lineages are independent of each other. However, this may not be the case, as cancer cells compete for resources (e.g., blood supply). Nevertheless, we find that when the effective carrying capacity is not too large ($K\sim10^8, K_e\sim10^6$) 
-our approximation for the probability of evolutionary rescue agrees with results of stochastic simulations with density-dependent growth  (\Cref{LogisticPlot}).
-Future work may focus on scenarios with small carrying capacity by analyzing density-dependent branching processes~\citep{klebaner1997population,harris1963theory}. 
-
-Solid tumors are spatially heterogeneous with different genotypes inhabiting cellular niches and immune infiltration impacting growth in affected regions~\citep{varrone2023cellcharter,galon2010immune}. This has the potential to impact the probability of overcoming chemotherapy~\citep{martens2011spatial}. Future work should take into consideration the spatial structure of the tumor and its effect on the probability of evolutionary rescue.
+We have assumed that cancer cell lineages are independent of each other,
+and have verified that this approximation is accurate under simple logistic growth. 
+However, this neglects potential effects of spatial structure and local interactions, which may be very important in solid tumors.
+Such tumors can be spatially heterogeneous with different genotypes inhabiting cellular niches and immune infiltration impacting growth in affected regions \citep{varrone2023cellcharter,galon2010immune}. This has the potential to impact the probability of overcoming chemotherapy \citep{martens2011spatial}. Future work should take into consideration the spatial structure of the tumor and its effect on the probability of evolutionary rescue.
 
 An additional limitation of our model is the choice of parameters which are based on a specific set of assumptions which might not be true for many tumor. As a result, incorporating a wider distribution of parameters would be a beneficial extension for our model.
+
 \paragraph{Conclusions}
 
 Our paper analyzed the role that aneuploidy plays in tumor adaptation to the effects of anti-cancer drugs. Our study quantitatively confirms that aneuploidy plays an important role in tumors overcoming exposure to chemotherapeutic drugs when the tumor size is small or intermediate. Very large tumors can escape anti-cancer drugs through direct mutation while smaller ones are able to obtain the beneficial mutation through an aneuploid intermediary (\Cref{rescue_prob}). As a result, therapies which increase the rate of aneuploidy in tumors in order to combat cancer might have an adverse effect on patient outcomes.
@@ -511,10 +513,20 @@ the US–Israel Binational Science Foundation (BSF 2021276, YR),
 Minerva Stiftung Center for Lab Evolution (YR), 
 Ela Kodesz Institute for Research on Cancer Development and Prevention (RS),
 the Simons Foundation (Investigator in Mathematical Modeling of Living Systems $\#508600$, DBW),
-the Sloan Foundation Research Fellowship (FG-2021-16667, DBW),
-the NSF grant ($\#2146260$, DBW),
+the Sloan Foundation (Research Fellowship FG-2021-16667, DBW),
+the National Science Foundation (grant $\#2146260$, DBW),
 % TODO add funding for Uri
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{References}
+
+\nolinenumbers
+%\bibliographystyle{unsrtnat}
+\bibliographystyle{agsm}
+\bibliography{evo2022}
+
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -533,7 +545,7 @@ the NSF grant ($\#2146260$, DBW),
     $u$ & Missegregation rate& $10^{-3}-10^{-2}$ & 1$\slash$cell division  & \citet{bakker2023predicting} \\ \hline
     $v$ & Mutation rate& $10^{-9}-10^{-7}$ &  1$\slash$cell division  & \citet{bozic2013evolutionary,loeb2001mutator} \\  \hline
     $\tilde{u}$ & Missegregation rate in the drug free environment$^\ast$& $10^{-3}$ & 1$\slash$cell division  & - \\ \hline
-    $s$ & Selection coefficient of aneuploidy in the drug free environment& $7.3\cdot10^{-3}$ &  1/days   & \citet{lukow2021chromosomal} \\  
+    $s$ & Selection coefficient of aneuploidy in the drug free environment& $7.3 \times 10^{-3}$ &  1/days   & \citet{lukow2021chromosomal} \\  
     \hline
   \end{tabular}
 \caption{\textbf{Model parameters.} 
@@ -663,13 +675,6 @@ Parameters: $\lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,
 \label{proliferationFigure}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section*{References}
-
-\nolinenumbers
-%\bibliographystyle{unsrtnat}
-\bibliographystyle{agsm}
-\bibliography{evo2022}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -730,15 +735,15 @@ p_w
 \end{align}
 Now $u v$ is very small, and if we use the fact that $v \ll u$, we have:
 \begin{equation}\label{eq:pw_parttolerant}
-p_w \approx \frac{u\lambda_w}{\abs{\Delta_w}} \cdot \frac{\Delta_a}{\lambda_a} .
+p_w \approx \frac{u\lambda_w}{\abs{\Delta_w}}  \frac{\Delta_a}{\lambda_a} .
 \end{equation}
 However, if aneuploidy is very rare such that
 \begin{align*}
-\frac{u\lambda_w\Delta_a}{\lambda_a}<\frac{v\lambda_w\Delta_m}{\lambda_m}\Rightarrow u\lambda_a<\frac{v\lambda_a^2\Delta_m}{\lambda_m}\cdot\frac{1}{\Delta_a}<\frac{v\lambda_a^2\Delta_m}{\lambda_m}\cdot\frac{1}{\sqrt{4\lambda_a^2 v p_m}}\Rightarrow u\lambda_a<T^*,
+\frac{u\lambda_w\Delta_a}{\lambda_a}<\frac{v\lambda_w\Delta_m}{\lambda_m}\Rightarrow u\lambda_a<\frac{v\lambda_a^2\Delta_m}{\lambda_m} \frac{1}{\Delta_a}<\frac{v\lambda_a^2\Delta_m}{\lambda_m} \frac{1}{\sqrt{4\lambda_a^2 v p_m}}\Rightarrow u\lambda_a<T^*,
 \end{align*}
 where $T^* = (4 v \lambda_a^2 \Delta_m/\lambda_m)^{-1/2}$ and in the second inequality we used the fact that $\Delta_a^2 > 4\lambda_a^2 v p_m$. In this case adaptation is through direct mutation and:
 \begin{equation*}
-p_w \approx \frac{v\lambda_w}{\abs{\Delta_w}} \cdot \frac{\Delta_m}{\lambda_m} .
+p_w \approx \frac{v\lambda_w}{\abs{\Delta_w}}  \frac{\Delta_m}{\lambda_m} .
 \end{equation*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Scenario 2: Aneuploid cells are tolerant.} 
@@ -762,7 +767,7 @@ p_w&\approx-\frac{v\lambda_wp_m+u\lambda_wp_a}{\lambda_w-\mu_w-u\lambda_wp_a-v\l
 \end{equation}
 If we assume that $u\lambda_a>\abs{\Delta_a}$ then we have:
 \begin{equation}\label{eq:pw_tolerant}
-p_w\approx\frac{u\lambda_w}{\abs{\Delta_w}}\cdot\frac{v\lambda_a}{\abs{\Delta_a}}\cdot\frac{\Delta_m}{\lambda_m}.
+p_w\approx\frac{u\lambda_w}{\abs{\Delta_w}} \frac{v\lambda_a}{\abs{\Delta_a}} \frac{\Delta_m}{\lambda_m}.
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -800,7 +805,7 @@ Using the fact that
 \end{equation*}
 and $v\ll u$ we obtain:
 \begin{equation}\label{eq:pw_partrest}
-p_w\approx\frac{u\lambda_w}{\abs{\Delta_w}}\cdot\sqrt{\frac{v\lambda_a\Delta_m}{\lambda_m}}.
+p_w\approx\frac{u\lambda_w}{\abs{\Delta_w}} \sqrt{\frac{v\lambda_a\Delta_m}{\lambda_m}}.
 \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -815,11 +820,11 @@ Substituting \cref{eq:pw_parttolerant,eq:pw_partrest,eq:pw_tolerant} into \cref{
 \begin{aligned}
 &\presc \approx \\
   &\begin{cases}
-   1-\exp\left[-\frac{u\lambda_a}{\abs{\Delta_w}}\cdot\frac{v\lambda_w}{\abs{\Delta_a}}\cdot\frac{\Delta_m}{\lambda_m}\cdot N\right] ,&
+   1-\exp\left[-\frac{u\lambda_a}{\abs{\Delta_w}} \frac{v\lambda_w}{\abs{\Delta_a}} \frac{\Delta_m}{\lambda_m}  N\right] ,&
    \Delta_aT^*\ll-1 ,\\
-   1-\exp\left[-\frac{u\lambda_w}{\abs{\Delta_w}}\cdot\sqrt{\frac{v\lambda_a\Delta_m}{\lambda_m}}\cdot N\right] ,&
+   1-\exp\left[-\frac{u\lambda_w}{\abs{\Delta_w}} \sqrt{\frac{v\lambda_a\Delta_m}{\lambda_m}} N\right] ,&
   -1\ll\Delta_aT^*\ll1 ,\\
-   1-\exp\left[-\frac{u\lambda_w}{\abs{\Delta_w}} \cdot \frac{\Delta_a}{\lambda_a}\cdot N\right] ,&
+   1-\exp\left[-\frac{u\lambda_w}{\abs{\Delta_w}}  \frac{\Delta_a}{\lambda_a}  N\right] ,&
    1\ll\Delta_aT^*.
   \end{cases}
 \end{aligned}
