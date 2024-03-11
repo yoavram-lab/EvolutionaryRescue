@@ -257,12 +257,12 @@ To parametrize the simulations, we assume that the cells under consideration are
  Aneuploid death rate $\mu_a$ is set to the same value as the mutant death rates, $\mu_m=0.09$ per day, given that aneuploidy increases resistance to the drug, such as cisplatin, by antagonizing cell division \citep{replogle2020aneuploidy}. Aneuploid division rate is selected such that the aneuploid growth rate $\Delta_w\ll\Delta_a\ll\Delta_m$ which means that $0.06 \le \lambda_a \le 0.1$. For most of our simulations we use $\lambda_a=0.0899$ per day, such that aneuploidy can only act as a \emph{stepping stone} for the generation of the mutant that rescues the cancer cell population.
 
 We assume the mutation rate is $10^{-7}$ per gene per cell division \citep{loeb2001mutator} and since we assume that a single target gene confers resistance to the drug, we use $v=10^{-7}$ per cell division. 
-\citet{bakker2023predicting} determined that the missegregation rate must be between $10^{-3}-10^{-2}$ per chromosome per cell division. Given that a duplication is beneficial for cancer resistance only in one or two chromosomes (see details next paragraph) we use $u=10^{-2}$ per cell division.
-For the missegregation rate in the drug-free environment, $\tilde{u}$, we use the lower-end value of $\tilde{u}=10^{-3}$ per cell division, as some drugs increase the rate of aneuploidy~\citep{wang2019molecular,mason2017functional}.
+\citet{bakker2023predicting} determined that the missegregation rate must be between $10^{-3}-10^{-2}$ per chromosome per cell division with the optimal value being $6.21\times10^{-3}$ per chromosome per cell division. \citet{ippolito2021gene} observed that trisomy in Chr II and VI are most likely to confer increased resistance against the chemotherapeutic agent vemurafenib for A375 cells. We assume that if a tumor is aneuploid then it most likely has trisomy \citep{gisselsson2010generation} in the pre-treatment environment and that cells with more than one trisomy are very unlikely to survive. Additionally, we assume that all trisomies are equally likely and, as a result, we select $u=10^{-2}$ per cell division. For the missegregation rate in the drug-free environment, $\tilde{u}$, we use the lower-end value of $\tilde{u}=2\times10^{-3}$ per cell division, as some drugs increase the rate of aneuploidy~\citep{wang2019molecular,mason2017functional}.
 
 The fitness cost $s$ of aneuploidy before the onset of therapy is difficult to estimate as we are interested in a specific type of aneuploidy which improves the fitness of cancer cells in an environment altered by drugs.
-We derive $s$ by using the formula $s=\tilde{u}\lambda_w / f$, where $f$ is the fraction of aneuploid cancer cells. To estimate $f$, we note that \citet{lukow2021chromosomal} mixed together wildtype and aneuploid A375 melanoma cells at $50:50$ ratio, cultured them in drug-free environment and observed the ratio evolve as a function of time with the aneuploid cells declining to $15\%$ after 24 days. \citet{ippolito2021gene} observed that trisomy in Chr II and VI are most likely to confer increased resistance against the chemotherapeutic agent vemurafenib for A375 cells. We assume that if a tumor is aneuploid then it most likely has trisomy \citep{gisselsson2010generation} in the pre-treatment environment and that cells with more than one trisomy are very unlikely to survive. Additionally, we assume that all trisomies are equally likely and, as a result, we obtain the fraction of cancer cells with favorable aneuploidy as $f=2/22\times0.15\approx 0.0136$ (i.e. $1.36\%$ of pre-treatment cancer cells have the beneficial aneuploidy). This gives us a fitness cost of $s= 7.3\times10^{-3}$ per day.
-\daniel{THIS DERIVATION DOESN'T MAKE SENSE. FROM THE LUKOW EXPERIMENT WE CAN DIRECTLY ESTIMATE THE FITNESS COST AS $s \approx \ln(0.5/0.15)/24 \approx .05$ PER DAY. DOING IT MORE CAREFULLY (LOGISTIC RATHER THAN EXPONENTIAL) GIVES ABOUT THE SAME ANSWER.}
+We derive $s$ by using the formula $s=\tilde{u}\lambda_w / f$, where $f$ is the fraction of aneuploid cancer cells. To estimate $f$, we note that \citet{lukow2021chromosomal} mixed together wildtype and aneuploid A375 melanoma cells at $50:50$ ratio, cultured them in drug-free environment and observed the ratio evolve as a function of time with the aneuploid cells declining to $15\%$ after 24 days. We obtain the fitness cost $s$ using the formula $s=\abs{\log\left[0.15/(1-0.15)\right]/24}\approx0.07$ per day \citep{chevin2011measuring}. As a result, the fraction of cancer cells with ``beneficial'' aneuploidy is $f=2\times10^{-3}\times10^{-1}/0.07=0.284\%$ (i.e. $0.284\%$ of pre-treatment cancer cells have the ``beneficial'' aneuploidy).
+
+
 We note that when we refer to wildtype cancer cells we include those cells that have any aneuploidy except trisomy in Chr II and VI as those are the aneuploid cells which are hypothesized to have higher fitness in the environment altered by drugs such as vemurafenib.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -364,7 +364,7 @@ This is consistent with experimental findings where aneuploidy confers resistanc
 
 We can categorize tumors by their size: small tumors with size $N<N_a^*$ that are unlikely to survive treatment, intermediate tumors with size $N_a^* < N < N_m^*$ that rely on aneuploidy for evolutionary rescue, and large tumors with size $N > N_m^*$ that could be evolutionarily rescued even without aneuploidy.
 For the parameter values in \Cref{table1} with $\lambda_a=0.0899,\mu_w=0.14, u=10^{-2}, v=10^{-7}$, we are in the tolerant aneuploid case, and substituting in \cref{eq:N_a,eq:N_m}, we have $N_a^* \approx 4 \times 10^6$ and $N_m^* \approx 4 \times 10^7$.
-Hence, we obtain the ratio $N^*_a/N^*_m \approx 0.11$ (\cref{eq:N_ratio}), that is, aneuploidy reduces the threshold tumor size by approximately 90\%.
+Hence, we obtain the ratio $N^*_a/N^*_m \approx 0.11$ (\cref{eq:N_ratio}), that is, aneuploidy reduces the threshold tumor size by approximately 89\%.
 Interestingly, the threshold between small and intermediate tumors, $N_a^*$, is similar to the tumor detection threshold of $4 \times 10^6$ cells for a wide variety of tumors as reported by \citet{avanzini2019cancer}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -381,14 +381,14 @@ In the above we assumed that at the onset of drug treatment, the initial tumor c
 However, aneuploidy is likely produced even before onset of treatment at some rate $\tilde{u}$ and confers a deleterious fitness effect $s$ in the absence of the drug \citep{replogle2020aneuploidy,giam2015aneuploidy}. Furthermore, the aneuploidy rate in the presence of drugs is likely higher than in their absence, $\tilde{u} < u$ \citep{wang2019molecular,mason2017functional}.
 But if the number of cells in the tumor $N$ is large (as expected if the tumor is treated with a drug), there may already be a fraction $f \approx \tilde{u}\lambda_w/s$ of aneuploid cells in the population (here we assume that the drug affects the wildtype death rate but no the division rate and therefre use $\lambda_w$ for the wildtype division rate in the drug-free enviornment).
 
-Therefore, the ratio of threshold tumor size with standing generation variation, $\tilde{N}^*_{a}$, is similar to the ratio with de-novo variation, $N^*_a$, except that the sensitive growth rate $\abs{\Delta_w}$ is replaced with the aneuploidy cost $s$, such that 
+Therefore, the threshold tumor size with standing generation variation, $\tilde{N}^*_{a}$, is similar to the threshold with de-novo variation, $N^*_a$, except that the sensitive growth rate $\abs{\Delta_w}$ is replaced with the aneuploidy cost $s$, such that
 \begin{equation}\label{eq:Nsgv}
 \frac{\tilde{N}^*_{a}}{N^*_{a}} = \frac{u}{\tilde{u}} \; \frac{s}{\abs{\Delta_w}}.
 \end{equation}
 Comparing this approximation of $\tilde{N}^*_{a}/N^*_{a}$ to results of stochastic simulations, we find that the approximations perform very well (\Cref{rescue_denovo}). 
 Standing genetic variation will drive evolutionary rescue to the drug if wildtype growth rate $\Delta_w$ is very negative due to a strong effect of the drug on sensitive cells, or if the cost aneuploidy cost in the drug-free environment, $s$, is small.
 In contrast, de-novo aneuploid cells will have a greater contribution to rescue if the aneuploidy cost $s$ is large, the effect of the drug on sensitive cells is weak ($\Delta_w$ is close to zero), or if the drug induces the appearance of aneuploid cells ($u > \tilde u$).
-For example, with  $\lambda_w=0.1,\mu_w=0.14, u=10^{-2}, \tilde{u}=10^{-3}, s=7.3\times10^{-3}$, the ratio of the threshold tumor sizes for standing vs de-novo variation is $\tilde{N}^*_a/N^*_a \approx 1.825$, which means that de-novo genetic variation is  the main driver of evolutionary rescue.
+For example, with  $\lambda_w=0.1,\mu_w=0.14, u=10^{-2}, \tilde{u}=2\times10^{-3}, s=0.07$, the ratio of the threshold tumor sizes for standing vs de-novo variation is $\tilde{N}^*_a/N^*_a \approx 8.75$, which means that de-novo genetic variation is  the main driver of evolutionary rescue.
 
 Using \cref{eq:N_a,eq:N_m,eq:Nsgv}, we can find the ratio of threshold tumor size for rescue via standing genetic variation  to the threshold for direct mutation,
 \begin{equation} \label{eq:N_sgv_ratio}
@@ -401,7 +401,7 @@ Using \cref{eq:N_a,eq:N_m,eq:Nsgv}, we can find the ratio of threshold tumor siz
    \Delta_a T^* \gg 1 .
   \end{cases}
 \end{equation}
-Evolutionary rescue through direct mutation is more likely if the cost of aneuploidy $s$ is very large or the effect of the drug $\Delta_w$ is small.  In contrast, standing genetic variation will drive adaptation if the pre-treatment chromosome missegreagation rate $\tilde{u}$ is very large. The ratio does not depend on the rate of chromosome missegregation induced by the drug $u$. However, if the aneuploid growth rate $\Delta_a$ increases, then evolutionary rescue is driven by standing genetic variation. For the parameter values of  $\lambda_w=0.1, \lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, \tilde{u}=10^{-3}, v=10^{-7}$, we are in the tolerant aneuploid case and obtain the ratio $\tilde{N}^*_a/N^*_m \approx 0.356$, which means that standing genetic variation reduces the threshold tumor size by approximately $65\%$. Therefore, standing genetic variation does not drive evolution of drug resistance when compared to de-novo aneuploidy, but it does offer an advantage when compared with direct mutation.
+Evolutionary rescue through direct mutation is more likely if the cost of aneuploidy $s$ is very large or the effect of the drug $\Delta_w$ is small.  In contrast, standing genetic variation will drive adaptation if the pre-treatment chromosome missegreagation rate $\tilde{u}$ is very large. The ratio does not depend on the rate of chromosome missegregation induced by the drug $u$. However, if the aneuploid growth rate $\Delta_a$ increases, then evolutionary rescue is driven by standing genetic variation. For the parameter values of  $\lambda_w=0.1, \lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, \tilde{u}=10^{-3}, v=10^{-7}$, we are in the tolerant aneuploid case and obtain the ratio $\tilde{N}^*_a/N^*_m \approx 0.9625$, which means that standing genetic variation reduces the threshold tumor size by approximately $4\%$. Therefore, standing genetic variation does not drive evolution of drug resistance when compared to de-novo aneuploidy, but it does offer a slight advantage when compared with direct mutation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -433,9 +433,9 @@ For large tumors ($N \gg N_m^*$), the mean evolutionary rescue time (\cref{eq:As
  Increasing the per division mutation rate, $v$, leads to faster appearance of a rescue mutation and hence reduced mean rescue time. 
 Finally, increasing the tumor size leads to shorter mean rescue time, as there are more wildtype cells that can mutate to become resistant. 
 
-When a fraction $f\approx 1.36\%$ of the initial cancer cell population is aneuploid, the mean evolutionary rescue time (\cref{meantimet2SGV}; \Cref{SGVEvolutionaryRescueTimeComplete}. We note that standing genetic variation reduces the mean evolutionary rescue time only for intermediary sized tumors but not for large or small tumors. % WHAT is the purpose of this sentence?
+When a fraction $f\approx 0.284\%$ of the initial cancer cell population is aneuploid we want to know whether the mean evolutionary rescue time is affected by the standing genetic variation. For this purpose we calculate  $\tau_a$ (see \cref{meantimet2SGV}) and compare our result with simulations in  \Cref{SGVEvolutionaryRescueTimeComplete}. We note that standing genetic variation does not have a significant effect on the mean evolutionary rescue time. % WHAT is the purpose of this sentence? ok
 
-In Appendix E we derive the probability that by time $t$ a successful mutant has been generated. \Cref{cdffig}A show the agreement between our formula and simulation results for the case when aneuploidy is present and when it is absent.  We observe that aneuploidy start to have an effect on adaptation for timescales greater then 100 days. % WHAT is the purpose of this sentence?
+In Appendix E we derive the probability that by time $t$ a successful mutant has been generated. \Cref{cdffig}A show the agreement between our formula and simulation results for the case when aneuploidy is present and when it is absent. We observe that aneuploidy starts to have an effect on adaptation for timescales greater then $1/\Delta_a\approx100$ days after which no more rescue mutations are generated through direct mutation. This shows that rescue mutations are generated through aneuploidy at latter timescales then direct mutation and, as a consequence, aneuploidy increases the \emph{window of opportunity} for evolutionary rescue.   % WHAT is the purpose of this sentence? ok
 
 
 \paragraph{Recurrence time.}
@@ -449,19 +449,22 @@ We next approximate the mean time for the population of mutant cancer cells to r
   N \gg N_m^* .
   \end{cases}
 \end{equation}
-\Cref{proliferationFigure} shows the agreement between our approximations and simulations.
-For small tumors ($Nt \ll 10^8$), the mean recurrence time can be approximated as the sum of the mean time for the first rescue mutation to appear and the mean time for the lineage generated by that mutation to reach size $N$. The mean recurrence time grows logarithmically with tumor size $N$ and is the same order of magnitude as the mean evolutionary rescue time. Increasing the mutant growth rate $\Delta_m$ leads to shorter recurrence times while increasing the wildtype and aneuploid growth rates, $\Delta_w$ and $\Delta_a$ respectively, increases the recurrence time.
-For large tumors ($N \gg 10^8$), the dynamics of the number of mutant cells is deterministic and the mean recurrence time becomes constant.
+\Cref{proliferationFigure,ProliferationTimeLarge} shows the agreement between our approximations and simulations.
+For small tumors ($N \ll N_a^*$), the mean recurrence time can be approximated as the sum of the mean time for the first rescue mutation to appear and the mean time for the lineage generated by that mutation to reach size $N$. The mean recurrence time grows logarithmically with tumor size $N$ and is the same order of magnitude as the mean evolutionary rescue time. Increasing the mutant growth rate $\Delta_m$ leads to shorter recurrence times while increasing the wildtype and aneuploid growth rates, $\Delta_w$ and $\Delta_a$ respectively, increases the recurrence time.
+For large tumors ($N \gg N_m^*$), the dynamics of the number of mutant cells is deterministic and the mean recurrence time becomes constant (and independent of the initial tumor size $N$).
 Increasing either the mutant growth rate $\Delta_m$ or the mutation rate $v$ leads to a decrease in the time for the tumor to rebound to its initial size.
 In addition, drugs that significantly increase the wildtype death rate $\mu_w$ and do not affect the division rate $\lambda_w$ delay cancer relapse.
-Consequently, patients treated with such drugs require a longer period of monitoring to guarantee the effectiveness of the treatment.
-% Remus the next paragraphs look like you wanted to find approximations so you did, you reference them here, but the results are buried in the technical text: WHAT IS IT THAT YOU WANT US TO LEARN from this? 
-In Appendix F we derive the probability that mutant cancer cell population reaches $N$ at time $t$. \Cref{cdffig}B shows agreement between our approximations and stochastic simulations for various values of $N$. Additionally, we derived the distribution of the recurrence time and plotted our result in \Cref{KMdistribution} alongside simulations for the case $N=10^6$ (small tumor) and we note that the distribution is wide and rights-skewed. It is highly unlikely to observe the recurrence of tumors at times smaller then $\frac{1}{\Delta_m}\log\frac{\Delta_m-\Delta_w}{v\lambda_w}\approx1542$ days for the parameter values $\lambda_w=0.1, \lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$ and independent of initial tumor size $N$ (\Cref{cdffig}B). 
+Consequently, patients treated with such drugs require a longer period of monitoring to guarantee the effectiveness of the treatment. 
 
-The recurrence can also be defined as the time necessary for the tumor size to reach a detection threshold $M$. We derive the mean recurrence time to detection size $M=10^7$ in appendix \ref{sec:appendix_recurrence_time} and plot in \Cref{RecurrencePlot} with simulations. We observe that  for small and intermediate sized tumors the effect of the detection size is negligible when compared to $\tau_a^r$. % WHAT DOES THAT MEAN?
+We notice that, for small and large tumors, the asymptotic expressions for the mean recurrence time are independent of the chromosome missagregation rate $u$ and, as a result, the rate at which the chemotherapeutic drug induces aneuploidy has no effect on the time necessary for the tumor to rebound to its initial size $N$ when $N \ll N_a^*$ or $N \gg N_m^*$.
+% Remus the next paragraphs look like you wanted to find approximations so you did, you reference them here, but the results are buried in the technical text: WHAT IS IT THAT YOU WANT US TO LEARN from this? ok
+
+In Appendix F we derive the probability that mutant cancer cell population has not reached size $N$ at time $t$. \Cref{cdffig}B shows agreement between our approximations and stochastic simulations for various values of $N$. Additionally, we derived the distribution of the recurrence time and plotted our result in \Cref{KMdistribution} alongside simulations for the case $N=10^6$ (small tumor) and we note that the distribution is wide and rights-skewed. It is highly unlikely to observe the recurrence of tumors at times smaller then $\frac{1}{\Delta_m}\log\frac{\Delta_m-\Delta_w}{v\lambda_w}\approx1542$ days for the parameter values $\lambda_w=0.1, \lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$ and independent of initial tumor size $N$ (\Cref{cdffig}B). 
+
+The recurrence can also be defined as the time necessary for the tumor size to reach a detection threshold $M$. We derive the mean recurrence time to detection size $M=10^7$ in appendix \ref{sec:appendix_recurrence_time} and plot in \Cref{RecurrencePlot} with simulations. We observe that  for small and intermediate sized tumors the effect of the detection size $M$ on $\tau_a^{r,M}$ is negligible (i.e. $\tau_a^r\approx\tau_a^{r,M}$ for $N<N_m^*$). % WHAT DOES THAT MEAN? ok
 However, for large tumors the mean recurrence time to detection size $M$ decreases logarithmically with tumor size $N$.
 
-Most clinical trials report data on the distribution of recurrence time measured from a varying time of surgery~\citep{avanzini2019cancer} with chemotherapy usually following after. % WHAT DOES "varying" mean here?
+Most clinical trials report data on the distribution of recurrence time measured from the time of surgery~\citep{avanzini2019cancer} with chemotherapy usually following after. % WHAT DOES "varying" mean here? ok
 Therefore, since only undetected secondary tumors are present at the time of the administration of the anti-cancer drug we lack knowledge of the size of the tumors and we cannot compare the empirical distributions to our predictions. However, we expect that the variability of secondary tumors to average out across large cohorts of patients and, as a result, we can use the mean recurrence time. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
@@ -550,8 +553,8 @@ the National Science Foundation (grant $\#2146260$, DBW),
     $\mu_m$ & Mutant death rate& 0.09 & 1/days  & \citet{bozic2013evolutionary,carlson2003tumor} \\ \hline
     $u$ & Missegregation rate& $10^{-3}-10^{-2}$ & 1$\slash$cell division  & \citet{bakker2023predicting} \\ \hline
     $v$ & Mutation rate& $10^{-9}-10^{-7}$ &  1$\slash$cell division  & \citet{bozic2013evolutionary,loeb2001mutator} \\  \hline
-    $\tilde{u}$ & Missegregation rate in the drug free environment$^\ast$& $10^{-3}$ & 1$\slash$cell division  & - \\ \hline
-    $s$ & Selection coefficient of aneuploidy in the drug free environment& $7.3 \times 10^{-3}$ &  1/days   & \citet{lukow2021chromosomal} \\  
+    $\tilde{u}$ & Missegregation rate in the drug free environment$^\ast$& $2\times10^{-3}$ & 1$\slash$cell division  & - \\ \hline
+    $s$ & Selection coefficient of aneuploidy in the drug free environment& $0.07$ &  1/days   & \citet{lukow2021chromosomal} \\  
     \hline
   \end{tabular}
 \caption{\textbf{Model parameters.} 
@@ -1039,7 +1042,7 @@ From  \cref{eqmNd} we obtain the distribution of the recurrence time conditional
 \begin{align}\label{distribution}
 f\left(t\right)&=\frac{d}{dt}\left[\frac{P\left(m_t\geq N\right)}{p_{rescue}}\right]=r'\left(t\right)\frac{\exp\left[-r\left(t\right)\right]}{p_{rescue}},
 \end{align}
-which we plot in Figure and compare with simulations. We note that in the case $N\gg\abs{\Delta_w}\abs{\Delta_a}/uv\lambda_w\lambda_ap_m$ the distribution becomes the Dirac $\delta$-function~\citep{barton1989elements}.
+which we plot in \Cref{KMdistribution} and compare with simulations. We note that in the case $N\gg\abs{\Delta_w}\abs{\Delta_a}/uv\lambda_w\lambda_ap_m$ the distribution becomes the Dirac $\delta$-function~\citep{barton1989elements}.
 %%%
 \section*{Appendix G: Bootstrapping}
 For the mean times the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $T$ 100 times; (2) we sample with replacement which we store in $T'$; (3) for each element of this sample we obtain $\tau=\mathbb{E}\left[T'\right]$; (4) we repeat steps (2)-(3) 100 times to obtain $\tau$ and we select the upper and lower limits such that $95\%$ of the values of $\tau$ lie in the interval given by the bounds.
@@ -1099,9 +1102,6 @@ Parameters: $N=10^6, \lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu
 \caption{The probability of evolutionary rescue (i.e. the probability that the population does not go to extinction), $\presc$, as a function of the initial tumor size, $N$. Dashed vertical line shows the threshold tumor size, above which the probability is very high. Blue dashed line represents the probability of evolutionary rescue as a function of $N$ without aneuploidy ($u=0$). The black line represents the case where a fraction $f=0\%$ of the initial tumor is aneuploid, the red line represents the case with $f=5\%$ and the green line represents the case with $f=50\%$. The dots represent simulations and the error bars represent $95\%$ confidence interval of the form $p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the fraction of simulations in which the tumor has adapted to the stress and $n=100$ is the number of simulations. Parameters: $\lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.}
 \label{rescue_prob_sgv}
 \end{figure}
-\end{appendices}
-
-
 %%%
 \begin{figure}
 \vspace*{1\baselineskip}
@@ -1123,7 +1123,7 @@ Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanpro
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/RecurrencePlot.pdf}
 \caption{The mean time for the mutant cell population to reach size $M$, where $M$ is the tumor detection size.
-Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanproliferationtime2}) is in agreement with simulation results (red markers with 95\% confidence intervals obtained with bootstrapping, see Appendix G) for small and intermediate values of $N$. Dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical green line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. Solid blue line represents the approximation \cref{meanproliferationtime2} with $\tau_a$ from \cref{eq:AsymptoticTimeRules} for $N<N_a^*$ and the solid green line  represents the approximation \cref{eq:t2det2} for $N>N_m^*$. The simulations converge to \cref{eq:t2det2} (green line) for large values of $N\gg N_m^*$.  Parameters: $\lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.}
+Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanproliferationtime2}) is in agreement with simulation results (red markers with 95\% confidence intervals obtained with bootstrapping, see Appendix G) for small and intermediate values of $N$. Dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical green line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. Solid blue line represents the approximation \cref{meanproliferationtime2} with $\tau_a$ from \cref{eq:AsymptoticTimeRules} for $N<N_a^*$ and the solid green line  represents the approximation \cref{eq:t2det2} for $N>N_m^*$. The simulations converge to \cref{eq:t2det2} (green line) for large values of $N\gg N_m^*$.  Parameters: $\lambda_w=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}, M=10^7$.}
 \label{RecurrencePlot}
 \end{figure}
 %%%
@@ -1131,8 +1131,9 @@ Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanpro
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/SGVEvolutionaryRescueTimeComplete.pdf}
 \caption{Shown is the mean time for appearance of a resistance mutation the leads to evolutionary rescue with aneuploidy ($u>0$). Black lines represent our inhomogeneous Poisson-process approximations (solid black line, \cref{meantimet2}; dashed black line \cref{meantimet2SGV}). Dashed black line is the  inhomogeneous Poisson-process approximation where a fraction $f$ of tumor is aneuploid at the onset of drug therapy which is in agreement with simulation results (red markers with 95\% confidence intervals obtained with bootstrapping, see Appendix G). Dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical green line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. Solid lines represents the approximations \cref{eq:AsymptoticTimeRules} ($N<N_a^*$ blue line and $N>N_m^*$ green line). 
-Parameters: $\lambda_w=0.1,\lambda_m=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7},f=1.36\%$.}
+Parameters: $\lambda_w=0.1,\lambda_m=0.0899,\lambda_m=0.1,\mu_w=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7},f=0.284\%$.}
 \label{SGVEvolutionaryRescueTimeComplete}
 \end{figure}
+\end{appendices}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
