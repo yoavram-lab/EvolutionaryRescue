@@ -609,7 +609,6 @@ D\\
 \textbf{Sample trajectories of the genotype frequencies.}
 (A) Without aneuploidy ($u=0$), evolutionary rescue is possible through direct mutation, and in most scenarios, the tumor will become extinct due to the drug. (B) When aneuploid cells are tolerant ($\Delta_a<0$), we observe, similar to A, direct mutation is the only path for evolutionary rescue. (C) When aneuploid cells are stationary ($\Delta_a\approx0$), we observe the appearance of mutant lineages even after the sensitive population has gone extinct, thus showing that stationary aneuploidy increases the probability of evolutionary rescue. (D) When aneuploid cells are partially resistant ($\Delta_a>0$), the tumor is rescued by the aneuploid cell population. Each plot shows 10 simulations of the number of sensitive, aneuploid, and mutant cells $\left(s_t,a_t,m_t\right)$ over time $t$.
 Here, $\lambda_s=0.1$, $\lambda_m=0.1$, $\mu_s=0.14$, $\mu_a=0.09$, $\mu_m=0.09$, $v=10^{-7}$ , $N=10^7$; (A) $u=0$; (B) $\lambda_a=0.065$, $u=10^{-2}$; (C) $\lambda_a=0.08999$, $u=10^{-2}$; (D) $\lambda_a=0.095$, $u=10^{-2}$.
-% TODO panel C run simulations for \lambda_a=0.08999 instead of 0.0899 so that it would give T\Delta_a =~ -0.555 to be in the stationary case (right now it is ~-5.5 which is the tolerant case) OK
 }
 \label{sampleTrajectories}
 \end{figure}
@@ -1200,7 +1199,6 @@ Parameters: $\lambda_s=0.1,\lambda_m=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,
 \includegraphics[width=1\textwidth]{Figures/ProbvNPlot_ane.pdf}
 \caption{The probability of evolutionary rescue (i.e., the probability that the population does not become extinct), $\presc$, as a function of the initial tumor size, $N$ (\cref{eq:rescue_prob}). Dashed vertical line shows the threshold tumor size, $N_a^*$, above which the probability is very high (\cref{eq:N_a2}). Red dashed line: $v_a=10^{-7}$. blue line: $v_a=10^{-6}$. Green line: $v_a=10^{-5}$. Dots for simulations and the error bars for $95\%$ confidence interval ($p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the fraction of simulations in which the tumor has been rescued and $n=100$ is the number of simulations). Parameters: $\lambda_s=0.1,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v_s=10^{-7}$.}
 \label{rescue_prob_ane}
-% TODO what is the value of v_s? OK
 \end{figure}
 \end{appendices}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
