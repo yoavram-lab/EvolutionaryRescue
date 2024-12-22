@@ -1,0 +1,477 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{xcolor}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{natbib}
+
+
+
+\renewcommand{\d}{{\rm d}}
+\newcommand{\e}{{\rm e}}
+\begin{document}
+Reviewer $\#1$ :
+
+Reviewer Summary:
+
+In this paper, the authors consider the role of aneuploidy in creating drug-resistant tumor cell lines in cancer. Specifically, they address how aneuploidy contributes to evolutionary rescue of a tumor cell population following treatment with tumor-cell killing drugs. They explore how different types of aneuploidy (stationary, tolerant and partially resistant aneuploid cell populations), time, mutation, rates of change, growth rates of drug resistant cells, pre-treatment aneuploid cell populations, and standing genetic variation, all might contribute, and importantly be exacerbated by aneuploidy, leading to the persistence of tumor cells following chemotherapy that result in a recurrence of tumor, even well past the point of extended remission. The authors use evolutionary models to identify the probability that a tumor could survive and proliferate under different genetic scenarios, rooting their parameters within ranges defined by previous studies, and identify several ways in which aneuploidy may serve a role, directly or in stepping-stone fashion, to facilitate evolutionary rescue of tumor cell populations, especially in smaller tumors often characteristic of primary tumors following resection and secondary tumors following metastasis.
+
+Major Edits:
+
+I have no major edits to recommend on this manuscript and I am comfortable with the authors considering the minor edits and making adjustments as they see fit.
+
+Minor Edits:
+
+1. You do an incredible job of walking the reader through this manuscript, making clear your definitions of important concepts, like evolutionary rescue, along the way. Two places where you didn't do that, but that could really push this paper over the top into perfection territory, are the following: 1) offering your reader an explanation, even if brief, of the multi-type branching method central to your analyses/models, and why it was the right selection for this endeavor among other methods or evolutionary modeling frameworks used in the past or available to you, and, 2) putting something real-world up against the parameter ranges you used to start the models, or just a brief statement about how they were established from the literature you drew upon (i.e., from experimental tests, patient data, other models, etc.). The latter is just in an effort to put something real to the numerical ranges that a reader can relate to before launching into the modeling.
+
+\textcolor{blue}{Thank you for your comment. 
+\begin{enumerate}
+\item We have added a comment explaining that we use multi-type branching processes because we assume independence between clonal lineages starting from an initial population of $N$ sensitive cells.   change 53 
+\item For the sensitive and mutant division rate the paper already states that this parameter is obtain in vivo by Rew and Wilson (2000). I have updated the second paragraph  of "Parameterization" with the fact that Bozic et al. (2013) use patient data in order to obtain the growth rate of sensitive cell. change 54
+\end{enumerate}
+} 
+
+2. Do a search for multi-type branching and make sure you consistently use the hyphen or not.
+
+\textcolor{blue}{Thank you for your comment. We have made the change to use the hyphen in all mentions of "multi-type branching" such that it is consistent with textbooks such as Athreya $\&$ Ney (1972).  change 31} 
+
+3. You identify that at least in certain scenarios aneuploidy plays an important role in the evolutionary rescue of tumor cell populations following chemotherapy, at least with one type of drug, and maybe limited to small primary or secondary tumors. But, we never really know the extent that this scenario is applicable. Is it specific to this particular chemotherapy, small tumors, only certain types of cancer? In conjunction with this, there are places in the manuscript where you say things like ". . .for most parameter values aneuploidy will either play no role in evolutionary rescue or will be the main driver of adaptation without requiring any mutation (one step)." Both parts of the quoted sentence stand in opposition to one of the more interesting scenarios found in your modeling, which is that aneuploidy can buy a tumor cell population enough time to accumulate a mutation that leads to evolutionary rescue. Like in point 1, making clear the broader implications of your findings, or the limited scenarios in which they might be applicable, pushes this paper over the top into perfection territory because it roots your reader into something relatable, manageable, or applicable to patient care. If the answer is "I don't know how applicable this finding is or what the broader implications might be," you could then add something to the future research section that talks about how this might be addressed experimentally or theoretically. It's ok to not know for sure, but you shouldn't pass the opportunity to talk about it in limits and future research.
+
+\textcolor{blue}{Thank you for your comment.  We have made an addition to "Future research" that out model can be used on a larger set of tissue-drug combinations to establish whether aneuploidy can play an important role in the evolution of drug resistance. change 55} 
+
+4. I would revisit some of your figures to make sure groups/categories are not colored in contradictory ways from one graph to the next (i.e., like "no aneuploidy" being one color on one graph and a different color in another graph or different categories ("no aneuploidy" vs. "aneuploid" vs. "stationary") using the same color in different figures).
+
+\textcolor{blue}{Thank you for your comment.  We have changed Figure 6A to be consistent with the other figures. I have also changed the caption for Figure 6 to be consistent with the new coloring. change 56} 
+
+5. The results on detection time associated with tumor size were not intuitive to me on first read. You might want to clarify or rewrite those sentences to make it more clear. It read to me like something about this finding/scenario changed the baseline detection size required to know the tumor cell population was still present and viable.
+
+\textcolor{blue}{Thank you for your comment. We have rewritten the sentence about the mean detection time to explain that for the small and intermediate tumors the mean detection time is approximately  equal to the mean recurrence time. change 48} 
+
+6. Table 1 caption doesn't define what the asterisk means.
+
+\textcolor{blue}{Thank you for your comment. We have added the definition of asterisk in the table. change 1} 
+
+7. You never tell your reader what ODEs is. . .won't be obvious to everyone. I would just right it out on page 9 where I think is the first time you use it.
+
+\textcolor{blue}{Thank you for your comment. We have added an explanation of the meaning of ODEs to the text in page 9. change 2} 
+
+8. Are the tests for standing genetic variation essentially genetic drift? Variation is present and in a tumor cell population wildly fluctuating in size due to treatment you just hit on a "right" variant stochastically when tumor size is small (less cells) that is resistant and it's driven to fixation? If so, using genetic drift in this section is rooting language and another way of describing alternative scenarios/hypotheses for tumor rebound.
+
+\textcolor{blue}{Thank you for your comment. In the context we are discussing, standing genetic variation is generated by the balance between "mutation" (which increases the number of aneuploid cells) and selection (which reduces the number of aneuploid cells). The aneuploid cells are selected against in the pre-tratment regime but once the tumor is treated with anti-cancer drugs they have a fitness advantage over the sensitive cells. If the aneuploids are partially resistant they will grow to fixation if they escape stochastic extinction. However, if the they are stationary of tolerant they will outlast the sensitive cells and increase the porbability of evolutionary rescue.} 
+
+9. Do we know if it's reasonable to assume the division rates between cell types (i.e., "sensitive" vs. "mutant") are the same? Maybe ground that assumption into something we know, or just say we are not sure if that is reasonable or not. This relates to point 1 and rooting the reader into these parameter values with something real or being honest about the assumption they are equal.
+
+\textcolor{blue}{Thank you for your comment. It is reasonable to assume that the sensitive and mutant growth rates are similar given that we assume that the mutation makes the cancer cells immune to the chemoterapeutic drugs. change 40} 
+
+10. Mid page 7, "decreases" is mis-spelled and I would swap out "very well" with something more descriptive where you use it.
+
+\textcolor{blue}{Thank you for your comment. We have made the change from "decerases" to "decreases". change 27} 
+
+Reviewer $\#$2 :
+
+Summary
+
+This is a paper about the likelihood and time for a tumour to evolve drug resistance, via direct mutation or indirectly through aneuploidy. The authors develop a multi-type branching process model to approximate these quantities analytically and to simulate the full behaviour. They also parameterize their approximations and simulations for melanoma, with adaptive trisomies for chromosome 2 and 6. The approximations provide intuition and match simulations well while demonstrating, for instance, that even tolerant (ie, subcritical) aneuploids -- which appears to be the case for melanoma -- can substantially facilitate drug resistance (fig 3) and extend recurrence times (fig 6).
+
+I think this is a very nice application of evolutionary rescue theory. The presentation is clear and the neat approximations provide intuition. Parameterizing for melanoma demonstrates the utility of the theory.
+
+My main concern (elaborated below), is that all of the theoretical results derived here have extremely close analogues in previous evolutionary rescue theory. This substantially reduces the novelty of this paper, in the sense that much of the intuition developed here has been given elsewhere. However, I do think it is useful to derive all of these approximations for a single model that can be parameterized with existing cancer data. What I would like to see, then, is the authors connect their results with existing rescue theory, which would allow them to clarify what is new here and also help develop a largely missing link between the evolutionary rescue and cancer literatures.
+
+$\#$ Major comments
+
+1. The paper is framed as a model about the evolution of drug resistance in tumours via direct mutation or indirectly through aneuploidy. However, the model is much more general than this, it is a model of 1- and 2-step evolutionary rescue that is then parameterized for cancer. Because of this, I would like to see the authors spend more time discussing what is already known about 1- and 2-step rescue, which should also elucidate why another model is needed rather than simply parameterizing a model that already exists. I do think the authors can justify a new model, but I would like to see this developed with a more insightful review of existing models (currently Intro mentions some models exist but doesn't explain why they aren't sufficient) and a comparison of results derived here to those derived previously (currently no rescue papers cited after Intro). In addition to clarifying what is novel here, these comparisons may help connect the currently disparate fields of evolutionary rescue and cancer (see fig 1 in Alexander et al 2014 Evol. Appl.).
+
+In case it helps, my understanding of multi-step rescue theory is that there was an early model for the emergence of epidemics via multiple mutations (Antia et al 2003 Nature, and some follow ups like Yates et al 2006 PRSB and Alexander $\&$ Day 2010 Interface), a very general treatment of emergence and rescue via multiple mutations (Iwasa et al 2004 JTB), a 2-locus 2-allele rescue model (Uecker $\&$ Hermisson 2016 Genetics), and multi-step rescue models on a fitness landscape (Martin et al 2013, Osmond et al 2020), all of which also use branching processes. Many of the results in this paper have been derived in the above studies. For example, eqn 3 is essentially the 1-step rescue probability from Orr $\&$ Unckless 2008 (Am Nat, also their eqn 3) and eqn 4 is essentially the emergence probability from Iwasa et al 2004 (their eqn 3) multiplied by the number of first step mutations that occur during the wildtypes decline. Even more similarly, Eqn 4 is a special case of the results in Osmond et al (2020), who also used the reasoning from fitness valley crossing (Weissman et al 2009) to derive approximations for the probability of 2-step rescue, with the added complication of a distribution of mutation effects. Setting the distribution of fitness effects to a dirac and assuming fast wildtype decline reduces the first two lines of their eqn 8 to the first two lines of eqn 4 (the final line of eqn 4 being the well known case of 1-step rescue). The de novo vs standing variance result (eqn 6) was pointed out in Orr $\&$ Unckless 2008 (right side of page 163) and given in Martin et al 2013 (eqn 3.8). The rescue and recurrence times (eqns 8 and 9) are perhaps the most novel results derived here, but have some close similarities with times derived in Orr $\&$ Unckless 2014 (see eqn 18 and text S2 for rescue time and eqn 23 for recurrence time).
+
+2. I have two general modelling-choice questions whose answers may substantially influence the results. 1) How heritable is a particular aneuploidy? 2) Are aneuploids with a resistance mutation really equivalent to diploids with a resistance mutation? Can the modeling choices made be empirically justified, or can the model (or results) be generalized to include these complications?
+
+$\#$ Minor comments
+
+- line numbers would have been helpful
+
+\textcolor{blue}{Thank you for your comment. We have added line numbers.} 
+
+- abstract: first sentence could give more precise definition of evolutionary rescue
+
+\textcolor{blue}{Thank you for your commnet. We have changed the definition of evolutionary rescue such that it highlights the fact that the population must adapt to the environmental change. change 32} 
+
+- abstract: 'fitter'$\rightarrow$'more fit'
+
+\textcolor{blue}{Thank you for your comment. We have made the requested change. change 3} 
+
+- intro: 'the number of chromosomes and chromosome arms copies'$\rightarrow$'the number of chromosomes and chromosome arm copies'
+
+\textcolor{blue}{Thank you for your comment. We have made the requested change. change 4} 
+
+- intro: while there are some similarities, I do not think that evolutionary rescue is mathematically equivalent to the problem of crossing fitness valleys. If that was the case, you wouldn't have to create a new model here and could instead parameterize the model of Weissman et al 2009 for cancer. One difference, for example, is that with fitness valley crossing the population doesn't go extinct and so it is a question about when the valley will be crossed, while in rescue the wildtype is declining to extinction and so the question is largely if rescue will occur. I do agree that the case of two step rescue is similar to fitness valley crossing, but that is a much weaker statement.
+
+\textcolor{blue}{Thank you for your comment. We have changed the text such that it states that evolutionary rescue in two steps is similar to the problem of crossing fitness valley. change 6} 
+
+- intro: there is a relatively arbitrary list of rescue papers given at the end of the paragraph, which could be replaced (or supplemented) with synthetic reviews (eg, Alexander et al 2014 Evol Appl, Bell 2017 Annual Reviews)
+
+\textcolor{blue}{Thank you for your comment. We have added the recommend synthetic reviews to the list of rescue papers cited. change 45} 
+
+- intro: 'there are three ways for a population to survive ...' - I think this statement would be better placed at the beginning of the paragraph, after which you focus on genetic adaptation
+
+\textcolor{blue}{Thank you for your comment. We have  placed the statement at the beginning of the paragraph. change 28} 
+
+- intro: 'most models focus on the probability that at most one mutation rescues the population' - I disagree with this statement. I think the focus is rather on the probability that at least one mutation rescues the population. That is the logic behind the $1-\exp(-Np)$ form: $\exp(-Np)$ is the probability that no mutations rescue the population. In addition to Wilson et al 2017, Osmond $\&$ Coop 2020 (Genetics) also calculate the probability rescue is soft and the expected number of rescuing mutations in a variety of rescue scenarios.
+
+\textcolor{blue}{Thank you for your comment. We have changed the statement to just explain the concepts of soft and hard selective sweeps. Additionaly, we have added a reference to Osmond $\&$ Coop 2020 (Genetics). change 41} 
+
+- methods: 'The aneuploid division rate is selected...' - I found the grammar odd here.
+
+\textcolor{blue}{Thank you for your comment. We have changed the statement to be 'The aneuploid division rate is chosen...'.   change 36} 
+
+- methods: 'We estimate c=...' - It sounds like you will estimate c from the observed fraction of aneuploid cells but that is not what you describe below.
+
+\textcolor{blue}{Thank you for your comment. We have changed the paragraph to make it clear that we obtaint the fitness cost from the experimental data and then use the formula $f=\frac{\tilde{u}\lambda_s}{c}$ to obtain $f$. change 5} 
+
+- methods: is there a justification for not including density-dependence for the sensitives as well? This would hasten their initial decline, which would compound with the reduced initial establishment probability of the mutants. It seems odd they can exert competition on the mutants but don't themselves feel any competition.
+
+\textcolor{blue}{Thank you for your comment. The justification for not including density dependence for sensitive cells is because of the fact that they are under the influence of a powerful stress which causes the population to decline very fast. As a result, density dependent effects will not have an effect on the initial establishment probability of mutants.  As shown in Figure S1, the presence of a carrying capacity does not effect the probability of evolutionary rescue.} 
+
+- methods: I got a 404 error for the source code link: https://github.com/yoavram-lab/EvolutionaryRescue
+
+- results: there doesn't appear to be an eqn 1
+
+\textcolor{blue}{Thank you for your comment. We have made changes such that equation 1 appears. change 29} 
+
+- results: eqn 3 is an alternate form of the classic rescue probability, eg, $1/N_m^*=u/r*2(s-r)$ in Orr $\&$ Unckless 2008. I think it would be helpful to mention this.
+
+\textcolor{blue}{Thank you for your comment. We have mentioned that equation 2 (the numbers are changes in the updated version) is an alternative form of the formula from Orr $\&$ Unckless 2008. change 33} 
+
+- results: eqn 4 is an approximation (fast wildtype decline) of a special case (dirac distribution of mutational effects) in Osmond et al 2020, who used the exact same reasoning from Weissman et al 2009, and is also very similar to eqn 3 in Iwasa et al 2004. I think it would be helpful to mention this.
+
+\textcolor{blue}{Thank you for your comment. We have added a paragraph which explains the similarity of equation 4 (now equation 3) to previous results. change 57} 
+
+- results: '$T^*$ decerases'$\rightarrow$'$T^*$ decreases'
+
+\textcolor{blue}{Thank you for your comment. We have made the change from "decerases" to "decreases". change 27} 
+
+- results: I thought it was interesting that the second scenario in eqn 5 was the geometric mean of the other two scenarios. Is there some intution for why this is so?
+
+\textcolor{blue}{Thank you for your comment. We have not been able to identify any intuition as to why the second scenario is the geometric mean of the other two scenarios.?} 
+
+- results: I thought it might be helpful to give a little more intution about the effect of simultaneously increasing the aneuploid birth and death rates (paragraph starting below eqn 5). The reason why this leads to a decrease in $T^*$ and pushes the system towards the second scenario is that the mutation rate has increased, meaning a lineage doesn't have to persist for as long to almost surely lead to a successful rescue mutant, while the expected persistence time hasn't changed, making it more likely that a rare long-lived aneuploid lineage will lead to rescue.
+
+\textcolor{blue}{Thank you for your comment. We have added the recommended comment about the fact that the reason why $T^*$ decreases, if we increase the aneuploid division and death rates such that $\Delta_a$ remains constant, is because of the fact that more mutants are generated and a lineage doesn't have to persist as long in order to generate a succesful mutant. Change 51 } 
+
+
+- results: I don't get the logic at the end of this paragraph, that your results are consistent with aneuploidy conferring resistance by decreasing the division rate. My understanding is that your result says that, holding aneuploid growth rate constant, increasing aneuploid division rate helps until you reach scenario 2 (effectively stationary/critical aneuploids) but beyond that doesn't help. I don't see how reducing division rate helps rescue.
+
+\textcolor{blue}{Thank you for your comment. In the scenario discribed decreasing the division rate also leads to a decrease in the death rate as the drugs affect the cancer cells during cellular division. We have expanded on the explanation of this scenario in the paper. Change 52} 
+
+- results: if $N_a^*$ is similar to the detection threshold, then you predict that any tumour detected is very likely (eg, $>50\%$) to evolve resistance? Does this fit with data on resistance rates?
+
+\textcolor{blue}{Thank you for your comment.  We believe that our model does fit the data on resistance rates given that \citep{handa2022long} state that 68$\%$ of melanoma patients treated with vemurafenib experienced relapse after initial response. change 58}
+
+- results: if aneuploidy may increase the mutation rate and this is easy to implement in the model, why not do it from the start, and reduce to the simpler version $v_a=v$ when needed?
+
+\textcolor{blue}{Thank you for your comment. We started with the simpler model and thought that the more advanced model should be included in Appendix H. Additionally, we do not have biologically realistic values for the aneuploidy induced mutation rate and, as a result, we decided it was better to start with the model for which we have biologically realistic parameters. } 
+
+- results: 'cancer cells(' $\rightarrow$ 'cancer cells ('
+
+\textcolor{blue}{Thank you for your comment. We have made the change from 'cancer cells(' to 'cancer cells ('. change 25} 
+
+- results: eqn 6 has been pointed out by Orr $\&$ Unckless 2008 and Martin et al 2013
+
+\textcolor{blue}{Thank you for your comment. We have mentioned that the results has been obtained previously by Orr $\&$ Unckless 2008 and Martin et al 2013. change 42} 
+
+- results: much of the discussion of the results (eg below eqn 7) is about the probability of rescue, but the equations all give the inverse of this, critical tumour sizes. I find it a little annoying to keep converting between them, and presenting the probabilities of rescue would also help compare with previous papers. Either way is fine but perhaps something to think about.
+
+\textcolor{blue}{Thank you for your comment. We thought about this and we think that tumor size is critical for the interpretation of our model}
+
+- results: I think the rescue times given in the main text (eqn 8) could be explained a little more. For small tumours, this is the 2-step version of the 1-step rescue time given in Orr $\&$ Unckless 2014 (the expectation of their eqn 18), $-1/r$. I.e., the faster the population declines the earlier rescue occurs (conditioned on it occurring), because that is when most mutations happen. For larger tumours this is just a deterministic constant population size result, where the successful mutation is produced at a constant rate.
+
+\textcolor{blue}{Thank you for your comment. We have added comments that better explain the mean rescue time in the case of small and large tumors. change 46} 
+
+%- results: why doesn't standing genetic variance affect the mean rescue time? This might have something to do with what I just mentioned (successful mutants tend to arise early) and more clues might be found in Orr $\&$ Unckless 2014, who also compare times with and without standing genetic variance.
+
+- results: 'aneuploidy promotes evolutionary rescue after $1/\Delta_a$' $\rightarrow$ 'aneuploidy promotes evolutionary rescue after $1/\Delta_s$'
+
+\textcolor{blue}{Thank you for your comment. We have made the change from $1/\Delta_a$ to $1/\Delta_s$. change 37} 
+
+- results: in eqn 9 the variable $p_m$ is used, but it is not defined in the main text
+
+\textcolor{blue}{Thank you for your comment. We have added the definition of $p_m$ below equation 9. change 26} 
+
+- results: the final term of the recurrence time for small tumours is equivalent to the return time of Orr $\&$ Unckless 2014 with standing genetic variation (eqn 16), but different from their return time with new mutation (eqn 23). Why?
+
+\textcolor{blue}{Thank you for your comment. The return time with new mutation (eqn 23) from Orr $\&$ Unckless 2014 can be written as:
+\begin{align*}
+t_{return}&\sim\frac{1}{s-r}\log\left[\frac{2N_0s(s-r)}{r}\right]\\
+&\sim \frac{1}{s-r}\log[2N_0(s-r)]+\frac{1}{s-r}\log\left(\frac{s}{r}\right)
+\end{align*}
+Additionally, when $|s-r|<r$ we have:
+\begin{equation*}
+\log s \approx \log r +\frac{s-r}{r}
+\end{equation*}
+which can be rewritten as:
+\begin{align*}
+\frac{1}{s-r}\log\left(\frac{s}{r}\right)\approx \frac{1}{r}
+\end{align*}
+As a result, the return time with new mutation can be written as:
+\begin{equation*}
+t_{return}\sim \frac{1}{r}+\frac{1}{s-r}\log[2N_0(s-r)]
+\end{equation*}
+which is the one-step equivalent to our recurrence time for small tumors.
+} 
+- results: you mention that drugs increasing the death rate of sensitive cells delays recurrence, but given that mutations happen during division, it might be worth mentioning that drugs that decrease the division rate of sensitive cells by the same amount delay recurrence even more (holding mutant division rate constant - which is maybe why you didn't mention this for your parameterization, but seems like a worthwhile general point?).
+
+\textcolor{blue}{Thank you for your comment. For large tumors, decreasing the division rate of sensitive cells will lead to a decrease in the cancer recurrence time when conditioned on evolutionary rescue. We have added this comment to the text. change 49} 
+
+- results: why doesn't standing genetic variance affect the mean rescue time? This might have something to do with what I just mentioned (successful mutants tend to arise early) and more clues might be found in Orr $\&$ Unckless 2014, who also compare times with and without standing genetic variance.
+
+\textcolor{blue}{Thank you for your comment. Standing genetic variation does not have a significant impact on mean rescue time because the percentage of cell which have the beneficial aneuploidy is only $0.14\%$.} 
+
+- discussion: I find the discussion of the two advantages of aneuploidy for rescue a little confusing. Yes, aneuploidy delays population extinction and yes it increases the population size at a given time, but the important fact is that it increases the cumulative number of mutants that are created, which is the expression you give at the end of the sentence. Perhaps it would help to insert an additional sentence before the expression, like "Together, this increases the cumulative number of mutants that arise."
+
+\textcolor{blue}{Thank you for your comment. We have added a sentence before the expression which states that aneuploidy increases the cumulant number of mutants that arise. change 39} 
+
+- discussion: the last sentence mentions that some cancer therapies are designed to increase aneuploidy, which felt like a new and important piece of information for me. Some discussion of this in the intro could be helpful as motivation for this work.
+
+\textcolor{blue}{Thank you for your comment. In the last sentence of "Discussion" we state that certain therapies increase the rate of aneuploidy which has been shown by Lee et al. (2016) which is referenced in the "Introduction" section as a motivation for our research.} 
+
+- discussion: there are no citations of evolutionary rescue theory in the discussion, despite most of the results already existing or having very close parallels in the rescue literature. I think it would be nice to build more connection between rescue theory and cancer here.
+
+\textcolor{blue}{Daniel ?.} 
+
+- table 1: what are the asterisks in the name column?
+
+\textcolor{blue}{Thank you for your comment. We have added the definition of asterisk in the table. change 1} 
+
+- fig 2: when aneuploids are tolerant rescue can also happen indirectly (caption incorrect for panel B)
+
+\textcolor{blue}{Thank you for your comment. We have made the change such that it says "When aneuploid cells are tolerant ($\Delta_a<0$) evolutionary rescue can occur indirectly, but direct mutation is the most likely path for evolutionary rescue". change 24} 
+
+- fig 4: give eqn $\#$ of exact formula (this goes for all formulas used in all figures)
+
+\textcolor{blue}{Thank you for your comment. We added the references to the equation numbers for the formulas of $N_a^*$ and $N_m^*$. change 43} 
+
+- fig 4: $\lambda_m$ value given twice
+
+\textcolor{blue}{Thank you for your comment. We have made the change from $\lambda_m$ to $\lambda_a$ in the first instance of $\lambda_m$. change 18} 
+
+- appendix A: 'decline are significant'$\rightarrow$'decline is significant'
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 19} 
+
+- appendix A: in eqn A10, the $p_a$ and $p_m$ terms in the denominator seem to disappear in the second line (they will disappear in the third line anyway, given small mutation, but I think they should technically be in the second line)
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 20} 
+
+- appendix A: and in the third line of eqn A10 the $p_m$ in the numerator disappears (again, this doesn't matter for the result, eqn A11, but is an error and is required for the approximation to get from A10 to A11)
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 21} 
+
+- appendix C: $w_t\rightarrow s_t$
+
+\textcolor{blue}{Thank you for your comment. We have made the requested change from $w_t$ to $s_t$. change 7} 
+
+- appendix C: I think the approximation in eqn C1 makes more sense by taking the Taylor series of the exponential term with respect to $\Delta_st$, rather than with respect to $t$ alone. For instance, you write $t + O(t^2)$, but the higher order terms are only smaller than t when $t\ll1$.
+
+\textcolor{blue}{Thank you for your comment. We have changed $\mathcal{O}\left(t^2\right)$ to $\mathcal{O}\left(\Delta_st^2\right)$. change 22} 
+
+- appendix C: grammar mistakes in sentence below eqn C3
+
+\textcolor{blue}{Thank you for your comment. We have corrected the grammatical mistakes. change 8} 
+
+- appendix C: I think it would be helpful to define $N_m^*$ and $N_a^*$ again in the appendix before using them
+
+\textcolor{blue}{Thank you for your comment. We have added the definitions of $N_m^*$ and $N_a^*$ in Appendix C. change 38} 
+
+- appendix C: I would like to hear the justification for the initial expression of $\tau_a$ (integral of exponential) when $N>N_m^*$
+
+\textcolor{blue}{Thank you for your comment. The justification is the following: 
+\begin{align*}
+\tau_a&=\int_0^\infty tf(t)dt=\int_0^\infty t\frac{d}{dt}F(t)dt=-\int_0^\infty t\frac{d}{dt}S(t)dt\\
+&=-\left[tS(t)\right]_0^\infty+\int_0^\infty S(t)dt\\
+&=\int_0^\infty S(t)dt,
+\end{align*}
+where f(t), F(t) and S(t) are the probability density function, cumulative distribution function and survival function.
+In our case, $S(t)=\exp\left(-\int_0^t R_a(z)dz\right)$. Additionally, for $N\gg N_m^*$ we have $1-\e^{-Np_s}\approx1$. I have corrected the following mistake:
+\begin{equation*}
+\tau_a=\int_0^\infty \e^{-\int_0^\tau R_a(t)\d t}\d\tau
+\end{equation*}
+instead of:
+\begin{equation*}
+\tau_a=\int_0^\infty \e^{-R_a(\tau)}\d\tau.
+\end{equation*}
+change 23
+}
+
+- appendix C: similarly, I think it would be nice to hear some justification for the approximations in eqn C9, ie, can ignore direct rescue and rescue via aneuploidy very unlikely
+
+\textcolor{blue}{Thank you for your comment. We know that
+\begin{align*}
+\tau_a=\int_0^\infty t\left(v\lambda_ap_ma_t+v\lambda_sp_ms_t\right)\frac{\exp\left[-\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_s t}-1}{\Delta_s}-\frac{\e^{\Delta_a t}-1}{\Delta_a}\right)-v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right] }{1-\e^{-Np_s}}\d t.
+\end{align*}
+Additionally, if $N\ll N_a^*$ then the probability distribution of evolutionary rescue time is skewed toward small values (i.e. evolutionary rescue occurs conditioned on it happening). As a result, we have: 
+\begin{align*}
+\frac{\e^{\Delta_s t}-1}{\Delta_s}&=\frac{1+\Delta_s t+\mathcal{O}\left(\left(\Delta_st\right)^2\right)-1}{\Delta_s}=t+\mathcal{O}\left(\Delta_st^2\right)\\
+\frac{\e^{\Delta_a t}-1}{\Delta_a}&=\frac{1+\Delta_a t+\mathcal{O}\left(\left(\Delta_at\right)^2\right)-1}{\Delta_a}=t+\mathcal{O}\left(\Delta_at^2\right)
+\end{align*}
+We observe that the first term in the exponential can be approximated to be zero and the second term as -$v\lambda_sNp_mt$ where $t\ll1$. As a result, we can approximate:
+\begin{equation*}
+\exp\left[-\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_s t}-1}{\Delta_s}-\frac{\e^{\Delta_a t}-1}{\Delta_a}\right)-v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right] \sim 1
+\end{equation*}
+Additionally, since $N\ll N_a^*\ll N_m^*$, evolutionary rescue is more likely to occur through the trajectory $sensitive \rightarrow aneuploid \rightarrow mutant$. As a result,
+\begin{equation*}
+\tau_a\sim\int_0^\infty \frac{tv\lambda_ap_ma_t}{1-\e^{-Np_s}}\d t.
+\end{equation*}
+}
+
+- appendix D: the fact that lineages conditioned to survive drift reach N earlier is nicely discussed in Orr $\&$ Unckless 2014, who connect it back to classic work on selective sweeps by Maynard Smith $\&$ Haigh 1974
+
+\textcolor{blue}{Thank you for your comment. We have added citations for Orr $\&$ Unckless 2014 and Maynard Smith $\&$ Haigh 1974. change 35} 
+
+- appendix D: 'it accurate' $\rightarrow$ it is accurate'
+
+\textcolor{blue}{Thank you for your comment. We have made the change from 'it accurate' to 'it is accurate'. change 9} 
+
+- appendix F: 'Figure Figure' $\rightarrow$ 'Figure'
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 10} 
+
+- appendix F: 'our approximation are'$\rightarrow$'our approximations are'
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 11} 
+
+- appendix F: 'From eq. (F2) we obtain'$\rightarrow$'From eq. (F1) we obtain'
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 12} 
+
+- fig S2: 'the leads'$\rightarrow$ 'that leads', 'is in agreement'$\rightarrow$'are in agreement', $\lambda_m$ value assigned twice
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 13} 
+
+- fig S3: 'number of mutation'$\rightarrow$'number of mutations', $\lambda_m$ value assigned twice
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 14} 
+
+- fig S5: $\mu_a$ value assigned twice
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 15} 
+
+- fig S6: 'the leads'$\rightarrow$'that leads', 'lines, right'$\rightarrow$'lines,', 'is in agreement'$\rightarrow$'are in agreement', 'lines represents'$\rightarrow$'lines represent', $\lambda_m$ value assigned twice
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 16} 
+
+- fig S9: 'the leads'$\rightarrow$'that leads', $\lambda_m$ value assigned twice
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 17} 
+
+Reviewer $\#3$ :
+
+Summary
+
+Stana et al. study the effects of aneuploidy (mutations that give rise to atypical karyotypes) on the survival of a tumor- a population of malignant cells- in presence of an intervention, here, an anti-cancer drug. While the role of aneuploidy in development of drug-resistance has been acknowledged in the field of evolutionary oncology, the precise mechanism by which it incurs drug-resistance is not clear.
+
+This manuscript is about understanding the evolutionary role of aneuploidy in drug-resistance in cancer. The authors model tumor evolutionary dynamics under treatment as a multi-type branching process, where the types correspond to three genotypes: sensitive to therapy, mutant (resistant), and aneuploid. The key assumption is that aneuploid cells are less-sensitive than sensitive cells to therapy. They parameterized their model by the pre/post treatment cost of aneuploidy, mutation rates and birth/death rates for each genotype.
+
+Stana et al. derive equations for relevant evolutionary quantities under multiple parameter regimes. The evolutionary quantities include the probability of evolutionary rescue, and time to recurrence. They further investigate the effects of standing variation, and density-dependent growth. A central finding is that aneuploidy can directly or indirectly result in evolutionary rescue. In the latter, it delays tumor extinction and provides a window of opportunity for mutations to rescue the population.
+
+Overall, the paper proposes a rigorous evolutionary approach to understand the effects of aneuploidy in development of drug-resistance in cancer. The authors verify the accuracy of their derivations via extensive stochastic simulations. The paper is well written and the ideas are presented in a cohesive and rational manner. The accompanying python implementation appears sufficient (see below) to reproduce the results. The problem is interesting and subject of active research in evolutionary oncology, specially development of drug-resistance subpopulations (PMID: 39223250) and new avenues of targeting aneuploid cells (PMID: 38992122).
+
+Major points
+
+- The importance of time-resolved measurements of clonal dynamics have been recognized and more such datasets are becoming available (e.g., PMID: 34163070, PMID: 38987605). The simulation studies in this manuscript use a parameter regime largely based on a melanoma cell-line (A375) and treatment with a specific BRAF-inhibitor (vemurafenib). The relevance of the paper would be improved if consistent results can be shown in other datasets, including the citations above.
+
+Minor points
+
+- An exciting finding of the paper is that aneuploidy can act as an evolutionary stepping stone (Figure 4). However, in the discussion, you point out that only in a small parameter regime this would be the case, and in most cases, aneuploidy either directly results in evolutionary rescue or does not play a role. If this were the case, wouldn't you expect that a majority of cancer cells in a tumor to either have clonal/truncal aneuploidies or have no clonal aneuploidies at all? Given the prevalence of aneuploidies in patient cohorts, how can we interpret the restricted parameter regime that allows it?
+
+\textcolor{blue}{Thank you for your comment. In our model, we are interested in a specific type of aneuploidy which increases the fitness of cancer cells in an environment affected by anti-cancer drugs. As a consequence, we catalogued all other forms of aneuploids as sensitive.} 
+
+- Code Base
+The python scripts used for simulation studies are provided in the supplementary package, however the github link is not accessible.
+It would improve the reproducibility of the manuscript if the code to reproduce individual figures is provided.
+Documenting the code as well as adding a short tutorial will improve the reusability of the scripts.
+
+- In your model, mutations appear to only confer resistance, however, most mutations are deleterious. How easy is it to incorporate the effects of deleterious mutations in your model? This should be addressed in the discussion.
+
+\textcolor{blue}{Thank you for your comment. We consider the fitness of the sensitive, aneuploid or mutant cells to be the average of each population. As a result, mutations that are deleterious are taken into consideration through the mean fitness of each population. I have added this comment in the "Parametrisation" section change 50} 
+
+- You report the exact parameters used in most figures. Sometimes it is difficult to follow why a specific value for a parameter was chosen. It would improve the readability if you included a table where the variation in the parameter used is noted and explained.
+
+\textcolor{blue}{Thank you for your comment. The variation in our parameters in noted in Table 1 and is obtained from the papers which are cited there.} 
+
+Associate Editor Comments:
+
+The paper sits in an odd place, as noted by reviewer $\#2$. Existing theory already explores evolutionary rescue by one and two step mutations, and it is hard to see the connection between the current theory and the existing theory. Which of the results are new? It is important that the reader knows what is novel. If similar results are derived in a different way, please explain the connection. When the quantity considered is different (e.g., timing of certain events), please alert the reader and maybe explain why these quantities are particularly relevant in the context of cancer. Reviewer $\#2$ has many helpful suggests along these lines.
+
+Another oddity is that the theory developed applies much more broadly to evolutionary rescue scenarios, but the presentation makes it seems that the results only apply to cancer. Similarly, the initial facilitating mutation could be any type of mutation, not just aneuploidy.
+
+A sufficient revision must, in my view, properly connect this work to the existing theoretical literature on evolutionary rescue (as noted by reviewer $\#2$) and to the broader empirical literature on cancer about multi-step drug resistance (as noted by reviewer $\#3$).
+
+Minor comments
+Introduction:
+* 10 millions people die: add globally
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change. change 30} 
+
+* mathematically equivalent: this is incorrect because fitness-valley crossing papers typically ignore population size dynamics, whereas evolutionary rescue is explicitly set in the context of a declining population size.
+
+\textcolor{blue}{Thank you for your commnet. We have changed the text such that it states that evolutionary rescue in two steps is similar to the problem of crossing fitness valley. change 6} 
+
+* how multiple mutations contribute: several important papers on this subject are referenced later but not in this paragraph. Please revise, reviewing the existing theory and saying how the current theoretical work differs.
+
+Methods:
+* The methods only describe the simulations, and the results focus on analytical results that don't follow from the methods. I suggest expanding the "Methods" to discuss the general approach, model structure, and quantities derived (you can rename this as "Model") and then move to "Results".
+
+\textcolor{blue}{Thank you for your commnet. The model is described in "Methods" under the subsection "Evolutionary model" and the analytic results follow directly from this model. Additionally, the quantities derived are stated in the paragraph before "Methods". } 
+
+* Delta would be better as "r" for the growth rate
+
+\textcolor{blue}{Thank you for your commnet. The are about 300 mentions of $\Delta$ and we do not want to introduce any errors by changing $\Delta$ to $r$.}
+
+* The use of the terms "tolerant" (for negative growth) and "resistant" (for positive growth) is not standard (e.g., see different for fungi used by Berman $\&$ Krysan 2020 Nature Reviews Microbiology). Maybe alert the reader that "tolerant" is used in different ways in the literature and is used here solely for notational convenience to refer to mutations that, on their own, do not allow growth? Or replace with "sub-critical", a term already used in this context?
+
+\textcolor{blue}{Thank you for your commnet. We have added a short explanation for "tolerant" and that it has other meanings in the literature. change 47.}
+
+* "antagonizing cell division" - The meaning of this isn't clear. Rephrase as "by extending the length of the cell cycle"?
+
+\textcolor{blue}{Thank you for your comment. We have made the recommended change from "antagonizing cell division" to "by extending the length of the cell cycle". change 34} 
+
+Results:
+* Figure 7 - Add a numerical solution to equation (D3)? This should make it clearer that the non-monotonicity of the black curve is an artefact of the simplifying assumptions in (D4) and not a problem with the approach. By the way, It wasn't clear to me what happened to the other large $\tau_a^r$ terms in the first portion of equation (D3) when approximating the equation into the form shown in (D4)? Could this be briefly clarified?
+
+\textcolor{blue}{Thank you for your comment. We have changed Figure 7 by adding a green which represents the numerical solution of (D3).  In the first term of (D3) we have:
+\begin{align*}
+\frac{uv\lambda_a\lambda_s}{\Delta_s-\Delta_a}\left[\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}-\frac{\e^{\Delta_a\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_a-\Delta_m}\right]\approx\frac{uv\lambda_a\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_s\right)\left(\Delta_m-\Delta_a\right)}
+\end{align*}
+which is significantly smaller then the second term of (D3):
+\begin{align*}
+v\lambda_s\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}\approx\frac{v\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_a\right)}
+\end{align*}
+change 44} 
+
+Remus changes:
+
+\textcolor{red}{$w_t\rightarrow s_t$. change r1} 
+
+\textcolor{red}{$t\rightarrow \tau$. change r2} 
+
+\textcolor{red}{
+We have made the following changes: the rates of the inhomogenous Poisson process are:
+\begin{align*}
+r_1\left(t\right)&=v\lambda_ap_ma_{t},\\ 
+r_2\left(t\right)&=v\lambda_sp_ms_{t},
+\end{align*}
+and the expected number of successful mutants created by direct mutation and via aneuploidy until time $t$ is given by:
+\begin{align*}
+M_a\left(t\right)&=v\lambda_ap_m\int_0^ta_{z} d z = \frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_st}-1}{\Delta_s}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right),\\ 
+M_m\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} d z = v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}.
+\end{align*}
+change r3} 
+
+\textcolor{red}{We have made changes to Appendix C such that all the dummy variable used in integration are consistent. change r4} 
+
+\textcolor{red}{We have made changes to Figure S6, S7, S8, S9 by changing the subscripts of several variables from $w$ to $s$ . change r5} 
+
+\textcolor{red}{ We have made the following change: "If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the rates at which the rescue mutations are generated can be written as" $\rightarrow$
+"If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the expected number of successful mutants generated until time $t$ is given by". change r6} 
+
+
+\bibliographystyle{plain}
+\bibliography{evo2022}
+\end{document}
