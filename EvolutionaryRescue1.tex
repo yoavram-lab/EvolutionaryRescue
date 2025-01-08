@@ -104,6 +104,7 @@ headheight=12pt
 \newcommand{\daniel}[1]{\textcolor{blue}{#1}}
 \newcommand{\presc}{p_\text{rescue}}
 \newcommand{\psgv}{p_\text{SGV}}
+\newcommand{\bigo}[1]{\mathcal{O}\left(#1\right)}
 
 % Supplementary
 % https://support.authorea.com/en-us/article/how-to-create-an-appendix-section-or-supplementary-information-1g25i5a/
@@ -847,7 +848,7 @@ Substituting \cref{eq:pw_parttolerant,eq:pw_partrest,eq:pw_tolerant} into \cref{
 \section{Evolutionary rescue time}\label{sec:appendix_rescue_time}
 
 We first calculate the expected time for the appearance of the first mutant that rescues the cell population.
-This can occur either through the evolutionary trajectory $sensitive \rightarrow mutant$ or through the trajectory $sensitive \rightarrow aneuploid \rightarrow mutant$.
+This can occur either through the evolutionary trajectory \textit{sensitive}$\rightarrow$\textit{mutant} or through the trajectory \textit{sensitive}$\rightarrow$\textit{aneuploid}$\rightarrow$\textit{mutant}.
 We start with the former. 
 
 Assuming no aneuploidy ($u=0$), we define $T_m$ to be the time at which the first mutant cell appears that will avoid extinction and will therefore rescue the population.
@@ -861,11 +862,11 @@ Note that
 v\lambda_s p_m N \frac{\exp[{\Delta_s t}]-1}{\Delta_s} \approx 
 v\lambda_s p_m N t,
 \end{equation}
-by integrating the exponential and because $\frac{\exp[\Delta_s t]-1}{\Delta_s}=\frac{1+\Delta_s t+\mathcal{O}\left(\left(\Delta_st\right)^2\right)-1}{\Delta_s}=t+O(\Delta_st^2)$. %change 22
+by integrating the exponential and because $\frac{1}{\Delta_s} \left(\exp[\Delta_s t]-1\right) = t+ \bigo{\Delta_s t^2}$. %change 22
 The probability density function of $T_m$ is thus
 $R_m\left(t\right)\exp\left(-\int_0^{t}{R_m(z)\d z}\right)$ \citep{allen2010introduction}. 
 Therefore, the probability density function of the conditional random variable $(T_m \mid T_m < \infty)$ is
-$f_m(t) = \frac{R_m\left(t\right)\exp\left(-\int_0^{t}{R_m(z)\d z}\right)}{\presc}$. 
+$f_m(t) = R_m \left(t\right)\exp\left(-\int_0^{t}{R_m(z)\d z}\right) / \presc$. 
 \\
 
 We are interested in the mean conditional time, $\tau_m=\mathbb{E}\left[T_m \mid T_m<\infty\right]$, which is given by
@@ -873,7 +874,7 @@ We are interested in the mean conditional time, $\tau_m=\mathbb{E}\left[T_m \mid
 \begin{aligned}
 \tau_m =
 \int_{0}^{\infty}{t f_m(t) \d t} = 
-\frac{\int_{0}^{\infty}{tR_m(t)\exp\left(-\int_0^{t}{R_m(z)\d z}\right) \d t}}{p_{rescue}},
+\frac{\int_{0}^{\infty}{tR_m(t)\exp\left(-\int_0^{t}{R_m(z)\d z}\right) \d t}}{\presc},
 \end{aligned}
 \end{equation}
 Therefore, plugging \cref{eq:integralR,eq:rescue_prob} in \cref{eq:meantime1}, 
@@ -904,7 +905,7 @@ M_m\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} d z = v\lambda_sNp_m\frac{\e^{\Del
 For large initial population sizes we assume that the two processes are independent and as a result, they can be merged into a single Poisson process with rate $R_a(t)=\left(r_1+r_2\right)\left(t\right)$.
 Consequently, the mean time to the appearance of the first rescue mutant is
 \begin{align}\nonumber
-\tau_a &= \frac{\int_{0}^{\infty}{tR_a(t)\exp\left(-\int_0^{t}{R_a(z)\d z}\right) \d t}}{p_{rescue}}\\ \label{meantimet2}
+\tau_a &= \frac{\int_{0}^{\infty}{tR_a(t)\exp\left(-\int_0^{t}{R_a(z)\d z}\right) \d t}}{\presc}\\ \label{meantimet2}
 &=
 \int_0^\infty t\left(v\lambda_ap_ma_t+v\lambda_sp_ms_t\right)\frac{\exp\left[-\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_s t}-1}{\Delta_s}-\frac{\e^{\Delta_a t}-1}{\Delta_a}\right)-v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right] }{1-\e^{-Np_s}}\d t,
 \end{align}
@@ -913,7 +914,7 @@ which we plot in \Cref{MeanTimeGrowthAneuploidyPlot}A as a function of the initi
 Paradoxically, we observe from \Cref{MeanTimeGrowthAneuploidyPlot} that the mean time of a rescue mutation to appear is significantly shorter for the scenario when $u=0$ when compared to the scenario $u>0$, however this can be explained by the fact this mean time is conditioned on evolutionary rescue and, as a result, aneuploidy increase the \emph{window of opportunity} in which a rescue mutation could appear thus increasing the mean time as well (\Cref{sampleTrajectories}).
 
 %%%
-Let $N_a^*$ and $N_m^*$ be the threshold population size above which evolutionary rescue through aneuploidy or direct mutation, respectively, is very likely. If $N\gg N_m^*$ then $p_{rescue}\approx1$ and the mean time $\tau_a$ can be written as: % change 38
+Let $N_a^*$ and $N_m^*$ be the threshold population size above which evolutionary rescue through aneuploidy or direct mutation, respectively, is very likely. If $N\gg N_m^*$ then $\presc\approx1$ and the mean time $\tau_a$ can be written as: % change 38
 \begin{align*}
 \tau_a=\int_0^\infty\e^{-\int_0^t R_a\left(z\right)\d z}\,\d t=\int_0^\infty\exp\left[-\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_s t}-1}{\Delta_s}-\frac{\e^{\Delta_a t}-1}{\Delta_a}\right)-v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right]\,\d t,
 \end{align*} %change 23 ,r4
@@ -940,9 +941,9 @@ r_2^f\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} \d z = \left(1-f\right)v\lambda_
 \end{align*} 
 and the mean evolutionary rescue time is given by:
 \begin{align}\label{meantimet2SGV}
-\tilde{\tau}_a&= \frac{\int_{0}^{\infty}{tR_a^f(t)\exp\left(-\int_0^{t}{R_a^f(z)\d z}\right) \d t}}{p_{rescue}},
+\tilde{\tau}_a&= \frac{\int_{0}^{\infty}{tR_a^f(t)\exp\left(-\int_0^{t}{R_a^f(z)\d z}\right) \d t}}{\presc},
 \end{align}
-where $R_a^f(t)=r_1^f\left(t\right)+r_2^f\left(t\right)$ and $p_{rescue}=1-\exp\left[-\left(1-f\right)p_sN-fp_aN\right]$. We plot our approximation in  \Cref{SGVEvolutionaryRescueTimeComplete} together with simulated data.
+where $R_a^f(t)=r_1^f\left(t\right)+r_2^f\left(t\right)$ and $\presc = 1-\exp\left[-\left(1-f\right)p_sN-fp_aN\right]$. We plot our approximation in  \Cref{SGVEvolutionaryRescueTimeComplete} together with simulated data.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Recurrence time}\label{sec:appendix_recurrence_time}
@@ -1050,16 +1051,16 @@ We observe that for $N=10^7$ our formula overestimates the probability that the 
 
 From  \cref{eqmNs} we obtain the distribution of the recurrence time conditional of evolutionary rescue: %change 12
 \begin{align}\label{distribution}
-f\left(t\right)&=\frac{d}{dt}\left[\frac{P\left(m_t\geq N\right)}{p_{rescue}}\right]=r'\left(t\right)\frac{\exp\left[-r\left(t\right)\right]}{p_{rescue}},
+f\left(t\right)&=\frac{d}{dt}\left[\frac{P\left(m_t\geq N\right)}{\presc}\right]=r'\left(t\right)\frac{\exp\left[-r\left(t\right)\right]}{\presc},
 \end{align}
 which we plot in \Cref{KMdistribution} and compare with simulations. We note that in the scenario $N\gg\abs{\Delta_s}\abs{\Delta_a}/uv\lambda_s\lambda_ap_m$ the distribution becomes the Dirac $\delta$-function~\citep{barton1989elements}.
 %%%
 \section{Bootstrapping}
 For the mean times the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $T$ 100 times; (2) we sample with replacement which we store in $T'$; (3) for each element of this sample we obtain $\tau=\mathbb{E}\left[T'\right]$; (4) we repeat steps (2)-(3) 100 times to obtain $\tau$ and we select the upper and lower limits such that $95\%$ of the values of $\tau$ lie in the interval given by the bounds.
 
-For the threshold tumor sizes the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $p_{rescue}$ 100 times; (2) we sample with replacement which we store in $S$; (3) for each element of this sample we obtain $N_a^*=1/p_s$ using $p_s=-1/N_e\log\left(1-\bar{S}\right)$ where $\bar{S}$ is the mean of $S$ and $N_e$ is an arbitrary value of the initial population size we selected in order to calculate $p_{rescue}$; (4) we repeat steps (2)-(3) 100 times to obtain $N_a^*$ and we select the upper and lower limits such that $95\%$ of the values of $N_a^*$ lie in the interval given by the bounds.
+For the threshold tumor sizes the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $\presc$ 100 times; (2) we sample with replacement which we store in $S$; (3) for each element of this sample we obtain $N_a^*=1/p_s$ using $p_s=-1/N_e\log\left(1-\bar{S}\right)$ where $\bar{S}$ is the mean of $S$ and $N_e$ is an arbitrary value of the initial population size we selected in order to calculate $\presc$; (4) we repeat steps (2)-(3) 100 times to obtain $N_a^*$ and we select the upper and lower limits such that $95\%$ of the values of $N_a^*$ lie in the interval given by the bounds.
 
-For the ratio of the threshold tumor sizes the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $p_{rescue}$ 100 times for both the scenario when $f=\tilde{u}\lambda_s/c$ and $f=0$; (2) we sample with replacement which we store in $S_f$ and  $S_0$; (4) for each element of $S_0$ we obtain $N_a^*=1/p_s$ using $p_s=-1/N_e\log\left(1-\bar{S}\right)$ where $\bar{S}$ is the mean of $S_0$ and $N_e$ is an arbitrary value of the initial population size we selected in order to calculate $p_{rescue}$; (5) for each element of $S_f$ we obtain $\tilde{N}_a^*=1/p_a$ using $p_a=-f/N_e\log\left(1-\bar{S}\right)$ where $\bar{S}_f$ is the mean of $S_f$ and $N_e$ is an arbitrary value of the initial population size we selected in order to calculate $p_{rescue}$; (6) we repeat steps (2)-(5) 100 times to obtain $\tilde{N}_a^*/N_a^*$ and we select the upper and lower limits such that $95\%$ of the values of $\tilde{N}_a^*/N_a^*$ lie in the interval given by the bounds.
+For the ratio of the threshold tumor sizes the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $\presc$ 100 times for both the scenario when $f=\tilde{u}\lambda_s/c$ and $f=0$; (2) we sample with replacement which we store in $S_f$ and  $S_0$; (4) for each element of $S_0$ we obtain $N_a^*=1/p_s$ using $p_s=-1/N_e\log\left(1-\bar{S}\right)$ where $\bar{S}$ is the mean of $S_0$ and $N_e$ is an arbitrary value of the initial population size we selected in order to calculate $\presc$; (5) for each element of $S_f$ we obtain $\tilde{N}_a^*=1/p_a$ using $p_a=-f/N_e\log\left(1-\bar{S}\right)$ where $\bar{S}_f$ is the mean of $S_f$ and $N_e$ is an arbitrary value of the initial population size we selected in order to calculate $\presc$; (6) we repeat steps (2)-(5) 100 times to obtain $\tilde{N}_a^*/N_a^*$ and we select the upper and lower limits such that $95\%$ of the values of $\tilde{N}_a^*/N_a^*$ lie in the interval given by the bounds.
 %%%
 \section{Aneuploidy-induced mutation rate}\label{sec:appendix-diff-mut}
 The mutation rate may be increased in aneuploid cells. 
