@@ -190,6 +190,8 @@ Here, we focus on the latter.
 Evolutionary rescue may occur when a beneficial mutation appears in a single copy, leading to hard selective sweeps, or when multiple mutations appear independently in different individuals, leading to soft selective sweeps. \citet{wilson2017soft} have shown that evolutionary rescue is significantly enhanced by soft selective sweeps when multiple mutations contribute towards evolutionary rescue. Additionally, \citet{osmond2020genetic} have calculated the probability that rescue is soft and the expected number of rescue mutations in different scenarios. Evolutionary rescue that requires two successive mutations (i.e., two steps) has been investigated by \citet{martin2013probability}, who tested their model's predictions with data from yeast and bacteria experiments. \citet{iwasa2003evolutionary,iwasa2004evolutionary} used multi-type branching process theory to approximate the probability that a population under strong selective pressure can survive extinction via succesive mutations. %change 41
 
 Here, we study evolutionary rescue after a sudden environmental change caused by initiating anti-cancer drug treatment. 
+Essentially, this consists of combining known results from the evolutionary rescue literature, focusing on the quantities and parameter values that are relevant for cancer.
+For completeness, however, we re-derive all results within a single model.
 We consider a range of effects of aneuploidy, from tolerance to (partial) resistance to the drug \citep{brauner2016distinguishing} (we note that we use tolerant to refer to aneuploids which have negative growth rates, which is different from other references in the literature such as \citet{berman2020drug}). %change 47
 We estimate the effect of aneuploidy on the tumor's evolutionary rescue probability. When aneuploidy provides drug resistance, it can directly rescue the tumor. However, when aneuploidy provides tolerance to the drug, it may act as an evolutionary ``stepping stone'' or ``springboard'' \citep{Yona2015,martin2013probability,osmond_genetic_2020}, delaying extinction, and thereby allowing the tumor more time to acquire a resistance mutation on top of the aneuploid background. 
 As mentioned above, evidence suggests that aneuploidy may be a common strategy for tumor adaptation to drug therapy. Still, it is unknown how often aneuploidy provides tolerance and acts as a stepping stone.
@@ -460,7 +462,11 @@ We next approximated the mean time for the population of mutant cancer cells to 
 \end{equation}
 where $p_m$ is the probability that a lineage starting from a single mutant cell escapes stochastic extinction. %change 26 
   ~\Cref{proliferationFigure,ProliferationTimeLarge} show the agreement between our approximations and simulation results.
-For small tumors ($N \ll N_a^*$), the mean recurrence time can be approximated as the sum of the mean time for the first rescue mutation to appear and the mean time for its lineage to reach size $N$. The mean recurrence time grows logarithmically with tumor size $N$ and is the same order of magnitude as the mean evolutionary rescue time. Increasing the mutant growth rate, $\Delta_m$, decreases the recurrence time, while increasing the sensitive and aneuploid growth rates, $\Delta_s$ and $\Delta_a$, respectively, increases the recurrence time.
+For small tumors ($N \ll N_a^*$), the mean recurrence time can be approximated as the sum of the mean time for the first rescue mutation to appear ($\tau_a$) and the additional mean time for its lineage to reach size $N$. 
+This additional time is the equivalent of \citet{orr2014population}'s ``$t_\text{return}$'' (their eq.~23). 
+It grows logarithmically with tumor size $N$ and may be the same order of magnitude as the mean evolutionary rescue time. 
+Increasing the mutant growth rate, $\Delta_m$, decreases the recurrence time, while increasing the sensitive and aneuploid growth rates, $\Delta_s$ and $\Delta_a$, respectively, increases the recurrence time.
+
 For large tumors ($N \gg N_m^*$), the dynamics of the number of mutant cells is deterministic, and the mean recurrence time becomes independent of the initial tumor size $N$.
 Increasing either the mutant growth rate, $\Delta_m$, or the mutation rate, $v$, decreases the time for the tumor to rebound to its initial size.
 Drugs that significantly increase the death rate of sensitive cells, $\mu_s$, but do not affect their division rate, $\lambda_s$, delay cancer recurrence (conditioned on evolutionary rescue). Consequently, patients treated with such drugs may require a longer period of monitoring to guarantee the effectiveness of the treatment.
@@ -479,7 +485,7 @@ However, for large tumors, the mean detection time $\tau_a^{M}$ decreases logari
 
 \section*{Discussion}
 
-We have modeled a tumor--a population of cancer cells--exposed to drug treatment that causes it to decline in size toward potential extinction.
+We have modeled a tumor---a population of cancer cells---exposed to drug treatment that causes it to decline in size toward potential extinction.
 In this scenario, the tumor can be ``evolutionary rescued'' or escape extinction via two paths.
 In the direct path, a drug-sensitive cell acquires a mutation or aneuploidy that confers resistance and allows it to grow rapidly.
 In the indirect path, a sensitive cell first becomes aneuploid, which diminishes the drug's effect, and then an aneuploid cell acquires a mutation that confers resistance (\Cref{figureAneuploidy}). 
