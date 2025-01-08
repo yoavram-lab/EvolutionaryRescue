@@ -185,13 +185,25 @@ adaptation by phenotypic plasticity without genetic modification \citep{carja201
 and adaptation through genetic modifications, e.g., mutation \citep{gomulkiewicz1995does,uecker2014evolutionary,uecker2016role,uecker2011fixation,orr2014population}. 
 Here, we focus on the latter. 
 
-\citet{gunnarsson2020understanding} analyzed a model where a tumor consisting of two populations of cancer cells, one drug-resistant and the other drug-sensitive, can evade extinction by cells switching between the two phenotypes through epigenetic mutations. They found that even when drug-resistant cells are barely viable, the epimutations guarantee evolutionary rescue. Evolutionary rescue in a single step, where an initially declining population has to acquire a mutation to survive extinction after a sudden environmental change, has been studied by \citet{orr2008population,orr2014population}. They analyzed a model where the mutant strain is present in small numbers at the onset of therapy. They concluded that this can significantly enhance the population's probability of survival. 
+There has been extensive theoretical analysis of evolutionary rescue.
+\citet{orr2008population,orr2014population} thoroughly investigated the simplest case in which there is a specific single mutation or low-frequency variant that is sufficient to rescue the population. 
+\citet{martin2013probability} extended these results to consider the effects of a range of rescue genotypes that can vary in both growth rate and variance in offspring number.
+\citep{uecker2016role} modeled a situation in which \textit{two} mutations at different loci (with recombination between them) are necessary for rescue. 
+\citet{osmond2020genetic} considered a population that must achieve rescue, potentially via multiple mutations, by adapting on a fitness landscape described by Fisher's geometric model. 
 
-Evolutionary rescue may occur when a beneficial mutation appears in a single copy, leading to hard selective sweeps, or when multiple mutations appear independently in different individuals, leading to soft selective sweeps. \citet{wilson2017soft} have shown that evolutionary rescue is significantly enhanced by soft selective sweeps when multiple mutations contribute towards evolutionary rescue. Additionally, \citet{osmond2020genetic} have calculated the probability that rescue is soft and the expected number of rescue mutations in different scenarios. Evolutionary rescue that requires two successive mutations (i.e., two steps) has been investigated by \citet{martin2013probability}, who tested their model's predictions with data from yeast and bacteria experiments. \citet{iwasa2003evolutionary,iwasa2004evolutionary} used multi-type branching process theory to approximate the probability that a population under strong selective pressure can survive extinction via succesive mutations. %change 41
+
+Resistance to cancer therapy is a natural application of evolutionary rescue theory \citep{alexander2014evolutionary}. 
+\citet{iwasa2003evolutionary} used multi-type branching process theory to approximate the probability that a population under strong selective pressure can survive extinction, focusing on the case in which the cancer must get two mutations to be rescued, with the single-mutant still dying rapidly.
+\citet{iwasa2004evolutionary} used a similar approach to find simple approximate expressions for the probability that a single lineage would evolve to survive via a wide range of possible mutational pathways.
+A very similar set of models describe adaptation to new environments (e.g., a pathogen evolving to cross a species barrier) and fitness valley crossing \citep{antia2003role, weissman2009rate}.
+\citet{gunnarsson2020understanding} analyzed a model where a tumor consisting of two populations of cancer cells, one drug-resistant and the other drug-sensitive, can evade extinction by cells switching between the two phenotypes through epigenetic mutations. They found that even when drug-resistant cells are barely viable, the epimutations guarantee evolutionary rescue. 
+
+%Evolutionary rescue may occur when a beneficial mutation appears in a single copy, leading to hard selective sweeps, or when multiple mutations appear independently in different individuals, leading to soft selective sweeps. \citet{wilson2017soft} have shown that evolutionary rescue is significantly enhanced by soft selective sweeps when multiple mutations contribute towards evolutionary rescue. Additionally, \citet{osmond2020genetic} have calculated the probability that rescue is soft and the expected number of rescue mutations in different scenarios. Evolutionary rescue that requires two successive mutations (i.e., two steps) has been investigated by \citet{martin2013probability}, who tested their model's predictions with data from yeast and bacteria experiments.  %change 41
 
 Here, we study evolutionary rescue after a sudden environmental change caused by initiating anti-cancer drug treatment. 
 Essentially, this consists of combining known results from the evolutionary rescue literature, focusing on the quantities and parameter values that are relevant for cancer.
-Because these results are scattered across multiple papers, and because they all follow easily from simple branching process approximations, we re-derive all results here within our single cancer model.
+Because these results are scattered across multiple papers, and because they all follow easily from simple branching process approximations, we re-derive all results here within our single model.
+While our focus is on the application to cancer, our model is a general one, and in the general evolutionary rescue context, this work can be seen as a characterization of the circumstances in which two-step processes contribute to rescue even when single-step rescue mutations are available.
 We consider a range of effects of aneuploidy, from tolerance to (partial) resistance to the drug \citep{brauner2016distinguishing} (we note that we use tolerant to refer to aneuploids which have negative growth rates, which is different from other references in the literature such as \citet{berman2020drug}). %change 47
 We estimate the effect of aneuploidy on the tumor's evolutionary rescue probability. When aneuploidy provides drug resistance, it can directly rescue the tumor. However, when aneuploidy provides tolerance to the drug, it may act as an evolutionary ``stepping stone'' or ``springboard'' \citep{Yona2015,martin2013probability,osmond_genetic_2020}, delaying extinction, and thereby allowing the tumor more time to acquire a resistance mutation on top of the aneuploid background. 
 As mentioned above, evidence suggests that aneuploidy may be a common strategy for tumor adaptation to drug therapy. Still, it is unknown how often aneuploidy provides tolerance and acts as a stepping stone.
@@ -280,7 +292,9 @@ All the parameters discussed above are shown in \Cref{table1}.
 
 \paragraph{Density-dependent growth.}
 
-In our analysis, we assume that cells from the initial population divide and die independently of each other. However, these cells will compete for resources. We assume this competition can be ignored because the drug will cause the cell density to rapidly drop below the carrying capacity where competition is important.
+In most of our analysis, we assume that cells from the initial population divide and die independently of each other. 
+However, these cells will compete for resources. 
+We assume this competition can be ignored because the drug will cause the cell density to rapidly drop below the carrying capacity where competition is important.
 To test this assumption, we simulate a logistic growth model, with division and death rates given by
 \[
 \begin{aligned}
@@ -311,7 +325,7 @@ In our model, \emph{evolutionary rescue} occurs when drug-resistant cells appear
 Aneuploidy may contribute to evolutionary rescue by either preventing (when $\Delta_a>0$) or delaying (when $0>\Delta_a>\Delta_s$) the extinction of the population before mutant cells appear and establish.
 We assume independence between clonal lineages starting from an initial population of $N$ sensitive cells (we check the effect of density-dependent growth on our results below) and therefore, we use multi-type branching processes to model the dynamics of the cancer cell population. Multi-type branching process models the growth and evolution of populations with distinct types, capturing dynamics like mutation and selection. In evolutionary rescue, it predicts the probability of population survival by tracking adaptive mutations that emerge and spread under environmental stress. % change 53 
 Define $p_s$ as the probability that a lineage starting from a single drug-sensitive cell avoids extinction by acquiring drug resistance.
-Thus, $N^*=1/p_s$ is the threshold tumor size above which evolutionary rescue is very likely, and the rescue probability is given by 
+Thus, $N^*=1/p_s$ is the threshold tumor size above which evolutionary rescue is very likely \citep{iwasa2003evolutionary}, and the rescue probability is given by 
 \begin{equation}\label{eq:rescue_prob} 
 \presc = 
 1-\left(1-p_s\right)^N \approx
