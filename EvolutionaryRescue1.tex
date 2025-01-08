@@ -63,7 +63,7 @@ headheight=12pt
 \newcommand{\hl}[1]{\colorbox{yellow!50}{$\displaystyle#1$}}
 
 % line numbers
-\usepackage[displaymath, mathlines]{lineno}
+\usepackage[mathlines]{lineno}
 \renewcommand\linenumberfont{\normalfont\small\sffamily}
 \linenumbers
 \modulolinenumbers[2]
@@ -897,9 +897,9 @@ r_1\left(t\right)&=v\lambda_ap_ma_{t},\\
 r_2\left(t\right)&=v\lambda_sp_ms_{t},
 \end{align*}
 and the expected number of successful mutants created by direct mutation and via aneuploidy until time $t$ is given by:
-\begin{align}\label{eq:twosteplineage}
-M_a\left(t\right)&=v\lambda_ap_m\int_0^ta_{z} d z = \frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_st}-1}{\Delta_s}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right),\\ 
-M_m\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} d z = v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}.
+\begin{align}
+M_a\left(t\right)&=v\lambda_ap_m\int_0^ta_{z} d z = \frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_st}-1}{\Delta_s}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right),\label{eq:twosteplineage}\\ 
+M_m\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} d z = v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}.\label{eq:twosteplineagedirect}
 \end{align} %change r3
 
 For large initial population sizes we assume that the two processes are independent and as a result, they can be merged into a single Poisson process with rate $R_a(t)=\left(r_1+r_2\right)\left(t\right)$.
@@ -1143,7 +1143,7 @@ Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,
 \begin{figure}
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/ExpectedNumber.pdf}
-\caption{\textbf{Aneuploidy increases the number of mutations which rescue the tumor.} Shown is the expected number of mutations, which will rescue the cancer cell population, produced through the evolutionary trajectory $sensitive \rightarrow mutant$ (blue line, \cref{eq:twosteplineagedirect}) or through the trajectory $sensitive \rightarrow aneuploid \rightarrow mutant$ (red line, \cref{eq:twosteplineage}). Dashed vertical red line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}.
+\caption{\textbf{Aneuploidy increases the number of mutations which rescue the tumor.} Shown is the expected number of mutations, which will rescue the cancer cell population, produced through the evolutionary trajectory \textit{sensitive} $\rightarrow$ \textit{mutant} (blue line, \cref{eq:twosteplineagedirect}) or through the trajectory \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{mutant} (red line, \cref{eq:twosteplineage}). Dashed vertical red line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}.
 Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.} %change 14
 \label{ExpectedNumberRescueLineages}
 \end{figure}
