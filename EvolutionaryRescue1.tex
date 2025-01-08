@@ -220,8 +220,8 @@ The simulation monitors the number of cells of each type: sensitive, aneuploid, 
 Initially, the population starts with only sensitive cells, $s_0=N$, and the other genotypes are initially absent.
 
 The cell population at time $t$ is represented by the triplet $\left(s_t,a_t,m_t\right)$. The following describes the events that may occur (right column), the rates at which they occur (middle column), and the effect these events have on the population (left column, see \Cref{figureAneuploidy}):
-
-\begin{align*}
+\[
+\begin{aligned}
 (+1,0,0)&:\quad \lambda_ss_t\left(1-u-v\right)\quad\left(\text{birth of sensitive cell}\right),\\
 (-1,0,0)&:\quad \mu_ss_t\quad\left(\text{death of sensitive cell}\right),\\
 (0,+1,0)&:\quad u\lambda_ss_t\quad\left(\text{sensitive cell divides and becomes aneuploid}\right),\\
@@ -231,8 +231,10 @@ The cell population at time $t$ is represented by the triplet $\left(s_t,a_t,m_t
 (0,0,+1)&:\quad v\lambda_aa_t\quad\left(\text{aneuploid cell divides and becomes mutant}\right),\\
 (0,0,+1)&:\quad \lambda_mm_t\quad\left(\text{birth of mutant cell}\right),\\
 (0,0,-1)&:\quad \mu_mm_t\quad\left(\text{death of mutant cell}\right).
-\end{align*}
-For the remaining of this paper, we assume that the division rates of sensitive and aneuploid cells can be written as $\lambda_ss_t\left(1-u-v\right)\approx \lambda_ss_t$ and $\lambda_aa_t\left(1-v\right)\approx\lambda_aa_t$ because $u,v\ll1$ (\Cref{table1}).
+\end{aligned}
+\]
+
+For the remainder of this paper, we assume that the division rates of sensitive and aneuploid cells can be written as $\lambda_ss_t\left(1-u-v\right)\approx \lambda_ss_t$ and $\lambda_aa_t\left(1-v\right)\approx\lambda_aa_t$ because $u,v\ll1$ (\Cref{table1}).
 Each iteration of the simulation loop starts by computing the rates $\nu_k$ of each event $k$.
 We then draw the time until the next event, $\Delta t$, from an exponential distribution whose rate parameter is the sum of the rates of all events, such that $\Delta t \sim \text{Exp}(\sum_j \nu_j)$.
 Then, we randomly determine which event occurred, where the probability for event $k$ is $p_k = \nu_k/\sum_j \nu_j$.
@@ -277,14 +279,16 @@ All the parameters discussed above are shown in \Cref{table1}.
 
 In our analysis, we assume that cells from the initial population divide and die independently of each other. However, these cells will compete for resources. We assume this competition can be ignored because the drug will cause the cell density to rapidly drop below the carrying capacity where competition is important.
 To test this assumption, we simulate a logistic growth model, with division and death rates given by
-\begin{align*}
+\[
+\begin{aligned}
 \lambda_s' &= \lambda_s , \\
 \mu_s' &= \mu_s ,\\
 \lambda_a' &= \lambda_a ,\\ 
 \mu_a' &= \mu_a + \lambda_a\frac{w+a+m}{K} ,\\
 \lambda_m' &= \lambda_m ,\\ 
 \mu_m' &= \mu_m + \lambda_m\frac{w+a+m}{K} ,
-\end{align*}
+\end{aligned}
+\]
 where $K$ is the tumor carrying capacity. 
 The effective carrying capacity in this model is $K_e=K\Delta_a/\lambda_a\approx10^6$ for $K=10^8, \lambda_a=0.0901,\mu_a=0.09$, where we define the effective carrying capacity to be the population size at which the aneuploid division rate is equal to the aneuploid death rate. 
 
