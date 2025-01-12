@@ -189,7 +189,7 @@ There has been extensive theoretical analysis of evolutionary rescue.
 \citet{orr2008population,orr2014population} thoroughly investigated the simplest case in which there is a specific single mutation or low-frequency variant that is sufficient to rescue the population. 
 \citet{martin2013probability} extended these results to consider the effects of a range of rescue genotypes that can vary in both growth rate and variance in offspring number.
 \citet{uecker2016role} modeled a situation in which \textit{two} mutations at different loci (with recombination between them) are necessary for rescue. 
-\citet{osmond2020genetic} considered a population that must achieve rescue, potentially via multiple mutations, by adapting on a fitness landscape described by Fisher's geometric model. 
+\citet{osmond_genetic_2020} considered a population that must achieve rescue, potentially via multiple mutations, by adapting on a fitness landscape described by Fisher's geometric model. 
 
 
 Resistance to cancer therapy is a natural application of evolutionary rescue theory \citep{alexander2014evolutionary}. 
@@ -198,7 +198,7 @@ Resistance to cancer therapy is a natural application of evolutionary rescue the
 A very similar set of models describe adaptation to new environments (e.g., a pathogen evolving to cross a species barrier) and fitness valley crossing \citep{antia2003role, weissman2009rate}.
 \citet{gunnarsson2020understanding} analyzed a model where a tumor consisting of two populations of cancer cells, one drug-resistant and the other drug-sensitive, can evade extinction by cells switching between the two phenotypes through epigenetic mutations. They found that even when drug-resistant cells are barely viable, the epimutations guarantee evolutionary rescue. 
 
-%Evolutionary rescue may occur when a beneficial mutation appears in a single copy, leading to hard selective sweeps, or when multiple mutations appear independently in different individuals, leading to soft selective sweeps. \citet{wilson2017soft} have shown that evolutionary rescue is significantly enhanced by soft selective sweeps when multiple mutations contribute towards evolutionary rescue. Additionally, \citet{osmond2020genetic} have calculated the probability that rescue is soft and the expected number of rescue mutations in different scenarios. Evolutionary rescue that requires two successive mutations (i.e., two steps) has been investigated by \citet{martin2013probability}, who tested their model's predictions with data from yeast and bacteria experiments.  %change 41
+%Evolutionary rescue may occur when a beneficial mutation appears in a single copy, leading to hard selective sweeps, or when multiple mutations appear independently in different individuals, leading to soft selective sweeps. \citet{wilson2017soft} have shown that evolutionary rescue is significantly enhanced by soft selective sweeps when multiple mutations contribute towards evolutionary rescue. Additionally, \citet{osmond_genetic_2020} have calculated the probability that rescue is soft and the expected number of rescue mutations in different scenarios. Evolutionary rescue that requires two successive mutations (i.e., two steps) has been investigated by \citet{martin2013probability}, who tested their model's predictions with data from yeast and bacteria experiments.  %change 41
 
 Here, we study evolutionary rescue after a sudden environmental change caused by initiating anti-cancer drug treatment. 
 Essentially, this consists of combining known results from the evolutionary rescue literature, focusing on the quantities and parameter values that are relevant for cancer.
@@ -361,7 +361,7 @@ N_a^* \approx
   \end{cases}
 \end{aligned}
 \end{equation}
-Note that that \cref{eq:N_a} is an approximation of the two step-evolutionary rescue probability derived by \citet{osmond_genetic_2020} with Dirac delta fitness distribution, which is also similar to eq.~A3 in \citep{iwasa2004evolutionary}. %change 57
+\cref{eq:N_a} is basically our model's equivalent of \citet{iwasa2004evolutionary}'s eq.~A3, or eq.~8 of \citet{osmond_genetic_2020} with the distribution of fitness effects set to a delta function. %change 57
 These approximations are accurate when compared to results of stochastic evolutionary simulations (\Cref{rescue_prob,rescue_threshold}). 
 The first line describes the scenario in which the treatment still effectively kills aneuploid cells but not as quickly as the sensitive cells. 
 In the second scenario, aneuploid cells are sufficiently resistant, and the expected size of each aneuploid lineage is roughly 1.
