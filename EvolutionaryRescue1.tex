@@ -189,7 +189,8 @@ There has been extensive theoretical analysis of evolutionary rescue.
 \citet{orr2008population,orr2014population} thoroughly investigated the simplest case in which there is a specific single mutation or low-frequency variant that is sufficient to rescue the population. 
 \citet{martin2013probability} extended these results to consider the effects of a range of rescue genotypes that can vary in both growth rate and variance in offspring number.
 \citet{uecker2016role} modeled a situation in which \textit{two} mutations at different loci (with recombination between them) are necessary for rescue. 
-\citet{osmond_genetic_2020} considered a population that must achieve rescue, potentially via multiple mutations, by adapting on a fitness landscape described by Fisher's geometric model. 
+\citet{osmond_genetic_2020} considered a population that must achieve rescue, potentially via multiple mutations, by adapting on a fitness landscape described by Fisher's geometric model,
+and found that for some parameter values rescue by two mutational steps is more likely than rescue by a single step.
 
 
 Resistance to cancer therapy is a natural application of evolutionary rescue theory \citep{alexander2014evolutionary}. 
@@ -203,7 +204,9 @@ A very similar set of models describe adaptation to new environments (e.g., a pa
 Here, we study evolutionary rescue after a sudden environmental change caused by initiating anti-cancer drug treatment. 
 Essentially, this consists of combining known results from the evolutionary rescue literature, focusing on the quantities and parameter values that are relevant for cancer.
 Because these results are scattered across multiple papers, and because they all follow from simple branching process approximations, we re-derive all results here for our model.
-While our focus is on the application of evolutionary rescue theory to evolution of drug resistance in cancer, our model is a general one, and in the general evolutionary rescue context, this work can be seen as a characterization of the circumstances in which two-step processes contribute to rescue even when single-step rescue mutations are available.
+While our focus is on the application of evolutionary rescue theory to evolution of drug resistance in cancer, our model is a general one, and in the general evolutionary rescue context, this work can be seen as a characterization of the circumstances in which two-step processes contribute to rescue even when single-step rescue mutations are available, similar to part of \citet{osmond_genetic_2020} but focused on a different fitness landscape.
+
+
 We consider a range of effects of aneuploidy, from tolerance to (partial) resistance to the drug \citep{brauner2016distinguishing}; note that we use tolerant to refer to aneuploids which have negative growth rates, which is different from other references in the literature such as \citet{berman2020drug}. %change 47
 We estimate the effect of aneuploidy on the tumor's evolutionary rescue probability. When aneuploidy provides drug resistance, it can directly rescue the tumor. However, when aneuploidy provides tolerance to the drug, it may act as an evolutionary ``stepping stone'' or ``springboard'' \citep{Yona2015,martin2013probability,osmond_genetic_2020}, delaying extinction, and thereby allowing the tumor more time to acquire a resistance mutation on top of the aneuploid background. 
 As mentioned above, evidence suggests that aneuploidy may be a common strategy for tumor adaptation to drug therapy. Still, it is unknown how often aneuploidy provides tolerance and acts as a stepping stone.
@@ -266,7 +269,7 @@ When simulations are slow (e.g., due to large population size) with runtimes in 
 
 \paragraph{Parameterization.}
 To parametrize the simulations, we assume that the cells under consideration are melanoma cells and rely on \citet{rew2000cell} and \citet{bozic2013evolutionary} for the division and death rates, respectively. 
-\citet{rew2000cell} report \emph{in vivo} measurements of the potential doubling times (the waiting time for the number of cells in the tumor to double, disregarding cell death) for a large set of cancer types. The division rate is obtained as $\lambda=\log{2} / T \approx 0.1$ per day. We select this to be the division rate for sensitive and mutant cells. This is a reasonable assumption given that we assume that the mutation makes the cancer cells immune to the chemotherapeutic drugs. %change 40
+\citet{rew2000cell} report \textit{in vivo} measurements of the potential doubling times (the waiting time for the number of cells in the tumor to double, disregarding cell death) for a large set of cancer types. The division rate is obtained as $\lambda=\log{2} / T \approx 0.1$ per day. We select this to be the division rate for sensitive and mutant cells. This is a reasonable assumption given that we assume that the mutation makes the cancer cells immune to the chemotherapeutic drugs. %change 40
 
 \citet{bozic2013evolutionary} report the growth rate $\Delta_s$ for sensitive melanoma cancer cells, from patient data, from which they deduce the death rate $0.11 \le \mu_s \le 0.17$. We use  $\mu_s=0.14$ per day. Additionally, they observed the growth rate of cancer cells before treatment to be 0.01, which we use as the growth rate of mutant cells, which are resistant to the drug. Thus, we use $\mu_m=0.1-0.01=0.09$ per day as the death rate for mutant cells. %change 54
 
@@ -403,21 +406,21 @@ Therefore, we performed stochastic simulations of a logistic growth model with a
 We find that our density-independent approximations agree with the results of simulations with density-dependent growth for biologically relevant parameter values (\Cref{LogisticPlot}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph*{Standing vs. \emph{de-novo} genetic variation.}
+\paragraph*{Standing vs. \textit{de novo} genetic variation.}
 
 In the above, we assumed that at the onset of drug treatment, the initial tumor consisted entirely of drug-sensitive cells.
 However, aneuploidy is likely produced even before the onset of treatment at some rate $\tilde{u}$, which may be lower in the absence of drugs, $\tilde{u} < u$ \citep{wang2019molecular,mason2017functional}. Moreover, aneuploidy likely confers a fitness cost $c$ in the absence of drugs \citep{replogle2020aneuploidy,giam2015aneuploidy}.
 Hence, if the number of cells in the tumor $N$ is large (as expected if the tumor is treated with a drug), there may already be a fraction $f \approx \tilde{u}\lambda_s/c$ of aneuploid cells in the population (here we assume that the drug affects the sensitive death rate but not the division rate and therefore we use $\lambda_s$ for the sensitive division rate in the drug-free environment).
 
-Therefore, the threshold tumor size for rescue by standing generation variation, $\tilde{N}^*_{a}$, is similar to the threshold for rescue by de-novo variation, $N^*_a$, except that the sensitive growth rate $\abs{\Delta_s}$ is replaced by the cost of aneuploidy $c$, such that
+Therefore, the threshold tumor size for rescue by standing generation variation, $\tilde{N}^*_{a}$, is similar to the threshold for rescue by \textit{de novo} variation, $N^*_a$, except that the sensitive growth rate $\abs{\Delta_s}$ is replaced by the cost of aneuploidy $c$, such that
 \begin{equation}\label{eq:Nsgv}
 \frac{\tilde{N}^*_{a}}{N^*_{a}} = \frac{u}{\tilde{u}} \; \frac{c}{\abs{\Delta_s}}.
 \end{equation}
 This result has been previously reported by \citet{orr2008population} for the one-step evolutionary rescue and by \citet{martin2013probability} for two-step evolutionary rescue. % change 42
 Comparing this approximation of $\tilde{N}^*_{a}/N^*_{a}$ to results of stochastic simulations, we find that the approximations are accurate (\Cref{rescue_denovo}). 
 Standing genetic variation will drive evolutionary rescue if sensitive cells die rapidly (growth rate $\Delta_s$ is very negative) due to a strong effect of the drug on sensitive cells or if the cost of aneuploidy in the drug-free environment, $c$, is small.  
-In contrast, \emph{de-novo} aneuploid cells will have a greater contribution to rescue if the cost of aneuploidy, $c$, is large, the effect of the drug on sensitive cells is weak ($\Delta_s$ is close to zero), or if the drug induces the appearance of aneuploid cells ($u > \tilde u$).
-For example, with  $\lambda_s=0.1$, $\mu_s=0.14$, $u=10^{-2}$, $\tilde{u}=10^{-3}$, and $c=0.07$, the ratio of the threshold tumor sizes for standing vs. \emph{de-novo} variation is $\tilde{N}^*_a/N^*_a \approx 17.5$, which means that \emph{de-novo} genetic variation is  the main driver of evolutionary rescue.
+In contrast, \textit{de novo} aneuploid cells will have a greater contribution to rescue if the cost of aneuploidy, $c$, is large, the effect of the drug on sensitive cells is weak ($\Delta_s$ is close to zero), or if the drug induces the appearance of aneuploid cells ($u > \tilde u$).
+For example, with  $\lambda_s=0.1$, $\mu_s=0.14$, $u=10^{-2}$, $\tilde{u}=10^{-3}$, and $c=0.07$, the ratio of the threshold tumor sizes for standing vs. \textit{de novo} variation is $\tilde{N}^*_a/N^*_a \approx 17.5$, which means that \textit{de novo} genetic variation is  the main driver of evolutionary rescue.
 
 Using \cref{eq:N_a,eq:N_m,eq:Nsgv}, we can find the ratio of threshold tumor size for rescue via standing genetic variation  to the threshold for rescue via direct mutation,
 \begin{equation} \label{eq:N_sgv_ratio}
@@ -519,7 +522,8 @@ However, anti-cancer drugs are often used as adjuvant therapy after resection, i
 Given that the mean time for secondary tumors to adapt to anti-cancer drugs can be of the order of 1,000 days (\Cref{MeanTimeGrowthAneuploidyPlot}A), aneuploidy can explain the reappearance of cancer even after initial remission. The theoretical prediction for the mean rescue time of tumors smaller than $10^8$ cells is greater than 4 years, consistent with previous estimates of the recurrence time of tumors after resection~\citep{avanzini2019cancer}. We found that aneuploidy complements evolutionary rescue through direct mutation because it produces rescue mutations mostly after the number of sensitive cells has decreased to a point where a direct mutation is no longer a feasible option for evolutionary rescue (\Cref{cdffig}A).
 
 We hypothesized that standing genetic variation (the existence of aneuploid cancer cells in the tumor before the onset of therapy) could facilitate evolutionary rescue by reducing the waiting time for the appearance of aneuploid cells. We found that a drug that reduces the sensitive growth rate and does not significantly increase the chromosome missegregation rate will likely lead to evolutionary rescue through standing genetic variation (\Cref{rescue_denovo,eq:Nsgv}).
-Furthermore, if the fraction of tumor cells that have the beneficial aneuploidy is $f \gg u \lambda_s / \abs{\Delta_s} \approx2.5\%$, then evolutionary rescue is more likely to occur via standing variation rather than through \emph{de-novo} aneuploidy. However, for the parameter values we focus on in our examples (\Cref{table1}), this fraction is an order of magnitude lower, and therefore, we expect evolutionary rescue to occur by \emph{de-novo} aneuploidy.
+Furthermore, if the fraction of tumor cells that have the beneficial aneuploidy is $f \gg u \lambda_s / \abs{\Delta_s} \approx2.5\%$, then evolutionary rescue is more likely to occur via standing variation rather than through \textit{de novo} aneuploidy. 
+However, for the parameter values we focus on in our examples (\Cref{table1}), this fraction is an order of magnitude lower, and therefore, we expect evolutionary rescue to occur by \textit{de novo} aneuploidy.
 
 
 %Finally, we observe from \Cref{rescue_threshold} that only for a restricted region of the parameter space will aneuploidy act as a ``stepping stone'' for evolutionary rescue. If the aneuploid division rate is smaller than $\frac{\mu_a}{1+u}\approx\mu_a(1-u)$, then evolutionary rescue will occur through direct mutation. As a result, for most parameter values, aneuploidy will either not play any role in evolutionary rescue or will be the main driver of adaptation without requiring any mutation (i.e., evolutionary rescue in one step).
@@ -674,8 +678,8 @@ B\\
 \end{subfigure}
 \caption{
 \textbf{Standing genetic variation facilitates the evolutionary rescue of cancer.}
-(A)  Ratio of threshold tumor sizes for rescue by standing genetic variation and by de-novo variation, $\tilde{N}_a^*/N_a^*$, when a fraction $\frac{\tilde{u}\lambda_s}{c}$ is aneuploid at the start of treatment, as a function of the sensitive growth rate $\Delta_s$.  Standing genetic variation will drive adaptation to the drug if the sensitive population is rapidly declining ($\Delta_s\ll0$) due to a stronger effect of the drug on sensitive cells. Red dots represent simulation results, and the error bars represent the $95\%$ confidence intervals obtained with bootstrap (Appendix G). Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_a=0.09,\mu_m=0.09,\tilde{u}=10^{-3},u=10^{-2}, v=10^{-7}$.
-(B) Ratio of threshold tumor size $\tilde{N}_a^*$, when a fraction $\frac{\tilde{u}\lambda_s}{c}$ is aneuploid at the start of treatment, and $N_a^*$ as a function of the ratio of aneuploidy rates $\tilde{u}/u$. \emph{De-novo} aneuploids will have a larger contribution to the appearance of drug resistance if the drug induces the appearance of aneuploid cells ($u \gg \tilde u$). Red dots represent simulation results, and the error bars represent the $95\%$ confidence intervals obtained with bootstrap (Appendix G). Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09,\tilde{u}=10^{-3}, v=10^{-7}$.
+(A)  Ratio of threshold tumor sizes for rescue by standing genetic variation and by \textit{de novo} variation, $\tilde{N}_a^*/N_a^*$, when a fraction $\frac{\tilde{u}\lambda_s}{c}$ is aneuploid at the start of treatment, as a function of the sensitive growth rate $\Delta_s$.  Standing genetic variation will drive adaptation to the drug if the sensitive population is rapidly declining ($\Delta_s\ll0$) due to a stronger effect of the drug on sensitive cells. Red dots represent simulation results, and the error bars represent the $95\%$ confidence intervals obtained with bootstrap (Appendix G). Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_a=0.09,\mu_m=0.09,\tilde{u}=10^{-3},u=10^{-2}, v=10^{-7}$.
+(B) Ratio of threshold tumor size $\tilde{N}_a^*$, when a fraction $\frac{\tilde{u}\lambda_s}{c}$ is aneuploid at the start of treatment, and $N_a^*$ as a function of the ratio of aneuploidy rates $\tilde{u}/u$. \textit{De novo} aneuploids will have a larger contribution to the appearance of drug resistance if the drug induces the appearance of aneuploid cells ($u \gg \tilde u$). Red dots represent simulation results, and the error bars represent the $95\%$ confidence intervals obtained with bootstrap (Appendix G). Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09,\tilde{u}=10^{-3}, v=10^{-7}$.
 }
 \label{rescue_denovo}
 \end{figure}
