@@ -364,7 +364,8 @@ N_a^* \approx
   \end{cases}
 \end{aligned}
 \end{equation}
-\cref{eq:N_a} is basically our model's equivalent of \citet{iwasa2004evolutionary}'s eq.~A3, or eq.~8 of \citet{osmond_genetic_2020} with the distribution of fitness effects set to a delta function. %change 57
+\Cref{eq:N_a} is our model's equivalent of \citet{iwasa2004evolutionary}'s eq.~A3, or eq.~8 of \citet{osmond_genetic_2020} with the distribution of fitness effects set to a delta function;
+our ``tolerant'', ``stationary'', and ``resistant'' correspond to \citet{osmond_genetic_2020}'s ``sufficiently subcritical'', ``sufficiently critical'', and ``sufficiently supercritical'', respectively. %change 57
 These approximations are accurate when compared to results of stochastic evolutionary simulations (\Cref{rescue_prob,rescue_threshold}). 
 The first line describes the scenario in which the treatment still effectively kills aneuploid cells but not as quickly as the sensitive cells. 
 In the second scenario, aneuploid cells are sufficiently resistant, and the expected size of each aneuploid lineage is roughly 1.
@@ -528,7 +529,12 @@ We hypothesized that standing genetic variation (the existence of aneuploid canc
 Furthermore, if the fraction of tumor cells that have the beneficial aneuploidy is $f \gg u \lambda_s / \abs{\Delta_s} \approx2.5\%$, then evolutionary rescue is more likely to occur via standing variation rather than through \textit{de novo} aneuploidy. 
 However, for the parameter values we focus on in our examples (\Cref{table1}), this fraction is an order of magnitude lower, and therefore, we expect evolutionary rescue to occur by \textit{de novo} aneuploidy.
 
-Comparing our results to the evolutionary rescue literature,
+Comparing our results to the evolutionary rescue literature, we complement \citet{iwasa2003evolutionary} and \citet{osmond_genetic_2020}'s work on multi-step rescue by deriving simple approximations for a different fitness landscape. 
+Similar to \citet{osmond_genetic_2020}, we find that two-step rescues can be more likely than simple one-step rescues. 
+The situation in which the intermediate growth rate is close to zero in the presence of drug (``stationary'') is particularly interesting.
+While in a general model of evolutionary rescue this might appear to be only a tiny region of parameter space 
+(Fig.~\ref{rescue_threshold}A, inset),
+the example of some aneuploidies in cancer suggests that it may be biologically relevant. 
 
 %Finally, we observe from \Cref{rescue_threshold} that only for a restricted region of the parameter space will aneuploidy act as a ``stepping stone'' for evolutionary rescue. If the aneuploid division rate is smaller than $\frac{\mu_a}{1+u}\approx\mu_a(1-u)$, then evolutionary rescue will occur through direct mutation. As a result, for most parameter values, aneuploidy will either not play any role in evolutionary rescue or will be the main driver of adaptation without requiring any mutation (i.e., evolutionary rescue in one step).
 % NOTE FROM DANIEL: I cut this paragraph because I think it's implicitly based on a uniform distribution of aneuploid growth rates. But the whole point of why we're doing this is because there are apparently some interesting aneuploidies that have growth rates near 0
