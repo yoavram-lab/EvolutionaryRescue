@@ -513,10 +513,13 @@ Our results show that the probability of evolutionary rescue increases with the 
 
 When aneuploid cells are partially resistant to the drug ($\Delta_s\ll0\ll\Delta_a\ll\Delta_m$), aneuploidy itself rescues the population (\Cref{rescue_threshold}A). 
 When aneuploidy only provides tolerance to the drug ($\Delta_s\ll\Delta_a\ll0\ll\Delta_m$), it cannot rescue the population.
-Instead, it acts as a ``stepping stone'' through which the resistant mutant can appear more rapidly, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}). In this scenario, aneuploidy provides two advantages. First, it delays the extinction of the population, providing more time for the appearance of the resistance mutation. Second, it increases the population size relative to a drug-sensitive population, providing more cells in which mutations can occur. Together, this increases the cumulative number of mutants that arise (i.e., $Nuv\lambda_s\lambda_a/\abs{\Delta_s\Delta_a}$). % change 39 
+Instead, it acts as a ``stepping stone'' through which the resistant mutant can appear more rapidly, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}). 
+In this scenario, aneuploidy provides two advantages. First, it delays the extinction of the population, providing more time for the appearance of the resistance mutation. 
+Second, it increases the population size relative to a drug-sensitive population, providing more cells in which mutations can occur. 
+Together, this increases the cumulative number of mutants that arise (i.e., $N u v \lambda_s \lambda_a / \abs{\Delta_s \Delta_a}$). % change 39 
 
 We find that aneuploidy can significantly affect evolutionary rescue as it reduces the threshold tumor size by at least an order of magnitude even when aneuploidy only provides tolerance (\Cref{rescue_prob}).
-When the number of cells in the tumor is large enough (i.e., $N\gg N_m^*\approx 4\times10^7$), a resistance mutation will occur in drug-sensitive cells before these cells become extinct (\Cref{rescue_prob}). Therefore, large tumors are likely to be rescued with or without aneuploidy.
+When the number of cells in the tumor is large enough (i.e., $N \gg N_m^* \approx 4\times10^7$), a resistance mutation will occur in drug-sensitive cells before these cells become extinct (\Cref{rescue_prob}). Therefore, large tumors are likely to be rescued with or without aneuploidy.
 However, anti-cancer drugs are often used as adjuvant therapy after resection, in which case the number of cells in the tumor may be below the detection threshold of $\sim10^7$  \citep{bozic2013evolutionary}. In these cases, aneuploidy can have a crucial role in the evolutionary rescue of the tumor and, therefore, in cancer recurrence. Indeed, secondary tumors are estimated to cause the majority of cancer-related deaths~\citep{chaffer2011perspective}. The importance of aneuploidy in the evolutionary rescue of secondary tumors is reinforced by the fact that metastases have been shown to have a chromosome missegregation rate two to three orders of magnitude higher compared to primary tumors~\citep{kimmel2023intra}.
 
 Given that the mean time for secondary tumors to adapt to anti-cancer drugs can be of the order of 1,000 days (\Cref{MeanTimeGrowthAneuploidyPlot}A), aneuploidy can explain the reappearance of cancer even after initial remission. The theoretical prediction for the mean rescue time of tumors smaller than $10^8$ cells is greater than 4 years, consistent with previous estimates of the recurrence time of tumors after resection~\citep{avanzini2019cancer}. We found that aneuploidy complements evolutionary rescue through direct mutation because it produces rescue mutations mostly after the number of sensitive cells has decreased to a point where a direct mutation is no longer a feasible option for evolutionary rescue (\Cref{cdffig}A).
@@ -525,6 +528,7 @@ We hypothesized that standing genetic variation (the existence of aneuploid canc
 Furthermore, if the fraction of tumor cells that have the beneficial aneuploidy is $f \gg u \lambda_s / \abs{\Delta_s} \approx2.5\%$, then evolutionary rescue is more likely to occur via standing variation rather than through \textit{de novo} aneuploidy. 
 However, for the parameter values we focus on in our examples (\Cref{table1}), this fraction is an order of magnitude lower, and therefore, we expect evolutionary rescue to occur by \textit{de novo} aneuploidy.
 
+Comparing our results to the evolutionary rescue literature,
 
 %Finally, we observe from \Cref{rescue_threshold} that only for a restricted region of the parameter space will aneuploidy act as a ``stepping stone'' for evolutionary rescue. If the aneuploid division rate is smaller than $\frac{\mu_a}{1+u}\approx\mu_a(1-u)$, then evolutionary rescue will occur through direct mutation. As a result, for most parameter values, aneuploidy will either not play any role in evolutionary rescue or will be the main driver of adaptation without requiring any mutation (i.e., evolutionary rescue in one step).
 % NOTE FROM DANIEL: I cut this paragraph because I think it's implicitly based on a uniform distribution of aneuploid growth rates. But the whole point of why we're doing this is because there are apparently some interesting aneuploidies that have growth rates near 0
@@ -728,7 +732,8 @@ Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Survival probability of a single lineage}\label{sec:appendix-surv-prob}
 
-To analyze evolutionary rescue in our model, we use the framework of \emph{multi-type branching processes} \citep{harris1963theory, weissman2009rate}. % change 31
+To analyze evolutionary rescue in our model, we use the framework of \emph{multi-type branching processes} \citep{harris1963theory, weissman2009rate}. 
+In the case of cancer, where all reproduction is binary fission, these branching processes are also \emph{birth-death processes} \citep{kendall1948}% change 31
 This allows us to find explicit expressions for the \emph{survival probability}: the probability that a lineage descended from a single cell does not become extinct.
 
 Let $p_s$, $p_a$, and $p_m$ be the survival probabilities of a population consisting initially of single sensitive cell, aneuploid cell, or mutant cell, respectively.
