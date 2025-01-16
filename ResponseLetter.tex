@@ -19,7 +19,7 @@ headheight=12pt
 
 % Title page
 \title{
-	Response to reviewers\\ Evolutionary rescue by aneuploidy in tumors exposed to anti-cancer drugs 
+	Response to reviewers: \\ Evolutionary rescue by aneuploidy in tumors exposed to anti-cancer drugs \\ 
 }
 
 
@@ -99,9 +99,8 @@ We have added an explanation of ODE (line XXX): "In this case the dynamics of th
 
 9. Do we know if it's reasonable to assume the division rates between cell types (i.e., "sensitive" vs. "mutant") are the same? Maybe ground that assumption into something we know, or just say we are not sure if that is reasonable or not. This relates to point 1 and rooting the reader into these parameter values with something real or being honest about the assumption they are equal.
 
-\textcolor{red}{ % change 40
-The doubling times for tumors after relapse is smaller than the doubling times for primary tumors for a variety of tissues \citep{tezuka2007growth,rodgers2024glioblastoma}. Additionally, metastatic melanoma has been shown to grow faster then primary melonoma \citep{carlson2003tumor}. As a result, it is reasonable to assume that the sensitive and mutant growth rates are at the very least equal.
-% TODO the reveiwer is asking if this assumption is reasoanbe and if you can ground it in something DONE
+\textcolor{blue}{ % change 40
+We now ground this assumption in results from the literature (line XXX): "The division rate is obtained as $\lambda=\log{2} / T \approx 0.1$ per day. We take this to be the division rate for sensitive and assume that mutant cells, which are resistant to therapy, have the same division rate. Indeed, doubling times for tumors after relapse is lower than that of primary tumors for a variety of tissues \citep{tezuka2007growth,rodgers2024glioblastoma} and metastatic melanoma has been shown to grow faster then primary melonoma \citep{carlson2003tumor}."
 } 
 
 10. Mid page 7, "decreases" is mis-spelled 
@@ -213,12 +212,12 @@ We estimate the fraction of aneuploid cancer cells in the pre-treatment environm
 
 - methods: is there a justification for not including density-dependence for the sensitives as well? This would hasten their initial decline, which would compound with the reduced initial establishment probability of the mutants. It seems odd they can exert competition on the mutants but don't themselves feel any competition.
 
-\textcolor{red}{We have added density-dependence for the sensitives as well.}% DOES THIS MAKE SENSE? WHY NOT JUST CHANGE TO INCLUDE DENSITY DEPENDENCE FOR SENSITIVES?}  Remus: DONE
+\textcolor{blue}{We have now added density-dependence for the sensitives. The results are unchanged.}
 
 - methods: I got a 404 error for the source code link: https://github.com/yoavram-lab/EvolutionaryRescue
 
 \textcolor{blue}{
-The repository will become available when the paper is accepted. Meanwhile, the source code for our analysis can be privately accessed here: \url{https://www.dropbox.com/s/60zyc6rcjp8q859/StanaEtAlCode.zip}
+The repository will become available when the paper is accepted. Meanwhile, the source code for our analysis can be privately accessed here: \url{https://www.dropbox.com/scl/fi/hrvqdocsr67qur7k59wxw/StanaEtAlCode.zip?rlkey=n7bcr3usx5ym6q3s2qkotanhx}
 }
 
 - results: there doesn't appear to be an eqn 1
@@ -259,8 +258,9 @@ In the scenario discribed decreasing the division rate also leads to a decrease 
 
 - results: if $N_a^*$ is similar to the detection threshold, then you predict that any tumour detected is very likely (eg, $>50\%$) to evolve resistance? Does this fit with data on resistance rates?
 
-\textcolor{red}{ % change 58
-We believe that our model does fit with data on resistance rates: \citep{handa2022long} state that 68$\%$ of melanoma patients treated with vemurafenib experienced relapse after initial response. } % THE SENTENCE IN THE TEXT IS UNCLEAR. REVISE IT AND COPY IT HERE
+\textcolor{blue}{ % change 58
+We believe that our model does fit with data on resistance rates, and the text now reads (line XXX): "Interestingly, the threshold between small and intermediate tumors, $N_a^*$, is similar to the tumor detection threshold of $4.19 \times 10^6$ cells for a wide variety of tumors~\citep{avanzini2019cancer}. We note that vemurafenib-treated melanomas (i.e. melanomas with sizes above the detection threshold) have a probability $>50\%$ to relapse \citep{piejko2023long,handa2022long}."
+}
 
 - results: if aneuploidy may increase the mutation rate and this is easy to implement in the model, why not do it from the start, and reduce to the simpler version $v_a=v$ when needed?
 
@@ -326,8 +326,8 @@ which is the one-step equivalent to our recurrence time for small tumors.
 
 - results: you mention that drugs increasing the death rate of sensitive cells delays recurrence, but given that mutations happen during division, it might be worth mentioning that drugs that decrease the division rate of sensitive cells by the same amount delay recurrence even more (holding mutant division rate constant - which is maybe why you didn't mention this for your parameterization, but seems like a worthwhile general point?).
 
-\textcolor{red}{%change 49
-We have incorporated this comment into our Results. %PLEASE CHECK AGAIN, YOU WROTE increase AND DID NOT REALLY ADDRESS THE REVIEWER COMMENT.} Remus: DONE
+\textcolor{blue}{% change 49
+The text now reads (line XXX): "Drugs that increase the sensitive death rate, $\mu_s$, but do not affect the sensitive division rate, $\lambda_s$, delay cancer recurrence. Drugs that decrease the sensitive division rate delay cancer recurrence time even more, because they effectively decrease the mutation rate (assuming mutations occur during division)."
 }
 
 - results: why doesn't standing genetic variance affect the mean rescue time? This might have something to do with what I just mentioned (successful mutants tend to arise early) and more clues might be found in Orr $\&$ Unckless 2014, who also compare times with and without standing genetic variance.
@@ -406,7 +406,7 @@ We changed $\lambda_m$ to $\lambda_a$ in the first instance in the caption of Fi
 - appendix C: I would like to hear the justification for the initial expression of $\tau_a$ (integral of exponential) when $N>N_m^*$
 
 \textcolor{blue}{%change 23
-The justification is the following: 
+The justification, which is now included in Appendix C, is the following: 
 \begin{align*}
 \tau_a&=\int_0^\infty tf(t)dt=\int_0^\infty t\frac{d}{dt}F(t)dt=-\int_0^\infty t\frac{d}{dt}S(t)dt\\
 &=-\left[tS(t)\right]_0^\infty+\int_0^\infty S(t)dt\\
@@ -414,20 +414,16 @@ The justification is the following:
 \end{align*}
 where $f(t)$, $F(t)$ and $S(t)$ are the probability density function, cumulative distribution function and survival function.
 In our case, $S(t)=\exp\left(-\int_0^t R_a(z)dz\right)$.
-Additionally, for $N\gg N_m^*$ we have $1-\e^{-Np_s}\approx1$. I have corrected the following mistake:
-\begin{equation*}
-\tau_a=\int_0^\infty \e^{-\int_0^\tau R_a(t)\d t}\d\tau
-\end{equation*}
-instead of:
-\begin{equation*}
-\tau_a=\int_0^\infty \e^{-R_a(\tau)}\d\tau.
-\end{equation*}
+Additionally, for $N\gg N_m^*$ we have $1-\e^{-Np_s}\approx1$. 
+We have corrected a mistake, we now write $\tau_a=\int_0^\infty \e^{-\int_0^\tau R_a(t)\d t}\d\tau$
+instead of $\tau_a=\int_0^\infty \e^{-R_a(\tau)}\d\tau$.
 }
-\textcolor{red}{REMUS DID YOU ADD THIS TO THE APPENDIX? NOT JUST HERE. Remus: DONE}
 
 - appendix C: similarly, I think it would be nice to hear some justification for the approximations in eqn C9, ie, can ignore direct rescue and rescue via aneuploidy very unlikely
 
-\textcolor{blue}{We know that
+\textcolor{blue}{
+The justificaiont, also included now in Appendix C, is in the following. 
+We know that
 \begin{align*}
 \tau_a=\int_0^\infty t\left(v\lambda_ap_ma_t+v\lambda_sp_ms_t\right)\frac{\exp\left[-\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_s t}-1}{\Delta_s}-\frac{\e^{\Delta_a t}-1}{\Delta_a}\right)-v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right] }{1-\e^{-Np_s}}\d t.
 \end{align*}
@@ -445,7 +441,6 @@ Additionally, since $N\ll N_a^*\ll N_m^*$, evolutionary rescue is more likely to
 \tau_a\sim\int_0^\infty \frac{tv\lambda_ap_ma_t}{1-\e^{-Np_s}}\d t.
 \end{equation*}
 }
-\textcolor{red}{REMUS DID YOU ADD THIS TO THE APPENDIX? NOT JUST HERE. Remus: DONE, change 59}
 
 - appendix D: the fact that lineages conditioned to survive drift reach N earlier is nicely discussed in Orr $\&$ Unckless 2014, who connect it back to classic work on selective sweeps by Maynard Smith $\&$ Haigh 1974
 
@@ -516,11 +511,11 @@ Documenting the code as well as adding a short tutorial will improve the reusabi
 
 - In your model, mutations appear to only confer resistance, however, most mutations are deleterious. How easy is it to incorporate the effects of deleterious mutations in your model? This should be addressed in the discussion.
 
-\textcolor{blue}{We consider the fitness of the sensitive, aneuploid or mutant cells to be the average of each population. As a result, mutations that are deleterious are taken into consideration through the mean fitness of each population. I have added this comment in the "Parametrisation" section change 50} 
+\textcolor{blue}{We consider the fitness of the sensitive, aneuploid or mutant cells to be the average of each population. As a result, mutations that are deleterious are taken into consideration through the mean fitness of each population. We have added this comment in the "Parametrisation" section change 50} 
 
 - You report the exact parameters used in most figures. Sometimes it is difficult to follow why a specific value for a parameter was chosen. It would improve the readability if you included a table where the variation in the parameter used is noted and explained.
 
-\textcolor{blue}{The variation in our parameters in noted in Table 1 and is obtained from the papers which are cited there.} 
+\textcolor{blue}{The variation in our parameters in noted in Table 1 and the new Table 2 and is obtained from the papers which are cited there.} 
 
 Associate Editor Comments:
 
@@ -534,35 +529,40 @@ Minor comments
 Introduction:
 * 10 millions people die: add globally
 
-\textcolor{blue}{We have made the recommended change. change 30} 
+\textcolor{blue}{We have made the recommended change. }  % change 30
 
 * mathematically equivalent: this is incorrect because fitness-valley crossing papers typically ignore population size dynamics, whereas evolutionary rescue is explicitly set in the context of a declining population size.
 
-\textcolor{blue}{Thank you for your commnet. We have changed the text such that it states that evolutionary rescue in two steps is similar to the problem of crossing fitness valley. change 6} 
+\textcolor{blue}{We removed the statement about the mathematical equivalence of valley crossing and evolutionary rescue.}
 
 * how multiple mutations contribute: several important papers on this subject are referenced later but not in this paragraph. Please revise, reviewing the existing theory and saying how the current theoretical work differs.
 
 Methods:
 * The methods only describe the simulations, and the results focus on analytical results that don't follow from the methods. I suggest expanding the "Methods" to discuss the general approach, model structure, and quantities derived (you can rename this as "Model") and then move to "Results".
 
-\textcolor{blue}{Thank you for your commnet. The model is described in "Methods" under the subsection "Evolutionary model" and the analytic results follow directly from this model. Additionally, the quantities derived are stated in the paragraph before "Methods". } 
+\textcolor{blue}{
+The Methods section has several subsections: "Evolutionary model" that describes the model, from which the analytic results are derived; "Stochastic simulations", which describes the simulations used to validate the analytic results; "Parameterization", which describes how we parameterize the model; and "Denstity-dependent growth", which described the extended model that includes density dependence. Note that the "Evolutionary model" subsection is not focused on the simulations but rather described the general model that we are studying.} 
 
 * Delta would be better as "r" for the growth rate
 
-\textcolor{blue}{Thank you for your commnet. The are about 300 mentions of $\Delta$ and we do not want to introduce any errors by changing $\Delta$ to $r$.}
+\textcolor{blue}{The manuscript has over 300 mentions of $\Delta$, and we do not want to introduce any errors by changing it.}
 
 * The use of the terms "tolerant" (for negative growth) and "resistant" (for positive growth) is not standard (e.g., see different for fungi used by Berman $\&$ Krysan 2020 Nature Reviews Microbiology). Maybe alert the reader that "tolerant" is used in different ways in the literature and is used here solely for notational convenience to refer to mutations that, on their own, do not allow growth? Or replace with "sub-critical", a term already used in this context?
 
-\textcolor{blue}{Thank you for your commnet. We have added a short explanation for "tolerant" and that it has other meanings in the literature. change 47.}
+\textcolor{blue}{We have added a short explanation for "tolerant" and that it has other meanings in the literature. We also mention the equivalence to in "sub/super/critical" from Osmond et al 2020.} % change 47, 57
 
 * "antagonizing cell division" - The meaning of this isn't clear. Rephrase as "by extending the length of the cell cycle"?
 
-\textcolor{blue}{We have made the recommended change from "antagonizing cell division" to "by extending the length of the cell cycle". change 34} 
+\textcolor{blue}{We have made the recommended change from "antagonizing cell division" to "by extending the length of the cell cycle".}  % change 34
 
 Results:
-* Figure 7 - Add a numerical solution to equation (D3)? This should make it clearer that the non-monotonicity of the black curve is an artefact of the simplifying assumptions in (D4) and not a problem with the approach. By the way, It wasn't clear to me what happened to the other large $\tau_a^r$ terms in the first portion of equation (D3) when approximating the equation into the form shown in (D4)? Could this be briefly clarified?
+* Figure 7 - Add a numerical solution to equation (D3)? This should make it clearer that the non-monotonicity of the black curve is an artefact of the simplifying assumptions in (D4) and not a problem with the approach.
 
-\textcolor{blue}{We have changed Figure 7 by adding a green which represents the numerical solution of (D3).  In the first term of (D3) we have:
+\textcolor{blue}{We have added the green line for eq. D3 to Figure 7 as suggested, it is very close to the blue line for eq. D4.}
+
+* By the way, It wasn't clear to me what happened to the other large $\tau_a^r$ terms in the first portion of equation (D3) when approximating the equation into the form shown in (D4)? Could this be briefly clarified?
+
+\textcolor{blue}{In the first term of (D3) we have: 
 \begin{align*}
 \frac{uv\lambda_a\lambda_s}{\Delta_s-\Delta_a}\left[\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}-\frac{\e^{\Delta_a\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_a-\Delta_m}\right]\approx\frac{uv\lambda_a\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_s\right)\left(\Delta_m-\Delta_a\right)}
 \end{align*}
@@ -570,16 +570,17 @@ which is significantly smaller then the second term of (D3):
 \begin{align*}
 v\lambda_s\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}\approx\frac{v\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_a\right)}
 \end{align*}
-change 44} 
+} % change 44
 
-Remus changes:
+\textbf{Additional changes}
 
-\textcolor{red}{$w_t\rightarrow s_t$. change r1} 
+We have made the following additional changes:
 
-\textcolor{red}{$t\rightarrow \tau$. change r2} 
+$w_t\rightarrow s_t$. %change r1
 
-\textcolor{red}{
-We have made the following changes: the rates of the inhomogenous Poisson process are:
+$t\rightarrow \tau$. %change r2
+
+The rates of the inhomogenous Poisson process are: %change r3
 \begin{align*}
 r_1\left(t\right)&=v\lambda_ap_ma_{t},\\ 
 r_2\left(t\right)&=v\lambda_sp_ms_{t},
@@ -589,14 +590,14 @@ and the expected number of successful mutants created by direct mutation and via
 M_a\left(t\right)&=v\lambda_ap_m\int_0^ta_{z} d z = \frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_st}-1}{\Delta_s}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right),\\ 
 M_m\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} d z = v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}.
 \end{align*}
-change r3} 
+ 
 
-\textcolor{red}{We have made changes to Appendix C such that all the dummy variable used in integration are consistent. change r4} 
+Appendix C: all dummy variable used in integration are consistent. %change r4
 
-\textcolor{red}{We have made changes to Figure S6, S7, S8, S9 by changing the subscripts of several variables from $w$ to $s$ . change r5} 
+Figure S6, S7, S8, S9: changed the subscripts of several variables from $w$ to $s$ . %change r5
 
-\textcolor{red}{ We have made the following change: "If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the rates at which the rescue mutations are generated can be written as" $\rightarrow$
-"If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the expected number of successful mutants generated until time $t$ is given by". change r6} 
+"If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the rates at which the rescue mutations are generated can be written as" $\rightarrow$
+"If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the expected number of successful mutants generated until time $t$ is given by". % change r6 
 
 
 \bibliographystyle{plain}

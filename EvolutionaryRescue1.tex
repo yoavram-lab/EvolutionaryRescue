@@ -273,7 +273,7 @@ When simulations are slow (e.g., due to large population size) with runtimes in 
 
 \paragraph{Parameterization.}
 We parametrize most of our simulations by considering melanoma cells and rely on \citet{rew2000cell} and \citet{bozic2013evolutionary} for the division and death rates, respectively. 
-\citet{rew2000cell} report \textit{in vivo} measurements of the potential doubling times (the waiting time for the number of cells in the tumor to double, disregarding cell death) for a large set of cancer types. The division rate is obtained as $\lambda=\log{2} / T \approx 0.1$ per day. We select this to be the division rate for sensitive and mutant cells. This is a reasonable assumption given that we assume that the mutation makes the cancer cells immune to the chemotherapeutic drugs. %change 40
+\citet{rew2000cell} report \textit{in vivo} measurements of the potential doubling times (the waiting time for the number of cells in the tumor to double, disregarding cell death) for a large set of cancer types. The division rate is obtained as $\lambda=\log{2} / T \approx 0.1$ per day. We take this to be the division rate for sensitive and assume that mutant cells, which are resistant to therapy, have the same division rate. Indeed, doubling times for tumors after relapse is lower than that of primary tumors for a variety of tissues \citep{tezuka2007growth,rodgers2024glioblastoma} and metastatic melanoma has been shown to grow faster then primary melonoma \citep{carlson2003tumor}. %change 40
 
 \citet{bozic2013evolutionary} report the growth rate $\Delta_s$ for sensitive melanoma cancer cells, from patient data, from which they deduce the death rate $0.11 \le \mu_s \le 0.17$. We use  $\mu_s=0.14$ per day. Additionally, they observed the growth rate of cancer cells before treatment to be 0.01, which we use as the growth rate of mutant cells, which are resistant to the drug. Thus, we use $\mu_m=0.1-0.01=0.09$ per day as the death rate for mutant cells. %change 54
 
@@ -755,7 +755,8 @@ Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,
 \includegraphics[width=1\textwidth]{Figures/ProliferationTime.pdf}
 \caption{\textbf{Tumor size decreases the mean recurrence time.}
 The mean time for the mutant cell population to reach size $N$, the initial number of cancer cells.
-Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanproliferationtime}) is in agreement with simulation results (red markers with 95\% confidence interval obtained with bootstrapping, see Appendix G) for intermediary $N$. The simulations converge to \cref{eq:t2det} (blue dashed line) for large values of $N$. The green line represents the numerical solution of \cref{eq:t2det2024}. % change 44  
+Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanproliferationtime}) is in agreement with simulation results (red markers with error bars for 95\% CI) for intermediate size $N$.
+Simulation results converge to \cref{eq:t2det} (blue dashed line) for large values of $N$. The green line represents the numerical solution of \cref{eq:t2det2024}. % change 44  
 Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.}
 \label{proliferationFigure}
 \end{figure}
