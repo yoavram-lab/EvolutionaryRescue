@@ -302,11 +302,11 @@ To test this assumption, we simulate a logistic growth model, with division and 
 \[
 \begin{aligned}
 \lambda_s' &= \lambda_s , \\
-\mu_s' &= \mu_s ,\\
+\mu_s' &= \mu_s + \lambda_s\frac{s+a+m}{K},\\
 \lambda_a' &= \lambda_a ,\\ 
-\mu_a' &= \mu_a + \lambda_a\frac{w+a+m}{K} ,\\
+\mu_a' &= \mu_a + \lambda_a\frac{s+a+m}{K} ,\\
 \lambda_m' &= \lambda_m ,\\ 
-\mu_m' &= \mu_m + \lambda_m\frac{w+a+m}{K} ,
+\mu_m' &= \mu_m + \lambda_m\frac{s+a+m}{K} ,
 \end{aligned}
 \]
 where $K$ is the tumor carrying capacity. 
@@ -487,8 +487,8 @@ Increasing the mutant growth rate, $\Delta_m$, decreases the recurrence time, wh
 
 For large tumors ($N \gg N_m^*$), the dynamics of the number of mutant cells is deterministic, and the mean recurrence time becomes independent of the initial tumor size $N$.
 Increasing either the mutant growth rate, $\Delta_m$, or the mutation rate, $v$, decreases the time for the tumor to rebound to its initial size.
-Drugs that significantly increase the death rate of sensitive cells, $\mu_s$, but do not affect their division rate, $\lambda_s$, delay cancer recurrence (conditioned on evolutionary rescue). Consequently, patients treated with such drugs may require a longer period of monitoring to guarantee the effectiveness of the treatment.
-In addition, drugs that significantly increase the division rate of sensitive cells, $\lambda_s$, but do not affect their death rate, $\mu_s$, decrease cancer recurrence times (conditioned on evolutionary rescue). %change 49
+Drugs that significantly increase the death rate of sensitive cells, $\mu_s$, but do not affect their division rate, $\lambda_s$, delay cancer recurrence. Additionally, decreasing the sensitive division rate will also the cancer recurrence time. Consequently, patients treated with such drugs may require a longer period of monitoring to guarantee the effectiveness of the treatment. %change 49
+In addition, drugs that significantly increase the division rate of sensitive cells, $\lambda_s$, but do not affect their death rate, $\mu_s$, decrease cancer recurrence times (conditioned on evolutionary rescue). 
 
 We note that, for small and large tumors, when $N \ll N_a^*$ or $N \gg N_m^*$, the asymptotic expressions for the mean recurrence time are independent of the chromosome missegregation rate $u$, and therefore, the rate at which the drug induces aneuploidy has no effect on the time for the tumor to rebound to its initial size $N$.
 
@@ -951,10 +951,18 @@ which we plot in \Cref{MeanTimeGrowthAneuploidyPlot}A as a function of the initi
 Paradoxically, we observe from \Cref{MeanTimeGrowthAneuploidyPlot} that the mean time of a rescue mutation to appear is significantly shorter for the scenario when $u=0$ when compared to the scenario $u>0$, however this can be explained by the fact this mean time is conditioned on evolutionary rescue and, as a result, aneuploidy increase the \emph{window of opportunity} in which a rescue mutation could appear thus increasing the mean time as well (\Cref{sampleTrajectories}).
 
 %%%
-Let $N_a^*$ and $N_m^*$ be the threshold population size above which evolutionary rescue through aneuploidy or direct mutation, respectively, is very likely. If $N\gg N_m^*$ then $\presc\approx1$ and the mean time $\tau_a$ can be written as: % change 38
+Let $N_a^*$ and $N_m^*$ be the threshold population size above which evolutionary rescue through aneuploidy or direct mutation, respectively, is very likely. The mean time $\tau_a$ can be written as: % change 38
+\begin{align*}
+\tau_a&=\int_0^\infty tf(t)dt=\int_0^\infty t\frac{d}{dt}F(t)dt=-\int_0^\infty t\frac{d}{dt}S(t)dt\\
+&=-\left[tS(t)\right]_0^\infty+\int_0^\infty S(t)dt\\
+&=\int_0^\infty S(t)dt,
+\end{align*}
+where $f(t)$, $F(t)$ and $S(t)$ are the probability density function, cumulative distribution function and survival function.
+In our case, $S(t)=\exp\left(-\int_0^t R_a(z)dz\right)$.
+Additionally, for $N\gg N_m^*$ we have $1-\e^{-Np_s}\approx1$ and, as a result, we have: %change 23
 \begin{align*}
 \tau_a=\int_0^\infty\e^{-\int_0^t R_a\left(z\right)\d z}\,\d t=\int_0^\infty\exp\left[-\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_s t}-1}{\Delta_s}-\frac{\e^{\Delta_a t}-1}{\Delta_a}\right)-v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right]\,\d t,
-\end{align*} %change 23 ,r4
+\end{align*} %change r4
 and we use the following Taylor series expansions:
 \begin{align*}
 \frac{\e^{\Delta_s t}-1}{\Delta_s}&=\frac{1+\Delta_s t+O(t^2)-1}{\Delta_s}=t+O(t^2).\\ % change r4
@@ -964,12 +972,21 @@ to obtain a simpler approximation for $\tau_a$:
 \begin{align}\label{limitapprox3}
 \tau_a\approx\int_0^\infty\e^{-v\lambda_sNp_m t}\,\d t=\frac{1}{v\lambda_sNp_m}. % change r4
 \end{align}
-If $N\ll N_a^*$ then we can write \Cref{meantimet2} as:
+If $N\ll N_a^*$ then the probability distribution of evolutionary rescue time is skewed toward small values (i.e. evolutionary rescue occurs conditioned on it happening). As a result, we have: 
+\begin{align*}
+\frac{\e^{\Delta_s t}-1}{\Delta_s}&=\frac{1+\Delta_s t+\mathcal{O}\left(\left(\Delta_st\right)^2\right)-1}{\Delta_s}=t+\mathcal{O}\left(\Delta_st^2\right)\\
+\frac{\e^{\Delta_a t}-1}{\Delta_a}&=\frac{1+\Delta_a t+\mathcal{O}\left(\left(\Delta_at\right)^2\right)-1}{\Delta_a}=t+\mathcal{O}\left(\Delta_at^2\right)
+\end{align*}
+We observe that the first term in the exponential in \cref{meantimet2} can be approximated to be zero and the second term as -$v\lambda_sNp_mt$ where $t\ll1$. As a result, we can approximate:
+\begin{equation*}
+\exp\left[-\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_s t}-1}{\Delta_s}-\frac{\e^{\Delta_a t}-1}{\Delta_a}\right)-v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right] \sim 1
+\end{equation*}
+Additionally, since $N\ll N_a^*\ll N_m^*$, evolutionary rescue is more likely to occur through the trajectory $sensitive \rightarrow aneuploid \rightarrow mutant$. As a result, we can write \Cref{meantimet2} as:
 \begin{align}\nonumber
 \tau_a&\approx\frac{\int_0^\infty t v\lambda_ap_ma_t \,\d t}{1-\e^{-Np_s}}\approx\frac{uv\lambda_a\lambda_sp_m\abs{\Delta_s+\Delta_a}}{p_s\Delta_a^2\Delta_s^2}\\ \label{limitapprox4} %change r2
 &=\frac{1}{\abs{\Delta_s}}+\frac{1}{\abs{\Delta_a}},
 \end{align} % change r4
-where in the last line we used the fact that $1/p_s=N_a^*$ and \Cref{eq:N_a}.
+where in the last line we used the fact that $1/p_s=N_a^*$ and \Cref{eq:N_a}. %change 59
 
 If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the expected number of successful mutants generated until time $t$ is given by: %change r6
 \begin{align*}
