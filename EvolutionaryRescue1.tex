@@ -68,6 +68,10 @@ headheight=12pt
 \linenumbers
 \modulolinenumbers[2]
 
+% widow and orphan
+\widowpenalty=10000
+\clubpenalty=10000
+
 % Yoav & Lee commands
 \newcommand*{\tr}{^\intercal}
 \let\vec\mathbf
@@ -268,14 +272,20 @@ When simulations are slow (e.g., due to large population size) with runtimes in 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Parameterization.}
-To parametrize the simulations, we assume that the cells under consideration are melanoma cells and rely on \citet{rew2000cell} and \citet{bozic2013evolutionary} for the division and death rates, respectively. 
+We parametrize most of our simulations by considering melanoma cells and rely on \citet{rew2000cell} and \citet{bozic2013evolutionary} for the division and death rates, respectively. 
 \citet{rew2000cell} report \textit{in vivo} measurements of the potential doubling times (the waiting time for the number of cells in the tumor to double, disregarding cell death) for a large set of cancer types. The division rate is obtained as $\lambda=\log{2} / T \approx 0.1$ per day. We select this to be the division rate for sensitive and mutant cells. This is a reasonable assumption given that we assume that the mutation makes the cancer cells immune to the chemotherapeutic drugs. %change 40
 
 \citet{bozic2013evolutionary} report the growth rate $\Delta_s$ for sensitive melanoma cancer cells, from patient data, from which they deduce the death rate $0.11 \le \mu_s \le 0.17$. We use  $\mu_s=0.14$ per day. Additionally, they observed the growth rate of cancer cells before treatment to be 0.01, which we use as the growth rate of mutant cells, which are resistant to the drug. Thus, we use $\mu_m=0.1-0.01=0.09$ per day as the death rate for mutant cells. %change 54
 
 The aneuploid death rate $\mu_a$ is set to the mutant death rate, $\mu_m=0.09$ per day, assuming aneuploidy increases resistance to the drug, such as cisplatin, by antagonizing cell division \citep{replogle2020aneuploidy}.
 For the aneuploid growth rate to be intermediate between those of sensitive and mutant cells, $\Delta_s\ll\Delta_a\ll\Delta_m$, we set the aneuploid division rate to be $0.06 \le \lambda_a \le 0.1$. % change 36 
-In most of our simulations, we use $\lambda_a=0.0899$ per day, so that aneuploid cells are tolerant and aneuploidy can only act as an evolutionary ``stepping stone'' for the generation of the resistant mutant that rescues the tumor (note that this mutant will occur on the background of an aneuploid genotype).  
+In most of our simulations, we use $\lambda_a=0.0899$ per day, so that aneuploid cells are tolerant and aneuploidy can only act as an evolutionary ``stepping stone'' for the generation of the resistant mutant that rescues the tumor (note that this mutant will occur on the background of an aneuploid genotype) .  
+
+In some of the analysis, we consider breast cancer. We assume that the division and death rates of the aneuploid breast cancer cells in the presence of cisplatin is the same as those of the sensitive cells in the absence of the drug. 
+The growth rate of breast cancer cells in the absence of drug is $0.0085$ per day \citep{spratt1996rates}. The doubling time of breast cancer cells in the absence of cellular death is 8.2 days \citep{rew2000cell}. Thus, the division rate of aneuploid cells is $\lambda_a=\log{(2)}/8.2=0.0845$ per day, and their death rate is $\mu_a=0.076$ per day.
+For the division and death rates of sensitive cells, we turn to results described in \citet{salehi2021clonal}. We select TNBC-SA535 PDX clone H, which has a relative fitness of $\approx 1.011$. Thus, the selection coefficient is the ratio of the aneuploid and sensitive Wrightian fitness values minus 1 \citep{chevin2011measuring}. The Malthusian fitness is the log of the Wrightian fitness \citep{Wu2013a}. Thus, $\Delta_s = \log{0.9975} -0.0025$. 
+We assume cisplatin affects cancer cells by increasing their death rate but does not affect the their division rate, hence $\lambda_s=0.08$ and $\mu_s=0.0825$ per day.
+A similar analysis for TNBC-SA609 clone A and TNBC-SA1035 clone H from \citet{salehi2021clonal} gives $\lambda_s=0.08, \mu_s=0.12$ and $\lambda_s=0.08, \mu=0.1$, respectively.
 
 The missegregation rate in cancer cells is estimated to be between $2.5\times10^{-4}-10^{-2}$ per chromosome per cell division \citep{shi2005chromosome,thompson2008examining}. \citet{ippolito2021gene} observed that trisomy in Chr 2 and Chr 6 are most likely to confer increased resistance against the anti-cancer drug vemurafenib for A375 cells. We assume each of these trisomies is formed at the most likely rate, and as a result, we use $\tilde{u}=10^{-3}$ per cell division as the chromosome missegregation rate in the drug-free environment. 
 Some drugs are known to increase chromosome instability~\citep{wang2019molecular,mason2017functional}. 
@@ -364,10 +374,10 @@ N_a^* \approx
   \end{cases}
 \end{aligned}
 \end{equation}
-\Cref{eq:N_a} is our model's equivalent of \citet{iwasa2004evolutionary}'s eq.~A3, or eq.~8 of \citet{osmond_genetic_2020} with the distribution of fitness effects set to a delta function;
-our ``tolerant'', ``stationary'', and ``resistant'' correspond to \citet{osmond_genetic_2020}'s ``sufficiently subcritical'', ``sufficiently critical'', and ``sufficiently supercritical'', respectively. %change 57
+This equation is equivalent to eq.~A3 of \citet{iwasa2004evolutionary} and to eq.~8 of \citet{osmond_genetic_2020} with the distribution of fitness effects set to a delta function;
+our ``tolerant'', ``stationary'', and ``resistant'' scenarios correspond to \citet{osmond_genetic_2020}'s ``sufficiently subcritical'', ``sufficiently critical'', and ``sufficiently supercritical'', respectively. %change 57
 These approximations are accurate when compared to results of stochastic evolutionary simulations (\Cref{rescue_prob,rescue_threshold}). 
-The first line describes the scenario in which the treatment still effectively kills aneuploid cells but not as quickly as the sensitive cells. 
+In the first scenario, the treatment effectively kills aneuploid cells but not as quickly as it kills sensitive cells. 
 In the second scenario, aneuploid cells are sufficiently resistant, and the expected size of each aneuploid lineage is roughly 1.
 In both of these scenarios, aneuploidy increases the probability of rescue by slowing or halting the decrease in the tumor population size, allowing more opportunities to produce resistant mutants. 
 In the third scenario, aneuploid cells are sufficiently resistant for the population to re-grow the tumor without additional resistance mutations.
@@ -523,23 +533,21 @@ We find that aneuploidy can significantly affect evolutionary rescue as it reduc
 When the number of cells in the tumor is large enough (i.e., $N \gg N_m^* \approx 4\times10^7$), a resistance mutation will occur in drug-sensitive cells before these cells become extinct (\Cref{rescue_prob}). Therefore, large tumors are likely to be rescued with or without aneuploidy.
 However, anti-cancer drugs are often used as adjuvant therapy after resection, in which case the number of cells in the tumor may be below the detection threshold of $\sim10^7$  \citep{bozic2013evolutionary}. In these cases, aneuploidy can have a crucial role in the evolutionary rescue of the tumor and, therefore, in cancer recurrence. Indeed, secondary tumors are estimated to cause the majority of cancer-related deaths~\citep{chaffer2011perspective}. The importance of aneuploidy in the evolutionary rescue of secondary tumors is reinforced by the fact that metastases have been shown to have a chromosome missegregation rate two to three orders of magnitude higher compared to primary tumors~\citep{kimmel2023intra}.
 
+We compared the probability of evolutionary rescue in melanoma cells and triple-negative breast cancer cells (TNBC) under drug threapy (black and color lines, respectively, in \Cref{rescue_prob}B).
+This comparison suggests that TNBC has a higher probability of relapsing compared to melanoma, because smaller tumors have higher resuce probability. Indeed, the probability of relapse in TNBC patients is higher than 50\% in the first 3-5 years after diagnosis \citep{taushanova2023synchronous}, whereas in melanoma patients it is approximately 10-20\% in the first 5 years \citep{wan2022prediction,von_schuckmann2019risk}. % change A
+
 Given that the mean time for secondary tumors to adapt to anti-cancer drugs can be of the order of 1,000 days (\Cref{MeanTimeGrowthAneuploidyPlot}A), aneuploidy can explain the reappearance of cancer even after initial remission. The theoretical prediction for the mean rescue time of tumors smaller than $10^8$ cells is greater than 4 years, consistent with previous estimates of the recurrence time of tumors after resection~\citep{avanzini2019cancer}. We found that aneuploidy complements evolutionary rescue through direct mutation because it produces rescue mutations mostly after the number of sensitive cells has decreased to a point where a direct mutation is no longer a feasible option for evolutionary rescue (\Cref{cdffig}A).
 
 We hypothesized that standing genetic variation (the existence of aneuploid cancer cells in the tumor before the onset of therapy) could facilitate evolutionary rescue by reducing the waiting time for the appearance of aneuploid cells. We found that a drug that reduces the sensitive growth rate and does not significantly increase the chromosome missegregation rate will likely lead to evolutionary rescue through standing genetic variation (\Cref{rescue_denovo,eq:Nsgv}).
 Furthermore, if the fraction of tumor cells that have the beneficial aneuploidy is $f \gg u \lambda_s / \abs{\Delta_s} \approx2.5\%$, then evolutionary rescue is more likely to occur via standing variation rather than through \textit{de novo} aneuploidy. 
 However, for the parameter values we focus on in our examples (\Cref{table1}), this fraction is an order of magnitude lower, and therefore, we expect evolutionary rescue to occur by \textit{de novo} aneuploidy.
 
-Comparing our results to the evolutionary rescue literature, we complement \citet{iwasa2003evolutionary} and \citet{osmond_genetic_2020}'s work on multi-step rescue by deriving simple approximations for a different fitness landscape. 
+Comparing our results to the evolutionary rescue literature, we complement the studies by \citet{iwasa2003evolutionary} and \citet{osmond_genetic_2020} on multi-step rescue by deriving simple approximations for a different fitness landscape. 
 Similar to \citet{osmond_genetic_2020}, we find that two-step rescues can be more likely than simple one-step rescues. 
-The situation in which the intermediate growth rate is close to zero in the presence of drug (``stationary'') is particularly interesting.
-While in a general model of evolutionary rescue this might appear to be only a tiny region of parameter space 
-(Fig.~\ref{rescue_threshold}A, inset),
-the example of some aneuploidies in cancer suggests that it may be biologically relevant. 
+The ``stationary'' scenario, in which the aneuploid growth rate is close to zero in the presence of drug, is particularly interesting.
+Although this may seem like a small region of parameter space in a general model of evolutionary rescue (Fig.~\ref{rescue_threshold}A, inset), the example of certain aneuploidies in cancer suggests it could be biologically significant.
 
-%Finally, we observe from \Cref{rescue_threshold} that only for a restricted region of the parameter space will aneuploidy act as a ``stepping stone'' for evolutionary rescue. If the aneuploid division rate is smaller than $\frac{\mu_a}{1+u}\approx\mu_a(1-u)$, then evolutionary rescue will occur through direct mutation. As a result, for most parameter values, aneuploidy will either not play any role in evolutionary rescue or will be the main driver of adaptation without requiring any mutation (i.e., evolutionary rescue in one step).
-% NOTE FROM DANIEL: I cut this paragraph because I think it's implicitly based on a uniform distribution of aneuploid growth rates. But the whole point of why we're doing this is because there are apparently some interesting aneuploidies that have growth rates near 0
-
-\paragraph{Directions for future research}
+%\paragraph{Directions for future research}
 Experiments could test our model predictions. For example, to assess the effect of initial tumor size on the probability of evolutionary rescue, a large culture mass can be propagated from a single cancer cell in permissive conditions and then diluted to a range of starting tumor sizes. Then, the extinction or survival of these tumors can be monitored during exposure to anti-cancer drugs that induce aneuploidy or to saline solution for control~\citep{ippolito2021gene}. 
 We can then compare the results of these experiments to predictions of our model to see if tumors with initial size below the threshold \cref{eq:N_a} are more likely to become extinct due to drug exposure.
 
@@ -547,7 +555,7 @@ We have assumed that cancer cell lineages are independent and have verified that
 Furthermore, loss of extra-chromosome may occur at a high rate (for estimates in yeast, see \citet{hose_rate_2024}) and the fitness of a euploid cell with a resistance mutation may be higher than that of an aneuploid cell with the same mutation. Future work could test when these effects have significant effect on the results of our model. % change y1
 In addition, our model can be applied to study evolutionary rescue in other biological systems, such as evolution of yeast populations under different stress conditions~\citep{pompei2023fitness,kohanovski2024aneuploidy}. 
 
-\paragraph{Conclusions}
+\paragraph{Conclusions.}
 
 Our results quantitatively suggest that aneuploidy may play an important role in tumor adaptation to anti-cancer drugs when the tumor size is small or intermediate. Large tumors are predicted to adapt to anti-cancer drugs through direct mutation. In contrast, smaller tumors are predicted to become resistant either directly by aneuploidy or by a resistance mutation occurring in aneuploid cells that serve as evolutionary ``stepping stones'' (\Cref{rescue_prob}). Thus, therapies that increase the rate of aneuploidy in tumors to combat cancer may also promote drug resistance.
 
@@ -592,13 +600,29 @@ the National Science Foundation (grant $\#2146260$, DBW), the ERC Starting Grant
     $u$ & Missegregation rate& $10^{-2}$ & 1$\slash$cell division  & \citet{lee2016effects} \\ \hline
     $v$ & Mutation rate& $10^{-9}-10^{-7}$ &  1$\slash$cell division  & \citet{bozic2013evolutionary,loeb2001mutator} \\  \hline
     $\tilde{u}$ & Missegregation rate in the drug free environment$^\ast$& $5\times10^{-4}-2\times10^{-2}$ & 1$\slash$cell division  & \citet{shi2005chromosome,thompson2008examining} \\ \hline
-    $c$ & Selection coefficient against aneuploidy in the drug free environment& $0.07$ &  1/days   & \citet{lukow2021chromosomal} \\  
-    \hline
+    $c$ & Selection coefficient against aneuploidy in the drug free environment& $0.07$ &  1/days   & \citet{lukow2021chromosomal} \\ \hline
   \end{tabular}
-\caption{\textbf{Model parameters.} 
+\caption{\textbf{Model parameters: Melanoma.} 
 Parameters from \citet{bozic2013evolutionary} consider patients with melanoma treated with the anti-cancer drug vemurfenib, in which resistance is conferred by trisomy in either Chr 2 or Chr 6.
-We have modified the parameters from \citet{bozic2013evolutionary} such that sensitive and mutant division rates are $\lambda_{s} = \lambda_{m} = \log2/T\approx0.1$ instead of their value of $0.14$ where $T$ is the doubling time in the absence of cellular death obtained from \citet{rew2000cell}. For a discussion of the different interpretations of the tumor doubling times see \citet{avanzini2019cancer}. Parameters marked with $^\ast$ are not obtained from the literature.} %change 1
+We have modified the parameters from \citet{bozic2013evolutionary} such that sensitive and mutant division rates are $\lambda_{s} = \lambda_{m} = \log{(2)}/T\approx0.1$ instead of their value of $0.14$ where $T$ is the doubling time in the absence of cellular death obtained from \citet{rew2000cell}. For a discussion of the different interpretations of the tumor doubling times see \citet{avanzini2019cancer}. Parameters marked with $^\ast$ are not obtained from the literature.} %change 1
   \label{table1}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{| l |p{5cm}| c | c | p{3cm} |}
+    \hline
+     & Name & Value & Units & References \\ \hline
+    $\lambda_s$ & Sensitive division rate& 0.08 & 1/days  & \citet{salehi2021clonal} \\ \hline
+    $\mu_s$ & Sensitive death rate& $0.0825, 0.1, 0.12$ & 1/days  & \citet{salehi2021clonal} \\ \hline
+    $\lambda_a$  & Aneuploid division rate & $0.0845$ & 1/days  & \citet{spratt1996rates,rew2000cell}  \\ \hline
+    $\mu_a$ & Aneuploid death rate & $0.076$ & 1/days  & \citet{spratt1996rates,rew2000cell}  \\ \hline
+  \end{tabular}
+\caption{\textbf{Model parameters: Breast cancer.} 
+Parameters not listed here remain unchanged from the values provided in \cref{table1}.
+}
+  \label{table2}
 \end{center}
 \end{table}
 
@@ -650,9 +674,20 @@ Here, $\lambda_s=0.1$, $\lambda_m=0.1$, $\mu_s=0.14$, $\mu_a=0.09$, $\mu_m=0.09$
 
 
 \begin{figure}
+\begin{subfigure}{0.48\textwidth}
+A\\
 \includegraphics[width=1\textwidth]{Figures/ProbvNPlot.pdf}
+\end{subfigure}
+\begin{subfigure}{0.52\textwidth}
+B\\
+\includegraphics[width=1\textwidth]{Figures/PDXModelProb.pdf}
+\end{subfigure}
 \caption{\textbf{Aneuploidy facilitates the evolutionary rescue of cancer under drug treatment.}
-The probability of evolutionary rescue (i.e., the probability that the population does not become extinct), $\presc$, as a function of the initial tumor size, $N$ (\cref{eq:rescue_prob}). Dashed vertical line shows the threshold tumor size, $N_a^*$, above which the probability is very high (\cref{eq:N_a}). Blue dashed line: without aneuploidy ($u=0$). Black line: tolerant aneuploidy ($u=10^{-2}, \lambda_a=0.0899$). Red line: stationary aneuploidy ($u=10^{-2}, \lambda_a=0.08999$). Green line represents the scenario with partially resistant aneuploidy ($u=10^{-2}, \lambda_a=0.095$). Dots for simulations and the error bars for $95\%$ confidence interval ($p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the fraction of simulations in which the tumor has been rescued, and $n=100$ is the number of simulations). Parameters: $\lambda_s=0.1,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, v=10^{-7}$.}
+The probability of evolutionary rescue, $\presc$, as a function of the initial tumor size, $N$ (\cref{eq:rescue_prob}). 
+Dashed vertical lines show the threshold tumor size, $N_a^*$, above which the probability is very high (\cref{eq:N_a}). 
+\textbf{(A)} Blue dashed line: without aneuploidy ($u=0$). Black line: tolerant aneuploidy ($u=10^{-2}, \lambda_a=0.0899$). Red line: stationary aneuploidy ($u=10^{-2}, \lambda_a=0.08999$). Green line: partially resistant aneuploidy ($u=10^{-2}, \lambda_a=0.095$). Markers and error bars for averages of simulation results with $95\%$ confidence interval ($p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the fraction of simulations in which the tumor has been rescued, and $n=100$ is the number of simulations). Parameters: $\lambda_s=0.1,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, v=10^{-7}$.
+\textbf{(B)} Comparison for melanoma (black) and breast cancer (colors)  with parameters from the literature (\Cref{table1,table2}). Black line: Melanoma A375. Blue line: Breast cancer TNBC-SA1035 clone H. Red line: Breast cancer TNBC-SA609 clone A. Green line: Breast cancer TNBC-SA535 clone H.
+}
 \label{rescue_prob}
 \end{figure}
 
