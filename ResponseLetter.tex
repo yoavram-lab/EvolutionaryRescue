@@ -13,6 +13,8 @@ headheight=12pt
 \usepackage{natbib}
 \usepackage{commath}
 \usepackage{url}
+\usepackage{graphicx} % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+
 
 \renewcommand{\d}{{\rm d}}
 \newcommand{\e}{{\rm e}}
@@ -34,7 +36,7 @@ headheight=12pt
 
 %Major Edits:
 
-%I have no major edits to recommend on this manuscript and I am comfortable with the authors considering the minor edits and making adjustments as they see fit.
+I have no major edits to recommend on this manuscript and I am comfortable with the authors considering the minor edits and making adjustments as they see fit.
 
 Minor Edits:
 
@@ -114,7 +116,8 @@ and I would swap out "very well" with something more descriptive where you use i
 \textcolor{blue}{
 We changed "the approximations perform very wll" to "the approximations are accurate" in two places.
 } 
-
+\\
+\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Reviewer $\#$2}
 
@@ -481,22 +484,28 @@ Additionally, since $N\ll N_a^*\ll N_m^*$, evolutionary rescue is more likely to
 - fig S9: 'the leads'$\rightarrow$'that leads', $\lambda_m$ value assigned twice
 
 \textcolor{blue}{Fixed.} % change 17
-
+\\
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Reviewer $\#3$}
 
-Summary
+%Summary
 
-Stana et al. study the effects of aneuploidy (mutations that give rise to atypical karyotypes) on the survival of a tumor- a population of malignant cells- in presence of an intervention, here, an anti-cancer drug. While the role of aneuploidy in development of drug-resistance has been acknowledged in the field of evolutionary oncology, the precise mechanism by which it incurs drug-resistance is not clear.
+%Stana et al. study the effects of aneuploidy (mutations that give rise to atypical karyotypes) on the survival of a tumor- a population of malignant cells- in presence of an intervention, here, an anti-cancer drug. While the role of aneuploidy in development of drug-resistance has been acknowledged in the field of evolutionary oncology, the precise mechanism by which it incurs drug-resistance is not clear.
 
-This manuscript is about understanding the evolutionary role of aneuploidy in drug-resistance in cancer. The authors model tumor evolutionary dynamics under treatment as a multi-type branching process, where the types correspond to three genotypes: sensitive to therapy, mutant (resistant), and aneuploid. The key assumption is that aneuploid cells are less-sensitive than sensitive cells to therapy. They parameterized their model by the pre/post treatment cost of aneuploidy, mutation rates and birth/death rates for each genotype.
+%This manuscript is about understanding the evolutionary role of aneuploidy in drug-resistance in cancer. The authors model tumor evolutionary dynamics under treatment as a multi-type branching process, where the types correspond to three genotypes: sensitive to therapy, mutant (resistant), and aneuploid. The key assumption is that aneuploid cells are less-sensitive than sensitive cells to therapy. They parameterized their model by the pre/post treatment cost of aneuploidy, mutation rates and birth/death rates for each genotype.
 
-Stana et al. derive equations for relevant evolutionary quantities under multiple parameter regimes. The evolutionary quantities include the probability of evolutionary rescue, and time to recurrence. They further investigate the effects of standing variation, and density-dependent growth. A central finding is that aneuploidy can directly or indirectly result in evolutionary rescue. In the latter, it delays tumor extinction and provides a window of opportunity for mutations to rescue the population.
+%Stana et al. derive equations for relevant evolutionary quantities under multiple parameter regimes. The evolutionary quantities include the probability of evolutionary rescue, and time to recurrence. They further investigate the effects of standing variation, and density-dependent growth. A central finding is that aneuploidy can directly or indirectly result in evolutionary rescue. In the latter, it delays tumor extinction and provides a window of opportunity for mutations to rescue the population.
 
 Overall, the paper proposes a rigorous evolutionary approach to understand the effects of aneuploidy in development of drug-resistance in cancer. The authors verify the accuracy of their derivations via extensive stochastic simulations. The paper is well written and the ideas are presented in a cohesive and rational manner. The accompanying python implementation appears sufficient (see below) to reproduce the results. The problem is interesting and subject of active research in evolutionary oncology, specially development of drug-resistance subpopulations (PMID: 39223250) and new avenues of targeting aneuploid cells (PMID: 38992122).
 
 Major points
 
 - The importance of time-resolved measurements of clonal dynamics have been recognized and more such datasets are becoming available (e.g., PMID: 34163070, PMID: 38987605). The simulation studies in this manuscript use a parameter regime largely based on a melanoma cell-line (A375) and treatment with a specific BRAF-inhibitor (vemurafenib). The relevance of the paper would be improved if consistent results can be shown in other datasets, including the citations above.
+
+\textcolor{blue}{Following the reviewer's suggestion, we have evaluated our model using parameters from breast cancer (PMID: 34163070), see Methods (line XXX), Table 2, and Figure 3B, which also appear below. We have added the following text to the discussion: "We compared the probability of evolutionary rescue in melanoma cells and triple-negative breast cancer cells (TNBC) under drug threapy (black and color lines, respectively, in Figure 3B).
+This comparison suggests that TNBC has a higher probability of relapsing compared to melanoma, because smaller tumors have higher resuce probability. Indeed, the probability of relapse in TNBC patients is higher than 50\% in the first 3-5 years after diagnosis \citep{taushanova2023synchronous}, whereas in melanoma patients it is approximately 10-20\% in the first 5 years \citep{wan2022prediction,von_schuckmann2019risk}. 
+}% change A
 
 Minor points
 
@@ -571,7 +580,9 @@ which is significantly smaller then the second term of (D3):
 v\lambda_s\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}\approx\frac{v\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_a\right)}
 \end{align*}
 } % change 44
-
+\\
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Additional changes}
 
 We have made the following additional changes:
