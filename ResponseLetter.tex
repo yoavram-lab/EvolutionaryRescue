@@ -100,8 +100,8 @@ We have added an explanation of ODE (line XXX): "In this case the dynamics of th
 9. Do we know if it's reasonable to assume the division rates between cell types (i.e., "sensitive" vs. "mutant") are the same? Maybe ground that assumption into something we know, or just say we are not sure if that is reasonable or not. This relates to point 1 and rooting the reader into these parameter values with something real or being honest about the assumption they are equal.
 
 \textcolor{red}{ % change 40
-It is reasonable to assume that the sensitive and mutant growth rates are similar given that we assume that the mutation makes the cancer cells immune to the chemoterapeutic drugs. 
-% TODO the reveiwer is asking if this assumption is reasoanbe and if you can ground it in something
+The doubling times for tumors after relapse is smaller than the doubling times for primary tumors for a variety of tissues \citep{tezuka2007growth,rodgers2024glioblastoma}. Additionally, metastatic melanoma has been shown to grow faster then primary melonoma \citep{carlson2003tumor}. As a result, it is reasonable to assume that the sensitive and mutant growth rates are at the very least equal.
+% TODO the reveiwer is asking if this assumption is reasoanbe and if you can ground it in something DONE
 } 
 
 10. Mid page 7, "decreases" is mis-spelled 
@@ -213,7 +213,7 @@ We estimate the fraction of aneuploid cancer cells in the pre-treatment environm
 
 - methods: is there a justification for not including density-dependence for the sensitives as well? This would hasten their initial decline, which would compound with the reduced initial establishment probability of the mutants. It seems odd they can exert competition on the mutants but don't themselves feel any competition.
 
-\textcolor{red}{We did not include density dependence for sensitive cells because they are under strong stress that causes their number to rapidly decline. As a result, density will not affect the initial establishment probability of mutants.  As shown in Figure S1, the presence of a carrying capacity does not effect the probability of evolutionary rescue. DOES THIS MAKE SENSE? WHY NOT JUST CHANGE TO INCLUDE DENSITY DEPENDENCE FOR SENSITIVES?} 
+\textcolor{red}{We have added density-dependence for the sensitives as well.}% DOES THIS MAKE SENSE? WHY NOT JUST CHANGE TO INCLUDE DENSITY DEPENDENCE FOR SENSITIVES?}  Remus: DONE
 
 - methods: I got a 404 error for the source code link: https://github.com/yoavram-lab/EvolutionaryRescue
 
@@ -327,7 +327,8 @@ which is the one-step equivalent to our recurrence time for small tumors.
 - results: you mention that drugs increasing the death rate of sensitive cells delays recurrence, but given that mutations happen during division, it might be worth mentioning that drugs that decrease the division rate of sensitive cells by the same amount delay recurrence even more (holding mutant division rate constant - which is maybe why you didn't mention this for your parameterization, but seems like a worthwhile general point?).
 
 \textcolor{red}{%change 49
-For large tumors, decreasing the division rate of sensitive cells will lead to a decrease in the cancer recurrence time when conditioned on evolutionary rescue. We have added this comment to the text. PLEASE CHECK AGAIN, YOU WROTE increase AND DID NOT REALLY ADDRESS THE REVIEWER COMMENT.} 
+We have incorporated this comment into our Results. %PLEASE CHECK AGAIN, YOU WROTE increase AND DID NOT REALLY ADDRESS THE REVIEWER COMMENT.} Remus: DONE
+}
 
 - results: why doesn't standing genetic variance affect the mean rescue time? This might have something to do with what I just mentioned (successful mutants tend to arise early) and more clues might be found in Orr $\&$ Unckless 2014, who also compare times with and without standing genetic variance.
 
@@ -422,7 +423,7 @@ instead of:
 \tau_a=\int_0^\infty \e^{-R_a(\tau)}\d\tau.
 \end{equation*}
 }
-\textcolor{red}{REMUS DID YOU ADD THIS TO THE APPENDIX? NOT JUST HERE}
+\textcolor{red}{REMUS DID YOU ADD THIS TO THE APPENDIX? NOT JUST HERE. Remus: DONE}
 
 - appendix C: similarly, I think it would be nice to hear some justification for the approximations in eqn C9, ie, can ignore direct rescue and rescue via aneuploidy very unlikely
 
@@ -444,7 +445,7 @@ Additionally, since $N\ll N_a^*\ll N_m^*$, evolutionary rescue is more likely to
 \tau_a\sim\int_0^\infty \frac{tv\lambda_ap_ma_t}{1-\e^{-Np_s}}\d t.
 \end{equation*}
 }
-\textcolor{red}{REMUS DID YOU ADD THIS TO THE APPENDIX? NOT JUST HERE}
+\textcolor{red}{REMUS DID YOU ADD THIS TO THE APPENDIX? NOT JUST HERE. Remus: DONE, change 59}
 
 - appendix D: the fact that lineages conditioned to survive drift reach N earlier is nicely discussed in Orr $\&$ Unckless 2014, who connect it back to classic work on selective sweeps by Maynard Smith $\&$ Haigh 1974
 
