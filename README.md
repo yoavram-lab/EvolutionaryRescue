@@ -1,12 +1,12 @@
 This is the repository for the manuscript:
 
-> Remus Stana, Uri Ben-David,Daniel B. Weissman, Yoav Ram (2025) _Evolutionary rescue by aneuploidy intumors exposed to anti-cancer drugs_. Genetics
+> Remus Stana, Uri Ben-David, Daniel B. Weissman, Yoav Ram (2025) _Evolutionary rescue by aneuploidy intumors exposed to anti-cancer drugs_. In revision for Genetics
 
 ## Repository structure
 
-- [`EvolutionaryRescue1.tex`](EvolutionaryRescue1.tex): main text
-- [`evo2022.bib`](evo2022.bib): bibliography gile
-- [`Python Code`](Python Code): source code for producing the figures
+- [`ms.tex`](ms.tex), [`ms.pdf`](ms.pdf): main text
+- [`ms.bib`](ms.bib): bibliography gile
+- [`src`](src): source code for producing the figures
 - [`Figures`](Figures): all the figures
 
 ## License
