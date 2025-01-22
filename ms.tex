@@ -1059,7 +1059,7 @@ r_1\left(\infty\right)=\frac{uv\lambda_s\lambda_aNp_m}{\abs{\Delta_s}\abs{\Delta
 \end{equation*}
 where we ignore lineages created by direct mutation because we assumed $u\lambda_a > \max{(-\Delta_a, 1/T^*)}$, $N\ll N_m^*$ and used \Cref{eq:N_a}.
 
-This helps us distinguish between two scenarios for the proliferation time. Firstly, when we have at most one lineages which rescues the cancer cell population:
+This helps us distinguish between two scenarios for the proliferation time. Firstly, when we have at most one lineage which rescues the cancer cell population:
 \begin{equation*}
 N\ll N_a^*.
 \end{equation*}
@@ -1082,22 +1082,22 @@ As a result, the recurrence time is obtained by solving the following system of 
 \end{aligned}
 \end{equation}
 Solving the system of ODEs for initial condition $\left(s(0), a(0), m(0)\right)=\left(N,0,0\right)$ we obtain:
-\begin{align*}
-m\left(t\right)=\frac{Nuv\lambda_a\lambda_s}{\Delta_s-\Delta_a}\left[\frac{\e^{\Delta_st}-\e^{\Delta_mt}}{\Delta_s-\Delta_m}-\frac{\e^{\Delta_at}-\e^{\Delta_mt}}{\Delta_a-\Delta_m}\right]+Nv\lambda_s\frac{\e^{\Delta_st}-\e^{\Delta_mt}}{\Delta_s-\Delta_m}.
-\end{align*}
-We obtain $\tau_a^r$ such that $m\left(\tau_a^r\right)=N$ by solving:
+\begin{equation} \label{m_t}
+m(t) = \frac{N u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m t} - \e^{\Delta_a t}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m t} - \e^{\Delta_s t}}{\Delta_m - \Delta_s} \right] + N v \lambda_s \frac{\e^{\Delta_m t} - \e^{\Delta_s t}}{\Delta_m - \Delta_s}.
+\end{equation}
+We obtain $\tau_a^r$ by solving \eqref{m_t} for the time at which the number of mutant cells reaches $N$, i.e., $m\left(\tau_a^r\right)=N$:
 \begin{equation}\label{eq:t2det2024}
-1=\frac{uv\lambda_a\lambda_s}{\Delta_s-\Delta_a}\left[\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}-\frac{\e^{\Delta_a\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_a-\Delta_m}\right]+v\lambda_s\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}.
+1 = \frac{u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_a \tau_a^r}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s} \right] + v \lambda_s \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s}.
 \end{equation}
 This is a transcendental equation which cannot be solved exactly but we can obtain an approximation by noting that for large $\tau_a^r$ the above equation can be written as: 
 \begin{equation*}
-1=v\lambda_s\frac{\e^{\Delta_m\tau_a^r}}{\abs{\Delta_s-\Delta_m}},
+1=v\lambda_s\frac{\e^{\Delta_m\tau_a^r}}{\Delta_m - \Delta_s},
 \end{equation*}
 which has solution:
 \begin{equation}\label{eq:t2det}
 \tau_a^r\approx\frac{1}{\Delta_m}\log\frac{\Delta_m-\Delta_s}{v\lambda_s}.
 \end{equation}
-We observe that the terms given by the evolutionary trajectory $sensitive \rightarrow aneuploid \rightarrow mutant$ do not contribute to the above approximation and, as a result, we deduce that it is accurate only for $N\gg N_m^*>N_a^*$. %change 9
+We observe that the terms given by the evolutionary trajectory \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{mutant} do not contribute to the above approximation and, as a result, we deduce that it is accurate only for $N \gg N_m^* > N_a^*$. %change 9
 
 Additionally, we note that if we are interested in the time until the tumor reaches a detectable size $M$ then our above analysis is valid but in \Cref{meanproliferationtime} we change:
 \begin{align}\label{meanproliferationtime2}
