@@ -196,7 +196,6 @@ There has been extensive theoretical analysis of evolutionary rescue.
 \citet{osmond_genetic_2020} considered a population that must achieve rescue, potentially via multiple mutations, by adapting on a fitness landscape described by Fisher's geometric model,
 and found that for some parameter values rescue by two mutational steps is more likely than rescue by a single step.
 
-
 Resistance to cancer therapy is a natural application of evolutionary rescue theory \citep{alexander2014evolutionary}. 
 \citet{iwasa2003evolutionary} used multi-type branching process theory to approximate the probability that a population under strong selective pressure can survive extinction, focusing on the case in which the cancer must get two mutations to be rescued, with the single-mutant still dying rapidly.
 \citet{iwasa2004evolutionary} used a similar approach to find simple approximate expressions for the probability that a single lineage would evolve to survive via a wide range of possible mutational pathways.
@@ -304,9 +303,9 @@ We thus assume an anti-cancer drug that causes a 10-fold increase in the chromos
 To estimate fitness cost of aneuploidy, $c$, we note that \citet{lukow2021chromosomal} mixed sensitive and aneuploid A375 melanoma cells at $1:1$ ratio, cultured them in a drug-free environment, and observed the ratio evolve as a function of time with the aneuploid cells declining to $15\%$ after 24 days. Thus, our estimate for the fitness cost is $c=\abs{\log\left(0.15/(1-0.15)\right)/24}\approx0.07$ per day \citep{chevin2011measuring}.
 We estimate the fraction of aneuploid cancer cells in the pre-treatment environment using the formula $f=\tilde{u}\lambda_s / c$, which produces an estimate of $f=10^{-3}\times10^{-1}/0.07$, that is, $0.14\%$ of pre-treatment cancer cells have the beneficial aneuploidy of interest. %change 5
 
-We note that when we refer to drug-sensitive cells, we include those cells that have any aneuploidy other than trisomy in Chr 2 and 6, as those are the aneuploid cells that are hypothesized to have higher fitness in the environment altered by drugs such as vemurafenib. Additionally, in our model, mutations only confer resistance, however, most mutations are deleterious. We consider the fitness of the sensitive, aneuploid or mutant cells to be the average of each population. As a result, mutations that are deleterious are taken into consideration through the mean fitness of each population. %change 50
+Note that when we refer to drug-sensitive cells, we include those cells that have any aneuploidy that does not affect fitness in the presence of the drug. Additionally, we focus on mutations that confer resistance, neglecting deleterious mutations (which are more common). We assume deleterious mutations and other aneuplidies occur at similar rates across genotypes and therefore neglect their effect on the dynamics.
 
-All the parameters discussed above are shown in \Cref{table1}.
+All the parameters discussed above are shown in \Cref{table1}.\\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -532,7 +531,7 @@ In the indirect path, a sensitive cell first becomes aneuploid, which diminishes
 
 Using multi-type branching processes, we derived the probability of evolutionary rescue of the tumor under the effects of aneuploidy, ranging from tolerance to partial resistance.
 We obtained exact and approximate expressions for the probability of evolutionary rescue (\cref{eq:rescue_prob}). 
-Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$. The latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued (\Cref{figureAneuploidy}). 
+Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$. The latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued (\Cref{rescue_prob}). 
 
 When aneuploid cells are partially resistant to the drug ($\Delta_s\ll0\ll\Delta_a\ll\Delta_m$), aneuploidy itself rescues the population (\Cref{rescue_threshold}A). 
 When aneuploidy only provides tolerance to the drug ($\Delta_s\ll\Delta_a\ll0\ll\Delta_m$), it cannot rescue the population.
@@ -561,7 +560,6 @@ Comparing our results to the evolutionary rescue literature, we complement the s
 Similar to \citet{osmond_genetic_2020}, we find that two-step rescues can be more likely than simple one-step rescues. 
 The ``stationary'' scenario, in which the aneuploid growth rate is close to zero in the presence of the drug, is particularly interesting.
 Although this may seem like a small region of parameter space in a general model of evolutionary rescue (Fig.~\ref{rescue_threshold}A, inset), it could be biologically significant for some tumors under specific drug therapies.
-The current literature may be biased towards aneuploidies that provide drug resistance. 
 Our results suggest that identifying aneuploidies that are tolerant or stationary may be worthwhile, as these are also expected to enhance the probability of rescue (\Cref{rescue_prob}) and extend the window of opportunity for rescue (\Cref{cdffig}).
 
 %\paragraph{Directions for future research}
