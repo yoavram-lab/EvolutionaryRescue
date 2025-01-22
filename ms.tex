@@ -401,11 +401,11 @@ Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for re
 \begin{equation} \label{eq:N_ratio}
 \frac{N^*_a}{N^*_m} \approx \begin{cases}
     \frac{\abs{\Delta_a}}{u\lambda_a} ,&
-  \Delta_a T^* \ll -1 ,\\ 
+  \Delta_a T^* \ll -1 \text{ (tolerant aneuploids)} ,\\ 
   \frac{1}{u}\left(v  \frac{\Delta_m}{\lambda_m}\right)^{1/2} ,&
-  -1 \ll \Delta_a T^* \ll 1  ,\\ 
+  -1 \ll \Delta_a T^* \ll 1 \text{ (stationary aneuploids)} ,\\ 
   v \frac{\Delta_m}{\lambda_m}  \left(u\frac{\Delta_a}{\lambda_a}\right)^{-1}  ,&
-   \Delta_a T^* \gg 1 .
+   \Delta_a T^* \gg 1 \text{ (resistant aneuploids)} .
   \end{cases}
 \end{equation}
 As expected, this ratio increases with the mutation rate $v$ and decreases with the aneuploidy rate $u$.
@@ -449,11 +449,11 @@ Using \cref{eq:N_a,eq:N_m,eq:Nsgv}, we can find the ratio of threshold tumor siz
 \begin{equation} \label{eq:N_sgv_ratio}
 \frac{\tilde{N}^*_a}{N^*_m}=\frac{\tilde{N}^*_{a}}{N^*_{a}} \frac{N^*_a}{N^*_m} \approx \frac{c}{\abs{\Delta_s}}\begin{cases}
     \frac{\abs{\Delta_a}}{\tilde{u}\lambda_a} ,&
-  \Delta_a T^* \ll -1 ,\\ 
+  \Delta_a T^* \ll -1 \text{ (tolerant aneuploids)} ,\\ 
   \frac{1}{\tilde{u}}\left(v \frac{\Delta_m}{\lambda_m}\right)^{1/2} ,&
-  -1 \ll \Delta_a T^* \ll 1  ,\\ 
+  -1 \ll \Delta_a T^* \ll 1 \text{ (stationary aneuploids)} ,\\ 
   v \frac{\Delta_m}{\lambda_m} \left(\tilde{u}\frac{\Delta_a}{\lambda_a}\right)^{-1}  ,&
-   \Delta_a T^* \gg 1 .
+   \Delta_a T^* \gg 1\text{ (resistant aneuploids)} .
   \end{cases}
 \end{equation}
 Evolutionary rescue through direct mutation is more likely if the cost of aneuploidy, $c$, is very large or the effect of the drug $\Delta_s$ is small. In contrast, standing genetic variation will drive adaptation if the pre-treatment chromosome missegregation rate, $\tilde{u}$, is very large. The ratio does not depend on the rate of chromosome missegregation induced by the drug, $u$. However, if the aneuploid growth rate, $\Delta_a$, increases, evolutionary rescue is driven by standing genetic variation. For the parameter values of  $\lambda_s=0.1$, $\lambda_a=0.0899$, $\lambda_m=0.1$, $\mu_s=0.14$, $\mu_a=0.09$, $\mu_m=0.09$, $\tilde{u}=10^{-3}$, and $v=10^{-7}$, we are in the first scenario (tolerant aneuploids) and obtain the ratio $\tilde{N}^*_a/N^*_m \approx 1.94$, which means that standing genetic variation does not drive evolution of drug resistance when compared to direct mutation. We note that for larger values of the pre-treatment chromosome missegregation rate, $\tilde{u}$, which are consistent with empirical studies (\Cref{table1}), standing genetic variation can drive adaptation when compared to direct mutation.
@@ -532,7 +532,7 @@ In the indirect path, a sensitive cell first becomes aneuploid, which diminishes
 
 Using multi-type branching processes, we derived the probability of evolutionary rescue of the tumor under the effects of aneuploidy, ranging from tolerance to partial resistance.
 We obtained exact and approximate expressions for the probability of evolutionary rescue (\cref{eq:rescue_prob}). 
-Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$.
+Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$. The latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued (\Cref{figureAneuploidy}). 
 
 When aneuploid cells are partially resistant to the drug ($\Delta_s\ll0\ll\Delta_a\ll\Delta_m$), aneuploidy itself rescues the population (\Cref{rescue_threshold}A). 
 When aneuploidy only provides tolerance to the drug ($\Delta_s\ll\Delta_a\ll0\ll\Delta_m$), it cannot rescue the population.
@@ -559,8 +559,10 @@ However, for the parameter values we focus on in our examples (\Cref{table1}), t
 
 Comparing our results to the evolutionary rescue literature, we complement the studies by \citet{iwasa2003evolutionary} and \citet{osmond_genetic_2020} on multi-step rescue by deriving simple approximations for a different fitness landscape. 
 Similar to \citet{osmond_genetic_2020}, we find that two-step rescues can be more likely than simple one-step rescues. 
-The ``stationary'' scenario, in which the aneuploid growth rate is close to zero in the presence of drug, is particularly interesting.
-Although this may seem like a small region of parameter space in a general model of evolutionary rescue (Fig.~\ref{rescue_threshold}A, inset), it could be biologically significant for some tumor under specific drug therapies.
+The ``stationary'' scenario, in which the aneuploid growth rate is close to zero in the presence of the drug, is particularly interesting.
+Although this may seem like a small region of parameter space in a general model of evolutionary rescue (Fig.~\ref{rescue_threshold}A, inset), it could be biologically significant for some tumors under specific drug therapies.
+The current literature may be biased towards aneuploidies that provide drug resistance. 
+Our results suggest that identifying aneuploidies that are tolerant or stationary may be worthwhile, as these are also expected to enhance the probability of rescue (\Cref{rescue_prob}) and extend the window of opportunity for rescue (\Cref{cdffig}).
 
 %\paragraph{Directions for future research}
 Experiments could test our model predictions. For example, to assess the effect of initial tumor size on the probability of evolutionary rescue, a large culture mass can be propagated from a single cancer cell in permissive conditions and then diluted to a range of starting tumor sizes. Then, the extinction or survival of these tumors can be monitored during exposure to anti-cancer drugs that induce aneuploidy or to saline solution for control~\citep{ippolito2021gene}. 
@@ -759,7 +761,7 @@ B\\
 \end{subfigure}
 \caption{\textbf{Aneuploidy extends the window of opportunity for evolutionary rescue.}
 (A) The probability that a successful mutant has not appeared by time $t$. Black line: tolerant aneuploidy ($u>0, \lambda_a=0.0899$). Red line: stationary aneuploidy ($u>0, \lambda_a=0.089999$). Green line: partially resistant aneuploidy ($u>0, \lambda_a=0.095$). Blue line: no aneuploidy ($u=0$). Aneuploidy plays an important role in rescuing the tumor cell population as the sensitive population becomes extinct. Markers represent simulation results, and the error bars represent $95\%$ confidence interval ($p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the fraction of simulations in which a successful mutant has not been generated, and $n=100$ is the number of simulations). Parameters: $\lambda_s=0.1,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7},N=10^7$. %change 56
-(B) Probability that a mutant cancer cell population has not reached size $N$ at time $t$. Green line: $N=10^6$ (small tumor). Red line: $N=10^7$ (intermediate-sized tumor). Blue line: $N=10^{10}$ (large tumor). Increasing the initial tumor size guarantees that the cancer will relapse. Markers represent simulations, and the error bars represent $95\%$ confidence interval ($p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the fraction of the simulations in which the mutant population size has not reached $N$ and $n=100$ is the number of simulations).
+(B) Probability that a mutant cancer cell population has not reached size $N$ at time $t$ when aneuploidy provides tolerance. Green line: $N=10^6$ (small tumor). Red line: $N=10^7$ (intermediate-sized tumor). Blue line: $N=10^{10}$ (large tumor). Increasing the initial tumor size guarantees that the cancer will relapse. Markers represent simulations, and the error bars represent $95\%$ confidence interval ($p\pm1.96\sqrt{p\left(1-p\right)/n}$ where $p$ is the fraction of the simulations in which the mutant population size has not reached $N$ and $n=100$ is the number of simulations).
 Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.}
 \label{cdffig}
 \end{figure}
