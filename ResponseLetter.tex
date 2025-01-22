@@ -10,11 +10,11 @@ headheight=12pt
 
 \usepackage{xcolor}
 \usepackage{amssymb,amsmath,amsthm}
-\usepackage{natbib}
+\usepackage[comma,sort]{natbib}
 \usepackage{commath}
 \usepackage{url}
 \usepackage{graphicx} % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-
+\usepackage[T1]{fontenc}
 
 \renewcommand{\d}{{\rm d}}
 \newcommand{\e}{{\rm e}}
@@ -526,7 +526,7 @@ Minor points
 
 \textcolor{blue}{
 We have removed the misleading sentence ``aneuploidy will either not play any role in evolutionary rescue or will be the main driver of adaptation'', which is incorrect. Instead, we write (line 526): ``Our results suggest that identifying aneuploidies that are tolerant or stationary may be worthwhile, as these are also expected to enhance the probability of rescue (Figure 3) and extend the window of opportunity for rescue (Figure 6).''\\
-Furthermore, In our model, we are interested in a specific type of aneuploidy which increases the fitness of cancer cells in an environment affected by anti-cancer drugs. As a consequence, we catalogued all other forms of aneuploids as sensitive. These aneuploidies can appear in patient cohorts because, for example, they drive cancer itself or increase genome instability, which leads to mutations and abberations that promote cancer.
+Furthermore, in our model, we are interested in a specific type of aneuploidy which increases the fitness of cancer cells in an environment affected by anti-cancer drugs. As a consequence, we catalogued all other forms of aneuploids as sensitive. These aneuploidies can appear in patient cohorts because, for example, they drive cancer itself or increase genome instability, which leads to mutations and aberrations that promote cancer.
 } 
 
 - Code Base
@@ -553,7 +553,7 @@ Another oddity is that the theory developed applies much more broadly to evoluti
 A sufficient revision must, in my view, properly connect this work to the existing theoretical literature on evolutionary rescue (as noted by reviewer $\#2$) and to the broader empirical literature on cancer about multi-step drug resistance (as noted by reviewer $\#3$).
 
 \textcolor{blue}{
-We have have revised the introduction and discussion accordingly, see lines 55-87, 520-529.
+We agree with all of these points. We have revised the introduction and discussion accordingly, see lines 55-87, 520-529.
 }
 
 Minor comments
@@ -568,6 +568,8 @@ Introduction:
 
 * how multiple mutations contribute: several important papers on this subject are referenced later but not in this paragraph. Please revise, reviewing the existing theory and saying how the current theoretical work differs.
 
+\textcolor{blue}{We have added the material, as described in our response to reviewer 2.}
+
 Methods:
 * The methods only describe the simulations, and the results focus on analytical results that don't follow from the methods. I suggest expanding the ``Methods'' to discuss the general approach, model structure, and quantities derived (you can rename this as ``Model'') and then move to ``Results''.
 
@@ -577,10 +579,12 @@ The Methods section has several subsections: ``Evolutionary model'' that describ
 * Delta would be better as ``r'' for the growth rate
 
 \textcolor{blue}{The manuscript has over 300 mentions of $\Delta$, plus mentions in the figures, and we do not want to introduce any errors by changing it.}
+\textcolor{red}{I don't think this is a good argument. It's literally one command in \LaTeX to change all the ``$\Delta$''s in the text to ``$r$''s. So it would just be changing the figures, which isn't a big deal. I think we should do it.}
 
 * The use of the terms ``tolerant'' (for negative growth) and ``resistant'' (for positive growth) is not standard (e.g., see different for fungi used by Berman $\&$ Krysan 2020 Nature Reviews Microbiology). Maybe alert the reader that ``tolerant'' is used in different ways in the literature and is used here solely for notational convenience to refer to mutations that, on their own, do not allow growth? Or replace with ``sub-critical'', a term already used in this context?
 
-\textcolor{blue}{We have added a short explanation for ``tolerant'' and that it has other meanings in the literature. We also mention the equivalence to in ``sub/super/critical'' from Osmond et al 2020.} % change 47, 57
+\textcolor{blue}{We have added a short explanation for ``tolerant'' and that it has other meanings in the literature. We also mention the equivalence to in ``sub/super/critical'' from Osmond et al 2020.
+We use these terms because we are trying to translate concepts familiar to the evolutionary rescue community into ones more familiar to cancer researchers.} % change 47, 57
 
 * ``antagonizing cell division'' - The meaning of this isn't clear. Rephrase as ``by extending the length of the cell cycle''?
 
@@ -589,7 +593,7 @@ The Methods section has several subsections: ``Evolutionary model'' that describ
 Results:
 * Figure 7 - Add a numerical solution to equation (D3)? This should make it clearer that the non-monotonicity of the black curve is an artefact of the simplifying assumptions in (D4) and not a problem with the approach.
 
-\textcolor{blue}{We have added the green line for eq. D3 to Figure 7 as suggested, it is very close to the blue line for eq. D4.}
+\textcolor{blue}{We have added the green line for eq. D3 to Figure 7 as suggested. It is very close to the blue line for eq. D4.}
 
 * By the way, It wasn't clear to me what happened to the other large $\tau_a^r$ terms in the first portion of equation (D3) when approximating the equation into the form shown in (D4)? Could this be briefly clarified?
 
@@ -605,7 +609,12 @@ v\lambda_s\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}\
 \\
 \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \textbf{Additional changes}
+
+
+{\color{blue}
+
 
 We have made the following additional changes:
 
@@ -632,7 +641,8 @@ Figure S6, S7, S8, S9: changed the subscripts of several variables from $w$ to $
 ``If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the rates at which the rescue mutations are generated can be written as'' $\rightarrow$
 ``If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the expected number of successful mutants generated until time $t$ is given by''. % change r6 
 
+}
 
-\bibliographystyle{plain}
+\bibliographystyle{agsm}
 \bibliography{ms}
 \end{document}
