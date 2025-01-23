@@ -386,7 +386,7 @@ N_a^* \approx
 This equation is equivalent to eq.~A3 of \citet{iwasa2004evolutionary} and to eq.~8 of \citet{osmond_genetic_2020} with the distribution of fitness effects set to a delta function;
 our ``tolerant'', ``stationary'', and ``resistant'' scenarios correspond to \citet{osmond_genetic_2020}'s ``sufficiently subcritical'', ``sufficiently critical'', and ``sufficiently supercritical'', respectively. %change 57
 These approximations are accurate when compared to results of stochastic evolutionary simulations (\Cref{rescue_prob,rescue_threshold}). 
-Our parameterization for two types of cancers suggests that melanoma and for TNBC-SA609 clone A are resistant to the drug ($\Delta_a T^*>500$), whereas TNBC-SA1035 clone H and TNBC-SA535 clone H are tolerant ($\Delta_a T^*<-1000$). 
+Our parameterization for two types of cancers suggests that melanoma and TNBC-SA609 clone A are resistant to the drug ($\Delta_a T^*>500$), whereas TNBC-SA1035 clone H and TNBC-SA535 clone H are tolerant ($\Delta_a T^*<-1000$). 
 In the first scenario, the treatment effectively kills aneuploid cells but not as quickly as it kills sensitive cells. 
 In the second scenario, aneuploid cells are sufficiently resistant, and the expected size of each aneuploid lineage is roughly 1.
 In both of these scenarios, aneuploidy increases the probability of rescue by slowing or halting the decrease in the tumor population size, allowing more opportunities to produce resistant mutants. 
@@ -1059,7 +1059,7 @@ We define the proliferation time $\tau_a^p$  to be the time it takes the populat
 \begin{equation*}
 r_1\left(\infty\right)=\frac{uv\lambda_s\lambda_aNp_m}{\abs{\Delta_s}\abs{\Delta_a}}=\frac{N}{N_a^*},
 \end{equation*}
-where we ignore lineages created by direct mutation because we assumed $u\lambda_a > \max{(-\Delta_a, 1/T^*)}$, $N\ll N_m^*$ and used \Cref{eq:N_a}.
+where we ignore lineages created by direct mutation because we assumed $u\lambda_a > \max{(-\Delta_a, 1/T^*)}$, $N\ll N_m^*$ and used \cref{eq:N_a}.
 
 This helps us distinguish between two scenarios for the proliferation time. Firstly, when we have at most one lineage which rescues the cancer cell population:
 \begin{equation*}
@@ -1084,10 +1084,10 @@ As a result, the recurrence time is obtained by solving the following system of 
 \end{aligned}
 \end{equation}
 Solving the system of ODEs for initial condition $\left(s(0), a(0), m(0)\right)=\left(N,0,0\right)$ we obtain:
-\begin{equation} \label{m_t}
+\begin{equation*} \label{m_t}
 m(t) = \frac{N u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m t} - \e^{\Delta_a t}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m t} - \e^{\Delta_s t}}{\Delta_m - \Delta_s} \right] + N v \lambda_s \frac{\e^{\Delta_m t} - \e^{\Delta_s t}}{\Delta_m - \Delta_s}.
-\end{equation}
-We obtain $\tau_a^r$ by solving \eqref{m_t} for the time at which the number of mutant cells reaches $N$, i.e., $m\left(\tau_a^r\right)=N$:
+\end{equation*}
+We obtain $\tau_a^r$ by solving the above equation for time $t=\tau_a^r$ at which the number of mutant cells reaches $N$, i.e., $m\left(\tau_a^r\right)=N$:
 \begin{equation}\label{eq:t2det2024}
 1 = \frac{u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_a \tau_a^r}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s} \right] + v \lambda_s \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s}.
 \end{equation}
@@ -1101,7 +1101,7 @@ which has solution:
 \end{equation}
 We observe that the terms given by the evolutionary trajectory \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{mutant} do not contribute to the above approximation and, as a result, we deduce that it is accurate only for $N \gg N_m^* > N_a^*$. %change 9
 
-Additionally, we note that if we are interested in the time until the tumor reaches a detectable size $M$ then our above analysis is valid but in \Cref{meanproliferationtime} we change:
+Additionally, we note that if we are interested in the time until the tumor reaches a detectable size $M$ then our above analysis is valid but in \cref{meanproliferationtime} we change:
 \begin{align}\label{meanproliferationtime2}
 \tau_a^{r,M}&\approx\tau_a+\frac{\log p_mM}{\Delta_m},
 \end{align}
