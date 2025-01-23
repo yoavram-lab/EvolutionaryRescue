@@ -19,6 +19,9 @@ headheight=12pt
 \renewcommand{\d}{{\rm d}}
 \newcommand{\e}{{\rm e}}
 
+% Change Delta to r
+\renewcommand{\Delta}{r}
+
 % Title page
 \title{
 	Response to reviewers: \\ Evolutionary rescue by aneuploidy in tumors exposed to anti-cancer drugs \\ 
@@ -599,11 +602,12 @@ Results:
 
 \textcolor{blue}{In the first term of (D3) we have: 
 \begin{align*}
-\frac{uv\lambda_a\lambda_s}{\Delta_s-\Delta_a}\left[\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}-\frac{\e^{\Delta_a\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_a-\Delta_m}\right]\approx\frac{uv\lambda_a\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_s\right)\left(\Delta_m-\Delta_a\right)}
+\frac{u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_a \tau_a^r}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s} \right]
+\approx \frac{uv\lambda_a\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_s\right)\left(\Delta_m-\Delta_a\right)}
 \end{align*}
 which is significantly smaller then the second term of (D3):
 \begin{align*}
-v\lambda_s\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}\approx\frac{v\lambda_s\e^{\Delta_m\tau_a^r}}{\Delta_m-\Delta_s}
+v \lambda_s \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s} \approx \frac{v\lambda_s\e^{\Delta_m\tau_a^r}}{\Delta_m-\Delta_s}
 \end{align*}
 } % change 44
 \\
