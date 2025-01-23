@@ -72,7 +72,9 @@ Thank you for this remark, you are correct to note that this statement is in opp
 Our results suggest that identifying aneuploidies that are tolerant or stationary may be worthwhile, as these are also expected to enhance the probability of rescue (Figure 3) and extend the window of opportunity for rescue (Figure 6).''\\
 We also added the following sentences to the Discussion.
 In line 468, emphasis on new text): ``Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$. \emph{The latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued.}'' \\
-And in line 493: ``As an example, we have parameterized our model using estimates for melanoma and triple-negative breast cancer (TNBC) cells under drug therapy from the literature. We find that in these cases we are in the third scenario, in which aneuploidy provides at least partial resistance to the drug. It remains to be seen which tumor type and drug combinations produce tolerant and stationary aneuploidies.''\\
+And in line 493: ``AAs an example, we have parameterized our model using estimates for melanoma and three triple-negative breast cancer (TNBC) cells under drug therapy from the literature. 
+We find that in these cases we are either in the first scenario (melanoma and one of the TNBC clones) in which aneuploidy provides at partial or full resistance to the drug, or the third scenario (two TNBC), in which aneuploidy provides tolerance to the drug. 
+It remains to be seen which tumor type and drug combinations produce stationary aneuploidies.''\\
 The following sentences were already in the Discussion (line 476): ``In this scenario, aneuploidy provides two advantages. First, it delays the extinction of the population, providing more time for the appearance of the resistance mutation. 
 Second, it increases the population size relative to a drug-sensitive population, providing more cells in which mutations can occur. 
 Together, this increases the cumulative number of mutants that arise.'' and in line 481: ``We find that aneuploidy can significantly affect evolutionary rescue as it reduces the threshold tumor size by at least an order of magnitude even when aneuploidy only provides tolerance.''
@@ -512,12 +514,11 @@ Major points
 
 - The importance of time-resolved measurements of clonal dynamics have been recognized and more such datasets are becoming available (e.g., PMID: 34163070, PMID: 38987605). The simulation studies in this manuscript use a parameter regime largely based on a melanoma cell-line (A375) and treatment with a specific BRAF-inhibitor (vemurafenib). The relevance of the paper would be improved if consistent results can be shown in other datasets, including the citations above.
 
-\textcolor{blue}{Following the reviewer's suggestion, we have evaluated our model using parameters from breast cancer (PMID: 34163070), see Methods (line 180), Table 2, and Figure 3B, which also appear below.\\
-We have aldo added the following text to the Discussion (line 493): ``As an example, we have parameterized our model using estimates for melanoma and triple-negative breast cancer (TNBC) cells under drug therapy from the literature. 
-We find that in these cases we are in the third scenario, in which aneuploidy provides at least partial resistance to the drug. 
-It remains to be seen which tumor type and drug combinations produce tolerant and stationary aneuploidies. % change B
-We have also compared the probability of evolutionary rescue between melanoma and TNBC (black and color lines, respectively, in Figure 3B).
-This comparison suggests that TNBC has a higher probability of relapsing compared to melanoma, because smaller tumors have higher resuce probability. Indeed, the probability of relapse in TNBC patients is higher than 50\% in the first 3-5 years after diagnosis \citep{taushanova2023synchronous}, whereas in melanoma patients it is approximately 10-20\% in the first 5 years \citep{wan2022prediction,von_schuckmann2019risk}.'' % change A
+\textcolor{blue}{Following the reviewer's suggestion, we have evaluated our model using parameters from breast cancer (PMID: 34163070), see Methods (line 180), Table 2, and Figure 3B.\\
+We have aldo added the following text to the Discussion (line 493): ``As an example, we have parameterized our model using estimates for melanoma and three triple-negative breast cancer (TNBC) cells under drug therapy from the literature. 
+We find that in these cases we are either in the first scenario (melanoma and one of the TNBC clones), in which aneuploidy provides at partial or full resistance to the drug, or the third scenario (two TNBC), in which aneuploidy provides tolerance to the drug. 
+It remains to be seen which tumor type and drug combinations produce stationary aneuploidies. % change B
+Comparing the probability of evolutionary rescue between different tumors (Figure 3B) suggests that some TNBC clones have a much higher probability of relapsing compared to melanoma and other TNBC clones, because smaller tumors have higher resuce probability. Notably, the probability of relapse in TNBC patients is higher than 50\% in the first 3-5 years after diagnosis \citep{taushanova2023synchronous}, whereas in melanoma patients it is approximately 10-20\% in the first 5 years \citep{wan2022prediction,von_schuckmann2019risk}.'' % change A
 }% change A
 
 Minor points
@@ -578,8 +579,7 @@ The Methods section has several subsections: ``Evolutionary model'' that describ
 
 * Delta would be better as ``r'' for the growth rate
 
-\textcolor{blue}{The manuscript has over 300 mentions of $\Delta$, plus mentions in the figures, and we do not want to introduce any errors by changing it.}
-\textcolor{red}{I don't think this is a good argument. It's literally one command in \LaTeX to change all the ``$\Delta$''s in the text to ``$r$''s. So it would just be changing the figures, which isn't a big deal. I think we should do it.}
+\textcolor{blue}{We changed Delta to r.}
 
 * The use of the terms ``tolerant'' (for negative growth) and ``resistant'' (for positive growth) is not standard (e.g., see different for fungi used by Berman $\&$ Krysan 2020 Nature Reviews Microbiology). Maybe alert the reader that ``tolerant'' is used in different ways in the literature and is used here solely for notational convenience to refer to mutations that, on their own, do not allow growth? Or replace with ``sub-critical'', a term already used in this context?
 
