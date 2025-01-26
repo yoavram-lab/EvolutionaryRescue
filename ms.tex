@@ -388,8 +388,8 @@ our ``tolerant'', ``stationary'', and ``resistant'' scenarios correspond to \cit
 These approximations are accurate when compared to results of stochastic evolutionary simulations (\Cref{rescue_prob,rescue_threshold}). 
 Our parameterization for two types of cancers suggests that melanoma and TNBC-SA609 clone A are resistant to the drug ($\Delta_a T^*>500$), whereas TNBC-SA1035 clone H and TNBC-SA535 clone H are tolerant ($\Delta_a T^*<-1000$). 
 In the first scenario, the treatment effectively kills aneuploid cells but not as quickly as it kills sensitive cells. 
-In the second scenario, aneuploid cells are sufficiently resistant, and the expected size of each aneuploid lineage is roughly 1.
-In both of these scenarios, aneuploidy increases the probability of rescue by slowing or halting the decrease in the tumor population size, allowing more opportunities to produce resistant mutants. 
+In the second scenario, aneuploid cells are sufficiently resistant, and the expected size of each aneuploid lineage is roughly one.
+In both of these scenarios, aneuploidy increases the probability of rescue by slowing or halting the decrease in the tumor population size, allowing more opportunities to produce resistant mutants.
 In the third scenario, aneuploid cells are sufficiently resistant for the population to re-grow the tumor without additional resistance mutations.
 
 Notably, in this scenario the mutant parameters ($v$, $\lambda_m$, and $\Delta_m$) do not affect $N_a^*$ beyond their effect on $T^*$.
@@ -408,6 +408,7 @@ Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for re
    \Delta_a T^* \gg 1 \text{ (resistant aneuploids)} .
   \end{cases}
 \end{equation}
+Imporantly, when this threshold is smaller than 1, aneuploidy is expected to play a role in evolutionary rescue, as it resuced the threshold tumor size for rescue. 
 As expected, this ratio increases with the mutation rate $v$ and decreases with the aneuploidy rate $u$.
 In the first scenario, $\abs{\Delta_a}/u\lambda_a$ is the ratio of the expected time for an aneuploid lineage to appear, $1/u\lambda_a$, and the expected time until that lineage disappears, $1/\abs{\Delta_a}$.
 In the third scenario, $\left(v \frac{\Delta_m}{\lambda_m}\right) / \left(u \frac{\Delta_a}{\lambda_a}\right)$ is the ratio of the rates of appearance of resistant mutants that avoid extinction and partially resistant aneuploids that avoid extinction.
@@ -532,23 +533,23 @@ In the indirect path, a sensitive cell first becomes aneuploid, which diminishes
 
 Using multi-type branching processes, we derived the probability of evolutionary rescue of the tumor under the effects of aneuploidy, ranging from tolerance to partial resistance.
 We obtained exact and approximate expressions for the probability of evolutionary rescue (\cref{eq:rescue_prob}). 
-Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$. The latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued (\Cref{rescue_prob}). 
+Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$. Notably, the latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued, as long as it is produced fast enough (\Cref{rescue_prob}A, \cref{eq:N_ratio}).  
 
 When aneuploid cells are partially resistant to the drug ($\Delta_s\ll0\ll\Delta_a\ll\Delta_m$), aneuploidy itself rescues the population (\Cref{rescue_threshold}A). 
 When aneuploidy only provides tolerance to the drug ($\Delta_s\ll\Delta_a\ll0\ll\Delta_m$), it cannot rescue the population.
-Instead, it acts as a ``stepping stone'' through which the resistant mutant can appear more rapidly, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}). 
+Instead, if the aneuploidy rate is fast enough (\cref{eq:N_ratio}) then it may act as a ``stepping stone'' through which the resistant mutant can appear more rapidly, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}). 
 In this scenario, aneuploidy provides two advantages. First, it delays the extinction of the population, providing more time for the appearance of the resistance mutation. 
 Second, it increases the population size relative to a drug-sensitive population, providing more cells in which mutations can occur. 
 Together, this increases the cumulative number of mutants that arise (i.e., $N u v \lambda_s \lambda_a / \abs{\Delta_s \Delta_a}$). % change 39 
 
-We find that aneuploidy can significantly affect evolutionary rescue as it reduces the threshold tumor size by at least an order of magnitude even when aneuploidy only provides tolerance (\Cref{rescue_prob}).
-When the number of cells in the tumor is large enough (i.e., $N \gg N_m^* \approx 4\times10^7$), a resistance mutation will occur in drug-sensitive cells before these cells become extinct (\Cref{rescue_prob}). Therefore, large tumors are likely to be rescued with or without aneuploidy.
+We find that aneuploidy can significantly affect evolutionary rescue by reducing the threshold tumor size by several orders of magnitude, even when aneuploidy only provides tolerance, provided that the aneuploidy rate is high enough, $\lambda_a u > |\Delta_a|$ (\Cref{rescue_prob}A, \cref{eq:N_ratio}).
+When the number of cells in the tumor is large enough (i.e., $N \gg N_m^* \approx 4\times10^7$), a resistance mutation will occur in drug-sensitive cells before these cells become extinct. Therefore, large tumors are likely to be rescued with or without aneuploidy.
 However, anti-cancer drugs are often used as adjuvant therapy after resection, in which case the number of cells in the tumor may be below the detection threshold of $\sim10^7$  \citep{bozic2013evolutionary}. In these cases, aneuploidy can have a crucial role in the evolutionary rescue of the tumor and, therefore, in cancer recurrence. Indeed, secondary tumors are estimated to cause the majority of cancer-related deaths~\citep{chaffer2011perspective}. The importance of aneuploidy in the evolutionary rescue of secondary tumors is reinforced by the fact that metastases have been shown to have a chromosome missegregation rate two to three orders of magnitude higher compared to primary tumors~\citep{kimmel2023intra}.
 
 As an example, we have parameterized our model using estimates for melanoma and three triple-negative breast cancer (TNBC) cells under drug therapy from the literature. 
-We find that in these cases we are either in the first scenario (melanoma and one of the TNBC clones), in which aneuploidy provides at partial or full resistance to the drug, or the third scenario (two TNBC), in which aneuploidy provides tolerance to the drug. 
+We find that in these cases we are either in the first scenario (melanoma and one of the TNBC clones), in which aneuploidy provides at partial or full resistance to the drug, or the third scenario (two TNBC clones), in which aneuploidy provides tolerance to the drug. 
 It remains to be seen which tumor type and drug combinations produce stationary aneuploidies. % change B
-Comparing the probability of evolutionary rescue between different tumors (\Cref{rescue_prob}B) suggests that some TNBC clones have a much higher probability of relapsing compared to melanoma and other TNBC clones, because smaller tumors have higher resuce probability. Notably, the probability of relapse in TNBC patients is higher than 50\% in the first 3-5 years after diagnosis \citep{taushanova2023synchronous}, whereas in melanoma patients it is approximately 10-20\% in the first 5 years \citep{wan2022prediction,von_schuckmann2019risk}. % change A
+Comparing the probability of evolutionary rescue between different tumors (\Cref{rescue_prob}B) suggests that some TNBC clones have a much higher probability of relapsing compared to melanoma and other TNBC clones. Notably, the probability of relapse in TNBC patients is higher than 50\% in the first 3-5 years after diagnosis \citep{taushanova2023synchronous}, whereas in melanoma patients it is approximately 10-20\% in the first 5 years \citep{wan2022prediction,von_schuckmann2019risk}. % change A
 
 Given that the mean time for secondary tumors to adapt to anti-cancer drugs can be of the order of 1,000 days (\Cref{MeanTimeGrowthAneuploidyPlot}A), aneuploidy can explain the reappearance of cancer even after initial remission. The theoretical prediction for the mean rescue time of tumors smaller than $10^8$ cells is greater than 4 years, consistent with previous estimates of the recurrence time of tumors after resection~\citep{avanzini2019cancer}. We found that aneuploidy complements evolutionary rescue through direct mutation because it produces rescue mutations mostly after the number of sensitive cells has decreased to a point where a direct mutation is no longer a feasible option for evolutionary rescue (\Cref{cdffig}A).
 
@@ -560,7 +561,7 @@ Comparing our results to the evolutionary rescue literature, we complement the s
 Similar to \citet{osmond_genetic_2020}, we find that two-step rescues can be more likely than simple one-step rescues. 
 The ``stationary'' scenario, in which the aneuploid growth rate is close to zero in the presence of the drug, is particularly interesting.
 Although this may seem like a small region of parameter space in a general model of evolutionary rescue (Fig.~\ref{rescue_threshold}A, inset), it could be biologically significant for some tumors under specific drug therapies.
-Our results suggest that identifying aneuploidies that are tolerant or stationary may be worthwhile, as these are also expected to enhance the probability of rescue (\Cref{rescue_prob}) and extend the window of opportunity for rescue (\Cref{cdffig}).
+Our results suggest that identifying aneuploidies that are tolerant or stationary may be worthwhile, as they may enhance the probability of rescue (\Cref{rescue_prob}A) and extend the window of opportunity for rescue (\Cref{cdffig}).
 
 %\paragraph{Directions for future research}
 Experiments could test our model predictions. For example, to assess the effect of initial tumor size on the probability of evolutionary rescue, a large culture mass can be propagated from a single cancer cell in permissive conditions and then diluted to a range of starting tumor sizes. Then, the extinction or survival of these tumors can be monitored during exposure to anti-cancer drugs that induce aneuploidy or to saline solution for control~\citep{ippolito2021gene}. 
@@ -572,7 +573,7 @@ In addition, our model can be applied to study evolutionary rescue in other biol
 
 \paragraph{Conclusions.}
 
-Our results quantitatively suggest that aneuploidy may play an important role in tumor adaptation to anti-cancer drugs when the tumor size is small or intermediate. Large tumors are predicted to adapt to anti-cancer drugs through direct mutation. In contrast, smaller tumors are predicted to become resistant either directly by aneuploidy or by a resistance mutation occurring in aneuploid cells that serve as evolutionary ``stepping stones'' (\Cref{rescue_prob}). Thus, therapies that increase the rate of aneuploidy in tumors to combat cancer may also promote drug resistance.
+Our results quantitatively suggest that aneuploidy can play an important role in tumor adaptation to anti-cancer drugs when the tumor size is small or intermediate. Large tumors are predicted to adapt to anti-cancer drugs through direct mutation. In contrast, smaller tumors are predicted to become resistant either directly by aneuploidy or by a resistance mutation occurring in aneuploid cells that serve as evolutionary ``stepping stones''. Thus, therapies that increase the rate of aneuploidy in tumors to combat cancer may also promote drug resistance.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\small
