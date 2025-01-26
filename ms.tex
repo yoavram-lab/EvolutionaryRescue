@@ -288,11 +288,11 @@ In most of our simulations, we use $\lambda_a=0.0899$ per day, so that aneuploid
 We also consider breast cancer cells, relying on \citet{salehi2021clonal}, who studied multiple TNBC PDX clones (triple-negative breast cancer patient-derived xenografts.)
 We chose three clones for which \cite{salehi2021clonal} report their relative Wrightian fitness, $1+s$, in the presence of the drug cisplatin: TNBC-SA609 clone A with $1+s=1.047$, TNBC-SA1035 clone H with $1+s=1.02$, and TNBC-SA535 clone H with $1+s=1.01$.
 The growth rate $\Delta$, or the Malthusian fitness, is the log of the Wrightian fitness \citep{Wu2013a}. 
-We therefore have the following set of equations: $0.047 = \exp{(\Delta_{SA609}-\Delta_s)}, 0.02=\exp{(\Delta_{SA1035}-\Delta_s)}, 0.01=\exp{(\Delta_{SA535}-\Delta_s)}$.
+We therefore have the following set of equations: $1.047 = \exp{(\Delta_{SA609}-\Delta_s)}, 1.02=\exp{(\Delta_{SA1035}-\Delta_s)}, 1.01=\exp{(\Delta_{SA535}-\Delta_s)}$.
 The growth rate of breast cancer cells in the absence of the drug is $0.0085$ per day \citep{spratt1996rates}.
 The doubling time of breast cancer cells in the absence of cellular death is 8.2 days \citep{rew2000cell}.
 Thus, the division rate of breast cancer cells in the absence of the drug is $\log{(2)}/8.2=0.0845$ per day, and their death rate is $0.076$ per day.
-\cite{salehi2021clonal} report relative fitness for the aneuploid clones rather than division and growth rate. We, therefore, use the above estimates from breast cancer cells in the absence of drugs for the fittest clone, TNBC-SA609 clone A, and solve the set of equations assuming that the drug affects death rather than division and that mutant cells have the same division and death rates as the fittest aneuploid cells TNBC-SA609 clone A.
+\cite{salehi2021clonal} report relative fitness for the aneuploid clones rather than division and growth rate. We, therefore, use the above estimates from breast cancer cells in the absence of drugs for the fittest clone, TNBC-SA609 clone A, and solve the set of equations assuming that the drug affects death rather than division and that mutant cells have the same division and death rates as the fittest aneuploid cells of TNBC-SA609 clone A.
 We therefore have $\lambda_s=\lambda_a=\lambda_m=0.0845$ for all clones, $\mu_s=0.1215$, $\mu_{SA609} = 0.076$, $\mu_{SA1035}=0.1015$, $\mu_{SA535}=0.1115$, and $\mu_m=0.076$. 
 These estimates are approximate at best, and we hope that future experimental research could provide accurate estimates of these quantities.
 
@@ -466,7 +466,7 @@ When evolutionary rescue occurs, the time until the tumor recurs may still be ve
 When the expected number of resistant lineages that avoid extinction is small, the expected recurrence time can be estimated by adding two terms: the \emph{mean evolutionary rescue time}, which is the waiting time for the appearance of a resistant lineage that avoids extinction (conditioned on such an event occurring in the first place), and the \emph{mean proliferation time}, which is the expected time for that lineage to grow to $N$ cells.
 However, when the expected number of resistant lineages is large, the mean recurrence time cannot be separated into the mean evolutionary rescue time and mean proliferation time because multiple mutant lineages contribute towards the mutant population size reaching the initial tumor size.
 In this case the dynamics of the number of mutant cells is deterministic and can therefore be modeled by a system of ordinary differential equations (ODE), which describe how the number of mutant cells changes over time by its time derivative (eq.~\ref{detODE}). %change 2
-Of particular interest is the distribution of the evolutionary rescue time and recurrence time with tolerant aneuploid cells ($\Delta_a T^*\ll1$), for which we focus on the parameter values $\lambda_s=0.1$, $\lambda_a=0.0899$, $\lambda_m=0.1$, $\mu_s=0.14$, $\mu_a=0.09$, $\mu_m=0.09$, $u=10^{-2}$, and $v=10^{-7}$.
+Of particular interest is the distribution of the evolutionary rescue time and recurrence time with tolerant aneuploid cells ($\Delta_a T^*\ll1$), for which we focus on the parameter values in \Cref{table1} with $\lambda_a=0.0899$ (tolerant aneuploids), $\mu_s=0.14$ (intermediate sensitive death rate), and $v=10^{-7}$ (high end of the mutation rate).
 
 \paragraph{Evolutionary rescue time.}
 We have derived approximations for $\tau_m$, the mean evolutionary rescue time without aneuploidy ($u=0$), and $\tau_a$, the mean rescue time with aneuploidy ($u>0$), both conditioned on evolutionary rescue occurring (Appendix~\ref{sec:appendix_rescue_time}).
@@ -480,18 +480,18 @@ The mean rescue time with aneuploidy for small and large tumors follows
   N \gg N_m^* .
   \end{cases}
 \end{equation} 
-For small tumors ($ N \ll N_a^*$), the mean rescue time is the two-step equivalent of the one-step result from \citet[expectation of eq.~18]{orr2014population}. The mean rescue time (conditioned on rescue occuring) is a decreasing function of the sensitive and aneuploid growth rates and independent of the other model parameters, including tumor size (blue line in \Cref{EvolutionaryRescueTimeComplete}). This is because if the population rapidly declines but is then rescued, than the resistance mutation must have appeared early; if the population slowly declines, than mutations can appear later and the mean time will be longer. In our focus parameter regime, we have $\Delta_s=-0.04$ and $\Delta_a=-10^{-4}$, such that the mean rescue time is mainly determined by the aneuploid growth rate, $\tau_a \approx 10^4$ days. % change 46
+For small tumors ($ N \ll N_a^*$), the mean rescue time is the two-step equivalent of the one-step result from \citet[expectation of eq.~18]{orr2014population}. The mean rescue time (conditioned on rescue occuring) is a decreasing function of the sensitive and aneuploid growth rates and independent of the other model parameters, including tumor size (blue line in \Cref{EvolutionaryRescueTimeComplete}). This is because if the population rapidly declines but is then rescued, than the resistance mutation must have appeared early; if the population slowly declines, than mutations can appear later and the mean time will be longer. In our focus parameter regime, we have $\Delta_s=-0.04$ and $\Delta_a=-10^{-4}$, such that the mean rescue time is mainly determined by the aneuploid growth rate, and $\tau_a \approx 10^4$ days (\cref{eq:AsymptoticTimeRules}). % change 46
 
-For large tumors ($N \gg N_m^*$), the dynamics are equivalent to a scenario where rescue mutations appear at a constant rate, and the mean rescue time (\cref{eq:AsymptoticTimeRules}) is independent of the aneuploid parameters ($u$, $\lambda_a$, and $\Delta_a$). Increasing the per division mutation rate, $v$, leads to the faster appearance of a rescue mutations and hence reduced mean rescue time. Finally, increasing the tumor size leads to shorter mean rescue time, as more sensitive cells can mutate to become resistant. % change 46
+For large tumors ($N \gg N_m^*$), the dynamics are equivalent to a scenario where rescue mutations appear at a constant rate, and the mean rescue time is independent of the aneuploid parameters ($u$, $\lambda_a$, and $\Delta_a$). Increasing the per division mutation rate, $v$, leads to the faster appearance of a rescue mutations and hence reduced mean rescue time. Finally, increasing the tumor size leads to shorter mean rescue time, as more sensitive cells can mutate to become resistant. % change 46
 
-Given that a fraction $f\approx 0.14\%$ of the initial cancer cell population is expected to have beneficial aneuploidy even before the onset of drug treatment, we want to know whether the mean evolutionary rescue time is affected by the standing genetic variation. We calculated the mean evolutionary rescue time with standing genetic variation, $\tilde{\tau}_a$ (\cref{meantimet2SGV}), and compared our result with simulations (\Cref{SGVEvolutionaryRescueTimeComplete}). We note that standing genetic variation does not significantly affect the mean evolutionary rescue time. 
+Given that a fraction $f\approx 0.14\%$ of the initial cancer cell population is expected to have beneficial aneuploidy even before the onset of drug treatment, we want to know whether the mean evolutionary rescue time is affected by the standing genetic variation. We calculated the mean evolutionary rescue time with standing genetic variation, $\tilde{\tau}_a$ (\cref{meantimet2SGV}), and compared our result with simulations (\Cref{SGVEvolutionaryRescueTimeComplete}). We find that standing genetic variation does not significantly affect the mean evolutionary rescue time. 
 
 We calculate the probability that a rescue mutation has been generated by time $t$ in Appendix~\ref{sec:appendix_distribution_time}. This allows us to examine whether aneuploidy promotes or delays evolutionary rescue. 
 We find that aneuploidy promotes evolutionary rescue after $1/\Delta_s\approx100$ days, at a time when no more rescue mutations are generated through mutations in sensitive cells (\Cref{cdffig}A). Thus, aneuploidy increases the \emph{window of opportunity} for evolutionary rescue. This can have a counter-intuitive outcome: conditioned on the rescue of the tumor, tumors rescued by aneuploid cells may acquire rescue mutations later than those rescued by sensitive cells. %change 37
 
 \paragraph{Recurrence time.}
 
-We next approximated the mean time for the population of mutant cancer cells to reach the initial, pre-treatment population size $N$, which we denote the recurrence time $\tau_a^r$ (Appendix~\ref{sec:appendix_recurrence_time}),
+We next approximated the mean time for the population of mutant cancer cells to reach the initial, pre-treatment population size $N$, which we denote the recurrence time $\tau_a^r$ (\cref{eq:AsymptoticTimeRules,meanproliferationtime,eq:t2det}),
 \begin{equation} \label{eq:AsymptoticTimeRulesRecurrence}
 \tau_a^r \approx \begin{cases}
    -\frac{1}{\Delta_s}-\frac{1}{\Delta_a}+\frac{\log p_mN}{\Delta_m} ,&
@@ -984,7 +984,7 @@ a_t \approx \frac{Nu\lambda_s}{\Delta_s-\Delta_a}\left(\e^{\Delta_st}-\e^{\Delta
 \end{equation}
 As a result, the number of successful mutants created by direct mutation and via aneuploidy can be approximated by inhomogeneous Poisson processes with the rates
 \begin{align*}
-r_1\left(t\right)&=v\lambda_ap_ma_{t},\\
+n_1\left(t\right)&=v\lambda_ap_ma_{t},\\
 r_2\left(t\right)&=v\lambda_sp_ms_{t},
 \end{align*}
 and the expected number of successful mutants created by direct mutation and via aneuploidy until time $t$ is given by:
@@ -993,7 +993,7 @@ M_a\left(t\right)&=v\lambda_ap_m\int_0^ta_{z} d z = \frac{uv\lambda_s\lambda_aNp
 M_m\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} d z = v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}.\label{eq:twosteplineagedirect}
 \end{align} %change r3
 
-For large initial population sizes we assume that the two processes are independent and as a result, they can be merged into a single Poisson process with rate $R_a(t)=\left(r_1+r_2\right)\left(t\right)$.
+For large initial population sizes we assume that the two processes are independent and as a result, they can be merged into a single Poisson process with rate $R_a(t)=\left(n_1+r_2\right)\left(t\right)$.
 Consequently, the mean time to the appearance of the first rescue mutant is
 \begin{align}\nonumber
 \tau_a &= \frac{\int_{0}^{\infty}{tR_a(t)\exp\left(-\int_0^{t}{R_a(z)\d z}\right) \d t}}{\presc}\\ \label{meantimet2}
@@ -1044,38 +1044,34 @@ where in the last line we used the fact that $1/p_s=N_a^*$ and \Cref{eq:N_a}. %c
 
 If a fraction $f$ of the cancer cells are aneuploid when the drug is administered then the expected number of successful mutants generated until time $t$ is given by: %change r6
 \begin{align*}
-r_1^f\left(t\right)&=v\lambda_ap_m\int_0^ta_{z} \d z = \left(1-f\right)\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_st}-1}{\Delta_s}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right)+fv\lambda_aNp_m\frac{\e^{\Delta_a t}-1}{\Delta_a},\\ 
+n_1^f\left(t\right)&=v\lambda_ap_m\int_0^ta_{z} \d z = \left(1-f\right)\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_st}-1}{\Delta_s}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right)+fv\lambda_aNp_m\frac{\e^{\Delta_a t}-1}{\Delta_a},\\ 
 r_2^f\left(t\right)&=v\lambda_sp_m\int_0^ts_{z} \d z = \left(1-f\right)v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s},
 \end{align*} 
 and the mean evolutionary rescue time is given by:
 \begin{align}\label{meantimet2SGV}
 \tilde{\tau}_a&= \frac{\int_{0}^{\infty}{tR_a^f(t)\exp\left(-\int_0^{t}{R_a^f(z)\d z}\right) \d t}}{\presc},
 \end{align}
-where $R_a^f(t)=r_1^f\left(t\right)+r_2^f\left(t\right)$ and $\presc = 1-\exp\left[-\left(1-f\right)p_sN-fp_aN\right]$. We plot our approximation in  \Cref{SGVEvolutionaryRescueTimeComplete} together with simulated data.
+where $R_a^f(t)=n_1^f\left(t\right)+r_2^f\left(t\right)$ and $\presc = 1-\exp\left[-\left(1-f\right)p_sN-fp_aN\right]$. We plot our approximation in  \Cref{SGVEvolutionaryRescueTimeComplete} together with simulated data.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Recurrence time}\label{sec:appendix_recurrence_time}
-We define the proliferation time $\tau_a^p$  to be the time it takes the population of mutant cancer cells to reach the initial tumor size $N$. The number of rescue lineages generated by the sensitive population is given by  \cref{eq:twosteplineage} (see \Cref{ExpectedNumberRescueLineages}):
+\section{Recurrence time}\label{sec:appendix_recurrence_time} % TODO it is not clear what are the assumptions here; reading the main text and then coming here I think that you assume tolerant aneuploidy - is that the case? you need to be EXPLICIT
+We define the proliferation time $\tau_a^p$  to be the expected time for a resistant lineage to grow to the initial tumor size $N$.
+The number of rescue lineages generated by the sensitive population is given by  \cref{eq:twosteplineage} (see \Cref{ExpectedNumberRescueLineages}):
 \begin{equation*}
-r_1\left(\infty\right)=\frac{uv\lambda_s\lambda_aNp_m}{\abs{\Delta_s}\abs{\Delta_a}}=\frac{N}{N_a^*},
+n_1\left(\infty\right)=\frac{uv\lambda_s\lambda_aNp_m}{\abs{\Delta_s}\abs{\Delta_a}}=\frac{N}{N_a^*},
 \end{equation*}
-where we ignore lineages created by direct mutation because we assumed $u\lambda_a > \max{(-\Delta_a, 1/T^*)}$, $N\ll N_m^*$ and used \cref{eq:N_a}.
+where we ignore lineages created by direct mutation because we assumed $u\lambda_a > \max{(-\Delta_a, 1/T^*)}$, $N\ll N_m^*$ and used \cref{eq:N_a}. % TODO Remus why did you assume these assumptions? say the biological assumption, not just the math. and how did you use eq 3? write it EXPLICITLY.
 
-This helps us distinguish between two scenarios for the proliferation time. Firstly, when we have at most one lineage which rescues the cancer cell population:
-\begin{equation*}
-N\ll N_a^*.
-\end{equation*}
+This helps us distinguish between two scenarios for the proliferation time. 
+In the first scenario, $N\ll N_a^*$, and we have at most one lineage which rescues the cancer cell population.
 As a result, the recurrence time is given by~\citep{avanzini2019cancer}:
 \begin{align}\label{meanproliferationtime}
-\tau_a^r&\approx\tau_a+\frac{\log p_mN}{\Delta_m}.
+\tau_a^r&\approx\tau_a+\frac{\log p_mN}{\Delta_m}. % TODO is it log(pm) N or log(pm N) ? add parentheses.
 \end{align}
-The factor of $p_m$ in the second term of \cref{meanproliferationtime} is due to the fact that the lineage is conditioned to survive genetic drift and the time to reach $N$ is shorter then the scenario without this property \citep{orr2014population,smith1974hitch}. % change 35
+The factor of $p_m$ in the second term of \cref{meanproliferationtime} is due to the fact that the lineage is conditioned to survive genetic drift and the time to reach $N$ is shorter then the scenario without this property \citep{orr2014population,smith1974hitch}. % change 35 % TODO without what property? 
 
-The second scenario is when the sensitive population produces a large number of rescue lineages in a short period of time. This is given by the condition:
-\begin{align*}
-N\gg N_a^*.
-\end{align*}
-As a result, the recurrence time is obtained by solving the following system of ODEs:
+In the second scenario, $N\gg N_a^*$, and the sensitive population produces a large number of rescue lineages in a short period of time.
+As a result, the recurrence time is obtained by solving the following system of oridnary differential equations (ODEs),
 \begin{equation}\label{detODE}
 \begin{aligned}
 \frac{ds}{dt}&=\Delta_ss,\\
@@ -1083,29 +1079,29 @@ As a result, the recurrence time is obtained by solving the following system of 
 \frac{dm}{dt}&=\Delta_mm+v\lambda_aa+v\lambda_ss.
 \end{aligned}
 \end{equation}
-Solving the system of ODEs for initial condition $\left(s(0), a(0), m(0)\right)=\left(N,0,0\right)$ we obtain:
+Solving the system of ODEs for initial condition $\left(s(0), a(0), m(0)\right)=\left(N,0,0\right)$ we obtain
 \begin{equation*} \label{m_t}
 m(t) = \frac{N u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m t} - \e^{\Delta_a t}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m t} - \e^{\Delta_s t}}{\Delta_m - \Delta_s} \right] + N v \lambda_s \frac{\e^{\Delta_m t} - \e^{\Delta_s t}}{\Delta_m - \Delta_s}.
 \end{equation*}
-We obtain $\tau_a^r$ by solving the above equation for time $t=\tau_a^r$ at which the number of mutant cells reaches $N$, i.e., $m\left(\tau_a^r\right)=N$:
+We obtain $\tau_a^r$ by solving the above equation for time $t=\tau_a^r$ at which the number of mutant cells reaches $N$, that is, we solve $m\left(\tau_a^r\right)=N$,
 \begin{equation}\label{eq:t2det2024}
 1 = \frac{u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_a \tau_a^r}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s} \right] + v \lambda_s \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s}.
 \end{equation}
-This is a transcendental equation which cannot be solved exactly but we can obtain an approximation by noting that for large $\tau_a^r$ the above equation can be written as: 
+This is a transcendental equation which cannot be solved exactly but we can obtain an approximation by noting that for large $\tau_a^r$ the above equation can be written as % TODO Remus what do you mean large tau? large compared to what? why do you assume it is large? what is the biological assumption? It is not clear why you neglect two out of three terms, and you need to be explicit about this -- say both what the math is but also what the biological assumption is. the editor  has asked for as much.
 \begin{equation*}
 1=v\lambda_s\frac{\e^{\Delta_m\tau_a^r}}{\Delta_m - \Delta_s},
 \end{equation*}
-which has solution:
+which has an approximate solution
 \begin{equation}\label{eq:t2det}
 \tau_a^r\approx\frac{1}{\Delta_m}\log\frac{\Delta_m-\Delta_s}{v\lambda_s}.
 \end{equation}
 We observe that the terms given by the evolutionary trajectory \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{mutant} do not contribute to the above approximation and, as a result, we deduce that it is accurate only for $N \gg N_m^* > N_a^*$. %change 9
 
-Additionally, we note that if we are interested in the time until the tumor reaches a detectable size $M$ then our above analysis is valid but in \cref{meanproliferationtime} we change:
+Additionally, we note that if we are interested in the time until the tumor reaches a detectable size $M$ then our above analysis is valid but in \cref{meanproliferationtime} we change
 \begin{align}\label{meanproliferationtime2}
 \tau_a^{r,M}&\approx\tau_a+\frac{\log p_mM}{\Delta_m},
 \end{align}
-and \Cref{eq:t2det} becomes:
+and \cref{eq:t2det} becomes
 \begin{equation}\label{eq:t2det2}
 \tau_a^{r,M}\approx\frac{1}{\Delta_m}\log\frac{M\left(\Delta_m-\Delta_s\right)}{v\lambda_sN},
 \end{equation}
@@ -1116,7 +1112,7 @@ which we plot in \Cref{RecurrencePlot} and observe that our approximations are i
 The probability that a successful mutant has been generated by time $t$ is given by:
 \begin{align*}
 P\left(rescue,t\right)&=P\left(T_a<t\right)\\
-&=1-\exp\left\{-\left[r_1\left(t\right)+r_2\left(t\right)\right]\right\}\\
+&=1-\exp\left\{-\left[n_1\left(t\right)+r_2\left(t\right)\right]\right\}\\
 &=1-\exp\left\{-\left[\frac{uv\lambda_s\lambda_aNp_m}{\Delta_s-\Delta_a}\left(\frac{\e^{\Delta_st}-1}{\Delta_s}-\frac{\e^{\Delta_at}-1}{\Delta_a}\right)+ v\lambda_sNp_m\frac{\e^{\Delta_s t}-1}{\Delta_s}\right]\right\},
 \end{align*}
 where $T_a$ is the time at which the first mutant cell appears that will avoid extinction and which was defined in appendix \ref{sec:appendix_rescue_time}.
