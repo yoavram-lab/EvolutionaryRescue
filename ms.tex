@@ -1090,7 +1090,7 @@ We obtain $\tau_a^r$ by solving the above equation for time $t=\tau_a^r$ at whic
 1 = \frac{u v \lambda_a \lambda_s}{\Delta_a - \Delta_s}\left[ \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_a \tau_a^r}}{\Delta_m - \Delta_a} - \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s} \right] + v \lambda_s \frac{\e^{\Delta_m \tau_a^r} - \e^{\Delta_s \tau_a^r}}{\Delta_m - \Delta_s}.
 \end{equation}
 This is a transcendental equation which cannot be solved exactly but we can obtain an approximation by noting that $\e^{\Delta_m \tau_a^r} \gg\e^{\Delta_s \tau_a^r},\e^{\Delta_a \tau_a^r}$ for even small values of $\tau_a^r$ because $\Delta_m>0$ and $\Delta_s,\Delta_a<0$. 
-We assume that the tumor is large ($N\gg N_a^*$) % REMUS you assumed N\gg N_m^* not N\gg N_a^*
+We assume that the tumor is large ($N\gg N_m^*$) % REMUS you assumed N\gg N_m^* not N\gg N_a^* FIXED
 so the time $\tau_a^r$ for the resistant cell population to reach $N$ is large enough such that the first term of \cref{eq:t2det2024} can be written as
 \begin{align*}
 \frac{uv\lambda_a\lambda_s}{\Delta_s-\Delta_a}\left[\frac{\e^{\Delta_s\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_s-\Delta_m}-\frac{\e^{\Delta_a\tau_a^r}-\e^{\Delta_m\tau_a^r}}{\Delta_a-\Delta_m}\right]\approx\frac{uv\lambda_a\lambda_s\e^{\Delta_m\tau_a^r}}{\left(\Delta_m-\Delta_s\right)\left(\Delta_m-\Delta_a\right)} ,
