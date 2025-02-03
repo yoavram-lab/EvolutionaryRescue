@@ -1065,16 +1065,17 @@ n_1\left(\infty\right)=\frac{uv\lambda_s\lambda_aNp_m}{\abs{\Delta_s}\abs{\Delta
 \end{equation*}
 We use \cref{eq:N_a,eq:N_m} to write $N_a^*=\frac{\abs{\Delta_s}\; \abs{\Delta_a}}{uv\lambda_s\lambda_ap_m}$ and $N_m^*=\frac{\abs{\Delta_s}}{v\lambda_sp_m}$.
 
-We distinguish between two scenarios for the proliferation time. 
-In the first scenario, the tumor is small, $N\ll N_a^*\ll N_m^*$, and we have at most one lineage that rescues the cancer cell population.
+We distinguish between small, intermediate, or large tumors.
+In small ($N\ll N_a^*\ll N_m^*$) and intermediate ($N_a^* \ll N \ll N_m^*$) tumors, we have at most one lineage that rescues the cancer cell population.
 As a result, the recurrence time is given by~\citep{avanzini2019cancer}
 \begin{align}\label{meanproliferationtime}
 \tau_a^r&\approx\tau_a+\frac{\log \left(p_mN\right)}{\Delta_m}.
 \end{align}
 The factor $p_m$ in the second term of \cref{meanproliferationtime} occurs because the lineage is conditioned to survive stochastic extinction and the time to reach $N$ is shorter compared to the scenario where the lineage is not conditioned to survive stochastic extinction~\citep{orr2014population,smith1974hitch}. % change 35 
-We note that using \cref{meantimet2} for $\tau_a$ in \cref{meanproliferationtime} offers a good approximation for the recurrence time for both $N\ll N_a^*$ and $N_a^*\ll N\ll N_m^*$ as seen in \Cref{ProliferationTimeLarge} when compared to stochastic simulations.
+In both scenarios, plugging \cref{meantimet2} for $\tau_a$ in \cref{meanproliferationtime} provides a good approximation for the recurrence time (black line in \Cref{ProliferationTimeLarge}).
+For small tumors, we have a simpler approximation by plugging \cref{limitapprox4} for $\tau_a$ to get $\tau_a^r\approx1/|\Delta_a| + \log{\left(p_mN\right)}/\Delta_m$ (blue line in \Cref{ProliferationTimeLarge}).
 
-In the second scenario, the tumor is large, $N\gg N_m^*$, and the sensitive population produces a large number of rescue lineages in a short period of time.
+In a large tumor, $N_m^* \ll N$, the sensitive population produces a large number of rescue lineages in a short period of time.
 As a result, the recurrence time is obtained by solving the following system of ordinary differential equations (ODEs),
 \begin{equation}\label{detODE}
 \begin{aligned}
@@ -1099,7 +1100,7 @@ Mathematically, this corresponds to $\e^{\Delta_m \tau_a^r}$ being much larger t
 	1 \approx \frac{v \lambda_s e^{\Delta_m \tau_a^r}}{\Delta_m - \Delta_s} 
 	\left(\frac{u \lambda_a}{\Delta_m - \Delta_a} + 1\right).
 \]
-Assuming that rate of aneuploidy is not so high that it overwhelms the aneuploids' growth disadvantage relative to the mutants ($u \lambda_a \ll \Delta_m - \Delta_a$), we can neglect the first term in parentheses above, yielding
+Assuming that rate of aneuploidy is not so high that it overwhelms the aneuploids' growth disadvantage relative to the mutants ($u \lambda_a \ll \Delta_m - \Delta_a$), we can neglect the first term in parentheses above, yielding (green line in \Cref{ProliferationTimeLarge})
 \begin{equation}\label{eq:t2det}
 \tau_a^r\approx\frac{1}{\Delta_m}\log{\left(\frac{\Delta_m-\Delta_s}{v\lambda_s}\right)}.
 \end{equation}
@@ -1168,7 +1169,7 @@ f\left(t\right)&=\frac{d}{dt}\left[\frac{P\left(m_t\geq N\right)}{\presc}\right]
 \end{align}
 which we plot in \Cref{KMdistribution} and compare with simulations. We note that in the scenario $N\gg\abs{\Delta_s}\abs{\Delta_a}/uv\lambda_s\lambda_ap_m$ the distribution becomes the Dirac $\delta$-function~\citep{barton1989elements}.
 %%%
-\section{Bootstrapping}
+\section{Bootstrap}
 For the mean times the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $T$ 100 times; (2) we sample with replacement which we store in $T'$; (3) for each element of this sample we obtain $\tau=\mathbb{E}\left[T'\right]$; (4) we repeat steps (2)-(3) 100 times to obtain $\tau$ and we select the upper and lower limits such that $95\%$ of the values of $\tau$ lie in the interval given by the bounds.
 
 For the threshold tumor sizes the $95\%$ confidence interval is obtained through bootstrapping in the following steps: (1) we simulate $\presc$ 100 times; (2) we sample with replacement which we store in $S$; (3) for each element of this sample we obtain $N_a^*=1/p_s$ using $p_s=-1/N_e\log\left(1-\bar{S}\right)$ where $\bar{S}$ is the mean of $S$ and $N_e$ is an arbitrary value of the initial population size we selected in order to calculate $\presc$; (4) we repeat steps (2)-(3) 100 times to obtain $N_a^*$ and we select the upper and lower limits such that $95\%$ of the values of $N_a^*$ lie in the interval given by the bounds.
@@ -1279,7 +1280,10 @@ Parameters: $N=10^6, \lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu
 \begin{figure}
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/EvolutionaryRescueTimeComplete.pdf} %change r5
-\caption{Shown is the mean time for appearance of a resistance mutation that leads to evolutionary rescue with aneuploidy ($u>0$). Our inhomogeneous Poisson-process approximations (solid black lines: \cref{meantimet2}) are in agreement with simulation results (red markers with 95\% confidence intervals obtained with bootstrapping, see Appendix G). Dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical green line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. Solid lines represent the approximations \cref{eq:AsymptoticTimeRules} ($N<N_a^*$ blue line and $N>N_m^*$ green line). 
+\caption{The mean time for appearance of a resistance mutation that leads to evolutionary rescue with aneuploidy ($u>0$). 
+Solid lines show our approximations (\cref{eq:AsymptoticTimeRules}) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervalues obtained with bootstrap, see Appendix G).
+Blue dashed line, $N_a^*$.
+Green dashed line, $N_m^*$.
 Parameters: $\lambda_s=0.1,\lambda_m=0.0899,\lambda_a=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.} %change 16
 \label{EvolutionaryRescueTimeComplete}
 \end{figure}
@@ -1288,7 +1292,10 @@ Parameters: $\lambda_s=0.1,\lambda_m=0.0899,\lambda_a=0.1,\mu_s=0.14,\mu_a=0.09,
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/ProliferationTimeLarge.pdf} %change r5
 \caption{The mean time for the mutant cell population to reach size $N$, where $N$ is the initial number of cancer cells.
-Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanproliferationtime} with \cref{meantimet2} for $\tau_a$) is in agreement with simulation results (red markers with 95\% confidence intervals obtained with bootstrapping, see Appendix G) for small and intermediate values of $N$. Dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical green line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. Solid lines represents the approximations \cref{eq:AsymptoticTimeRulesRecurrence} ($N<N_a^*$ blue line and $N>N_m^*$ green line). The simulations converge to \cref{eq:t2det} (green line) for large values of $N\gg N_m^*$.  Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.}
+Solid lines show our approximations (green: \cref{eq:t2det}, blue: \cref{meanproliferationtime} with \cref{limitapprox4} for $\tau_a$; black: \cref{meanproliferationtime} with \cref{meantimet2} for $\tau_a$) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervals obtained with bootstrap, see Appendix G).
+Blue dashed line, $N_a^*$.
+Green dashed line, $N_m^*$.
+Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.}
 \label{ProliferationTimeLarge}
 \end{figure}
 %%%
@@ -1296,14 +1303,20 @@ Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanpro
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/RecurrencePlot.pdf} %change r5
 \caption{The mean time for the mutant cell population to reach size $M$, where $M$ is the tumor detection size.
-Our inhomogeneous Poisson-process approximation (solid black line, \cref{meanproliferationtime2}) is in agreement with simulation results (red markers with 95\% confidence intervals obtained with bootstrapping, see Appendix G) for small and intermediate values of $N$. Dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical green line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. Solid blue line represents the approximation \cref{meanproliferationtime2} with $\tau_a$ from \cref{eq:AsymptoticTimeRules} for $N<N_a^*$ and the solid green line  represents the approximation \cref{eq:t2det2} for $N>N_m^*$. The simulations converge to \cref{eq:t2det2} (green line) for large values of $N\gg N_m^*$.  Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}, M=10^7$.}
+Solid lines show our approximations (green: \cref{eq:t2det2} for $N>N_m^*$, blue:  \cref{meanproliferationtime2} with $\tau_a$ from \cref{eq:AsymptoticTimeRules} for $N<N_a^*$; black: \cref{meanproliferationtime2}) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervals obtained with bootstrap, see Appendix G).
+Blue dashed line, $N_a^*$.
+Green dashed line, $N_m^*$.
+Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}, M=10^7$.}
 \label{RecurrencePlot}
 \end{figure}
 %%%
 \begin{figure}
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/SGVEvolutionaryRescueTimeComplete.pdf} %change r5
-\caption{Shown is the mean time for appearance of a resistance mutation that leads to evolutionary rescue with aneuploidy ($u>0$) when a fraction $f$ of cancer cells are aneuploid at the start of therapy. Black lines represent our inhomogeneous Poisson-process approximations (solid black line, \cref{meantimet2}; dashed black line \cref{meantimet2SGV}). Dashed black line is the  inhomogeneous Poisson-process approximation where a fraction $f$ of tumor is aneuploid at the onset of drug therapy which is in agreement with simulation results (red markers with 95\% confidence intervals obtained with bootstrapping, see Appendix G). Dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through aneuploidy \cref{eq:N_a} and the dashed vertical green line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. Solid lines represents the approximations \cref{eq:AsymptoticTimeRules} ($N<N_a^*$ blue line and $N>N_m^*$ green line). 
+\caption{The mean time for appearance of a resistance mutation that leads to evolutionary rescue with aneuploidy ($u>0$) when a fraction $f$ of cancer cells are aneuploid at the start of drug treatment. 
+Lines show our approximations (solid green: \cref{eq:AsymptoticTimeRules} for $N>N_m^*$; solid blue:  \cref{eq:AsymptoticTimeRules} for $N<N_a^*$; solid black: \cref{meantimet2}; dashed black: \cref{meantimet2SGV}) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervals obtained with bootstrap, see Appendix G).
+Blue dashed line, $N_a^*$.
+Green dashed line, $N_m^*$.
 Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7},f=0.14\%$.} %change 17
 \label{SGVEvolutionaryRescueTimeComplete}
 \end{figure}
