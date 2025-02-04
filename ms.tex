@@ -1281,7 +1281,7 @@ Parameters: $N=10^6, \lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/EvolutionaryRescueTimeComplete.pdf} %change r5
 \caption{The mean time for appearance of a resistance mutation that leads to evolutionary rescue with aneuploidy ($u>0$). 
-Solid lines show our approximations (\cref{eq:AsymptoticTimeRules}) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervalues obtained with bootstrap, see Appendix G).
+Solid lines show our approximations (green: \cref{limitapprox3}, blue: \cref{limitapprox4}, black: \cref{meantimet2}) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervalues obtained with bootstrap, see Appendix G).
 Blue dashed line, $N_a^*$.
 Green dashed line, $N_m^*$.
 Parameters: $\lambda_s=0.1,\lambda_m=0.0899,\lambda_a=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.} %change 16
@@ -1303,7 +1303,7 @@ Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/RecurrencePlot.pdf} %change r5
 \caption{The mean time for the mutant cell population to reach size $M$, where $M$ is the tumor detection size.
-Solid lines show our approximations (green: \cref{eq:t2det2} for $N>N_m^*$, blue:  \cref{meanproliferationtime2} with $\tau_a$ from \cref{eq:AsymptoticTimeRules} for $N<N_a^*$; black: \cref{meanproliferationtime2}) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervals obtained with bootstrap, see Appendix G).
+Solid lines show our approximations (green: \cref{eq:t2det2} for $N>N_m^*$, blue:  \cref{meanproliferationtime2} with $\tau_a$ from \cref{eq:AsymptoticTimeRules} for $N<N_a^*$; black: \cref{meanproliferationtime2} with $\tau_a$ from \cref{meantimet2}) compared to red markers that show mean of simulations results (with error bars for 95\% confidence intervals obtained with bootstrap, see Appendix G).
 Blue dashed line, $N_a^*$.
 Green dashed line, $N_m^*$.
 Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}, M=10^7$.}
