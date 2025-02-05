@@ -1066,16 +1066,20 @@ n_1\left(\infty\right)=\frac{uv\lambda_s\lambda_aNp_m}{\abs{\Delta_s}\abs{\Delta
 We use \cref{eq:N_a,eq:N_m} to write $N_a^*=\frac{\abs{\Delta_s}\; \abs{\Delta_a}}{uv\lambda_s\lambda_ap_m}$ and $N_m^*=\frac{\abs{\Delta_s}}{v\lambda_sp_m}$.
 
 We distinguish between small, intermediate, or large tumors.
-In small ($N\ll N_a^*\ll N_m^*$) and intermediate ($N_a^* \ll N \ll N_m^*$) tumors, we have at most one lineage that rescues the cancer cell population.
+In small ($N\ll N_a^*\ll N_m^*$) tumors, we have at most one lineage that rescues the cancer cell population.
 As a result, the recurrence time is given by~\citep{avanzini2019cancer}
 \begin{align}\label{meanproliferationtime}
 \tau_a^r&\approx\tau_a+\frac{\log \left(p_mN\right)}{\Delta_m}.
 \end{align}
 The factor $p_m$ in the second term of \cref{meanproliferationtime} occurs because the lineage is conditioned to survive stochastic extinction and the time to reach $N$ is shorter compared to the scenario where the lineage is not conditioned to survive stochastic extinction~\citep{orr2014population,smith1974hitch}. % change 35 
-In both scenarios, plugging \cref{meantimet2} for $\tau_a$ in \cref{meanproliferationtime} provides a good approximation for the recurrence time (black line in \Cref{ProliferationTimeLarge}).
-For small tumors, we have a simpler approximation by plugging \cref{limitapprox4} for $\tau_a$ to get $\tau_a^r\approx1/|\Delta_a| + \log{\left(p_mN\right)}/\Delta_m$ (blue line in \Cref{ProliferationTimeLarge}).
+Therefore, in small tumors, we can substitue \cref{limitapprox4} for $\tau_a$ in \cref{meanproliferationtime} to get (blue line in \Cref{ProliferationTimeLarge})
+\begin{equation*}
+\tau_a^r\approx1/|\Delta_a| + \log{\left(p_mN\right)}/\Delta_m .
+\end{equation*}
 
-In a large tumor, $N_m^* \ll N$, the sensitive population produces a large number of rescue lineages in a short period of time.
+In intermediate tumors, $N_a^* << N << N_m^*$, the sensitive cell population generates a number of rescue lineages in a short period of time after $\tau_a$. The time it takes the rescue lineages to reach the initial population size $N$ is small compared to the time it took the lineages to appear. Therefore, the mean recurrence time can be approximated by substituting \cref{meantimet2} for $\tau_a$ in \cref{meanproliferationtime} (black line in \Cref{ProliferationTimeLarge}).
+
+In large tumors, $N_m^* \ll N$, the sensitive population produces a large number of rescue lineages in a short period of time.
 As a result, the recurrence time is obtained by solving the following system of ordinary differential equations (ODEs),
 \begin{equation}\label{detODE}
 \begin{aligned}
