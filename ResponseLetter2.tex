@@ -13,6 +13,7 @@ headheight=12pt
 \usepackage{natbib}
 \usepackage{commath}
 \usepackage{url}
+\usepackage{csquotes}
 
 \renewcommand{\d}{{\rm d}}
 \newcommand{\e}{{\rm e}}
@@ -124,9 +125,29 @@ Minor Edits:
 
 Thanks to the authors for improving the connection with previous rescue theory. A few minor comments on the responses to my comments below. Line numbers in tracked changes version.
 
+\textcolor{blue}{We thank the reviewer for their patience and thorough suggestions. At this point, they have basically taught us the evolutionary rescue literature. 
+This was going above and beyond their responsibilities. 
+We apologize that we didn't do this ourselves, and really appreciate the reviewer's efforts.}
+
 lines 69-93: The review of multi-step rescue in the intro makes some helpful connections but the logical flow could be improved. Yes, Martin et al 2013 extended Orr $\&$ Unckless 2008 by allowing for multiple different rescue mutations to occur during wildtype decline, but for the purposes of this paper the more important (and yet unmentioned) extension is to allow rescue by multiple (and in particular, two) mutational steps. I think it is then logical to skip to Osmond et al 2020 and instead of focusing on the fitness landscape, which is irrelevant here, focus on the fact that they approximate the 2-step result of Martin et al 2013 in two regimes: sufficiently subcritical and sufficiently critical single mutants. Ignoring the fitness landscape, this is essentially the same result as in Iwasa et al 2003 and 2004, who were specifically thinking about drug resistance and host shifts. I know I mentioned the 2-locus Uecker and Hermisson (2016) result, as it is 2-step rescue, but without more explanation its not clear how it is relevant to the current paper and, in its current placement, breaks up the flow.
 
-\textcolor{blue}{We mentioned that Martin et al. 2013 considered two-step rescue processes involving a ``transient'' intermediate genotype with growth rate close to zero. Change S19}
+\textcolor{blue}{ We have tried to make these changes. The relevant paragraphs now read:
+\begin{displayquote}
+There has been extensive theoretical analysis of evolutionary rescue. Orr and Unckless (2008,
+2014) thoroughly investigated the simplest case in which there is a specific single mutation or low-
+frequency variant that i ssufficient to rescue the population. 
+Martin et al. (2013) extended these results
+to consider the effects of a range of rescue genotypes that can vary in both growth rate and variance in
+offspring number. 
+Importantly for the present work, they also argued that two-step processes involving
+a ``transient'' intermediate genotype with growth rate close to zero may be an important form of rescue;
+however, they only calculated that the rate of such rescues should scale with the total number of such
+transient genotypes produced. Osmond et al. (2020) derived approximate expressions for the rate of
+these two-step rescues in limiting cases and found that for some parameter values two-step rescue is
+more likely than rescue by a single step.
+\end{displayquote}
+}
+
 
 lines 126-127: I think the last sentence of the intro, "This is similar to part of Osmond et al. (2020) but focused on a different fitness landscape.", could cause a little confusion. In Osmond et al 2020 there is very explicitly a fitness landscape, with mutational kernels, such that the fitnesses of mutations that arise from a genotype depend on that genotype's fitness. In constrast, here there are three genotypes with independently chosen fitnesses, $\lambda_i - \mu_i$. To avoid confusion I would perhaps just attach a small statement to the previous sentence (about studying 2-step rescue), e.g., ", as in Osmond et al 2020 and Iwasa et al 2003, 2004." and avoid mention of landscapes.
 

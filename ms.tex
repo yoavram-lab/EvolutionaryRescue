@@ -197,16 +197,20 @@ Here, we focus on the latter.
 There has been extensive theoretical analysis of evolutionary rescue.
 \citet{orr2008population,orr2014population} thoroughly investigated the simplest case in which there is a specific single mutation or low-frequency variant that is sufficient to rescue the population. 
 \citet{martin2013probability} extended these results to consider the effects of a range of rescue genotypes that can vary in both growth rate and variance in offspring number. 
-Importantly for the present work, they also argued that two-step processes involving a ``transient'' intermediate genotype with growth rate close to zero may be an important form of rescue; however, they only calculated that the rate of such rescues should scale with the total number of such transient genotypes produced. %change S19
-%\citet{uecker2016role} modeled a situation in which \textit{two} mutations at different loci (with recombination between them) are necessary for rescue. 
-\citet{osmond_genetic_2020} considered a population that must achieve rescue, potentially via multiple mutations, by adapting on a fitness landscape described by Fisher's geometric model,
-and found that for some parameter values rescue by two mutational steps is more likely than rescue by a single step.
+Importantly for the present work, they also argued that two-step processes involving a ``transient'' intermediate genotype with growth rate close to zero may be an important form of rescue; however, they only calculated that the rate of such rescues should scale with the total number of such transient genotypes produced.
+%\citet{uecker2016role} modeled a situation in which \textit{two} mutations at different loci (with recombination between them) are necessary for rescue. %change S19
+\citet{osmond_genetic_2020} derived approximate expressions for the rate of these two-step rescues in limiting cases
+and found that for some parameter values two-step rescue is more likely than rescue by a single step.
+
 
 Resistance to cancer therapy is a natural application of evolutionary rescue theory \citep{alexander2014evolutionary}. 
 \citet{iwasa2003evolutionary} used multi-type branching process theory to approximate the probability that a population under strong selective pressure can survive extinction, focusing on the case in which the cancer must get two mutations to be rescued, with the single-mutant still dying rapidly.
 \citet{iwasa2004evolutionary} used a similar approach to find simple approximate expressions for the probability that a single lineage would evolve to survive via a wide range of possible mutational pathways.
+These results are essentially the same as those described later in the general context by \citet{osmond_genetic_2020} for the probability of evolutionary rescue by multiple mutations,
+which we mentioned in the previous paragraph. 
 A similar set of models describe adaptation to new environments (e.g., a pathogen evolving to cross a species barrier) and fitness valley crossing \citep{antia2003role, weissman2009rate}. % change S1
-\citet{gunnarsson2020understanding} analyzed a model where a tumor consisting of two populations of cancer cells, one drug-resistant and the other drug-sensitive, can evade extinction by cells switching between the two phenotypes through epigenetic mutations. They found that even when drug-resistant cells are barely viable, the epimutations guarantee evolutionary rescue. 
+\citet{gunnarsson2020understanding} analyzed a model where a tumor consisting of two populations of cancer cells, one drug-resistant and the other drug-sensitive, can evade extinction by cells switching between the two phenotypes through epigenetic mutations. 
+They found that even when drug-resistant cells are barely viable, the epimutations guarantee evolutionary rescue. 
 
 %Evolutionary rescue may occur when a beneficial mutation appears in a single copy, leading to hard selective sweeps, or when multiple mutations appear independently in different individuals, leading to soft selective sweeps. \citet{wilson2017soft} have shown that evolutionary rescue is significantly enhanced by soft selective sweeps when multiple mutations contribute towards evolutionary rescue. Additionally, \citet{osmond_genetic_2020} have calculated the probability that rescue is soft and the expected number of rescue mutations in different scenarios. Evolutionary rescue that requires two successive mutations (i.e., two steps) has been investigated by \citet{martin2013probability}, who tested their model's predictions with data from yeast and bacteria experiments.  %change 41
 
@@ -220,8 +224,7 @@ Given that aneuploidy is present in many tumors before the onset of therapy \cit
 
 We will address these questions essentially by combining known results from the evolutionary rescue literature, and considering the quantities and parameter values that are relevant for cancer.
 Because these results are scattered across multiple papers, and because they all follow from simple branching process approximations, we re-derive all results here for our model.
-While our focus is on the application of evolutionary rescue theory to the evolution of drug resistance in cancer, our model is a general one, and in the general evolutionary rescue context, this work can be seen as a characterization of the circumstances in which two-step processes contribute to rescue even when single-step rescue mutations are available.
-This is similar to part of \citet{osmond_genetic_2020} but focused on a different fitness landscape.
+While our focus is on the application of evolutionary rescue theory to the evolution of drug resistance in cancer, our model is a general one, and in the general evolutionary rescue context, this work can be seen as a characterization of the circumstances in which two-step processes contribute to rescue even when single-step rescue mutations are available, as in \citet{iwasa2003evolutionary, iwasa2004evolutionary, osmond_genetic_2020}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -442,7 +445,7 @@ Therefore, the threshold tumor size for rescue by standing genetic variation, $\
 \begin{equation}\label{eq:Nsgv}
 \frac{\tilde{N}^*_{a}}{N^*_{a}} = \frac{u}{\tilde{u}} \; \frac{c}{\abs{\Delta_s}}.
 \end{equation}
-This result has been previously reported by \citet{orr2008population} for the one-step evolutionary rescue and by \citet{martin2013probability} for two-step evolutionary rescue. % change 42
+This result has been previously reported by \citet{orr2008population} and \citet{martin2013probability} for one-step evolutionary rescue. % change 42
 Comparing this approximation of $\tilde{N}^*_{a}/N^*_{a}$ to results of stochastic simulations, we find that the approximations are accurate (\Cref{rescue_denovo}). 
 Standing genetic variation will drive evolutionary rescue if sensitive cells die rapidly (growth rate $\Delta_s$ is negative) due to a strong effect of the drug on sensitive cells or if the cost of aneuploidy in the drug-free environment, $c$, is small.  
 In contrast, \textit{de novo} aneuploid cells will have a greater contribution to rescue if the cost of aneuploidy, $c$, is large, the effect of the drug on sensitive cells is weak ($\Delta_s$ is close to zero), or if the drug induces the appearance of aneuploid cells ($u > \tilde u$). % change S1
@@ -562,8 +565,8 @@ We hypothesized that standing genetic variation (the existence of aneuploid canc
  If the fraction of tumor cells that have the beneficial aneuploidy is $f \gg u \lambda_s / \abs{\Delta_s} \approx2.5\%$, then evolutionary rescue is more likely to occur via standing variation rather than through \textit{de novo} aneuploidy. %change S16
  For the parameter values we focus on in our examples (\Cref{table1}), this fraction is an order of magnitude lower, and therefore, we expect evolutionary rescue to occur primarily by \textit{de novo} aneuploidy. %change S15 change S16
 
-Comparing our results to the evolutionary rescue literature, we complement the studies by \citet{iwasa2003evolutionary} and \citet{osmond_genetic_2020} on multi-step rescue by deriving simple approximations for a different fitness landscape. 
-Similar to \citet{osmond_genetic_2020}, we find that two-step rescues can be more likely than simple one-step rescues. 
+Comparing our results to the evolutionary rescue literature, we complement the studies by \citet{iwasa2003evolutionary} and \citet{osmond_genetic_2020}, re-deriving some of their results and extending them by including intermediate (aneuploid) genotypes with growth rates substantially above one. 
+Similar to \citet{osmond_genetic_2020}, we find that two-step rescues can be more likely than simple one-step rescues, because the mutation rate to stepping-stone (aneuploid) genotypes can be much higher than that to fully resistant genotypes. 
 The ``stationary'' scenario, in which the aneuploid growth rate is close to zero in the presence of the drug, is particularly interesting.
 Although this may seem like a small region of parameter space in a general model of evolutionary rescue (Fig.~\ref{rescue_threshold}A, inset), it could be biologically significant for some tumors under specific drug therapies.
 Our results suggest that identifying aneuploidies that are tolerant or stationary may be worthwhile, as they may enhance the probability of rescue (\Cref{rescue_prob}A) and extend the window of opportunity for rescue (\Cref{cdffig}).
@@ -571,12 +574,23 @@ Our results suggest that identifying aneuploidies that are tolerant or stationar
 %\paragraph{Directions for future research}
 Experiments could test our model predictions. For example, to assess the effect of initial tumor size on the probability of evolutionary rescue, a large culture mass can be propagated from a single cancer cell in permissive conditions and then diluted to a range of starting tumor sizes. Then, the extinction or survival of these tumors can be monitored during exposure to anti-cancer drugs that induce aneuploidy or to saline solution for control~\citep{ippolito2021gene}. 
 We can then compare the results of these experiments to predictions of our model to see if tumors with initial size below the threshold \cref{eq:N_a} are more likely to become extinct due to drug exposure.
+It may also be interesting to look for the involvement of aneuploidy in evolutionary rescue in other biological systems, such as evolution of yeast populations under different stress conditions~\citep{pompei2023fitness,kohanovski2024aneuploidy}.
+
+Our model neglects the possibility of back-mutations from aneuploidy to euploidy, and also the possibility that the fitness of a euploid cell with a resistance mutation may be higher than that of an aneuploid cell with the same mutation. 
+Both of these would be expected to reduce the importance of two-step rescues via aneuploidy.
+But for the former, unless the rate of loss of extra chromosomes is extremely high (for estimates in yeast, see \citet{hose_rate_2024}), comparable in magnitude to the growth rate $\Delta_a$, we expect that its effect on the dynamics will be negligible. %change S16
+The latter possibility, in which aneuploidy substantially reduces the mutant growth rate, seems more likely
+to have an effect. 
+Including it would be a straightforward extension to our model.
+In this case, it could actually be more important to consider the possibility of the loss of aneuploidy, 
+as one would need to check the relative rates of the simple \textit{sensitive} $\rightarrow$ \textit{euploid mutant} path and the three-step \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{aneuploid mutant} $\rightarrow$ \textit{euploid mutant} path \citep{kohanovski2024aneuploidy}.
 
 We have assumed that cancer cell lineages are independent and have verified that this is accurate under simple logistic growth. This assumption neglects the potential effects of spatial structure and local interactions, which may be important in solid tumors. %change S16
-Such tumors can be spatially heterogeneous, with different genotypes inhabiting cellular niches and immune infiltration impacting growth in affected regions \citep{varrone2023cellcharter,galon2010immune}. This can potentially impact the probability of evolutionary rescue \citep{martens2011spatial}. 
-Loss of extra-chromosome may occur at a high rate (for estimates in yeast, see \citet{hose_rate_2024}) and the fitness of a euploid cell with a resistance mutation may be higher than that of an aneuploid cell with the same mutation. %change S16
-Future work could test when these effects have significant effect on the results of our model. % change y1
-In addition, our model can be applied to study evolutionary rescue in other biological systems, such as evolution of yeast populations under different stress conditions~\citep{pompei2023fitness,kohanovski2024aneuploidy}. 
+Such tumors can be spatially heterogeneous, with different genotypes inhabiting cellular niches and immune infiltration impacting growth in affected regions \citep{varrone2023cellcharter,galon2010immune}. 
+This can potentially impact the probability of evolutionary rescue \citep{martens2011spatial}. 
+
+
+
 
 \paragraph{Conclusions.}
 
@@ -1078,7 +1092,7 @@ As a result, the recurrence time is given by~\citep{avanzini2019cancer}
 \begin{align}\label{meanproliferationtime}
 \tau_a^r&\approx\tau_a+\frac{\log \left(p_mN\right)}{\Delta_m}.
 \end{align}
-The factor $p_m$ in the second term of \cref{meanproliferationtime} occurs because the lineage is conditioned to survive stochastic extinction and the time to reach $N$ is shorter compared to the scenario where the lineage is not conditioned to survive stochastic extinction~\citep{orr2014population,smith1974hitch}. % change 35 
+The factor $p_m$ in the second term of \cref{meanproliferationtime} occurs because the lineage is conditioned to survive stochastic extinction and the time to reach $N$ is shorter compared to the scenario where the lineage is not conditioned to survive stochastic extinction~\citep{orr2014population,maynardsmith1974hitch}. % change 35 
 Therefore, in small tumors, we can substitue \cref{limitapprox4} for $\tau_a$ in \cref{meanproliferationtime} to get (blue line in \Cref{ProliferationTimeLarge})
 \begin{equation*}
 \tau_a^r\approx1/|\Delta_a| + \log{\left(p_mN\right)}/\Delta_m .
