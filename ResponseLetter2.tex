@@ -131,35 +131,64 @@ We apologize that we didn't do this ourselves, and really appreciate the reviewe
 
 lines 69-93: The review of multi-step rescue in the intro makes some helpful connections but the logical flow could be improved. Yes, Martin et al 2013 extended Orr $\&$ Unckless 2008 by allowing for multiple different rescue mutations to occur during wildtype decline, but for the purposes of this paper the more important (and yet unmentioned) extension is to allow rescue by multiple (and in particular, two) mutational steps. I think it is then logical to skip to Osmond et al 2020 and instead of focusing on the fitness landscape, which is irrelevant here, focus on the fact that they approximate the 2-step result of Martin et al 2013 in two regimes: sufficiently subcritical and sufficiently critical single mutants. Ignoring the fitness landscape, this is essentially the same result as in Iwasa et al 2003 and 2004, who were specifically thinking about drug resistance and host shifts. I know I mentioned the 2-locus Uecker and Hermisson (2016) result, as it is 2-step rescue, but without more explanation its not clear how it is relevant to the current paper and, in its current placement, breaks up the flow.
 
-\textcolor{blue}{ We have tried to make these changes. The relevant paragraphs now read:
+\textcolor{blue}{ We have tried to make these changes. The relevant paragraphs now read:}
 \begin{displayquote}
-There has been extensive theoretical analysis of evolutionary rescue. Orr and Unckless (2008,
-2014) thoroughly investigated the simplest case in which there is a specific single mutation or low-
-frequency variant that i ssufficient to rescue the population. 
-Martin et al. (2013) extended these results
-to consider the effects of a range of rescue genotypes that can vary in both growth rate and variance in
-offspring number. 
-Importantly for the present work, they also argued that two-step processes involving
-a ``transient'' intermediate genotype with growth rate close to zero may be an important form of rescue;
-however, they only calculated that the rate of such rescues should scale with the total number of such
-transient genotypes produced. Osmond et al. (2020) derived approximate expressions for the rate of
-these two-step rescues in limiting cases and found that for some parameter values two-step rescue is
-more likely than rescue by a single step.
+	\textcolor{blue}{
+    There has been extensive theoretical analysis of evolutionary rescue. Orr and Unckless (2008,
+    2014) thoroughly investigated the simplest case in which there is a specific single mutation or low-
+    frequency variant that i ssufficient to rescue the population. 
+    Martin et al. (2013) extended these results
+    to consider the effects of a range of rescue genotypes that can vary in both growth rate and variance in
+    offspring number. 
+    Importantly for the present work, they also argued that two-step processes involving
+    a ``transient'' intermediate genotype with growth rate close to zero may be an important form of rescue;
+    however, they only calculated that the rate of such rescues should scale with the total number of such
+    transient genotypes produced. Osmond et al. (2020) derived approximate expressions for the rate of
+    these two-step rescues in limiting cases and found that for some parameter values two-step rescue is
+    more likely than rescue by a single step.}
+    
+    \textcolor{blue}{
+    Resistance to cancer therapy is a natural application of evolutionary rescue theory (Alexander et al, 2014). 
+    Iwasa et al (2003) used multi-type branching process theory to approximate the probability that a population under strong selective pressure can survive extinction, focusing on the case in which the cancer must get two mutations to be rescued, with the single-mutant still dying rapidly.
+    Iwasa et al (2004) used a similar approach to find simple approximate expressions for the probability that a single lineage would evolve to survive via a wide range of possible mutational pathways.
+    These results are essentially the same as those described later in the general context by Osmond et al (2020) for the probability of evolutionary rescue by multiple mutations,
+    which we mentioned in the previous paragraph\ldots}
 \end{displayquote}
-}
+
 
 
 lines 126-127: I think the last sentence of the intro, "This is similar to part of Osmond et al. (2020) but focused on a different fitness landscape.", could cause a little confusion. In Osmond et al 2020 there is very explicitly a fitness landscape, with mutational kernels, such that the fitnesses of mutations that arise from a genotype depend on that genotype's fitness. In constrast, here there are three genotypes with independently chosen fitnesses, $\lambda_i - \mu_i$. To avoid confusion I would perhaps just attach a small statement to the previous sentence (about studying 2-step rescue), e.g., ", as in Osmond et al 2020 and Iwasa et al 2003, 2004." and avoid mention of landscapes.
+
+\textcolor{blue}{We have made this change.}
 
 lines 582-585: The same issue about a landscape arises here. Again, I don't think it is helpful to think of the current paper as Osmond et al 2020 with a different fitness lanscape. Relatedly, I find the sentence "Comparing our results to the evolutionary rescue literature, we complement the studies by Iwasa et al. (2003) and Osmond et al. (2020) on multi-step rescue by deriving simple approximations for a different fitness landscape" confusing, in part also because Iwasa et al 2003 say that their results hold for any fitness landscape. Why not just drop that sentence and move on to the 1 vs 2 step rescue result?
 
 lines 585-586: "Similar to Osmond et al. (2020), we find that two-step rescues can be more likely than simple one-step rescues." I think it would be worth adding the reason, because of a higher mutation rate to stepping-stone vs rescue mutations.
 
+\textcolor{blue}{We have made both these changes. The paragraph now begins, ``Similar to Osmond et al (2020), we find that two-step rescues can be more likely than simple one-step rescues, because the mutation rate to stepping-stone (aneuploid) genotypes can be much higher than that to fully resistant genotypes.''}
+
 lines 606-607: "Future work could test when these effects have significant effect on the results of our model." This sentence could be replaced with something more informative. I.e., one could hypothesize that rates of aneuploid loss are small enough relative to the fitness gain over the wildtype to ignore and that allowing a resistant euploid to have a higher fitness than a resistant aneuploid would decrease the importance of 2-step rescue (by some relatively small constant proportion?).
+
+\textcolor{blue}{Agreed. We have rewritten this paragraph as follows:
+\begin{displayquote}
+    Our model neglects the possibility of back-mutations from aneuploidy to euploidy, and also the possibility that the fitness of a euploid cell with a resistance mutation may be higher than that of an aneuploid cell with the same mutation. 
+    Both of these would be expected to reduce the importance of two-step rescues via aneuploidy.
+    But for the former, unless the rate of loss of extra chromosomes is extremely high (for estimates in yeast, see Hose et al (2024)), comparable in magnitude to the growth rate $r_a$, we expect that its effect on the dynamics will be negligible.
+    The latter possibility, in which aneuploidy substantially reduces the mutant growth rate, seems more likely
+    to have an effect. 
+    Including it would be a straightforward extension to our model.
+    In this case, it could actually be more important to consider the possibility of the loss of aneuploidy, 
+    as one would need to check the relative rates of the simple \textit{sensitive} $\rightarrow$ \textit{euploid mutant} path and the three-step \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{aneuploid mutant} $\rightarrow$ \textit{euploid mutant} path (Kohanovski et al, 2024).
+\end{displayquote}
+}
 
 lines 392-393: The equivalent result in Martin et al 2013 is also for 1-step rescue, not 2-step rescue. See their eqn 3.8, which is derived from eqns 3.3 (de novo 1-step) and 3.6 (standing variance 1-step).
 
+\textcolor{blue}{Fixed.}
+
 appendix D: Smith $\&$ Haigh 1974 should be Maynard Smith $\&$ Haigh 1974.
+
+\textcolor{blue}{Fixed.}
 
 \textcolor{red}{Remus comments:}
 
