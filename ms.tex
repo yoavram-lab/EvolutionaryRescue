@@ -540,11 +540,12 @@ In the indirect path, a sensitive cell first becomes aneuploid, which diminishes
 
 Using multi-type branching processes, we derived the probability of evolutionary rescue of the tumor under the effects of aneuploidy, ranging from tolerance to partial resistance.
 We obtained exact and approximate expressions for the probability of evolutionary rescue (\cref{eq:rescue_prob}). 
-Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$. Notably, the latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued, as long as it is produced fast enough (\Cref{rescue_prob}A, \cref{eq:N_ratio}).  
+Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$.
+Notably, the latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued, as long as it occurs frequently enough (\Cref{rescue_prob}A, \cref{eq:N_ratio}).  
 
 When aneuploid cells are partially resistant to the drug ($\Delta_s\ll0\ll\Delta_a\ll\Delta_m$), aneuploidy itself rescues the population (\Cref{rescue_threshold}A). 
 When aneuploidy only provides tolerance to the drug ($\Delta_s\ll\Delta_a\ll0\ll\Delta_m$), it cannot rescue the population.
-Instead, if the aneuploidy rate is fast enough (\cref{eq:N_ratio}) then it may act as a ``stepping stone'' through which the resistant mutant can appear more easily, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}).  %change RS1
+Instead, if the rate of occurrence of aneuploidy is high enough (\cref{eq:N_ratio}) then aneuploidy may act as a ``stepping stone'' through which the resistant mutant can appear more easily, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}).  %change RS1
 In this scenario, aneuploidy provides two advantages. First, it delays the extinction of the population, providing more time for the appearance of a resistance mutation. %change S13
 Second, it increases the population size relative to a drug-sensitive population, providing more cells in which mutations can occur. 
 Together, this increases the cumulative number of mutants that arise (i.e., $N u v \lambda_s \lambda_a / \abs{\Delta_s \Delta_a}$). % change 39 
