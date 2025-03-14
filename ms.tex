@@ -516,8 +516,8 @@ Increasing the sensitive $\Delta_s$, aneuploid $\Delta_a$ and mutant $\Delta_m$ 
 
 For large tumors ($N \gg N_m^*$), the dynamics of the number of mutant cells is deterministic, and the mean recurrence time becomes independent of the initial tumor size $N$.
 Increasing either the mutant growth rate, $\Delta_m$, or the mutation rate, $v$, decreases the time for the tumor to rebound to its initial size.
-Drugs that significantly increase the death rate of sensitive cells, $\mu_s$, but do not affect their division rate, $\lambda_s$, delay cancer recurrence. Additionally, decreasing the sensitive division rate will also the cancer recurrence time. Consequently, patients treated with such drugs may require a longer period of monitoring to guarantee the effectiveness of the treatment. %change 49
-Drugs that significantly increase the division rate of sensitive cells, $\lambda_s$, but do not affect their death rate, $\mu_s$, decrease cancer recurrence times (conditioned on evolutionary rescue). %change S12
+Drugs that significantly increase the death rate of sensitive cells, $\mu_s$, but do not affect their division rate, $\lambda_s$, delay cancer recurrence. Additionally, decreasing the sensitive division rate will also increase the cancer recurrence time.  Patients treated with such drugs may require a longer period of monitoring to guarantee the effectiveness of the treatment. %change 49 change S12
+Drugs that significantly increase the division rate of sensitive cells, $\lambda_s$, but do not affect their death rate, $\mu_s$, decrease cancer recurrence times (conditioned on evolutionary rescue). 
 
 We note that, for small and large tumors, when $N \ll N_a^*$ or $N \gg N_m^*$, the asymptotic expressions for the mean recurrence time are independent of the chromosome missegregation rate $u$, and therefore, the rate at which the drug induces aneuploidy has no effect on the time for the tumor to rebound to its initial size $N$.
 
@@ -541,11 +541,11 @@ In the indirect path, a sensitive cell first becomes aneuploid, which diminishes
 Using multi-type branching processes, we derived the probability of evolutionary rescue of the tumor under the effects of aneuploidy, ranging from tolerance to partial resistance.
 We obtained exact and approximate expressions for the probability of evolutionary rescue (\cref{eq:rescue_prob}). 
 Our results show that the probability of evolutionary rescue increases with the initial tumor size $N$, the drug-sensitive growth rate $\Delta_s$, the mutation rate $v$, and the aneuploidy rate $u$.
-Notably, the latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued, as long as it occurs frequently enough (\Cref{rescue_prob}A, \cref{eq:N_ratio}).  
+Notably, the latter indicates that aneuploidy, even when it only provides tolerance, increases the probability that the tumor will be rescued, as long as it occurs frequently enough (\Cref{rescue_prob}A, \cref{eq:N_ratio}).  %change S20
 
 When aneuploid cells are partially resistant to the drug ($\Delta_s\ll0\ll\Delta_a\ll\Delta_m$), aneuploidy itself rescues the population (\Cref{rescue_threshold}A). 
 When aneuploidy only provides tolerance to the drug ($\Delta_s\ll\Delta_a\ll0\ll\Delta_m$), it cannot rescue the population.
-Instead, if the rate of occurrence of aneuploidy is high enough (\cref{eq:N_ratio}) then aneuploidy may act as a ``stepping stone'' through which the resistant mutant can appear more easily, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}).  %change RS1
+Instead, if the rate of occurrence of aneuploidy is high enough (\cref{eq:N_ratio}) then aneuploidy may act as a ``stepping stone'' through which the resistant mutant can appear more easily, given that the number of aneuploid cells declines slower than the number of drug-sensitive cells (\Cref{sampleTrajectories}).  %change RS1, S20
 In this scenario, aneuploidy provides two advantages. First, it delays the extinction of the population, providing more time for the appearance of a resistance mutation. %change S13
 Second, it increases the population size relative to a drug-sensitive population, providing more cells in which mutations can occur. 
 Together, this increases the cumulative number of mutants that arise (i.e., $N u v \lambda_s \lambda_a / \abs{\Delta_s \Delta_a}$). % change 39 
@@ -1282,7 +1282,7 @@ Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,
 \begin{figure}
 \vspace*{1\baselineskip}
 \includegraphics[width=1\textwidth]{Figures/ExpectedNumber.pdf}
-\caption{\textbf{Aneuploidy increases the number of mutations which rescue the tumor.} Shown is the expected number of mutations, which will rescue the cancer cell population, produced through the evolutionary trajectory \textit{sensitive} $\rightarrow$ \textit{mutant} (blue line, \cref{eq:twosteplineagedirect}) or through the trajectory \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{mutant} (red line, \cref{eq:twosteplineage}). Dashed vertical red line represents the threshold tumor size above which evolutionary rescue is likely through aneuploidy \cref{eq:N_a} and the dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is very likely through direct mutation \cref{eq:N_m}. % change S1
+\caption{\textbf{Aneuploidy increases the number of mutations which rescue the tumor.} Shown is the expected number of mutations, which will rescue the cancer cell population, produced through the evolutionary trajectory \textit{sensitive} $\rightarrow$ \textit{mutant} (blue line, \cref{eq:twosteplineagedirect}) or through the trajectory \textit{sensitive} $\rightarrow$ \textit{aneuploid} $\rightarrow$ \textit{mutant} (red line, \cref{eq:twosteplineage}). Dashed vertical red line represents the threshold tumor size above which evolutionary rescue is likely through aneuploidy \cref{eq:N_a} and the dashed vertical blue line represents the threshold tumor size above which evolutionary rescue is likely to occur through direct mutation \cref{eq:N_m}. % change S1
 Parameters: $\lambda_s=0.1,\lambda_a=0.0899,\lambda_m=0.1,\mu_s=0.14,\mu_a=0.09,\mu_m=0.09, u=10^{-2}, v=10^{-7}$.} %change 14
 \label{ExpectedNumberRescueLineages}
 \end{figure}
