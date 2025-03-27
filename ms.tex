@@ -487,7 +487,8 @@ The mean rescue time with aneuploidy for small and large tumors follows
   N \gg N_m^* .
   \end{cases}
 \end{equation} 
-For small tumors ($ N \ll N_a^*$), the mean rescue time is the two-step equivalent of the one-step result from \citet[expectation of eq.~18]{orr2014population}. The mean rescue time (conditioned on rescue occuring) is a decreasing function of the sensitive and aneuploid growth rates and independent of the other model parameters, including tumor size (blue line in \Cref{EvolutionaryRescueTimeComplete}). This is because if the population rapidly declines but is then rescued, than the resistance mutation must have appeared early; if the population slowly declines, than mutations can appear later and the mean time will be longer. In our focus parameter regime, we have $\Delta_s=-0.04$ and $\Delta_a=-10^{-4}$, such that the mean rescue time is mainly determined by the aneuploid growth rate, and $\tau_a \approx 10^4$ days (\cref{eq:AsymptoticTimeRules}). % change 46
+For small tumors ($ N \ll N_a^*$), the mean rescue time is the two-step equivalent of the one-step result from \citet[expectation of eq.~18]{orr2014population}. The mean rescue time (conditioned on rescue occuring) is an increasing function of the sensitive and aneuploid growth rates and independent of the other model parameters, including tumor size (blue line in \Cref{EvolutionaryRescueTimeComplete}). %change RS2
+This is because if the population rapidly declines but is then rescued, than the resistance mutation must have appeared early; if the population slowly declines, than mutations can appear later and the mean time will be longer. In our focus parameter regime, we have $\Delta_s=-0.04$ and $\Delta_a=-10^{-4}$, such that the mean rescue time is mainly determined by the aneuploid growth rate, and $\tau_a \approx 10^4$ days (\cref{eq:AsymptoticTimeRules}). % change 46
 
 For large tumors ($N \gg N_m^*$), the dynamics are equivalent to a scenario where rescue mutations appear at a constant rate, and the mean rescue time is independent of the aneuploid parameters ($u$, $\lambda_a$, and $\Delta_a$). Increasing the per division mutation rate, $v$, leads to the faster appearance of a rescue mutations and hence reduced mean rescue time. Increasing the tumor size leads to shorter mean rescue time, as more sensitive cells can mutate to become resistant. % change 46 change S16
 
@@ -512,7 +513,7 @@ where $p_m$ is the probability that a lineage starting from a single mutant cell
 For small tumors ($N \ll N_a^*$), the mean recurrence time can be approximated as the sum of the mean time for the first rescue mutation to appear ($\tau_a$) and the additional mean time for its lineage to reach size $N$. 
 This additional time is the equivalent of \citet{orr2014population}'s ``$t_\text{return}$'' (their eq.~23). 
 It grows logarithmically with tumor size $N$ and may be the same order of magnitude as the mean evolutionary rescue time. 
-Increasing the sensitive $\Delta_s$, aneuploid $\Delta_a$ and mutant $\Delta_m$ growth rates decreases the recurrence time.%, while increasing the sensitive and aneuploid growth rates, $\Delta_s$ and $\Delta_a$, respectively, increases the recurrence time. %change RS2
+Increasing mutant $\Delta_m$ growth rates decreases the recurrence time, while increasing the sensitive and aneuploid growth rates, $\Delta_s$ and $\Delta_a$, respectively, increases the recurrence time. 
 
 For large tumors ($N \gg N_m^*$), the dynamics of the number of mutant cells is deterministic, and the mean recurrence time becomes independent of the initial tumor size $N$.
 Increasing either the mutant growth rate, $\Delta_m$, or the mutation rate, $v$, decreases the time for the tumor to rebound to its initial size.
