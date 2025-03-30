@@ -415,7 +415,9 @@ Using \cref{eq:N_a,eq:N_m}, we can find the ratio of threshold tumor size for re
 \end{equation}
 Imporantly, when this threshold is smaller than 1, aneuploidy is expected to play a role in evolutionary rescue, as it reduces the threshold tumor size neeede for rescue. %change S8
 As expected, this ratio increases with the mutation rate $v$ and decreases with the aneuploidy rate $u$.
-In the first scenario, $\abs{\Delta_a}/u\lambda_a$ is the ratio of the expected time for an aneuploid lineage to appear, $1/u\lambda_a$, and the expected time until that lineage disappears, $1/\abs{\Delta_a}$.
+In the first scenario, $\abs{\Delta_a}/u\lambda_a$ is the ratio of the number of sensitive divisions required to produce an aneuploid, $1/u$, to the number of divisions in the resulting aneuploid lineage before it goes extinct, $\lambda_a / |\Delta_a|$.
+% RS5
+%is the ratio of the expected time for an aneuploid lineage to appear, $1/u\lambda_a$, and the expected time until that lineage disappears, $1/\abs{\Delta_a}$.
 In the third scenario, $\left(v \frac{\Delta_m}{\lambda_m}\right) / \left(u \frac{\Delta_a}{\lambda_a}\right)$ is the ratio of the rates of appearance of resistant mutants that avoid extinction and partially resistant aneuploids that avoid extinction.
 In the second scenario, $\frac{1}{u}\left(v  \frac{\Delta_m}{\lambda_m}\right)^{1/2}=\sqrt{\frac{\Delta_a}{u\lambda_a}  v \frac{\Delta_m}{\lambda_m}  \left(u\frac{\Delta_a}{\lambda_a}\right)^{-1}}$, which is the geometric mean of the first and third scenarios.
 
@@ -517,8 +519,8 @@ Increasing mutant $\Delta_m$ growth rates decreases the recurrence time, while i
 
 For large tumors ($N \gg N_m^*$), the dynamics of the number of mutant cells is deterministic, and the mean recurrence time becomes independent of the initial tumor size $N$.
 Increasing either the mutant growth rate, $\Delta_m$, or the mutation rate, $v$, decreases the time for the tumor to rebound to its initial size.
-Drugs that significantly increase the death rate of sensitive cells, $\mu_s$, but do not affect their division rate, $\lambda_s$, delay cancer recurrence. Additionally, decreasing the sensitive division rate will also increase the cancer recurrence time.  Patients treated with such drugs may require a longer period of monitoring to guarantee the effectiveness of the treatment. %change 49 change S12
-Drugs that significantly increase the division rate of sensitive cells, $\lambda_s$, but do not affect their death rate, $\mu_s$, decrease cancer recurrence times (conditioned on evolutionary rescue). 
+Drugs that significantly increase the death rate of sensitive cells, $\mu_s$, but do not affect their division rate, $\lambda_s$, delay cancer recurrence. Drugs that decrease the sensitive division rate delay cancer recurrence time even more, because they effectively decrease the mutation rate (assuming mutations occur during division).  Patients treated with such drugs may require a longer period of monitoring to guarantee the effectiveness of the treatment. %change 49 change S12
+%Drugs that significantly increase the division rate of sensitive cells, $\lambda_s$, but do not affect their death rate, $\mu_s$, decrease cancer recurrence times (conditioned on evolutionary rescue).  %RS6
 
 We note that, for small and large tumors, when $N \ll N_a^*$ or $N \gg N_m^*$, the asymptotic expressions for the mean recurrence time are independent of the chromosome missegregation rate $u$, and therefore, the rate at which the drug induces aneuploidy has no effect on the time for the tumor to rebound to its initial size $N$.
 
