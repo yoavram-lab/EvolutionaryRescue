@@ -5,12 +5,12 @@ This is the repository for the manuscript:
 ## Repository structure
 
 - [`ms.tex`](ms.tex), [`ms.pdf`](ms.pdf): main text
-- [`ms.bib`](ms.bib): bibliography gile
+- [`ms.bib`](ms.bib): bibliography file
 - [`src`](src): source code for producing the figures
 - [`Figures`](Figures): all the figures
 
 ## License
 
-All code in this repo is licensed under the CC-BY-SA 4.0 license.
+All code in this repository is licensed under the CC-BY-SA 4.0 license.
 
 Manuscript and preprint license will appear on the respective websites.
